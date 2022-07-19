@@ -19,9 +19,7 @@
 		F4532CD02883E93400A05344 /* CurrencyConverterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4532CCF2883E93400A05344 /* CurrencyConverterTests.swift */; };
 		F4532CDA2883E93400A05344 /* CurrencyConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4532CD92883E93400A05344 /* CurrencyConverterUITests.swift */; };
 		F4532CDC2883E93400A05344 /* CurrencyConverterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4532CDB2883E93400A05344 /* CurrencyConverterUITestsLaunchTests.swift */; };
-		F4532CEB2884056400A05344 /* Ellips.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4532CEA2884056400A05344 /* Ellips.swift */; };
-		F4536C1328843E950027B572 /* Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4536C1228843E950027B572 /* Constraints.swift */; };
-		F4536C1528843FD40027B572 /* ConstraintsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4536C1428843FD40027B572 /* ConstraintsViewController.swift */; };
+		F4532CEB2884056400A05344 /* EllipseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4532CEA2884056400A05344 /* EllipseView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,9 +62,7 @@
 		F4532CD52883E93400A05344 /* CurrencyConverterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CurrencyConverterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4532CD92883E93400A05344 /* CurrencyConverterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterUITests.swift; sourceTree = "<group>"; };
 		F4532CDB2883E93400A05344 /* CurrencyConverterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterUITestsLaunchTests.swift; sourceTree = "<group>"; };
-		F4532CEA2884056400A05344 /* Ellips.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ellips.swift; sourceTree = "<group>"; };
-		F4536C1228843E950027B572 /* Constraints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constraints.swift; sourceTree = "<group>"; };
-		F4536C1428843FD40027B572 /* ConstraintsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstraintsViewController.swift; sourceTree = "<group>"; };
+		F4532CEA2884056400A05344 /* EllipseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipseView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,9 +144,7 @@
 			children = (
 				F4532CE82883E9D000A05344 /* SupportingFiles */,
 				F4532CE92883EA0500A05344 /* View */,
-				F4536C1128843DCC0027B572 /* CustomView */,
-				F4536C1228843E950027B572 /* Constraints.swift */,
-				F4536C1428843FD40027B572 /* ConstraintsViewController.swift */,
+				F4536C1128843DCC0027B572 /* CustomViews */,
 			);
 			path = CurrencyConverter;
 			sourceTree = "<group>";
@@ -192,12 +186,12 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		F4536C1128843DCC0027B572 /* CustomView */ = {
+		F4536C1128843DCC0027B572 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
-				F4532CEA2884056400A05344 /* Ellips.swift */,
+				F4532CEA2884056400A05344 /* EllipseView.swift */,
 			);
-			path = CustomView;
+			path = CustomViews;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -422,11 +416,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F4532CBD2883E93300A05344 /* ViewController.swift in Sources */,
-				F4536C1528843FD40027B572 /* ConstraintsViewController.swift in Sources */,
 				F4532CB92883E93300A05344 /* AppDelegate.swift in Sources */,
-				F4536C1328843E950027B572 /* Constraints.swift in Sources */,
 				F4532CBB2883E93300A05344 /* SceneDelegate.swift in Sources */,
-				F4532CEB2884056400A05344 /* Ellips.swift in Sources */,
+				F4532CEB2884056400A05344 /* EllipseView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -610,7 +602,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
@@ -641,7 +633,7 @@
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
