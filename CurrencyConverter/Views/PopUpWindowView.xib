@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+        <array key="Lato-SemiBold.ttf">
+            <string>Lato-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PopUpWindowView" customModule="CurrencyConverter" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="BBq-NP-G5L" id="dcD-Wb-I6C"/>
+                <outlet property="sellButton" destination="CPV-80-a2e" id="hVF-nH-8C0"/>
+                <outlet property="usdTextField" destination="9GG-kD-zT3" id="FvR-6t-HPC"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="BBq-NP-G5L" userLabel="ContentView">
+            <rect key="frame" x="0.0" y="0.0" width="343" height="398"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="Erg-FP-EiR" userLabel="ButtonsStackView">
+                    <rect key="frame" x="16" y="16" width="311" height="44"/>
+                    <subviews>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPV-80-a2e" userLabel="Sell Button">
+                            <rect key="frame" x="0.0" y="0.0" width="139" height="44"/>
+                            <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" identifier="SellButtonHeight" id="Ya8-ls-1GR"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Sell">
+                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A39-Ul-ino" userLabel="Buy Button">
+                            <rect key="frame" x="172" y="0.0" width="139" height="44"/>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                            <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                            <state key="normal" title="Buy">
+                                <color key="titleColor" red="0.0" green="0.19215686274509802" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="6"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="CPV-80-a2e" firstAttribute="width" secondItem="A39-Ul-ino" secondAttribute="width" id="2G9-sz-ZA0"/>
+                    </constraints>
+                </stackView>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="e2p-5d-Qsy" userLabel="CurrencyStackView">
+                    <rect key="frame" x="16.666666666666657" y="100" width="310" height="134"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleAspectFit" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="Xy7-IG-KUh" userLabel="USDStackView">
+                            <rect key="frame" x="0.0" y="0.0" width="310" height="34"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdH-IU-4Uv" userLabel="ArrowStackView">
+                                    <rect key="frame" x="0.0" y="0.0" width="52.666666666666664" height="34"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g90-45-Bbz">
+                                            <rect key="frame" x="0.0" y="0.0" width="28.666666666666668" height="34"/>
+                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small-right" translatesAutoresizingMaskIntoConstraints="NO" id="3Rb-3K-z0Y">
+                                            <rect key="frame" x="28.666666666666671" y="0.0" width="24" height="34"/>
+                                        </imageView>
+                                    </subviews>
+                                </stackView>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9GG-kD-zT3" customClass="AdjustableTextField" customModule="CurrencyConverter" customModuleProvider="target">
+                                    <rect key="frame" x="109.66666666666664" y="0.0" width="200.33333333333337" height="34"/>
+                                    <color key="backgroundColor" red="0.96862745098039216" green="0.97254901960784312" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" name="Lato-SemiBold" family="Lato" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                </textField>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleAspectFit" alignment="center" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="BlK-Mt-gGf" userLabel="EURStackView">
+                            <rect key="frame" x="0.0" y="50" width="310" height="34"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YBs-y5-b18" userLabel="ArrowStackView">
+                                    <rect key="frame" x="0.0" y="5" width="51.333333333333336" height="24"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EUR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAG-Nh-Nl1">
+                                            <rect key="frame" x="0.0" y="0.0" width="27.333333333333332" height="24"/>
+                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small-right" translatesAutoresizingMaskIntoConstraints="NO" id="g9j-j9-k3o">
+                                            <rect key="frame" x="27.333333333333329" y="0.0" width="24" height="24"/>
+                                        </imageView>
+                                    </subviews>
+                                </stackView>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="63b-fE-7Fb" customClass="AdjustableTextField" customModule="CurrencyConverter" customModuleProvider="target">
+                                    <rect key="frame" x="108.33333333333333" y="0.0" width="201.66666666666669" height="34"/>
+                                    <color key="backgroundColor" red="0.96862745098039216" green="0.97254901960784312" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" name="Lato-SemiBold" family="Lato" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="layer.borderColor">
+                                            <color key="value" systemColor="systemRedColor"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                            <integer key="value" value="1"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="0.0"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </textField>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleAspectFit" alignment="center" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="cbK-d7-zBP" userLabel="PLNStackView">
+                            <rect key="frame" x="0.0" y="100" width="310" height="34"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1py-DO-GMb" userLabel="ArrowStackView">
+                                    <rect key="frame" x="0.0" y="5" width="50.333333333333336" height="24"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzO-Rw-udQ">
+                                            <rect key="frame" x="0.0" y="0.0" width="26.333333333333332" height="24"/>
+                                            <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small-right" translatesAutoresizingMaskIntoConstraints="NO" id="KT7-5j-y1B">
+                                            <rect key="frame" x="26.333333333333329" y="0.0" width="24" height="24"/>
+                                        </imageView>
+                                    </subviews>
+                                </stackView>
+                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="84L-ja-LdF" customClass="AdjustableTextField" customModule="CurrencyConverter" customModuleProvider="target">
+                                    <rect key="frame" x="107.33333333333333" y="0.0" width="202.66666666666669" height="34"/>
+                                    <color key="backgroundColor" red="0.96862745098039216" green="0.97254901960784312" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
+                                    <fontDescription key="fontDescription" name="Lato-SemiBold" family="Lato" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                            <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        </userDefinedRuntimeAttribute>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                                            <real key="value" value="0.0"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </textField>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="lessThanOrEqual" constant="400" id="9z9-gR-hio"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="310" id="xNA-Mh-wKy"/>
+                    </constraints>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1k8-5E-1Wv" userLabel="Add Currency Button">
+                    <rect key="frame" x="16" y="274" width="311" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="Ivj-lJ-Ccr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="  Add Currency" image="plus.circle.fill" catalog="system"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAp-D3-aqN" userLabel="Send Button">
+                    <rect key="frame" x="290" y="343" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="kLS-mr-U5r"/>
+                        <constraint firstAttribute="width" secondItem="rAp-D3-aqN" secondAttribute="height" multiplier="1:1" id="oPI-4R-xEa"/>
+                    </constraints>
+                    <color key="tintColor" red="0.61960784313725492" green="0.61568627450980395" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="square.and.arrow.up" catalog="system">
+                        <color key="titleColor" red="0.61960784313725492" green="0.61568627450980395" blue="0.62352941176470589" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="aSi-gG-jyn"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="1k8-5E-1Wv" firstAttribute="top" secondItem="e2p-5d-Qsy" secondAttribute="bottom" constant="20" id="0bg-5U-57i"/>
+                <constraint firstItem="1k8-5E-1Wv" firstAttribute="top" secondItem="84L-ja-LdF" secondAttribute="bottom" constant="40" id="6mp-bE-ccU"/>
+                <constraint firstItem="Erg-FP-EiR" firstAttribute="top" secondItem="BBq-NP-G5L" secondAttribute="top" constant="16" id="7t4-bm-oP0"/>
+                <constraint firstAttribute="trailing" secondItem="Erg-FP-EiR" secondAttribute="trailing" constant="16" id="8Gc-p0-SF5"/>
+                <constraint firstItem="e2p-5d-Qsy" firstAttribute="centerX" secondItem="BBq-NP-G5L" secondAttribute="centerX" id="O9U-DI-u2e"/>
+                <constraint firstItem="rAp-D3-aqN" firstAttribute="centerY" secondItem="1k8-5E-1Wv" secondAttribute="centerY" id="dDj-Rc-DBV"/>
+                <constraint firstItem="e2p-5d-Qsy" firstAttribute="top" secondItem="CPV-80-a2e" secondAttribute="bottom" constant="20" id="f1p-yq-VjL"/>
+                <constraint firstItem="e2p-5d-Qsy" firstAttribute="top" secondItem="CPV-80-a2e" secondAttribute="bottom" constant="40" id="gHY-iz-Rcl"/>
+                <constraint firstItem="1k8-5E-1Wv" firstAttribute="leading" secondItem="BBq-NP-G5L" secondAttribute="leading" constant="16" id="ip6-jC-uz4"/>
+                <constraint firstAttribute="trailing" secondItem="1k8-5E-1Wv" secondAttribute="trailing" constant="16" id="mOB-Y7-WSG"/>
+                <constraint firstAttribute="bottom" secondItem="rAp-D3-aqN" secondAttribute="bottom" constant="15" id="njS-bN-McJ"/>
+                <constraint firstAttribute="trailing" secondItem="rAp-D3-aqN" secondAttribute="trailing" constant="13" id="qYx-DH-8gM"/>
+                <constraint firstItem="Erg-FP-EiR" firstAttribute="leading" secondItem="BBq-NP-G5L" secondAttribute="leading" constant="16" id="vu1-sk-65u"/>
+            </constraints>
+            <nil key="simulatedTopBarMetrics"/>
+            <nil key="simulatedBottomBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="f1p-yq-VjL"/>
+                    <exclude reference="gHY-iz-Rcl"/>
+                    <exclude reference="0bg-5U-57i"/>
+                    <exclude reference="6mp-bE-ccU"/>
+                    <exclude reference="dDj-Rc-DBV"/>
+                    <exclude reference="njS-bN-McJ"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=compact">
+                <mask key="constraints">
+                    <include reference="f1p-yq-VjL"/>
+                    <include reference="0bg-5U-57i"/>
+                    <include reference="dDj-Rc-DBV"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular">
+                <mask key="constraints">
+                    <include reference="gHY-iz-Rcl"/>
+                    <include reference="6mp-bE-ccU"/>
+                    <include reference="njS-bN-McJ"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="526.81159420289862" y="-269.19642857142856"/>
+        </view>
+    </objects>
+    <designables>
+        <designable name="63b-fE-7Fb">
+            <size key="intrinsicContentSize" width="45" height="34"/>
+        </designable>
+        <designable name="84L-ja-LdF">
+            <size key="intrinsicContentSize" width="45" height="34"/>
+        </designable>
+        <designable name="9GG-kD-zT3">
+            <size key="intrinsicContentSize" width="45" height="34"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="small-right" width="24" height="24"/>
+        <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
+        <systemColor name="systemRedColor">
+            <color red="1" green="0.23137254901960785" blue="0.18823529411764706" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

@@ -7,8 +7,8 @@
 
 import UIKit
 
-@IBDesignable final
-class EllipseView: UIView {
+@IBDesignable
+final class EllipseView: UIView {
     @IBInspectable var fillColor: UIColor = UIColor.gray
     
     override func draw(_ rect: CGRect) {

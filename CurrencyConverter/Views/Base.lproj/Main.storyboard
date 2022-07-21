@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="O2G-jO-Xgz">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-ExtraBold.ttf">
+            <string>Lato-ExtraBold</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC" userLabel="BackgroundView">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hy1-mB-jAx" userLabel="BigEllipseView" customClass="EllipseView" customModule="CurrencyConverter" customModuleProvider="target">
+                                <rect key="frame" x="-45" y="-65" width="480" height="339"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="339" id="rTH-f7-53F"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                        <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1iD-8j-xUJ" userLabel="MiddleEllipseView" customClass="EllipseView" customModule="CurrencyConverter" customModuleProvider="target">
+                                <rect key="frame" x="-89" y="-136" width="492" height="350"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="WkY-x0-ic5"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                        <color key="value" red="0.1019607843" green="0.52941176469999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U0a-kL-C4C" userLabel="SmallEllipseView" customClass="EllipseView" customModule="CurrencyConverter" customModuleProvider="target">
+                                <rect key="frame" x="-116" y="-136" width="492" height="350"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="350" id="XZn-dM-Qtc"/>
+                                </constraints>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                                        <color key="value" red="0.20000000000000001" green="0.58431372550000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency Converter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GzN-ej-N5y">
+                                <rect key="frame" x="16" y="96" width="212.66666666666666" height="29"/>
+                                <fontDescription key="fontDescription" name="Lato-ExtraBold" family="Lato" pointSize="24"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ope-mD-EPr" customClass="PopUpWindowView" customModule="CurrencyConverter" customModuleProvider="target">
+                                <rect key="frame" x="16" y="171" width="358" height="398"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="398" id="kvo-pA-OcD"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="U0a-kL-C4C" secondAttribute="trailing" constant="23" id="0Rc-u5-Txc"/>
+                            <constraint firstAttribute="leading" secondItem="Hy1-mB-jAx" secondAttribute="leading" constant="45" id="1Fj-g1-uZN"/>
+                            <constraint firstAttribute="leading" secondItem="U0a-kL-C4C" secondAttribute="leading" constant="116" id="30c-9G-tCD"/>
+                            <constraint firstAttribute="top" secondItem="U0a-kL-C4C" secondAttribute="top" constant="136" id="45P-gX-96p"/>
+                            <constraint firstItem="GzN-ej-N5y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="82h-Bm-n1O"/>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="GzN-ej-N5y" secondAttribute="trailing" constant="20" symbolic="YES" id="DRz-qx-eCU"/>
+                            <constraint firstAttribute="trailing" secondItem="U0a-kL-C4C" secondAttribute="trailing" constant="14" id="E0w-FZ-dGo"/>
+                            <constraint firstItem="GzN-ej-N5y" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="96" id="H6x-58-XbP"/>
+                            <constraint firstItem="1iD-8j-xUJ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="65" id="HYd-Ve-VEP"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="leading" secondItem="Hy1-mB-jAx" secondAttribute="leading" constant="21" id="Lso-f0-BWK"/>
+                            <constraint firstAttribute="trailing" secondItem="ope-mD-EPr" secondAttribute="trailing" constant="16" id="Sfm-Bm-YMv"/>
+                            <constraint firstItem="ope-mD-EPr" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="171" id="Tc0-z4-Bv7"/>
+                            <constraint firstAttribute="leading" secondItem="1iD-8j-xUJ" secondAttribute="leading" constant="89" id="TqW-JB-Y7D"/>
+                            <constraint firstItem="GzN-ej-N5y" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="50" id="Uop-LG-uUo"/>
+                            <constraint firstAttribute="top" secondItem="1iD-8j-xUJ" secondAttribute="top" constant="136" id="W8g-fI-lZE"/>
+                            <constraint firstAttribute="top" secondItem="Hy1-mB-jAx" secondAttribute="top" constant="65" id="XNm-xG-Ax3"/>
+                            <constraint firstItem="GzN-ej-N5y" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="24" id="YUh-uH-2O9"/>
+                            <constraint firstItem="ope-mD-EPr" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="16" id="a4b-Fk-nGk"/>
+                            <constraint firstItem="1iD-8j-xUJ" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" constant="29" id="gm6-3h-w5X"/>
+                            <constraint firstItem="Hy1-mB-jAx" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" constant="92" id="ka6-Sy-g61"/>
+                            <constraint firstItem="GzN-ej-N5y" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="75" id="ptz-hT-lxU"/>
+                            <constraint firstItem="1iD-8j-xUJ" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" constant="13" id="qk5-k0-4Di"/>
+                            <constraint firstItem="Hy1-mB-jAx" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" constant="45" id="uRi-pK-Obg"/>
+                            <constraint firstAttribute="leading" secondItem="U0a-kL-C4C" secondAttribute="leading" constant="116" id="zlt-l2-UVT"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="Lso-f0-BWK"/>
+                                <exclude reference="1Fj-g1-uZN"/>
+                                <exclude reference="ka6-Sy-g61"/>
+                                <exclude reference="uRi-pK-Obg"/>
+                                <exclude reference="82h-Bm-n1O"/>
+                                <exclude reference="H6x-58-XbP"/>
+                                <exclude reference="Uop-LG-uUo"/>
+                                <exclude reference="YUh-uH-2O9"/>
+                                <exclude reference="ptz-hT-lxU"/>
+                                <exclude reference="HYd-Ve-VEP"/>
+                                <exclude reference="TqW-JB-Y7D"/>
+                                <exclude reference="gm6-3h-w5X"/>
+                                <exclude reference="qk5-k0-4Di"/>
+                                <exclude reference="0Rc-u5-Txc"/>
+                                <exclude reference="30c-9G-tCD"/>
+                                <exclude reference="E0w-FZ-dGo"/>
+                                <exclude reference="zlt-l2-UVT"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="Lso-f0-BWK"/>
+                                <include reference="ka6-Sy-g61"/>
+                                <include reference="Uop-LG-uUo"/>
+                                <include reference="YUh-uH-2O9"/>
+                                <include reference="HYd-Ve-VEP"/>
+                                <include reference="gm6-3h-w5X"/>
+                                <include reference="0Rc-u5-Txc"/>
+                                <include reference="30c-9G-tCD"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="1Fj-g1-uZN"/>
+                                <include reference="uRi-pK-Obg"/>
+                                <include reference="82h-Bm-n1O"/>
+                                <include reference="H6x-58-XbP"/>
+                                <include reference="TqW-JB-Y7D"/>
+                                <include reference="qk5-k0-4Di"/>
+                                <include reference="E0w-FZ-dGo"/>
+                                <include reference="zlt-l2-UVT"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="Lso-f0-BWK"/>
+                                <include reference="ka6-Sy-g61"/>
+                                <include reference="YUh-uH-2O9"/>
+                                <include reference="ptz-hT-lxU"/>
+                                <include reference="HYd-Ve-VEP"/>
+                                <include reference="gm6-3h-w5X"/>
+                                <include reference="0Rc-u5-Txc"/>
+                                <include reference="30c-9G-tCD"/>
+                            </mask>
+                        </variation>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-152" y="-289"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Jhg-ZD-1Vj">
+            <objects>
+                <viewController id="elA-D2-yGx" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="AFu-L4-9V0">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="k4w-bO-IYX" customClass="PopUpWindowView" customModule="CurrencyConverter" customModuleProvider="target">
+                                <rect key="frame" x="16" y="200" width="358" height="398"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="398" id="cFM-7w-Bet"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="sUy-eP-S1g"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="k4w-bO-IYX" firstAttribute="leading" secondItem="AFu-L4-9V0" secondAttribute="leading" constant="16" id="5k3-UK-Udk"/>
+                            <constraint firstAttribute="trailing" secondItem="k4w-bO-IYX" secondAttribute="trailing" constant="16" id="Bq1-9f-JOV"/>
+                            <constraint firstItem="k4w-bO-IYX" firstAttribute="top" secondItem="AFu-L4-9V0" secondAttribute="top" constant="200" id="eoK-n6-yDl"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DTa-dH-Ky5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="615" y="-289"/>
+        </scene>
+        <!--Main View Controller-->
+        <scene sceneID="P8f-BJ-Mqh">
+            <objects>
+                <viewController id="O2G-jO-Xgz" customClass="MainViewController" customModule="CurrencyConverter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hjp-vI-B3B" userLabel="Background View">
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hPD-Qh-SIj" customClass="EllipsesView" customModule="CurrencyConverter" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oen-GE-OIL" customClass="PopUpWindowView" customModule="CurrencyConverter" customModuleProvider="target">
+                                <rect key="frame" x="16" y="171" width="358" height="398"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="398" id="4kR-6c-HKm"/>
+                                    <constraint firstAttribute="height" constant="290" id="yfp-v9-byY"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="4kR-6c-HKm"/>
+                                        <exclude reference="yfp-v9-byY"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="yfp-v9-byY"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=compact">
+                                    <mask key="constraints">
+                                        <include reference="4kR-6c-HKm"/>
+                                    </mask>
+                                </variation>
+                                <variation key="heightClass=regular-widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="4kR-6c-HKm"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="jFL-rC-f4R"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="hPD-Qh-SIj" secondAttribute="trailing" id="0hf-o4-0Fy"/>
+                            <constraint firstItem="oen-GE-OIL" firstAttribute="leading" secondItem="hjp-vI-B3B" secondAttribute="leading" constant="16" id="60Z-RY-C4U"/>
+                            <constraint firstItem="hPD-Qh-SIj" firstAttribute="leading" secondItem="hjp-vI-B3B" secondAttribute="leading" id="7cT-42-gTF"/>
+                            <constraint firstAttribute="bottom" secondItem="hPD-Qh-SIj" secondAttribute="bottom" id="922-2Y-MJ1"/>
+                            <constraint firstAttribute="trailing" secondItem="oen-GE-OIL" secondAttribute="trailing" constant="24" id="NnB-Uq-Wfs"/>
+                            <constraint firstAttribute="trailing" secondItem="oen-GE-OIL" secondAttribute="trailing" constant="16" id="VjQ-C7-7pF"/>
+                            <constraint firstItem="oen-GE-OIL" firstAttribute="top" secondItem="hjp-vI-B3B" secondAttribute="top" constant="171" id="oRe-nd-TVu"/>
+                            <constraint firstItem="oen-GE-OIL" firstAttribute="top" secondItem="hjp-vI-B3B" secondAttribute="top" constant="119" id="p2b-5o-CWI"/>
+                            <constraint firstItem="oen-GE-OIL" firstAttribute="leading" secondItem="hjp-vI-B3B" secondAttribute="leading" constant="24" id="pEG-lu-dJs"/>
+                            <constraint firstItem="hPD-Qh-SIj" firstAttribute="top" secondItem="hjp-vI-B3B" secondAttribute="top" id="tuo-AB-qg7"/>
+                            <constraint firstItem="oen-GE-OIL" firstAttribute="top" secondItem="hjp-vI-B3B" secondAttribute="top" constant="70" id="xVm-C7-hDX"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="60Z-RY-C4U"/>
+                                <exclude reference="NnB-Uq-Wfs"/>
+                                <exclude reference="VjQ-C7-7pF"/>
+                                <exclude reference="oRe-nd-TVu"/>
+                                <exclude reference="p2b-5o-CWI"/>
+                                <exclude reference="pEG-lu-dJs"/>
+                                <exclude reference="xVm-C7-hDX"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="NnB-Uq-Wfs"/>
+                                <exclude reference="p2b-5o-CWI"/>
+                                <include reference="pEG-lu-dJs"/>
+                                <include reference="xVm-C7-hDX"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="60Z-RY-C4U"/>
+                                <include reference="VjQ-C7-7pF"/>
+                                <include reference="oRe-nd-TVu"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="NnB-Uq-Wfs"/>
+                                <include reference="p2b-5o-CWI"/>
+                                <include reference="pEG-lu-dJs"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="popUpWindow" destination="oen-GE-OIL" id="nN3-SO-ICp"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1O6-k4-GVY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1431" y="-289"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>
