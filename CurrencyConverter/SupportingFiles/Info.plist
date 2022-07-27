@@ -6,6 +6,7 @@
 	<string></string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>SFProText-Regular.ttf</string>
 		<string>Lato-ExtraBold.ttf</string>
 		<string>Lato-SemiBold.ttf</string>
 		<string>Lato-Regular.ttf</string>

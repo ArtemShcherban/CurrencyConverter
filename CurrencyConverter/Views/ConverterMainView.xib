@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConverterMainView" customModule="CurrencyConverter" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="piM-72-vzn"/>
+                <outlet property="popUpWindow" destination="EZy-vU-2ZP" id="nPO-T8-h04"/>
+                <outlet property="ratesWindowView" destination="VmF-Df-uQI" id="Mf5-LL-qRa"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8qA-YV-Vjj" customClass="EllipsesView" customModule="CurrencyConverter" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EZy-vU-2ZP" customClass="ConverterWindowView" customModule="CurrencyConverter" customModuleProvider="target">
+                    <rect key="frame" x="16" y="171" width="358" height="398"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="398" id="RoD-VD-yF3"/>
+                        <constraint firstAttribute="height" constant="290" id="p1m-Fk-hqL"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="RoD-VD-yF3"/>
+                            <exclude reference="p1m-Fk-hqL"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=compact">
+                        <mask key="constraints">
+                            <include reference="p1m-Fk-hqL"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular">
+                        <mask key="constraints">
+                            <include reference="RoD-VD-yF3"/>
+                        </mask>
+                    </variation>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VmF-Df-uQI" customClass="RatesWindowView" customModule="CurrencyConverter" customModuleProvider="target">
+                    <rect key="frame" x="16" y="171" width="358" height="398"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="290" id="AAK-EB-vfb"/>
+                        <constraint firstAttribute="height" constant="398" id="SmV-aM-mrQ"/>
+                    </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="AAK-EB-vfb"/>
+                            <exclude reference="SmV-aM-mrQ"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=compact">
+                        <mask key="constraints">
+                            <include reference="AAK-EB-vfb"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular">
+                        <mask key="constraints">
+                            <include reference="SmV-aM-mrQ"/>
+                        </mask>
+                    </variation>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" systemColor="systemOrangeColor"/>
+            <constraints>
+                <constraint firstItem="8qA-YV-Vjj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DYd-KN-6o1"/>
+                <constraint firstAttribute="trailing" secondItem="EZy-vU-2ZP" secondAttribute="trailing" constant="16" id="EC2-dt-mOk"/>
+                <constraint firstItem="VmF-Df-uQI" firstAttribute="trailing" secondItem="EZy-vU-2ZP" secondAttribute="trailing" id="EFR-iJ-gFC"/>
+                <constraint firstItem="VmF-Df-uQI" firstAttribute="height" secondItem="EZy-vU-2ZP" secondAttribute="height" id="GOh-fM-l0b"/>
+                <constraint firstItem="EZy-vU-2ZP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="ICT-A6-Ywe"/>
+                <constraint firstAttribute="trailing" secondItem="EZy-vU-2ZP" secondAttribute="trailing" constant="24" id="MB7-i4-cYz"/>
+                <constraint firstItem="EZy-vU-2ZP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="171" id="T1X-Sn-OUn"/>
+                <constraint firstItem="EZy-vU-2ZP" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="V3X-Fg-Qwr"/>
+                <constraint firstItem="EZy-vU-2ZP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="119" id="Zrw-IN-u67"/>
+                <constraint firstItem="8qA-YV-Vjj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="beZ-pe-bbN"/>
+                <constraint firstAttribute="bottom" secondItem="8qA-YV-Vjj" secondAttribute="bottom" id="d5b-Ig-92C"/>
+                <constraint firstItem="VmF-Df-uQI" firstAttribute="leading" secondItem="EZy-vU-2ZP" secondAttribute="leading" id="djF-tI-Qcg"/>
+                <constraint firstItem="VmF-Df-uQI" firstAttribute="top" secondItem="EZy-vU-2ZP" secondAttribute="top" id="fL2-bp-xWn"/>
+                <constraint firstItem="EZy-vU-2ZP" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="70" id="iWb-BH-1ae"/>
+                <constraint firstAttribute="trailing" secondItem="8qA-YV-Vjj" secondAttribute="trailing" id="krQ-o8-aGN"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="EC2-dt-mOk"/>
+                    <exclude reference="ICT-A6-Ywe"/>
+                    <exclude reference="MB7-i4-cYz"/>
+                    <exclude reference="T1X-Sn-OUn"/>
+                    <exclude reference="V3X-Fg-Qwr"/>
+                    <exclude reference="Zrw-IN-u67"/>
+                    <exclude reference="iWb-BH-1ae"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=compact">
+                <mask key="constraints">
+                    <include reference="ICT-A6-Ywe"/>
+                    <include reference="MB7-i4-cYz"/>
+                    <include reference="iWb-BH-1ae"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="constraints">
+                    <include reference="EC2-dt-mOk"/>
+                    <include reference="T1X-Sn-OUn"/>
+                    <include reference="V3X-Fg-Qwr"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <include reference="ICT-A6-Ywe"/>
+                    <include reference="MB7-i4-cYz"/>
+                    <include reference="Zrw-IN-u67"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="335" y="97"/>
+        </view>
+    </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>

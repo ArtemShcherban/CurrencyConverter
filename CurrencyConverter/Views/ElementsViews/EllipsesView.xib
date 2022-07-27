@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -24,11 +24,11 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="ContentView">
-            <rect key="frame" x="0.0" y="0.0" width="1366" height="1024"/>
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kKy-wg-cCQ" userLabel="Big Ellipse View" customClass="EllipseView" customModule="CurrencyConverter" customModuleProvider="target">
-                    <rect key="frame" x="21" y="-65" width="1437" height="339"/>
+                    <rect key="frame" x="-45" y="-65" width="480" height="339"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="339" id="Z46-ls-Ihr"/>
@@ -40,7 +40,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ick-Ny-He0" userLabel="Middle Ellipse View" customClass="EllipseView" customModule="CurrencyConverter" customModuleProvider="target">
-                    <rect key="frame" x="-65" y="-136" width="1460" height="350"/>
+                    <rect key="frame" x="-89" y="-136" width="492" height="350"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="350" id="mOf-Ye-gOL"/>
@@ -52,7 +52,7 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CCe-Ig-gqw" userLabel="Small Ellipse View" customClass="EllipseView" customModule="CurrencyConverter" customModuleProvider="target">
-                    <rect key="frame" x="-116" y="-136" width="1459" height="350"/>
+                    <rect key="frame" x="-116" y="-136" width="492" height="350"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="350" id="xbl-Sg-B5c"/>
@@ -64,19 +64,19 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency Converter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRG-DP-VlT">
-                    <rect key="frame" x="24" y="75" width="212.5" height="29"/>
+                    <rect key="frame" x="16" y="96" width="212.66666666666666" height="29"/>
                     <fontDescription key="fontDescription" name="Lato-ExtraBold" family="Lato" pointSize="24"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last updated" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDO-Am-dI5">
-                    <rect key="frame" x="16" y="585" width="1110" height="14.5"/>
+                    <rect key="frame" x="16" y="585" width="134" height="14.666666666666629"/>
                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22 July 2022 23:59 PM" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ib-9z-eNM">
-                    <rect key="frame" x="16" y="607.5" width="1075" height="14.5"/>
+                    <rect key="frame" x="15.999999999999993" y="607.66666666666663" width="123.33333333333331" height="14.666666666666629"/>
                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
