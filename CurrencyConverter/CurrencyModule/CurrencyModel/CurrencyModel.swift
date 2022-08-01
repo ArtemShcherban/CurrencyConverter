@@ -12,14 +12,16 @@ final class CurrencyModel {
     private lazy var currencies: [Currency] = []
     private lazy var  currencyGroups: [(letter: String, currencies: [Currency])] = []
     private lazy  var popularGroup: [Currency] = []
+    
+    private lazy var userDefaultsManager = UserDefaultsManager()
 
     func createCurrencyGroups() {
         guard let jsonArray = getJsonArray() else { return }
-        createCurrencyDictionary(jsonArray)
+        createCurrenciesArray(jsonArray)
         createPopularGroup()
         groupСurrencies()
         add(popularGroup)
-        currencyDataSource.currencyGroups = currencyGroups
+        currencyDataSource.groupedСurrencies = currencyGroups
     }
     
     private func getJsonArray() -> [Any]? {
@@ -31,7 +33,7 @@ final class CurrencyModel {
         return json
     }
     
-    private func createCurrencyDictionary(_ jsonArray: [Any]) {
+    private func createCurrenciesArray(_ jsonArray: [Any]) {
         for item in jsonArray {
             if let object = item as? [String: AnyObject],
             let country = object["Country"] as? String,
@@ -46,6 +48,7 @@ final class CurrencyModel {
                 currencies.append(currency)
             }
         }
+        currencyDataSource.currencies = currencies
     }
     
     private func groupСurrencies() {
@@ -63,10 +66,10 @@ final class CurrencyModel {
     }
     
     private func createPopularGroup() {
-        let popular = ["USD", "EUR", "UAH"]
+        let popular = PopularConstant.currencies
         
         for currency in popular {
-            if let index = currencies.firstIndex(where: { $0.currency == currency }) {
+            if let index = currencies.firstIndex(where: { $0.currency == currency.currency }) {
             popularGroup.append(currencies[index])
             currencies.remove(at: index)
             }
@@ -80,9 +83,10 @@ final class CurrencyModel {
      
     func filterCurrency(text: String) {
         if !text.isEmpty {
-            let text = text.lowercased()
-            //        currencyDataSource.filteredCurrency = []
-            let filtered = currencyDataSource.currencyGroups.flatMap {
+            let whitespaceCharacterSet = CharacterSet.whitespaces
+            let text = text.trimmingCharacters(in: whitespaceCharacterSet).lowercased()
+
+            let filtered = currencyDataSource.groupedСurrencies.flatMap {
                 $1
             }
                 .filter {
@@ -93,11 +97,45 @@ final class CurrencyModel {
                 currencyDataSource.filteredCurrency.removeAll()
                 currencyDataSource.filteredCurrency = filtered
             } else {
-                currencyDataSource.filteredCurrency = [Currency(country: "", currencyName: "", currency: "", code: 0)]
+                currencyDataSource.filteredCurrency = []
             }
         } else {
             currencyDataSource.filteredCurrency = []
-            print("String is empty")
+        }
+    }
+    
+    func updateSelectedCurrencies(indexPath: IndexPath, isBeingFiltered: Bool) {
+        let selectedCurrency: Currency
+
+        if isBeingFiltered {
+            selectedCurrency = currencyDataSource.filteredCurrency[indexPath.row]
+        } else {
+            let group = currencyDataSource.groupedСurrencies[indexPath.section]
+            selectedCurrency = group.currencies[indexPath.row]
+        }
+        currencyDataSource.selectedCurrencies.append(selectedCurrency)
+        userDefaultsManager.save(data: currencyDataSource.selectedCurrencies)
+    }
+    
+    func deleteFromCurrencyList(indexPath: IndexPath, isBeingFiltered: Bool ) {
+        if isBeingFiltered {
+            guard let groupIndex = (currencyDataSource.groupedСurrencies.firstIndex {
+                $1.contains(currencyDataSource.filteredCurrency[indexPath.row])
+            }) else { return }
+            
+            guard let currencyIndex = (currencyDataSource.groupedСurrencies[groupIndex].currencies.firstIndex {
+                $0.code == currencyDataSource.filteredCurrency[indexPath.row].code
+            }) else { return }
+            
+            currencyDataSource.groupedСurrencies[groupIndex].currencies.remove(at: currencyIndex)
+            if currencyDataSource.groupedСurrencies[groupIndex].currencies.isEmpty {
+                currencyDataSource.groupedСurrencies.remove(at: groupIndex)
+            }
+        } else {
+            currencyDataSource.groupedСurrencies[indexPath.section].currencies.remove(at: indexPath.row)
+            if currencyDataSource.groupedСurrencies[indexPath.section].currencies.isEmpty {
+                currencyDataSource.groupedСurrencies.remove(at: indexPath.section)
+            }
         }
     }
 }

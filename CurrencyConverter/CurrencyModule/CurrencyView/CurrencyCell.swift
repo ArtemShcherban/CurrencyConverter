@@ -15,13 +15,13 @@ final class CurrencyCell: UITableViewCell {
     /// Сonfigures the cell with complete data
     func configure(with indexPath: IndexPath) {
         var content = defaultContentConfiguration()
-        let currenciesGroup = currencyDataSource.currencyGroups[indexPath.section]
+        let currenciesGroup = currencyDataSource.groupedСurrencies[indexPath.section]
         let currency = currenciesGroup.currencies[indexPath.row].currency
         let currencyName = currenciesGroup.currencies[indexPath.row].currencyName
         content.attributedText = createTitle(currency, currencyName)
         contentConfiguration = content
     }
-    /// Configures a cell with filtered data
+    /// Configures the cell with filtered data
     func configureWith(indexPath: IndexPath) {
         var content = defaultContentConfiguration()
         let currency = currencyDataSource.filteredCurrency[indexPath.row].currency

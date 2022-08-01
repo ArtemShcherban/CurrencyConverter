@@ -11,6 +11,8 @@ protocol Networking {
 }
 
 class NetworkService: Networking {
+    lazy var updateDate = String()
+    
     lazy var urlSession: URLSession = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForResource = 10
@@ -41,6 +43,7 @@ class NetworkService: Networking {
                 comletion(.failure(NetworkServiceError.cannotParseJSON))
                 return
             }
+            self.setUpdateDate(from: response)
             comletion(.success(exchangeRate))
         }
         .resume()
@@ -84,4 +87,28 @@ class NetworkService: Networking {
             return NetworkServiceError.errorCallingGET
         }
     }
+    
+    func setUpdateDate(from response: HTTPURLResponse) {
+        guard let dateString = response.allHeaderFields["Date"] as? String else { return }
+        let dateFormater = DateFormatter()
+        dateFormater.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
+        
+        if let date = dateFormater.date(from: dateString) {
+            dateFormater.dateFormat = "d MMM yyyy HH:mm:ss"
+            updateDate = dateFormater.string(from: date)
+        }
+    }
+    
+//    func setUpdateDate(from response: HTTPURLResponse) {
+//        guard let dateString = response.allHeaderFields["Date"] as? String else { return }
+//        let dateFormater = DateFormatter()
+//        dateFormater.timeZone = TimeZone(abbreviation: "GMT")
+//        dateFormater.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
+//
+//        if let date = dateFormater.date(from: dateString) {
+//            dateFormater.dateFormat = "d MMM yyyy HH:mm:ss"
+//            dateFormater.timeZone = .current
+//            updateDate = dateFormater.string(from: date)
+//        }
+//    }
 }

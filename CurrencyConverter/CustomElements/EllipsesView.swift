@@ -10,6 +10,7 @@ import UIKit
 @IBDesignable
 final class EllipsesView: UIView {
     @IBOutlet var contentView: UIView!
+    @IBOutlet weak var updateDateLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)

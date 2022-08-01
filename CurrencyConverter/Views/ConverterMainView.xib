@@ -12,6 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConverterMainView" customModule="CurrencyConverter" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="piM-72-vzn"/>
+                <outlet property="ellipsesView" destination="8qA-YV-Vjj" id="QRt-95-5No"/>
                 <outlet property="popUpWindow" destination="EZy-vU-2ZP" id="nPO-T8-h04"/>
                 <outlet property="ratesWindowView" destination="VmF-Df-uQI" id="Mf5-LL-qRa"/>
             </connections>

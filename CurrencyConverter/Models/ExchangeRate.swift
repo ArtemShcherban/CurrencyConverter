@@ -7,20 +7,23 @@
 
 import Foundation
 
-struct ExchangeRate {
-    let currency: Int
+struct ExchangeRate: Codable {
+    let currencyCode: Int
+    let currency: String
     let ukrainianHryvna: Int
     let date: String
     let rateBuy: Double
     let rateSell: Double
     
     init(
-        currency: Int,
+        currencyCode: Int,
+        currency: String,
         ukrainianHryvna: Int,
         date: String,
         rateBuy: Double,
         rateSell: Double
     ) {
+        self.currencyCode = currencyCode
         self.currency = currency
         self.ukrainianHryvna = ukrainianHryvna
         self.date = date

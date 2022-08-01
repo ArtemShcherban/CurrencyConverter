@@ -33,7 +33,7 @@
                         <constraint firstAttribute="height" constant="300" id="THI-fa-kiN"/>
                     </constraints>
                 </tableView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSf-V8-pHD" userLabel="BuyRateLabel" customClass="RateTextLabel" customModule="CurrencyConverter" customModuleProvider="target">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sell" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSf-V8-pHD" userLabel="Sell RateLabel" customClass="RateTextLabel" customModule="CurrencyConverter" customModuleProvider="target">
                     <rect key="frame" x="257" y="8" width="70" height="32"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -52,7 +52,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sell" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooS-Gn-2cs" userLabel="SellRateLabel" customClass="RateTextLabel" customModule="CurrencyConverter" customModuleProvider="target">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooS-Gn-2cs" userLabel="Buy RateLabel" customClass="RateTextLabel" customModule="CurrencyConverter" customModuleProvider="target">
                     <rect key="frame" x="155" y="8" width="70" height="32"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -73,7 +73,7 @@
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aad-2I-vfd">
                     <rect key="frame" x="16" y="359" width="311" height="31"/>
                     <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="plus.circle.fill" catalog="system" title="Add Currency"/>
+                    <buttonConfiguration key="configuration" style="plain" image="plus.circle.fill" catalog="system" title="  Add Currency"/>
                     <connections>
                         <action selector="addButtonPressed:" destination="-1" eventType="touchUpInside" id="L7f-fX-nHs"/>
                     </connections>
@@ -101,10 +101,10 @@
     </objects>
     <designables>
         <designable name="ooS-Gn-2cs">
-            <size key="intrinsicContentSize" width="22" height="17"/>
+            <size key="intrinsicContentSize" width="24.5" height="17"/>
         </designable>
         <designable name="uSf-V8-pHD">
-            <size key="intrinsicContentSize" width="24.5" height="17"/>
+            <size key="intrinsicContentSize" width="22" height="17"/>
         </designable>
     </designables>
     <resources>

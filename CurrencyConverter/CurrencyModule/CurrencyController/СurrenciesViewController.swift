@@ -61,9 +61,11 @@ class CurrenciesViewController: UIViewController, UISearchControllerDelegate {
 
 extension CurrenciesViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let currencyGroup = currencyDataSource.currencyGroups[indexPath.section]
+        let currencyGroup = currencyDataSource.groupedСurrencies[indexPath.section]
         currencyDataSource.selectedCurrencies.append(currencyGroup.currencies[indexPath.row])
+        
         tableView.deselectRow(at: indexPath, animated: true)
+        
         print(currencyDataSource.selectedCurrencies.count)
         self.dismiss(animated: true)
     }
@@ -83,7 +85,6 @@ extension CurrenciesViewController: UITableViewDelegate {
 extension CurrenciesViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
-        
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {

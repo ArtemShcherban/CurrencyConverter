@@ -11,6 +11,15 @@ class ConverterMainView: UIView {
     @IBOutlet private var contentView: UIView!
     @IBOutlet weak var popUpWindow: ConverterWindowView!
     @IBOutlet weak var ratesWindowView: RatesWindowView!
+    @IBOutlet weak var ellipsesView: EllipsesView!
+    
+    weak var ratesDelegate: UITableViewDelegate?
+
+    lazy var lastUpdateDate = String() {
+        willSet {
+            ellipsesView.updateDateLabel.text = newValue
+        }
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -25,10 +34,5 @@ class ConverterMainView: UIView {
     func configure() {
         Bundle.main.loadNibNamed("ConverterMainView", owner: self, options: nil)
         contentView.fixInView(self)
-    }
-    
-    func square(_ number: Int) -> String {
-        let square = number * number
-        return "Square of \(number) is \(square)"
     }
 }

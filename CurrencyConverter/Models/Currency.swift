@@ -34,6 +34,6 @@ struct Currency: Codable, Hashable {
     }
     
     static func == (lhs: Currency, rhs: Currency) -> Bool {
-        lhs.currency == rhs.currency
+        lhs.code == rhs.code
     }
 }

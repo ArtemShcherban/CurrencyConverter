@@ -6,8 +6,14 @@
   "Code": 784
  },
  {
+     "Country": "AFGANISTAN",
+     "CurrencyName": "Afghan afghani",
+     "Currency": "AFN",
+     "Code": 971
+ },
+ {
   "Country": "ALBANIA",
-  "CurrencyName": "Lek",
+  "CurrencyName": "Albanian Lek",
   "Currency": "ALL",
   "Code": 8
  },
@@ -67,7 +73,7 @@
  },
  {
   "Country": "BANGLADESH",
-  "CurrencyName": "Taka",
+  "CurrencyName": "Bangladeshi Taka",
   "Currency": "BDT",
   "Code": 50
  },
@@ -103,15 +109,9 @@
  },
  {
   "Country": "BOLIVIA (PLURINATIONAL STATE OF)",
-  "CurrencyName": "Boliviano",
+  "CurrencyName": "Bolivian Boliviano",
   "Currency": "BOB",
   "Code": 68
- },
- {
-  "Country": "BOLIVIA (PLURINATIONAL STATE OF)",
-  "CurrencyName": "Mvdol",
-  "Currency": "BOV",
-  "Code": 984
  },
  {
   "Country": "BRAZIL",
@@ -127,13 +127,13 @@
  },
  {
   "Country": "BHUTAN",
-  "CurrencyName": "Ngultrum",
+  "CurrencyName": "Bhutanese Ngultrum",
   "Currency": "BTN",
   "Code": 64
  },
  {
   "Country": "BOTSWANA",
-  "CurrencyName": "Pula",
+  "CurrencyName": "Botswana Pula",
   "Currency": "BWP",
   "Code": 72
  },
@@ -163,27 +163,9 @@
  },
  {
   "Country": "SWITZERLAND",
-  "CurrencyName": "WIR Euro",
-  "Currency": "CHE",
-  "Code": 947
- },
- {
-  "Country": "SWITZERLAND",
   "CurrencyName": "Swiss Franc",
   "Currency": "CHF",
   "Code": 756
- },
- {
-  "Country": "SWITZERLAND",
-  "CurrencyName": "WIR Franc",
-  "Currency": "CHW",
-  "Code": 948
- },
- {
-  "Country": "CHILE",
-  "CurrencyName": "Unidad de Fomento",
-  "Currency": "CLF",
-  "Code": 990
  },
  {
   "Country": "CHILE",
@@ -202,12 +184,6 @@
   "CurrencyName": "Colombian Peso",
   "Currency": "COP",
   "Code": 170
- },
- {
-  "Country": "COLOMBIA",
-  "CurrencyName": "Unidad de Valor Real",
-  "Currency": "COU",
-  "Code": 970
  },
  {
   "Country": "COSTA RICA",
@@ -282,7 +258,7 @@
   "Code": 230
  },
  {
-  "Country": "GERMANY",
+  "Country": "European Union",
   "CurrencyName": "Euro",
   "Currency": "EUR",
   "Code": 978
@@ -567,7 +543,7 @@
   "Country": "MAURITANIA",
   "CurrencyName": "Ouguiya",
   "Currency": "MRU",
-  "Code": 929
+  "Code": 478
  },
  {
   "Country": "MAURITIUS",
@@ -829,9 +805,9 @@
  },
  {
   "Country": "TURKMENISTAN",
-  "CurrencyName": "Turkmenistan New Manat",
+  "CurrencyName": "Turkmenistan Manat",
   "Currency": "TMT",
-  "Code": 934
+  "Code": 795
  },
  {
   "Country": "TUNISIA",
@@ -871,7 +847,7 @@
  },
  {
   "Country": "UKRAINE",
-  "CurrencyName": "Hryvnia",
+  "CurrencyName": "Ukrainian Hryvnia",
   "Currency": "UAH",
   "Code": 980
  },
@@ -882,13 +858,13 @@
   "Code": 800
  },
  {
-  "Country": "UNITED STATES OF AMERICA (THE)",
+  "Country": "THE UNITED STATES OF AMERICA",
   "CurrencyName": "US Dollar",
   "Currency": "USD",
   "Code": 840
  },
  {
-  "Country": "UNITED STATES OF AMERICA (THE)",
+  "Country": "THE UNITED STATES OF AMERICA",
   "CurrencyName": "US Dollar (Next day)",
   "Currency": "USN",
   "Code": 997
@@ -999,7 +975,7 @@
   "Country": "ZAMBIA",
   "CurrencyName": "Zambian Kwacha",
   "Currency": "ZMW",
-  "Code": 967
+  "Code": 894
  },
  {
   "Country": "ZIMBABWE",

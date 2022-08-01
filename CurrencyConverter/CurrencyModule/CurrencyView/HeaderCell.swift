@@ -13,6 +13,11 @@ class HeaderCell: UITableViewCell {
     @IBOutlet weak var sectionTitle: UILabel!
      
     func configure(with section: Int) {
-        sectionTitle.text = currencyDataSource.currencyGroups[section].letter
+        sectionTitle.text = currencyDataSource.groupedСurrencies[section].letter
+    }
+    
+    func configureWith(section: Int) {
+        sectionTitle.text = currencyDataSource.filteredCurrency.isEmpty ? "Items not found" :
+        "Search result:"
     }
 }

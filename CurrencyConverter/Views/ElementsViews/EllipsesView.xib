@@ -20,6 +20,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EllipsesView" customModule="CurrencyConverter" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="AFd-DE-GsS"/>
+                <outlet property="updateDateLabel" destination="1Ib-9z-eNM" id="7S8-pz-0xV"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
