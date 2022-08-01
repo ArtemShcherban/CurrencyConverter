@@ -11,10 +11,10 @@ class CurrencyDataSource: NSObject, UITableViewDataSource {
     static let shared = CurrencyDataSource()
     
     var rates: [Int: ExchangeRate] = [:]
-    var currencies: [Currency] = []
-    var filteredCurrency: [Currency] = []
-    var groupedСurrencies: [(letter: String, currencies: [Currency])] = []
-    var selectedCurrencies: [Currency] = []
+    var currencies: [CurrencyOLD] = []
+    var filteredCurrency: [CurrencyOLD] = []
+    var groupedСurrencies: [(letter: String, currencies: [CurrencyOLD])] = []
+    var selectedCurrencies: [CurrencyOLD] = []
     
     private lazy var coverterMainModel = ConverterMainModel()
     

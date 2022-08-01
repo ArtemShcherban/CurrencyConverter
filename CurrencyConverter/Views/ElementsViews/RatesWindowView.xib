@@ -101,10 +101,10 @@
     </objects>
     <designables>
         <designable name="ooS-Gn-2cs">
-            <size key="intrinsicContentSize" width="24.5" height="17"/>
+            <size key="intrinsicContentSize" width="24.5" height="16.5"/>
         </designable>
         <designable name="uSf-V8-pHD">
-            <size key="intrinsicContentSize" width="22" height="17"/>
+            <size key="intrinsicContentSize" width="23" height="16.5"/>
         </designable>
     </designables>
     <resources>

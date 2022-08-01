@@ -1,6 +1,6 @@
 import Foundation
 
-struct Currency: Codable, Hashable {
+struct CurrencyOLD: Codable, Hashable {
     let country: String
     let currencyName: String
     let currency: String
@@ -33,7 +33,7 @@ struct Currency: Codable, Hashable {
         self.code = code
     }
     
-    static func == (lhs: Currency, rhs: Currency) -> Bool {
+    static func == (lhs: CurrencyOLD, rhs: CurrencyOLD) -> Bool {
         lhs.code == rhs.code
     }
 }

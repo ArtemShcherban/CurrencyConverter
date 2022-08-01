@@ -69,7 +69,7 @@ final class ConverterMainModel {
     }
     
     func  getHistoricalData() {
-        guard let selectedCurrencies = userDefaultsManager.getData(for: "currencies") as? [Currency] else { return }
+        guard let selectedCurrencies = userDefaultsManager.getData(for: "currencies") as? [CurrencyOLD] else { return }
         print(selectedCurrencies)
         currencyDataSource.selectedCurrencies = selectedCurrencies
     }

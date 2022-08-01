@@ -9,9 +9,9 @@ import Foundation
 
 final class CurrencyModel {
     private let currencyDataSource = CurrencyDataSource.shared
-    private lazy var currencies: [Currency] = []
-    private lazy var  currencyGroups: [(letter: String, currencies: [Currency])] = []
-    private lazy  var popularGroup: [Currency] = []
+    private lazy var currencies: [CurrencyOLD] = []
+    private lazy var  currencyGroups: [(letter: String, currencies: [CurrencyOLD])] = []
+    private lazy  var popularGroup: [CurrencyOLD] = []
     
     private lazy var userDefaultsManager = UserDefaultsManager()
 
@@ -40,7 +40,7 @@ final class CurrencyModel {
             let currencyName = object["CurrencyName"] as? String,
             let currency = object["Currency"] as? String,
             let code = object["Code"] as? Int {
-                let currency = Currency(
+                let currency = CurrencyOLD(
                     country: country,
                     currencyName: currencyName,
                     currency: currency,
@@ -56,7 +56,7 @@ final class CurrencyModel {
             guard let firstCharacter = currency.currency.first else { return Character(" ") }
             return firstCharacter
         }
-            .map { (key: Character, value: [Currency]) -> (letter: String, currencies: [Currency]) in
+            .map { (key: Character, value: [CurrencyOLD]) -> (letter: String, currencies: [CurrencyOLD]) in
                 (letter: String(key), currencies: value)
             }
             .sorted { lhs, rhs in
@@ -76,7 +76,7 @@ final class CurrencyModel {
         }
     }
     
-    private func add(_ popularGroup: [Currency]) {
+    private func add(_ popularGroup: [CurrencyOLD]) {
         let group = (letter: "Popular", currencies: popularGroup)
         currencyGroups.insert(group, at: 0)
     }
@@ -105,7 +105,7 @@ final class CurrencyModel {
     }
     
     func updateSelectedCurrencies(indexPath: IndexPath, isBeingFiltered: Bool) {
-        let selectedCurrency: Currency
+        let selectedCurrency: CurrencyOLD
 
         if isBeingFiltered {
             selectedCurrency = currencyDataSource.filteredCurrency[indexPath.row]

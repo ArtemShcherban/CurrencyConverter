@@ -6,9 +6,13 @@
 //
 
 import UIKit
+import CoreData
 
 class ConverterMainViewController: UIViewController {
     @IBOutlet weak var converterMainView: ConverterMainView!
+    
+    lazy var coreDataStack = CoreDataStack.shared
+    lazy var mainModel = MainModel()
     
     lazy var ratesWindowView = converterMainView.ratesWindowView
     lazy var converterMainModel = ConverterMainModel()
@@ -23,6 +27,10 @@ class ConverterMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         mainAsyncQueue = AsyncQueue.main
+        
+        mainModel.insertWorldCurrencies()
+        mainModel.insertCurrenciesGroup()
+        
         converterMainModel.delegate = self
         currencyModel.createCurrencyGroups()
         getLastUpdateDate()

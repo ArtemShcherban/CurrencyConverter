@@ -19,7 +19,7 @@ class UserDefaultsManager: UserDefaults {
                 let recordingData = try encoder.encode(rates)
                 set(recordingData, forKey: "rates")
             }
-            if let currencies = data as? [Currency] {
+            if let currencies = data as? [CurrencyOLD] {
                 let recordingData = try encoder.encode(currencies)
                 set(recordingData, forKey: "currencies")
             }
@@ -40,7 +40,7 @@ class UserDefaultsManager: UserDefaults {
         if let obobtainedData = try? JSONDecoder().decode([Int: ExchangeRate].self, from: data) {
             return obobtainedData
         }
-        if let obtainedData = try? JSONDecoder().decode([Currency].self, from: data) {
+        if let obtainedData = try? JSONDecoder().decode([CurrencyOLD].self, from: data) {
             return obtainedData
         }
         if let obtainedData = try? JSONDecoder().decode(String.self, from: data) {
