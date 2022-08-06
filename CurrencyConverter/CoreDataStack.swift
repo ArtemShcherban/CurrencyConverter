@@ -1,5 +1,5 @@
 //
-//  CoraeDataStack.swift
+//  CoreDataStack.swift
 //  CurrencyConverter
 //
 //  Created by Artem Shcherban on 01.08.2022.
@@ -40,14 +40,24 @@ class CoreDataStack {
         }
     }
     
-    func deleteFromCoreData() {
-        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: "Currency")
+// For deleting
+    
+    func deleteFromCoreData(entityName: String) {
+        let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         let deleteFetch = NSBatchDeleteRequest(fetchRequest: fetch)
         
         do {
             try storeContainer.viewContext.execute(deleteFetch)
         } catch let error as NSError {
             print(error)
+        }
+    }
+    
+    func deleteAllEntities() {
+        let entities = storeContainer.managedObjectModel.entities
+        for entity in entities {
+            guard let name = entity.name else { return }
+            deleteFromCoreData(entityName: name)
         }
     }
 }

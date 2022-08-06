@@ -10,34 +10,34 @@ import UIKit
 final class CurrencyCell: UITableViewCell {
     static let reuseIdentifier = String(describing: CurrencyCell.self)
     
-    private let currencyDataSource = CurrencyDataSource.shared
+    private let dataSource = CurrencyDataSource.shared
     
     /// Сonfigures the cell with complete data
     func configure(with indexPath: IndexPath) {
         var content = defaultContentConfiguration()
-        let currenciesGroup = currencyDataSource.groupedСurrencies[indexPath.section]
-        let currency = currenciesGroup.currencies[indexPath.row].currency
-        let currencyName = currenciesGroup.currencies[indexPath.row].currencyName
-        content.attributedText = createTitle(currency, currencyName)
+        let currency = dataSource.currencyList
+            .filter { $0.groupKey == dataSource.groups.filter { $0.visible == true }[indexPath.section].key }
+            .filter { $0.selected == false }[indexPath.row]
+        content.attributedText = createTitle(currency.code, currency.currency)
         contentConfiguration = content
     }
+
     /// Configures the cell with filtered data
     func configureWith(indexPath: IndexPath) {
         var content = defaultContentConfiguration()
-        let currency = currencyDataSource.filteredCurrency[indexPath.row].currency
-        let currencyName = currencyDataSource.filteredCurrency[indexPath.row].currencyName
-        content.attributedText = createTitle(currency, currencyName)
+        let currency = dataSource.filteredCurrency[indexPath.row]
+        content.attributedText = createTitle(currency.code, currency.currency)
         contentConfiguration = content
     }
     
-    func createTitle(_ currency: String, _ currencyName: String) -> NSMutableAttributedString {
-        let attridutedString = NSMutableAttributedString(string: currency, attributes: [
+    private func createTitle(_ code: String, _ currency: String) -> NSMutableAttributedString {
+        let attridutedString = NSMutableAttributedString(string: code, attributes: [
             NSAttributedString.Key.font:
                 UIFont(
                     name: "Lato-SemiBold",
                     size: 17) ?? UIFont()
         ])
-        let attributedCurrencyName = NSAttributedString(string: " - \(currencyName)", attributes: [
+        let attributedCurrencyName = NSAttributedString(string: " - \(currency)", attributes: [
             NSAttributedString.Key.font:
                 UIFont(
                     name: "Lato-Regular",

@@ -11,11 +11,11 @@ class UserDefaultsManager: UserDefaults {
     func save<T: Codable>(data: T) {
         let encoder = JSONEncoder()
         do {
-            if let rate = data as? ExchangeRate {
+            if let rate = data as? ExchangeRateOLD {
                 let recordingData = try encoder.encode(rate)
                 set(recordingData, forKey: rate.currency)
             }
-            if let rates = data as? [Int: ExchangeRate] {
+            if let rates = data as? [Int: ExchangeRateOLD] {
                 let recordingData = try encoder.encode(rates)
                 set(recordingData, forKey: "rates")
             }
@@ -34,10 +34,10 @@ class UserDefaultsManager: UserDefaults {
     
     func getData(for key: String) -> Codable? {
         guard let data = object(forKey: key) as? Data else { return nil }
-        if let obtainedData = try? JSONDecoder().decode(ExchangeRate.self, from: data) {
+        if let obtainedData = try? JSONDecoder().decode(ExchangeRateOLD.self, from: data) {
             return obtainedData
         }
-        if let obobtainedData = try? JSONDecoder().decode([Int: ExchangeRate].self, from: data) {
+        if let obobtainedData = try? JSONDecoder().decode([Int: ExchangeRateOLD].self, from: data) {
             return obobtainedData
         }
         if let obtainedData = try? JSONDecoder().decode([CurrencyOLD].self, from: data) {

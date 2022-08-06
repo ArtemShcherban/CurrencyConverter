@@ -8,21 +8,16 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Lato-SemiBold.ttf">
-            <string>Lato-SemiBold</string>
-        </array>
-    </customFonts>
     <scenes>
-        <!--Converter Main View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="OGr-5G-OSW">
             <objects>
-                <viewController storyboardIdentifier="ConverterMainViewController" id="AAN-dq-q1k" customClass="ConverterMainViewController" customModule="CurrencyConverter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ConverterMainViewController" id="AAN-dq-q1k" customClass="MainViewController" customModule="CurrencyConverter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wgP-lB-3Wz">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UuM-85-qOE" customClass="ConverterMainView" customModule="CurrencyConverter" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UuM-85-qOE" customClass="MainView" customModule="CurrencyConverter" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
@@ -40,7 +35,6 @@
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="converterMainView" destination="UuM-85-qOE" id="Oqt-wu-hAe"/>
-                        <segue destination="4Dg-YH-TMy" kind="presentation" identifier="Currency" id="PvY-d8-rrT"/>
                         <segue destination="pEz-Nw-DVb" kind="presentation" identifier="CurrencyList" id="fjg-mK-3wb"/>
                     </connections>
                 </viewController>
@@ -48,126 +42,22 @@
             </objects>
             <point key="canvasLocation" x="2502" y="-289"/>
         </scene>
-        <!--Currencies View Controller-->
-        <scene sceneID="Lga-tJ-kzY">
-            <objects>
-                <viewController storyboardIdentifier="CurrenciesViewController" id="4Dg-YH-TMy" customClass="CurrenciesViewController" customModule="CurrencyConverter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="mkn-hB-gXE">
-                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="Lw3-tm-JY4">
-                                <rect key="frame" x="0.0" y="56" width="390" height="734"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <searchBar key="tableHeaderView" contentMode="redraw" searchBarStyle="minimal" text="" id="eFe-Kg-vCx">
-                                    <rect key="frame" x="0.0" y="0.0" width="390" height="51"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <textInputTraits key="textInputTraits"/>
-                                </searchBar>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HeaderCell" id="k60-Lw-vkC" customClass="HeaderCell" customModule="CurrencyConverter" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="100" width="350" height="21.333333969116211"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="k60-Lw-vkC" id="bE1-Es-7jc">
-                                            <rect key="frame" x="0.0" y="0.0" width="350" height="21.333333969116211"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jef-Y6-KnG">
-                                                    <rect key="frame" x="0.0" y="0.0" width="350" height="21.333333333333332"/>
-                                                    <fontDescription key="fontDescription" name="Lato-SemiBold" family="Lato" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstItem="jef-Y6-KnG" firstAttribute="top" secondItem="bE1-Es-7jc" secondAttribute="top" id="4WU-6E-9hm"/>
-                                                <constraint firstAttribute="trailing" secondItem="jef-Y6-KnG" secondAttribute="trailing" id="MoB-Qg-8QC"/>
-                                                <constraint firstAttribute="bottom" secondItem="jef-Y6-KnG" secondAttribute="bottom" id="gyh-Yi-1jy"/>
-                                                <constraint firstItem="jef-Y6-KnG" firstAttribute="leading" secondItem="bE1-Es-7jc" secondAttribute="leading" id="uIP-Qr-nNy"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <outlet property="sectionTitle" destination="jef-Y6-KnG" id="6yJ-tv-2Xd"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                            </tableView>
-                            <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AgW-EF-fzw">
-                                <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
-                                <items>
-                                    <navigationItem title="Currency" leftItemsSupplementBackButton="YES" id="EJB-1E-cwQ"/>
-                                </items>
-                            </navigationBar>
-                        </subviews>
-                        <viewLayoutGuide key="safeArea" id="c3z-UP-HZM"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <constraints>
-                            <constraint firstAttribute="bottom" secondItem="Lw3-tm-JY4" secondAttribute="bottom" id="5b6-kS-He5"/>
-                            <constraint firstItem="AgW-EF-fzw" firstAttribute="leading" secondItem="mkn-hB-gXE" secondAttribute="leading" id="6vT-fW-vFp"/>
-                            <constraint firstItem="AgW-EF-fzw" firstAttribute="top" secondItem="mkn-hB-gXE" secondAttribute="top" id="8Sr-VD-370"/>
-                            <constraint firstAttribute="trailing" secondItem="AgW-EF-fzw" secondAttribute="trailing" id="K7G-0a-U3B"/>
-                            <constraint firstItem="Lw3-tm-JY4" firstAttribute="top" secondItem="AgW-EF-fzw" secondAttribute="bottom" id="ZLm-cS-De9"/>
-                            <constraint firstItem="Lw3-tm-JY4" firstAttribute="trailing" secondItem="c3z-UP-HZM" secondAttribute="trailing" id="kW4-3E-ehp"/>
-                            <constraint firstItem="Lw3-tm-JY4" firstAttribute="leading" secondItem="c3z-UP-HZM" secondAttribute="leading" id="ox6-pe-u6S"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="Ry9-lb-WxV"/>
-                    <connections>
-                        <outlet property="searchBar" destination="eFe-Kg-vCx" id="V7X-21-2LA"/>
-                        <outlet property="tableView" destination="Lw3-tm-JY4" id="RWj-HP-xb2"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PoH-UA-smC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3543" y="-631"/>
-        </scene>
         <!--Currency List View Controller-->
         <scene sceneID="I0R-9U-yvd">
             <objects>
                 <viewController storyboardIdentifier="CurrencyListViewController" id="pEz-Nw-DVb" customClass="CurrencyListViewController" customModule="CurrencyConverter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="4iZ-mh-pTo">
+                    <view key="view" contentMode="scaleToFill" id="4iZ-mh-pTo" customClass="CurrencyListView" customModule="CurrencyConverter" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ioQ-IO-KMU">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ioQ-IO-KMU">
                                 <rect key="frame" x="0.0" y="64" width="390" height="726"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="HeaderCell" id="cRQ-NZ-Kxn" customClass="HeaderCell" customModule="CurrencyConverter" customModuleProvider="target">
-                                        <rect key="frame" x="20" y="49" width="350" height="21"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cRQ-NZ-Kxn" id="ZLQ-at-nru">
-                                            <rect key="frame" x="0.0" y="0.0" width="350" height="21"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FyM-JK-zyD">
-                                                    <rect key="frame" x="0.0" y="0.0" width="350" height="21"/>
-                                                    <fontDescription key="fontDescription" name="Lato-SemiBold" family="Lato" pointSize="17"/>
-                                                    <color key="textColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="FyM-JK-zyD" secondAttribute="trailing" id="62S-72-bTT"/>
-                                                <constraint firstItem="FyM-JK-zyD" firstAttribute="leading" secondItem="ZLQ-at-nru" secondAttribute="leading" id="As8-QZ-EAa"/>
-                                                <constraint firstAttribute="bottom" secondItem="FyM-JK-zyD" secondAttribute="bottom" id="P39-5M-0oi"/>
-                                                <constraint firstItem="FyM-JK-zyD" firstAttribute="top" secondItem="ZLQ-at-nru" secondAttribute="top" id="qlQ-Rn-TOv"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <connections>
-                                            <outlet property="sectionTitle" destination="FyM-JK-zyD" id="tTY-YR-ZFd"/>
-                                        </connections>
-                                    </tableViewCell>
-                                </prototypes>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bjK-wp-Fcl">
                                 <rect key="frame" x="0.0" y="0.0" width="390" height="56"/>
                                 <items>
-                                    <navigationItem title="CurrencyList" id="ald-ly-tNw"/>
+                                    <navigationItem title="Currency" id="ald-ly-tNw"/>
                                 </items>
                             </navigationBar>
                         </subviews>
@@ -178,18 +68,24 @@
                             <constraint firstAttribute="top" secondItem="bjK-wp-Fcl" secondAttribute="top" id="81u-MH-fvC"/>
                             <constraint firstAttribute="trailing" secondItem="ioQ-IO-KMU" secondAttribute="trailing" id="ArF-9W-rd1"/>
                             <constraint firstItem="ioQ-IO-KMU" firstAttribute="top" secondItem="bjK-wp-Fcl" secondAttribute="bottom" constant="8" id="C79-Dp-Lez"/>
+                            <constraint firstItem="ioQ-IO-KMU" firstAttribute="leading" secondItem="2YU-Qf-yrP" secondAttribute="leading" id="G6e-g2-1bu"/>
                             <constraint firstAttribute="bottom" secondItem="ioQ-IO-KMU" secondAttribute="bottom" id="YXe-WL-bRS"/>
                             <constraint firstItem="ioQ-IO-KMU" firstAttribute="leading" secondItem="4iZ-mh-pTo" secondAttribute="leading" id="YiU-N7-8HS"/>
                             <constraint firstItem="bjK-wp-Fcl" firstAttribute="leading" secondItem="4iZ-mh-pTo" secondAttribute="leading" id="mLZ-Vk-Y5l"/>
                         </constraints>
+                        <connections>
+                            <outlet property="navigationBar" destination="bjK-wp-Fcl" id="nJy-UH-W5k"/>
+                            <outlet property="tableView" destination="ioQ-IO-KMU" id="ZA9-j2-MHr"/>
+                        </connections>
                     </view>
                     <connections>
-                        <outlet property="tableView" destination="ioQ-IO-KMU" id="DNZ-f8-giq"/>
+                        <outlet property="currensyListView" destination="4iZ-mh-pTo" id="9P8-WZ-0aN"/>
+                        <outlet property="groupsTableView" destination="ioQ-IO-KMU" id="jOm-la-Utx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kbJ-W8-bQY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3541.5384615384614" y="91.706161137440759"/>
+            <point key="canvasLocation" x="3748" y="-289"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="DLV-9K-Yqx">

@@ -8,6 +8,8 @@
 import UIKit
 
 protocol RatesWindowViewDelegate: AnyObject {
+    func changeCurrency(sender: UIButton)
+    func setAddButtonStatus()
     func addButtonPressed()
 }
 
@@ -17,35 +19,48 @@ final class RatesWindowView: PopUpWindowView {
     @IBOutlet weak var ratesTableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
     
-    lazy var tableViewDataSource = CurrencyDataSource.shared
+    lazy var dataSource = RatesDataSource.shared
     weak var tableViewDelegate: UITableViewDelegate?
     weak var delegate: RatesWindowViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
-        tableViewSetup()
+        configureTableView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configure()
-        tableViewSetup()
+        configureTableView()
+        setAccessibilityId()
+        checkAddButtonStatus()
     }
     
-    func configure() {
+    private func configure() {
         Bundle.main.loadNibNamed("RatesWindowView", owner: self, options: nil)
         contentView.layer.cornerRadius = 10
         contentView.fixInView(self)
     }
     
-    func tableViewSetup() {
-        ratesTableView.dataSource = tableViewDataSource
+    private  func configureTableView() {
+        ratesTableView.dataSource = dataSource
         ratesTableView.delegate = tableViewDelegate
         ratesTableView.register(
             UINib(nibName: CurrencyRatesCell.reuseIdentifier, bundle: nil),
             forCellReuseIdentifier: CurrencyRatesCell.reuseIdentifier)
+    }
+    
+    private  func setAccessibilityId() {
         ratesTableView.accessibilityIdentifier = "rates"
+    }
+    
+    func checkAddButtonStatus() {
+        if dataSource.currenciesDisplayed.count <= 4 {
+            addButton.isEnabled = true
+        } else {
+            addButton.isEnabled = false
+        }
     }
     
     @IBAction func addButtonPressed(_ sender: Any) {

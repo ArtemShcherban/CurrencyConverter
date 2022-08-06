@@ -6,95 +6,88 @@
 //
 
 import UIKit
+import CoreData
 
-class CurrencyListViewController: UIViewController {
+class CurrencyListViewController: UIViewController, CurrencyListViewDelegate {
+    static let shared = CurrencyListViewController()
     static let reuseIdentifier = String(describing: CurrencyListViewController.self)
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var groupsTableView: UITableView!
+    @IBOutlet var currensyListView: CurrencyListView!
     
     weak var delegate: RatesTableViewDelegate?
+    weak var requestor: UIButton?
     
     private lazy var dataSource = CurrencyDataSource.shared
-    private lazy var searchController = UISearchController()
+    private lazy var coreDataStack = CoreDataStack.shared
     private lazy var currencyModel = CurrencyModel()
+    private lazy var currencyDisplayedModel = CurrencyDisplayedModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        configureTableView()
-        configureSearchController()
+        setDelegates()
+        currensyListView.createView()
         addBackButton()
+        fillGroups()
+    }
+    
+    func setDelegates() {
+        currensyListView.tableViewDelegate = self
+        currensyListView.searchResultsDelegate = self
+        currensyListView.delegate = self
     }
     
     func addBackButton() {
-        let backButton = UIButton(type: .system)
-        backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
-        backButton.imageView?.contentMode = .scaleToFill
-        let title = NSAttributedString(
-            string: "Converter",
-            attributes: [
-                NSAttributedString.Key.font:
-                    UIFont(
-                        name: "SFProText-Regular",
-                        size: 17) ?? UIFont()
-            ])
-        backButton.setAttributedTitle(title, for: .normal)
-        backButton.setTitleColor(backButton.tintColor, for: .normal)
-        backButton.addTarget(self, action: #selector(backButtonPressed), for: .touchUpInside)
+        let backButton = currensyListView.createBackButton()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     }
     
-    @objc func backButtonPressed() {
+    func backButtonPressed() {
         dismiss(animated: true)
     }
     
-    func configureTableView() {
-        tableView.delegate = self
-        tableView.dataSource = dataSource
-        tableView.register(CurrencyCell.self, forCellReuseIdentifier: CurrencyCell.reuseIdentifier)
-        tableView.layer.masksToBounds = false
-        tableView.layer.shadowColor = UIColor.black.withAlphaComponent(0.15).cgColor
-        tableView.layer.shadowOffset = CGSize(width: 0, height: 4)
-        tableView.layer.shadowRadius = 4
-        tableView.layer.shadowOpacity = 1
-        tableView.accessibilityIdentifier = "currency"
-    }
-    
-    func configureSearchController() {
-        searchController.searchResultsUpdater = self
-        searchController.hidesNavigationBarDuringPresentation = false
-        tableView.tableHeaderView = searchController.searchBar
-        searchController.searchBar.searchBarStyle = .minimal
+    func fillGroups() {
+        let fetchRequest: NSFetchRequest<Group> = Group.fetchRequest()
+        let keySortDescriptor = NSSortDescriptor(key: #keyPath(Group.key), ascending: true)
+        fetchRequest.sortDescriptors = [keySortDescriptor]
+        
+        guard let result = try? coreDataStack.managedContext.fetch(fetchRequest) else { return }
+        dataSource.groups = result
+        groupsTableView.reloadData()
     }
 }
 
 extension CurrencyListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        30.0
+        32.0
     }
     
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "HeaderCell") as? HeaderCell else {
-            return UIView()
-        }
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         if tableView.accessibilityIdentifier == "currency" {
-        cell.configure(with: section)
+            currensyListView.setGroupTitle(view: view, section: section)
         } else {
-            cell.configureWith(section: section)
+            currensyListView.setHeaderForFiltered(view: view, section: section)
         }
-        return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let accessibilityID = tableView.accessibilityIdentifier
-        switch accessibilityID {
-        case "filtered":
-            currencyModel.updateSelectedCurrencies(indexPath: indexPath, isBeingFiltered: true)
-            currencyModel.deleteFromCurrencyList(indexPath: indexPath, isBeingFiltered: true)
-            searchController.isActive = false
-        default :
-            currencyModel.updateSelectedCurrencies(indexPath: indexPath, isBeingFiltered: false)
-            currencyModel.deleteFromCurrencyList(indexPath: indexPath, isBeingFiltered: false)
+        if tableView.accessibilityIdentifier == "currency" {
+            let currency = currencyModel.selectCurrency(for: indexPath)
+            if let requestor = requestor {
+                currencyDisplayedModel.changeCurrency(at: requestor.tag, currency: currency)
+            } else {
+                currencyDisplayedModel.insert(currency: currency)
+            }
+        } else if tableView.accessibilityIdentifier == "filtered" {
+            let currency = currencyModel.selectFilteredCurrency(for: indexPath)
+            if let requestor = requestor {
+                currencyDisplayedModel.changeCurrency(at: requestor.tag, currency: currency)
+            } else {
+                currencyDisplayedModel.insert(currency: currency)
+            }
+            currensyListView.searchController.isActive = false
         }
+        coreDataStack.saveContext()
         delegate?.reloadTableView()
         self.dismiss(animated: true)
     }
@@ -104,11 +97,11 @@ extension CurrencyListViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         if searchController.searchBar.text != String() {
             currencyModel.filterCurrency(text: searchController.searchBar.text ?? String())
-            tableView.accessibilityIdentifier = "filtered"
+            currensyListView.tableView.accessibilityIdentifier = "filtered"
         } else {
-            currencyModel.filterCurrency(text: "")
-            tableView.accessibilityIdentifier = "currency"
+            currencyModel.filterCurrency(text: String())
+            currensyListView.tableView.accessibilityIdentifier = "currency"
         }
-        tableView.reloadData()
+        currensyListView.tableView.reloadData()
     }
 }

@@ -25,8 +25,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A7Q-hq-mZ6">
-                        <rect key="frame" x="16" y="10" width="100" height="24"/>
+                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A7Q-hq-mZ6">
+                        <rect key="frame" x="16" y="0.0" width="100" height="44"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="100" id="AWv-ho-fpW"/>
@@ -38,6 +38,9 @@
                             <color key="titleColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                         </state>
+                        <connections>
+                            <action selector="delegateAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="NkO-hR-G12"/>
+                        </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lk-Sr-Sz4" userLabel="BuyRateLabel" customClass="RateTextLabel" customModule="CurrencyConverter" customModuleProvider="target">
                         <rect key="frame" x="133.5" y="0.0" width="68.5" height="44"/>
@@ -79,10 +82,11 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="6lk-Sr-Sz4" firstAttribute="width" secondItem="Mz5-db-W6e" secondAttribute="width" multiplier="0.978571" id="1Er-VE-PBW"/>
+                    <constraint firstItem="A7Q-hq-mZ6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5Ht-Ht-WzM"/>
                     <constraint firstItem="6lk-Sr-Sz4" firstAttribute="centerY" secondItem="Mz5-db-W6e" secondAttribute="centerY" id="J5R-89-DXf"/>
                     <constraint firstItem="A7Q-hq-mZ6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="JbD-pa-l0A"/>
                     <constraint firstItem="Mz5-db-W6e" firstAttribute="leading" secondItem="6lk-Sr-Sz4" secondAttribute="trailing" constant="32" id="XLP-TX-auL"/>
-                    <constraint firstItem="A7Q-hq-mZ6" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Xgj-oQ-9IL"/>
+                    <constraint firstAttribute="bottom" secondItem="A7Q-hq-mZ6" secondAttribute="bottom" id="htN-rN-jGc"/>
                     <constraint firstAttribute="trailing" secondItem="Mz5-db-W6e" secondAttribute="trailing" constant="16" id="ihj-Uz-9g7"/>
                     <constraint firstItem="Mz5-db-W6e" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="s7j-d7-zNm"/>
                 </constraints>

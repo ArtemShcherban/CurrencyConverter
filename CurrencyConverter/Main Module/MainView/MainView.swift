@@ -1,5 +1,5 @@
 //
-//  ConverterMainView.swift
+//  MainView.swift
 //  CurrencyConverter
 //
 //  Created by Artem Shcherban on 21.07.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ConverterMainView: UIView {
+class MainView: UIView {
     @IBOutlet private var contentView: UIView!
     @IBOutlet weak var popUpWindow: ConverterWindowView!
     @IBOutlet weak var ratesWindowView: RatesWindowView!
