@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -93,21 +91,13 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="buyRateLabel" destination="6lk-Sr-Sz4" id="ntG-We-uPl"/>
+                <outlet property="buyLabel" destination="6lk-Sr-Sz4" id="ntG-We-uPl"/>
                 <outlet property="currencyButton" destination="A7Q-hq-mZ6" id="AQh-kP-Kam"/>
-                <outlet property="sellRateLabel" destination="Mz5-db-W6e" id="hk3-T8-fDy"/>
+                <outlet property="sellLabel" destination="Mz5-db-W6e" id="hk3-T8-fDy"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="81.696428571428569"/>
         </tableViewCell>
     </objects>
-    <designables>
-        <designable name="6lk-Sr-Sz4">
-            <size key="intrinsicContentSize" width="36" height="17"/>
-        </designable>
-        <designable name="Mz5-db-W6e">
-            <size key="intrinsicContentSize" width="36" height="17"/>
-        </designable>
-    </designables>
     <resources>
         <image name="small-right" width="24" height="24"/>
     </resources>

@@ -17,7 +17,7 @@ extension ExchangeRate {
 
     @NSManaged public var buy: Double
     @NSManaged public var sell: Double
-    @NSManaged public var code: Int16
+    @NSManaged public var number: Int16
     @NSManaged public var bulletin: Bulletin?
 }
 

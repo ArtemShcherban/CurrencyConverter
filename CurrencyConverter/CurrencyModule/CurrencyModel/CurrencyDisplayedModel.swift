@@ -34,6 +34,8 @@ final class CurrencyDisplayedModel {
         let previousCurrency = dataSource.currenciesDisplayed[indexPathRow]
         previousCurrency.selected = false
         previousCurrency.sequenceId = 0
+        currency.buy = 0.0
+        currency.sell = 0.0
         currency.sequenceId = Int16(indexPathRow)
         dataSource.currenciesDisplayed.remove(at: indexPathRow)
         dataSource.currenciesDisplayed.insert(currency, at: indexPathRow)
@@ -44,6 +46,8 @@ final class CurrencyDisplayedModel {
         let currency = dataSource.currenciesDisplayed[indexPath.row]
         currency.selected = false
         currency.sequenceId = 0
+        currency.buy = 0.0
+        currency.sell = 0.0
         dataSource.currenciesDisplayed.remove(at: indexPath.row)
         for each in dataSource.currenciesDisplayed where each.sequenceId < indexPath.row {
             each.sequenceId -= 1

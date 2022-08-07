@@ -11,8 +11,8 @@ class CurrencyRatesCell: UITableViewCell {
     static let reuseIdentifier = String(describing: CurrencyRatesCell.self)
     
     @IBOutlet private weak var currencyButton: UIButton!
-    @IBOutlet private weak var buyRateLabel: RateTextLabel!
-    @IBOutlet private weak var sellRateLabel: RateTextLabel!
+    @IBOutlet private weak var buyLabel: RateTextLabel!
+    @IBOutlet private weak var sellLabel: RateTextLabel!
     
     private lazy var dataSource = RatesDataSource.shared
     weak var delegate: RatesWindowViewDelegate?
@@ -21,8 +21,8 @@ class CurrencyRatesCell: UITableViewCell {
         let code = dataSource.currenciesDisplayed[indexPath.row].code
         currencyButton.setTitle(code, for: .normal)
         currencyButton.tag = indexPath.row
-        buyRateLabel.text = String(0.00) // String(format: "%.3f", oldCurrencyDataSourceOLD.rates[code]?.rateBuy ?? 0.0)
-        sellRateLabel.text = String(0.00) // String(format: "%.3f", oldCurrencyDataSourceOLD.rates[code]?.rateSell)
+        buyLabel.text = String(format: "%.3f", dataSource.currenciesDisplayed[indexPath.row].buy)
+        sellLabel.text = String(format: "%.3f", dataSource.currenciesDisplayed[indexPath.row].sell)
     }
     
     @IBAction func delegateAction(_ sender: UIButton) {

@@ -9,25 +9,21 @@ import UIKit
 import CoreData
 
 class MainViewController: UIViewController {
-    @IBOutlet weak var converterMainView: MainView!
+    @IBOutlet weak var mainView: MainView!
     
-    lazy var coreDataStack = CoreDataStack.shared
-    
-    lazy var currencyDataSource = CurrencyDataSource.shared
     lazy var ratesDataSource = RatesDataSource.shared
     
     lazy var initialModel = InitialModel()
-    lazy var currencyDisplayedModel = CurrencyDisplayedModel()
-    lazy var ratesWindowView = converterMainView.ratesWindowView
-    
     lazy var ratesModel = RatesModel()
-    lazy var userDefaultsManager = UserDefaultsManager()
-    lazy var currencyModel = CurrencyModel()
-    lazy var urlModel = URLModel()
+    lazy var dateModel = DateModel()
     
-    private lazy var currencyRatesCell = CurrencyRatesCell()
+    lazy var currencyModel = CurrencyModel()
+    lazy var currencyDisplayedModel = CurrencyDisplayedModel()
     
     lazy var networkService = NetworkService()
+    lazy var urlModel = URLModel()
+    
+    lazy var ratesWindowView = mainView.ratesWindowView
     lazy var ratesTableView = ratesWindowView?.ratesTableView
     
     var mainAsyncQueue: Dispatching?
@@ -37,6 +33,7 @@ class MainViewController: UIViewController {
         //        coreDataStack.deleteFromCoreData(entityName: "Currency")
         //        coreDataStack.deleteFromCoreData(entityName: "Group")
         //        coreDataStack.deleteAllEntities()
+        
         mainAsyncQueue = AsyncQueue.main
         
         initialModel.insertCurrencies()
@@ -45,12 +42,11 @@ class MainViewController: UIViewController {
         currencyModel.fillCurrencyDataSource()
         setDelegates()
         setAddButtonStatus()
+        
         getMonoBankExchangeRate()
         
-        getLastUpdateDate()
-        
         //        getPrivatExchangeRate()
-        
+        mainView.lastUpdateDate = dateModel.formattedDate()
     }
     
     func setDelegates() {
@@ -59,33 +55,19 @@ class MainViewController: UIViewController {
         ratesModel.delegate = self
     }
     
-    func getHistoricalRates() {
-        guard let rates = userDefaultsManager.getData(for: "rates") as? [Int: ExchangeRateOLD] else {
-            return
-        }
-        ratesModel.fillDataSource(with: rates)
-    }
-    
-    func getLastUpdateDate() {
-        guard let date = userDefaultsManager.getData(for: "Date") as? String else {
-            converterMainView.lastUpdateDate = "1 Apr 1976 12:00:00"
-            return
-        }
-        converterMainView.lastUpdateDate = date
-    }
-    
     private func getMonoBankExchangeRate() {
-        guard ratesModel.checkUpdate(time: converterMainView.lastUpdateDate) else { return }
+        guard dateModel.checkLastUpdateDate() else { return }
         guard let url = urlModel.createMonoBankURL() else { return }
         networkService.getMonoBankExchangeRate(url: url) { result, updateDate in
             switch result {
             case .failure(let error):
                 print(error)
             case .success(let currencyRates):
-                //                self.userDefaultsManager.save(data: self.networkService.updateDate)
                 self.ratesModel.createExchangeRates(monobankData: currencyRates, updateDate)
                 self.mainAsyncQueue?.dispatch {
-                    self.ratesWindowView?.ratesTableView.reloadData()
+                    self.reloadTableView()
+                    self.mainView.lastUpdateDate = self.dateModel.formattedDate()
+                    //                    self.ratesWindowView?.ratesTableView.reloadData()
                     //                  self.converterMainView.lastUpdateDate = updateDate
                 }
             }

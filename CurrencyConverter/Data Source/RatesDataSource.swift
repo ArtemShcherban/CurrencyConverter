@@ -11,8 +11,9 @@ class RatesDataSource: NSObject, UITableViewDataSource {
     static let shared = RatesDataSource()
     
     var controller: MainViewController?
-    
     private lazy var currencyDisplayedModel = CurrencyDisplayedModel()
+    private lazy var ratesModel = RatesModel()
+    
     lazy var currenciesDisplayed: [Currency] = []
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -24,6 +25,7 @@ class RatesDataSource: NSObject, UITableViewDataSource {
             withIdentifier: CurrencyRatesCell.reuseIdentifier, for: indexPath) as? CurrencyRatesCell else {
             return UITableViewCell()
         }
+        ratesModel.setExchangeRate(for: indexPath)
         cell.delegate = controller
         cell.configure(with: indexPath)
         return cell
