@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, MainViewDelegate {
     @IBOutlet weak var mainView: MainView!
     
     lazy var ratesDataSource = RatesDataSource.shared
@@ -50,6 +50,7 @@ class MainViewController: UIViewController {
     }
     
     func setDelegates() {
+        mainView.delegate = self
         ratesDataSource.controller = self
         ratesWindowView?.delegate = self
         ratesModel.delegate = self
@@ -67,11 +68,14 @@ class MainViewController: UIViewController {
                 self.mainAsyncQueue?.dispatch {
                     self.reloadTableView()
                     self.mainView.lastUpdateDate = self.dateModel.formattedDate()
-                    //                    self.ratesWindowView?.ratesTableView.reloadData()
-                    //                  self.converterMainView.lastUpdateDate = updateDate
                 }
             }
         }
+    }
+    
+    func swipe() {
+        mainView.ratesWindowView.swipeAnimation()
+        getMonoBankExchangeRate()
     }
     
     //    private func getPrivatExchangeRate() {
@@ -97,9 +101,6 @@ class MainViewController: UIViewController {
         //        print()
         //        print()
     }
-}
-
-extension MainViewController: UITableViewDelegate {
 }
 
 extension MainViewController: RatesWindowViewDelegate {
@@ -130,8 +131,8 @@ extension MainViewController: RatesWindowViewDelegate {
 
 extension MainViewController: RatesTableViewDelegate {
     func reloadTableView() {
-        ratesWindowView?.checkAddButtonStatus()
         guard let tableView = ratesTableView else { return }
+        ratesWindowView?.checkAddButtonStatus()
         tableView.reloadData()
     }
 }

@@ -28,7 +28,7 @@ final class DateModel {
     
     func formattedDate() -> String {
         let dateFormaterSet = DateFormatter()
-        dateFormaterSet.dateFormat = "d MMM yyyy HH:mm:ss"
+        dateFormaterSet.dateFormat = "d MMM yyyy HH:mm"
         
         let formattedDate = dateFormaterSet.string(from: lastUpdateDate())
         return formattedDate

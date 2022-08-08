@@ -12,7 +12,7 @@ class CurrencyListViewController: UIViewController, CurrencyListViewDelegate {
     static let shared = CurrencyListViewController()
     static let reuseIdentifier = String(describing: CurrencyListViewController.self)
     
-    @IBOutlet weak var groupsTableView: UITableView!
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet var currensyListView: CurrencyListView!
     
     weak var delegate: RatesTableViewDelegate?
@@ -53,7 +53,7 @@ class CurrencyListViewController: UIViewController, CurrencyListViewDelegate {
         
         guard let result = try? coreDataStack.managedContext.fetch(fetchRequest) else { return }
         dataSource.groups = result
-        groupsTableView.reloadData()
+        tableView.reloadData()
     }
 }
 

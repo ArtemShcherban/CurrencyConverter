@@ -20,7 +20,6 @@ final class RatesWindowView: PopUpWindowView {
     @IBOutlet weak var addButton: UIButton!
     
     lazy var dataSource = RatesDataSource.shared
-    weak var tableViewDelegate: UITableViewDelegate?
     weak var delegate: RatesWindowViewDelegate?
     
     override init(frame: CGRect) {
@@ -33,7 +32,6 @@ final class RatesWindowView: PopUpWindowView {
         super.init(coder: coder)
         configure()
         configureTableView()
-        setAccessibilityId()
         checkAddButtonStatus()
     }
     
@@ -45,14 +43,9 @@ final class RatesWindowView: PopUpWindowView {
     
     private  func configureTableView() {
         ratesTableView.dataSource = dataSource
-        ratesTableView.delegate = tableViewDelegate
         ratesTableView.register(
             UINib(nibName: CurrencyRatesCell.reuseIdentifier, bundle: nil),
             forCellReuseIdentifier: CurrencyRatesCell.reuseIdentifier)
-    }
-    
-    private  func setAccessibilityId() {
-        ratesTableView.accessibilityIdentifier = "rates"
     }
     
     func checkAddButtonStatus() {
@@ -60,6 +53,18 @@ final class RatesWindowView: PopUpWindowView {
             addButton.isEnabled = true
         } else {
             addButton.isEnabled = false
+        }
+    }
+    
+    func swipeAnimation() {
+        transform = CGAffineTransform(translationX: 0.0, y: 30)
+        UIView.animate(
+            withDuration: 2.0,
+            delay: 0,
+            usingSpringWithDamping: 0.2,
+            initialSpringVelocity: 0.0,
+            options: .curveEaseIn) {
+            self.transform = .identity
         }
     }
     

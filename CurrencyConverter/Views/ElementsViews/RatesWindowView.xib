@@ -4,11 +4,16 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
         <array key="Lato-SemiBold.ttf">
             <string>Lato-SemiBold</string>
         </array>
@@ -26,7 +31,7 @@
             <rect key="frame" x="0.0" y="0.0" width="343" height="398"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8Or-Bp-8lX">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8Or-Bp-8lX">
                     <rect key="frame" x="0.0" y="40" width="343" height="300"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="300" id="THI-fa-kiN"/>
@@ -69,10 +74,14 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aad-2I-vfd">
-                    <rect key="frame" x="16" y="359" width="311" height="31"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" image="plus.circle.fill" catalog="system" title="  Add Currency"/>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aad-2I-vfd">
+                    <rect key="frame" x="16" y="359" width="311" height="19"/>
+                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="  Add Currency">
+                        <color key="titleColor" name="AccentColor"/>
+                        <imageReference key="image" image="plus.circle.fill" catalog="system" symbolScale="default"/>
+                    </state>
                     <connections>
                         <action selector="addButtonPressed:" destination="-1" eventType="touchUpInside" id="L7f-fX-nHs"/>
                     </connections>
@@ -83,7 +92,7 @@
             <constraints>
                 <constraint firstItem="8Or-Bp-8lX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8er-Kh-4B1"/>
                 <constraint firstItem="8Or-Bp-8lX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="9xM-Qm-muJ"/>
-                <constraint firstAttribute="bottom" secondItem="aad-2I-vfd" secondAttribute="bottom" constant="8" id="AKd-jo-GDf"/>
+                <constraint firstAttribute="bottom" secondItem="aad-2I-vfd" secondAttribute="bottom" constant="20" id="AKd-jo-GDf"/>
                 <constraint firstAttribute="trailing" secondItem="aad-2I-vfd" secondAttribute="trailing" constant="16" id="AdX-5K-IUa"/>
                 <constraint firstAttribute="trailing" secondItem="uSf-V8-pHD" secondAttribute="trailing" constant="16" id="JDp-dq-rdq"/>
                 <constraint firstItem="8Or-Bp-8lX" firstAttribute="top" secondItem="uSf-V8-pHD" secondAttribute="bottom" id="M9h-Ma-mhW"/>
@@ -108,6 +117,9 @@
     </designables>
     <resources>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
