@@ -24,6 +24,7 @@
                 <outlet property="addButton" destination="aad-2I-vfd" id="D9J-vg-KM7"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="I6y-Zz-XzH"/>
                 <outlet property="ratesTableView" destination="8Or-Bp-8lX" id="5Wq-xH-MSg"/>
+                <outlet property="rotateButton" destination="Kci-IS-1xL" id="aS3-8S-UeG"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -33,6 +34,7 @@
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8Or-Bp-8lX">
                     <rect key="frame" x="0.0" y="40" width="343" height="300"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="300" id="THI-fa-kiN"/>
                     </constraints>
@@ -86,10 +88,24 @@
                         <action selector="addButtonPressed:" destination="-1" eventType="touchUpInside" id="L7f-fX-nHs"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kci-IS-1xL">
+                    <rect key="frame" x="287" y="348.5" width="40" height="40"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="BUx-0Q-IFf"/>
+                        <constraint firstAttribute="width" constant="40" id="D0S-MA-G0z"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="arrow.right" catalog="system"/>
+                    <connections>
+                        <action selector="rotateButtonPressed:" destination="-1" eventType="touchUpInside" id="Cmw-Ae-cfw"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Kci-IS-1xL" secondAttribute="trailing" constant="16" id="5yh-ZY-E34"/>
                 <constraint firstItem="8Or-Bp-8lX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8er-Kh-4B1"/>
                 <constraint firstItem="8Or-Bp-8lX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="9xM-Qm-muJ"/>
                 <constraint firstAttribute="bottom" secondItem="aad-2I-vfd" secondAttribute="bottom" constant="20" id="AKd-jo-GDf"/>
@@ -102,6 +118,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8Or-Bp-8lX" secondAttribute="trailing" id="XLT-eq-L3Y"/>
                 <constraint firstItem="ooS-Gn-2cs" firstAttribute="centerY" secondItem="uSf-V8-pHD" secondAttribute="centerY" id="aBe-5m-HMr"/>
                 <constraint firstItem="ooS-Gn-2cs" firstAttribute="width" secondItem="uSf-V8-pHD" secondAttribute="width" id="rmX-LR-DoF"/>
+                <constraint firstItem="Kci-IS-1xL" firstAttribute="centerY" secondItem="aad-2I-vfd" secondAttribute="centerY" id="ymO-RT-6CD"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="92.028985507246389" y="-121.20535714285714"/>
@@ -116,6 +133,7 @@
         </designable>
     </designables>
     <resources>
+        <image name="arrow.right" catalog="system" width="128" height="98"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <namedColor name="AccentColor">
             <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

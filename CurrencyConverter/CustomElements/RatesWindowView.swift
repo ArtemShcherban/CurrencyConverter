@@ -18,30 +18,32 @@ final class RatesWindowView: PopUpWindowView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var ratesTableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var rotateButton: UIButton!
     
     lazy var dataSource = RatesDataSource.shared
     weak var delegate: RatesWindowViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
-        configureTableView()
-    }
-    
-    required init?(coder: NSCoder) {
-        super.init(coder: coder)
-        configure()
+        configureContentView()
         configureTableView()
         checkAddButtonStatus()
     }
     
-    private func configure() {
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        configureContentView()
+        configureTableView()
+        checkAddButtonStatus()
+    }
+    
+    private func configureContentView() {
         Bundle.main.loadNibNamed("RatesWindowView", owner: self, options: nil)
         contentView.layer.cornerRadius = 10
         contentView.fixInView(self)
     }
     
-    private  func configureTableView() {
+    private func configureTableView() {
         ratesTableView.dataSource = dataSource
         ratesTableView.register(
             UINib(nibName: CurrencyRatesCell.reuseIdentifier, bundle: nil),
@@ -56,19 +58,23 @@ final class RatesWindowView: PopUpWindowView {
         }
     }
     
-    func swipeAnimation() {
-        transform = CGAffineTransform(translationX: 0.0, y: 30)
-        UIView.animate(
-            withDuration: 2.0,
-            delay: 0,
-            usingSpringWithDamping: 0.2,
-            initialSpringVelocity: 0.0,
-            options: .curveEaseIn) {
-            self.transform = .identity
-        }
-    }
+//    func swipeAnimation() {
+//        transform = CGAffineTransform(translationX: 0.0, y: 30)
+//        UIView.animate(
+//            withDuration: 2.0,
+//            delay: 0,
+//            usingSpringWithDamping: 0.2,
+//            initialSpringVelocity: 0.0,
+//            options: .curveEaseIn) {
+//            self.transform = .identity
+//        }
+//    }
     
     @IBAction func addButtonPressed(_ sender: Any) {
         delegate?.addButtonPressed()
+    }
+    
+    @IBAction func rotateButtonPressed(_ sender: Any) {
+       popUpWindowDelegate?.rotateButtonPressed()
     }
 }

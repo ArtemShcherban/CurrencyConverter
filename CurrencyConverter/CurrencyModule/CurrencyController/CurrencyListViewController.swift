@@ -9,7 +9,7 @@ import UIKit
 import CoreData
 
 class CurrencyListViewController: UIViewController, CurrencyListViewDelegate {
-    static let shared = CurrencyListViewController()
+//    static let shared = CurrencyListViewController()
     static let reuseIdentifier = String(describing: CurrencyListViewController.self)
     
     @IBOutlet weak var tableView: UITableView!

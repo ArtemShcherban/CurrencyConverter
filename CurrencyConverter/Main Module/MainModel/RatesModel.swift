@@ -12,7 +12,7 @@ final class RatesModel {
     private lazy var coreDataStack = CoreDataStack.shared
     private lazy var dataSource = RatesDataSource.shared
     
-    weak var delegate: RatesTableViewDelegate?
+//    weak var delegate: RatesTableViewDelegate?
     
     func createExchangeRates(monobankData: [MonoBankExchangeRate], _ updateDate: Date) {
         guard let bulletin = try? getBulettin() else { return }

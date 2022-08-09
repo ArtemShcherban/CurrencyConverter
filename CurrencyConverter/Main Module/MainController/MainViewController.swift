@@ -8,7 +8,7 @@
 import UIKit
 import CoreData
 
-class MainViewController: UIViewController, MainViewDelegate {
+class MainViewController: UIViewController, PopUpWindowDelegate {
     @IBOutlet weak var mainView: MainView!
     
     lazy var ratesDataSource = RatesDataSource.shared
@@ -23,8 +23,10 @@ class MainViewController: UIViewController, MainViewDelegate {
     lazy var networkService = NetworkService()
     lazy var urlModel = URLModel()
     
+   
     lazy var ratesWindowView = mainView.ratesWindowView
     lazy var ratesTableView = ratesWindowView?.ratesTableView
+    lazy var converterWindowView = mainView.converterWindowView
     
     var mainAsyncQueue: Dispatching?
     
@@ -50,10 +52,10 @@ class MainViewController: UIViewController, MainViewDelegate {
     }
     
     func setDelegates() {
-        mainView.delegate = self
         ratesDataSource.controller = self
+        ratesWindowView?.popUpWindowDelegate = self
+        converterWindowView?.popUpWindowDelegate = self
         ratesWindowView?.delegate = self
-        ratesModel.delegate = self
     }
     
     private func getMonoBankExchangeRate() {
@@ -74,7 +76,7 @@ class MainViewController: UIViewController, MainViewDelegate {
     }
     
     func swipe() {
-        mainView.ratesWindowView.swipeAnimation()
+        mainView.startSwipeAnimation()
         getMonoBankExchangeRate()
     }
     
@@ -114,6 +116,10 @@ extension MainViewController: RatesWindowViewDelegate {
     
     func addButtonPressed() {
         openCurrencyViewController()
+    }
+    
+    func rotateButtonPressed() {
+        mainView.flipView()       /// change the name 🥸
     }
     
     func openCurrencyViewController(requestor: UIButton? = nil) {

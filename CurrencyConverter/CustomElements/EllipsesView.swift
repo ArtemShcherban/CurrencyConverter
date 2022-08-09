@@ -14,15 +14,15 @@ final class EllipsesView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        configure()
+                configureContentView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        configure()
+                configureContentView()
     }
     
-    private func configure() {
+    private func         configureContentView() {
         Bundle.main.loadNibNamed("EllipsesView", owner: self, options: nil)
         contentView.fixInView(self)
     }

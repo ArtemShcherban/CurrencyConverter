@@ -16,7 +16,7 @@
 		F405602C2889202D007CD5AA /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F405602B2889202D007CD5AA /* NetworkServiceError.swift */; };
 		F4056031288941F0007CD5AA /* PrivatBankExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4056030288941F0007CD5AA /* PrivatBankExchangeRate.swift */; };
 		F4056033288946DA007CD5AA /* MonoBankExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4056032288946DA007CD5AA /* MonoBankExchangeRate.swift */; };
-		F405603A288966B5007CD5AA /* ConverterMainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4056039288966B5007CD5AA /* ConverterMainView.xib */; };
+		F405603A288966B5007CD5AA /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4056039288966B5007CD5AA /* MainView.xib */; };
 		F405603C288966EF007CD5AA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F405603B288966EF007CD5AA /* MainView.swift */; };
 		F405603E28896967007CD5AA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F405603D28896967007CD5AA /* MainViewController.swift */; };
 		F4056045288984CE007CD5AA /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4056044288984CE007CD5AA /* Dispatcher.swift */; };
@@ -108,7 +108,7 @@
 		F405602B2889202D007CD5AA /* NetworkServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceError.swift; sourceTree = "<group>"; };
 		F4056030288941F0007CD5AA /* PrivatBankExchangeRate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivatBankExchangeRate.swift; sourceTree = "<group>"; };
 		F4056032288946DA007CD5AA /* MonoBankExchangeRate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MonoBankExchangeRate.swift; sourceTree = "<group>"; };
-		F4056039288966B5007CD5AA /* ConverterMainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConverterMainView.xib; sourceTree = "<group>"; };
+		F4056039288966B5007CD5AA /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
 		F405603B288966EF007CD5AA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F405603D28896967007CD5AA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F4056044288984CE007CD5AA /* Dispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
@@ -419,7 +419,7 @@
 			children = (
 				F4532CBE2883E93300A05344 /* Main.storyboard */,
 				F4532CC32883E93400A05344 /* LaunchScreen.storyboard */,
-				F4056039288966B5007CD5AA /* ConverterMainView.xib */,
+				F4056039288966B5007CD5AA /* MainView.xib */,
 				F405604228897BC7007CD5AA /* ElementsViews */,
 			);
 			path = Views;
@@ -650,7 +650,7 @@
 				F4A2F8992887C57E007948A9 /* EllipsesView.xib in Resources */,
 				F4532CC02883E93300A05344 /* Main.storyboard in Resources */,
 				F4A2F89428871DD4007948A9 /* Lato-SemiBold.ttf in Resources */,
-				F405603A288966B5007CD5AA /* ConverterMainView.xib in Resources */,
+				F405603A288966B5007CD5AA /* MainView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
