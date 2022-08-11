@@ -102,10 +102,10 @@
     </objects>
     <designables>
         <designable name="6lk-Sr-Sz4">
-            <size key="intrinsicContentSize" width="36" height="17"/>
+            <size key="intrinsicContentSize" width="35.5" height="16.5"/>
         </designable>
         <designable name="Mz5-db-W6e">
-            <size key="intrinsicContentSize" width="36" height="17"/>
+            <size key="intrinsicContentSize" width="35.5" height="16.5"/>
         </designable>
     </designables>
     <resources>

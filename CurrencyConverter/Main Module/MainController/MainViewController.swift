@@ -23,7 +23,6 @@ class MainViewController: UIViewController, PopUpWindowDelegate {
     lazy var networkService = NetworkService()
     lazy var urlModel = URLModel()
     
-   
     lazy var ratesWindowView = mainView.ratesWindowView
     lazy var ratesTableView = ratesWindowView?.ratesTableView
     lazy var converterWindowView = mainView.converterWindowView
@@ -32,7 +31,7 @@ class MainViewController: UIViewController, PopUpWindowDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        coreDataStack.deleteFromCoreData(entityName: "Currency")
+        //        coreDataStack.deleteFromCoreData(entityName: "Currency")🥸
         //        coreDataStack.deleteFromCoreData(entityName: "Group")
         //        coreDataStack.deleteAllEntities()
         
@@ -41,13 +40,12 @@ class MainViewController: UIViewController, PopUpWindowDelegate {
         initialModel.insertCurrencies()
         initialModel.insertGroups()
         currencyDisplayedModel.fillRatesDataSource()
-        currencyModel.fillCurrencyDataSource()
         setDelegates()
         setAddButtonStatus()
         
         getMonoBankExchangeRate()
         
-        //        getPrivatExchangeRate()
+        //        getPrivatExchangeRate()🥸    
         mainView.lastUpdateDate = dateModel.formattedDate()
     }
     
@@ -80,7 +78,7 @@ class MainViewController: UIViewController, PopUpWindowDelegate {
         getMonoBankExchangeRate()
     }
     
-    //    private func getPrivatExchangeRate() {
+    //    private func getPrivatExchangeRate() {🥸
     //        guard let url = urlModel.createPrivatBankURL() else { return }
     //        networkService.getPrivatExchangeRate(url: url) { result in
     //            switch result {
@@ -93,7 +91,7 @@ class MainViewController: UIViewController, PopUpWindowDelegate {
     //    }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        //        print(self.view.frame)
+        //        print(self.view.frame)🥸
         //        print("TextField frame ---- \(converterMainView.popUpWindow.usdTextField.frame)")
         //        print("TextField bounds ---- \(converterMainView.popUpWindow.usdTextField.bounds)")
         //        print()

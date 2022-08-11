@@ -40,6 +40,8 @@
 		F4532CDA2883E93400A05344 /* CurrencyConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4532CD92883E93400A05344 /* CurrencyConverterUITests.swift */; };
 		F4532CDC2883E93400A05344 /* CurrencyConverterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4532CDB2883E93400A05344 /* CurrencyConverterUITestsLaunchTests.swift */; };
 		F4532CEB2884056400A05344 /* EllipseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4532CEA2884056400A05344 /* EllipseView.swift */; };
+		F45E03EB28A2828900902C73 /* ConverterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E03E928A2828900902C73 /* ConverterCell.swift */; };
+		F45E03EC28A2828900902C73 /* ConverterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45E03EA28A2828900902C73 /* ConverterCell.xib */; };
 		F4A09AA6289BBF3E009D138E /* ExchangeRate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A09AA4289BBF3E009D138E /* ExchangeRate+CoreDataClass.swift */; };
 		F4A09AA7289BBF3E009D138E /* ExchangeRate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A09AA5289BBF3E009D138E /* ExchangeRate+CoreDataProperties.swift */; };
 		F4A09AAA289BBF55009D138E /* Bulletin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A09AA8289BBF55009D138E /* Bulletin+CoreDataClass.swift */; };
@@ -136,6 +138,8 @@
 		F4532CD92883E93400A05344 /* CurrencyConverterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterUITests.swift; sourceTree = "<group>"; };
 		F4532CDB2883E93400A05344 /* CurrencyConverterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F4532CEA2884056400A05344 /* EllipseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipseView.swift; sourceTree = "<group>"; };
+		F45E03E928A2828900902C73 /* ConverterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterCell.swift; sourceTree = "<group>"; };
+		F45E03EA28A2828900902C73 /* ConverterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConverterCell.xib; sourceTree = "<group>"; };
 		F4A09AA4289BBF3E009D138E /* ExchangeRate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExchangeRate+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F4A09AA5289BBF3E009D138E /* ExchangeRate+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExchangeRate+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F4A09AA8289BBF55009D138E /* Bulletin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bulletin+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -309,6 +313,7 @@
 				F4A2F88F288710B1007948A9 /* ConverterWindowView.xib */,
 				F405604A288D0932007CD5AA /* RatesWindowView.xib */,
 				F4AA60EB288D4BCE00E191E6 /* CurrencyRatesCell.xib */,
+				F45E03EA28A2828900902C73 /* ConverterCell.xib */,
 			);
 			path = ElementsViews;
 			sourceTree = "<group>";
@@ -436,6 +441,7 @@
 				F405604C288D1017007CD5AA /* RateTextLabel.swift */,
 				F4AA60E2288D32D500E191E6 /* PopUpWindowView.swift */,
 				F4AA60EA288D4BCE00E191E6 /* CurrencyRatesCell.swift */,
+				F45E03E928A2828900902C73 /* ConverterCell.swift */,
 			);
 			path = CustomElements;
 			sourceTree = "<group>";
@@ -640,6 +646,7 @@
 				F4BA22EB2897A0F2002F3B54 /* WorldCurrencies.plist in Resources */,
 				F4AA60FA288D88B800E191E6 /* Currency.json in Resources */,
 				F4A2F88C28870A28007948A9 /* Lato-ExtraBold.ttf in Resources */,
+				F45E03EC28A2828900902C73 /* ConverterCell.xib in Resources */,
 				F4AA60ED288D4BCE00E191E6 /* CurrencyRatesCell.xib in Resources */,
 				F4A2F89228871BF7007948A9 /* Lato-Regular.ttf in Resources */,
 				F4A2F890288710B1007948A9 /* ConverterWindowView.xib in Resources */,
@@ -782,6 +789,7 @@
 				F4A09ACB289D210C009D138E /* Currency+CoreDataProperties.swift in Sources */,
 				F4BA22ED2897A237002F3B54 /* CoreDataStack.swift in Sources */,
 				F405604D288D1017007CD5AA /* RateTextLabel.swift in Sources */,
+				F45E03EB28A2828900902C73 /* ConverterCell.swift in Sources */,
 				F4AA60F2288D62E200E191E6 /* RatesModel.swift in Sources */,
 				F4A09AC9289D210C009D138E /* Group+CoreDataProperties.swift in Sources */,
 				F4A09ACD289D21B5009D138E /* InitialModel.swift in Sources */,

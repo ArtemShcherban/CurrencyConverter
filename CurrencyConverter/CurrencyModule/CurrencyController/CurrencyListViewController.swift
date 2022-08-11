@@ -9,7 +9,6 @@ import UIKit
 import CoreData
 
 class CurrencyListViewController: UIViewController, CurrencyListViewDelegate {
-//    static let shared = CurrencyListViewController()
     static let reuseIdentifier = String(describing: CurrencyListViewController.self)
     
     @IBOutlet weak var tableView: UITableView!
@@ -27,6 +26,7 @@ class CurrencyListViewController: UIViewController, CurrencyListViewDelegate {
         super.viewDidLoad()
         setDelegates()
         currensyListView.createView()
+        currencyModel.fillCurrencyDataSource()
         addBackButton()
         fillGroups()
     }

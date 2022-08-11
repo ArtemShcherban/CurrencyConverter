@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -23,6 +23,7 @@
                 <outlet property="contentView" destination="BBq-NP-G5L" id="dcD-Wb-I6C"/>
                 <outlet property="rotateButton" destination="9BC-F7-9hY" id="Wlf-cM-mDI"/>
                 <outlet property="sellButton" destination="CPV-80-a2e" id="hVF-nH-8C0"/>
+                <outlet property="tableView" destination="94T-BW-afh" id="a9B-12-MvJ"/>
                 <outlet property="usdTextField" destination="9GG-kD-zT3" id="FvR-6t-HPC"/>
             </connections>
         </placeholder>
@@ -70,29 +71,29 @@
                         <constraint firstItem="CPV-80-a2e" firstAttribute="width" secondItem="A39-Ul-ino" secondAttribute="width" id="2G9-sz-ZA0"/>
                     </constraints>
                 </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="e2p-5d-Qsy" userLabel="CurrencyStackView">
-                    <rect key="frame" x="16.666666666666657" y="100" width="310" height="134"/>
+                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="e2p-5d-Qsy" userLabel="CurrencyStackView">
+                    <rect key="frame" x="16.5" y="100" width="310" height="134"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleAspectFit" spacing="57" translatesAutoresizingMaskIntoConstraints="NO" id="Xy7-IG-KUh" userLabel="USDStackView">
                             <rect key="frame" x="0.0" y="0.0" width="310" height="34"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sdH-IU-4Uv" userLabel="ArrowStackView">
-                                    <rect key="frame" x="0.0" y="0.0" width="52.666666666666664" height="34"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="53.5" height="34"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="USD" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g90-45-Bbz">
-                                            <rect key="frame" x="0.0" y="0.0" width="28.666666666666668" height="34"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="29.5" height="34"/>
                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small-right" translatesAutoresizingMaskIntoConstraints="NO" id="3Rb-3K-z0Y">
-                                            <rect key="frame" x="28.666666666666671" y="0.0" width="24" height="34"/>
+                                            <rect key="frame" x="29.5" y="0.0" width="24" height="34"/>
                                             <color key="tintColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </imageView>
                                     </subviews>
                                 </stackView>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9GG-kD-zT3" customClass="AdjustableTextField" customModule="CurrencyConverter" customModuleProvider="target">
-                                    <rect key="frame" x="109.66666666666664" y="0.0" width="200.33333333333337" height="34"/>
+                                    <rect key="frame" x="110.5" y="0.0" width="199.5" height="34"/>
                                     <color key="backgroundColor" red="0.96862745098039216" green="0.97254901960784312" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="textColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" name="Lato-SemiBold" family="Lato" pointSize="14"/>
@@ -104,22 +105,22 @@
                             <rect key="frame" x="0.0" y="50" width="310" height="34"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="YBs-y5-b18" userLabel="ArrowStackView">
-                                    <rect key="frame" x="0.0" y="5" width="51.333333333333336" height="24"/>
+                                    <rect key="frame" x="0.0" y="5" width="52.5" height="24"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EUR" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dAG-Nh-Nl1">
-                                            <rect key="frame" x="0.0" y="0.0" width="27.333333333333332" height="24"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="28.5" height="24"/>
                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small-right" translatesAutoresizingMaskIntoConstraints="NO" id="g9j-j9-k3o">
-                                            <rect key="frame" x="27.333333333333329" y="0.0" width="24" height="24"/>
+                                            <rect key="frame" x="28.5" y="0.0" width="24" height="24"/>
                                             <color key="tintColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </imageView>
                                     </subviews>
                                 </stackView>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="63b-fE-7Fb" customClass="AdjustableTextField" customModule="CurrencyConverter" customModuleProvider="target">
-                                    <rect key="frame" x="108.33333333333333" y="0.0" width="201.66666666666669" height="34"/>
+                                    <rect key="frame" x="109.5" y="0.0" width="200.5" height="34"/>
                                     <color key="backgroundColor" red="0.96862745098039216" green="0.97254901960784312" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="textColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" name="Lato-SemiBold" family="Lato" pointSize="14"/>
@@ -145,22 +146,22 @@
                             <rect key="frame" x="0.0" y="100" width="310" height="34"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1py-DO-GMb" userLabel="ArrowStackView">
-                                    <rect key="frame" x="0.0" y="5" width="50.333333333333336" height="24"/>
+                                    <rect key="frame" x="0.0" y="5" width="51" height="24"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PLN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nzO-Rw-udQ">
-                                            <rect key="frame" x="0.0" y="0.0" width="26.333333333333332" height="24"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="27" height="24"/>
                                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small-right" translatesAutoresizingMaskIntoConstraints="NO" id="KT7-5j-y1B">
-                                            <rect key="frame" x="26.333333333333329" y="0.0" width="24" height="24"/>
+                                            <rect key="frame" x="27" y="0.0" width="24" height="24"/>
                                             <color key="tintColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                         </imageView>
                                     </subviews>
                                 </stackView>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="84L-ja-LdF" customClass="AdjustableTextField" customModule="CurrencyConverter" customModuleProvider="target">
-                                    <rect key="frame" x="107.33333333333333" y="0.0" width="202.66666666666669" height="34"/>
+                                    <rect key="frame" x="108" y="0.0" width="202" height="34"/>
                                     <color key="backgroundColor" red="0.96862745098039216" green="0.97254901960784312" blue="0.98431372549019602" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="textColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <fontDescription key="fontDescription" name="Lato-SemiBold" family="Lato" pointSize="14"/>
@@ -217,6 +218,13 @@
                         <action selector="rotateButtonPressed:" destination="-1" eventType="touchUpInside" id="HIE-mW-KlN"/>
                     </connections>
                 </button>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="94T-BW-afh">
+                    <rect key="frame" x="16" y="100" width="311" height="180"/>
+                    <color key="backgroundColor" red="0.14149119139999999" green="0.79827183489999998" blue="0.62374252379999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="180" id="N6o-dY-p1d"/>
+                    </constraints>
+                </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="aSi-gG-jyn"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -225,17 +233,20 @@
                 <constraint firstItem="1k8-5E-1Wv" firstAttribute="top" secondItem="84L-ja-LdF" secondAttribute="bottom" constant="40" id="6mp-bE-ccU"/>
                 <constraint firstItem="Erg-FP-EiR" firstAttribute="top" secondItem="BBq-NP-G5L" secondAttribute="top" constant="16" id="7t4-bm-oP0"/>
                 <constraint firstAttribute="trailing" secondItem="Erg-FP-EiR" secondAttribute="trailing" constant="16" id="8Gc-p0-SF5"/>
+                <constraint firstItem="aSi-gG-jyn" firstAttribute="trailing" secondItem="94T-BW-afh" secondAttribute="trailing" constant="16" id="ILK-V7-vJi"/>
                 <constraint firstItem="e2p-5d-Qsy" firstAttribute="centerX" secondItem="BBq-NP-G5L" secondAttribute="centerX" id="O9U-DI-u2e"/>
                 <constraint firstItem="9BC-F7-9hY" firstAttribute="centerY" secondItem="rAp-D3-aqN" secondAttribute="centerY" id="ZG4-ck-gmk"/>
                 <constraint firstItem="rAp-D3-aqN" firstAttribute="centerY" secondItem="1k8-5E-1Wv" secondAttribute="centerY" id="dDj-Rc-DBV"/>
                 <constraint firstItem="e2p-5d-Qsy" firstAttribute="top" secondItem="CPV-80-a2e" secondAttribute="bottom" constant="20" id="f1p-yq-VjL"/>
                 <constraint firstItem="e2p-5d-Qsy" firstAttribute="top" secondItem="CPV-80-a2e" secondAttribute="bottom" constant="40" id="gHY-iz-Rcl"/>
+                <constraint firstItem="94T-BW-afh" firstAttribute="top" secondItem="Erg-FP-EiR" secondAttribute="bottom" constant="40" id="hbx-XP-dNu"/>
                 <constraint firstItem="1k8-5E-1Wv" firstAttribute="leading" secondItem="BBq-NP-G5L" secondAttribute="leading" constant="16" id="ip6-jC-uz4"/>
                 <constraint firstAttribute="trailing" secondItem="1k8-5E-1Wv" secondAttribute="trailing" constant="16" id="mOB-Y7-WSG"/>
                 <constraint firstAttribute="bottom" secondItem="rAp-D3-aqN" secondAttribute="bottom" constant="15" id="njS-bN-McJ"/>
                 <constraint firstItem="9BC-F7-9hY" firstAttribute="leading" secondItem="CPV-80-a2e" secondAttribute="leading" id="oj2-YV-3bf"/>
                 <constraint firstAttribute="trailing" secondItem="rAp-D3-aqN" secondAttribute="trailing" constant="13" id="qYx-DH-8gM"/>
                 <constraint firstItem="Erg-FP-EiR" firstAttribute="leading" secondItem="BBq-NP-G5L" secondAttribute="leading" constant="16" id="vu1-sk-65u"/>
+                <constraint firstItem="94T-BW-afh" firstAttribute="leading" secondItem="aSi-gG-jyn" secondAttribute="leading" constant="16" id="wrn-es-Ys1"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
@@ -269,13 +280,13 @@
     </objects>
     <designables>
         <designable name="63b-fE-7Fb">
-            <size key="intrinsicContentSize" width="45" height="34"/>
+            <size key="intrinsicContentSize" width="44" height="34"/>
         </designable>
         <designable name="84L-ja-LdF">
-            <size key="intrinsicContentSize" width="45" height="34"/>
+            <size key="intrinsicContentSize" width="44" height="34"/>
         </designable>
         <designable name="9GG-kD-zT3">
-            <size key="intrinsicContentSize" width="45" height="34"/>
+            <size key="intrinsicContentSize" width="44" height="34"/>
         </designable>
     </designables>
     <resources>

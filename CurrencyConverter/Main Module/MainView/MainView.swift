@@ -7,10 +7,6 @@
 
 import UIKit
 
-//protocol MainViewDelegate: AnyObject {
-////    func swipe()
-//}
-
 class MainView: UIView {
     @IBOutlet private var contentView: UIView!
 

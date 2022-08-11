@@ -14,12 +14,12 @@ final class EllipsesView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-                configureContentView()
+        configureContentView()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-                configureContentView()
+        configureContentView()
     }
     
     private func         configureContentView() {

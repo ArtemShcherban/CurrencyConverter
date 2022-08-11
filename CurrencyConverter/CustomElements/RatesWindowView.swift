@@ -58,23 +58,11 @@ final class RatesWindowView: PopUpWindowView {
         }
     }
     
-//    func swipeAnimation() {
-//        transform = CGAffineTransform(translationX: 0.0, y: 30)
-//        UIView.animate(
-//            withDuration: 2.0,
-//            delay: 0,
-//            usingSpringWithDamping: 0.2,
-//            initialSpringVelocity: 0.0,
-//            options: .curveEaseIn) {
-//            self.transform = .identity
-//        }
-//    }
-    
     @IBAction func addButtonPressed(_ sender: Any) {
         delegate?.addButtonPressed()
     }
     
     @IBAction func rotateButtonPressed(_ sender: Any) {
-       popUpWindowDelegate?.rotateButtonPressed()
+        popUpWindowDelegate?.rotateButtonPressed()
     }
 }
