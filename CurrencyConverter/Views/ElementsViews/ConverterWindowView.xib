@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -29,13 +29,14 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="Erg-FP-EiR" userLabel="ButtonsStackView">
-                    <rect key="frame" x="16" y="16" width="311" height="44"/>
+                    <rect key="frame" x="-8.5" y="16" width="360" height="34"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPV-80-a2e" userLabel="Sell Button">
-                            <rect key="frame" x="0.0" y="0.0" width="139" height="44"/>
+                            <rect key="frame" x="0.0" y="0.0" width="163.5" height="34"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" identifier="SellButtonHeight" id="Ya8-ls-1GR"/>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="aIz-hr-85x"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -47,9 +48,25 @@
                                     <integer key="value" value="6"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <variation key="default">
+                                <mask key="constraints">
+                                    <exclude reference="Ya8-ls-1GR"/>
+                                    <exclude reference="aIz-hr-85x"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=compact">
+                                <mask key="constraints">
+                                    <include reference="aIz-hr-85x"/>
+                                </mask>
+                            </variation>
+                            <variation key="heightClass=regular-widthClass=compact">
+                                <mask key="constraints">
+                                    <include reference="Ya8-ls-1GR"/>
+                                </mask>
+                            </variation>
                         </button>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A39-Ul-ino" userLabel="Buy Button">
-                            <rect key="frame" x="172" y="0.0" width="139" height="44"/>
+                            <rect key="frame" x="196.5" y="0.0" width="163.5" height="34"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -106,48 +123,80 @@
                     </connections>
                 </button>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="94T-BW-afh">
-                    <rect key="frame" x="16" y="100" width="311" height="180"/>
+                    <rect key="frame" x="-8.5" y="90" width="360" height="180"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="180" id="N6o-dY-p1d"/>
+                        <constraint firstAttribute="width" constant="360" id="XPI-P7-OZl"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="XPI-P7-OZl"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=compact">
+                        <mask key="constraints">
+                            <include reference="XPI-P7-OZl"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=regular">
+                        <mask key="constraints">
+                            <include reference="XPI-P7-OZl"/>
+                        </mask>
+                    </variation>
                 </tableView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="aSi-gG-jyn"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="Erg-FP-EiR" firstAttribute="top" secondItem="BBq-NP-G5L" secondAttribute="top" constant="16" id="7t4-bm-oP0"/>
-                <constraint firstAttribute="trailing" secondItem="Erg-FP-EiR" secondAttribute="trailing" constant="16" id="8Gc-p0-SF5"/>
-                <constraint firstItem="aSi-gG-jyn" firstAttribute="trailing" secondItem="94T-BW-afh" secondAttribute="trailing" constant="16" id="ILK-V7-vJi"/>
+                <constraint firstItem="94T-BW-afh" firstAttribute="trailing" secondItem="Erg-FP-EiR" secondAttribute="trailing" id="8Gc-p0-SF5"/>
+                <constraint firstAttribute="trailing" secondItem="94T-BW-afh" secondAttribute="trailing" constant="16" id="ILK-V7-vJi"/>
                 <constraint firstItem="9BC-F7-9hY" firstAttribute="centerY" secondItem="rAp-D3-aqN" secondAttribute="centerY" id="ZG4-ck-gmk"/>
                 <constraint firstItem="rAp-D3-aqN" firstAttribute="centerY" secondItem="1k8-5E-1Wv" secondAttribute="centerY" id="dDj-Rc-DBV"/>
+                <constraint firstItem="94T-BW-afh" firstAttribute="centerX" secondItem="BBq-NP-G5L" secondAttribute="centerX" id="hVI-gK-EzI"/>
                 <constraint firstItem="94T-BW-afh" firstAttribute="top" secondItem="Erg-FP-EiR" secondAttribute="bottom" constant="40" id="hbx-XP-dNu"/>
                 <constraint firstItem="1k8-5E-1Wv" firstAttribute="leading" secondItem="BBq-NP-G5L" secondAttribute="leading" constant="16" id="ip6-jC-uz4"/>
+                <constraint firstItem="94T-BW-afh" firstAttribute="top" secondItem="Erg-FP-EiR" secondAttribute="bottom" constant="5" id="mGq-so-2T5"/>
                 <constraint firstAttribute="trailing" secondItem="1k8-5E-1Wv" secondAttribute="trailing" constant="16" id="mOB-Y7-WSG"/>
                 <constraint firstAttribute="bottom" secondItem="rAp-D3-aqN" secondAttribute="bottom" constant="15" id="njS-bN-McJ"/>
-                <constraint firstItem="9BC-F7-9hY" firstAttribute="leading" secondItem="CPV-80-a2e" secondAttribute="leading" id="oj2-YV-3bf"/>
+                <constraint firstItem="9BC-F7-9hY" firstAttribute="leading" secondItem="BBq-NP-G5L" secondAttribute="leading" constant="16" id="oj2-YV-3bf"/>
                 <constraint firstAttribute="trailing" secondItem="rAp-D3-aqN" secondAttribute="trailing" constant="13" id="qYx-DH-8gM"/>
                 <constraint firstItem="1k8-5E-1Wv" firstAttribute="centerY" secondItem="9BC-F7-9hY" secondAttribute="centerY" id="vHZ-Wg-ye8"/>
-                <constraint firstItem="Erg-FP-EiR" firstAttribute="leading" secondItem="BBq-NP-G5L" secondAttribute="leading" constant="16" id="vu1-sk-65u"/>
-                <constraint firstItem="94T-BW-afh" firstAttribute="leading" secondItem="aSi-gG-jyn" secondAttribute="leading" constant="16" id="wrn-es-Ys1"/>
+                <constraint firstItem="Erg-FP-EiR" firstAttribute="leading" secondItem="94T-BW-afh" secondAttribute="leading" id="vu1-sk-65u"/>
+                <constraint firstItem="94T-BW-afh" firstAttribute="leading" secondItem="BBq-NP-G5L" secondAttribute="leading" constant="16" id="wrn-es-Ys1"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
                 <mask key="constraints">
+                    <exclude reference="ILK-V7-vJi"/>
+                    <exclude reference="hVI-gK-EzI"/>
+                    <exclude reference="hbx-XP-dNu"/>
+                    <exclude reference="mGq-so-2T5"/>
+                    <exclude reference="wrn-es-Ys1"/>
                     <exclude reference="dDj-Rc-DBV"/>
-                    <exclude reference="njS-bN-McJ"/>
                 </mask>
             </variation>
             <variation key="heightClass=compact">
                 <mask key="constraints">
+                    <include reference="hVI-gK-EzI"/>
+                    <include reference="mGq-so-2T5"/>
                     <include reference="dDj-Rc-DBV"/>
                 </mask>
             </variation>
-            <variation key="heightClass=regular">
+            <variation key="heightClass=regular-widthClass=compact">
                 <mask key="constraints">
-                    <include reference="njS-bN-McJ"/>
+                    <include reference="ILK-V7-vJi"/>
+                    <include reference="hbx-XP-dNu"/>
+                    <include reference="wrn-es-Ys1"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <include reference="hVI-gK-EzI"/>
+                    <include reference="hbx-XP-dNu"/>
                 </mask>
             </variation>
             <point key="canvasLocation" x="526.81159420289862" y="-269.19642857142856"/>

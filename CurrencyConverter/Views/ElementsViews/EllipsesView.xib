@@ -12,15 +12,11 @@
         <array key="Lato-ExtraBold.ttf">
             <string>Lato-ExtraBold</string>
         </array>
-        <array key="Lato-Regular.ttf">
-            <string>Lato-Regular</string>
-        </array>
     </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EllipsesView" customModule="CurrencyConverter" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="iN0-l3-epB" id="AFd-DE-GsS"/>
-                <outlet property="updateDateLabel" destination="1Ib-9z-eNM" id="7S8-pz-0xV"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -70,47 +66,29 @@
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last updated" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZDO-Am-dI5">
-                    <rect key="frame" x="16" y="585" width="134" height="14.666666666666629"/>
-                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22 July 2022 23:59 PM" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Ib-9z-eNM">
-                    <rect key="frame" x="15.999999999999993" y="607.66666666666663" width="123.33333333333331" height="14.666666666666629"/>
-                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
-                    <nil key="textColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="top" secondItem="CCe-Ig-gqw" secondAttribute="top" constant="136" id="0e0-Wo-0pL"/>
                 <constraint firstItem="MRG-DP-VlT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="75" id="2yu-Pv-jkW"/>
-                <constraint firstItem="1Ib-9z-eNM" firstAttribute="top" secondItem="ZDO-Am-dI5" secondAttribute="bottom" constant="8" id="3jW-k1-XjI"/>
                 <constraint firstAttribute="top" secondItem="kKy-wg-cCQ" secondAttribute="top" constant="65" id="5Hr-uS-sOc"/>
                 <constraint firstItem="MRG-DP-VlT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="6fQ-bc-5aI"/>
                 <constraint firstItem="kKy-wg-cCQ" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="92" id="H4B-zd-AeS"/>
                 <constraint firstItem="kKy-wg-cCQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="21" id="Jhd-lQ-z3C"/>
-                <constraint firstItem="ZDO-Am-dI5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="585" id="Jsa-Xe-j6A"/>
                 <constraint firstItem="MRG-DP-VlT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="96" id="QlX-Ws-jGn"/>
                 <constraint firstAttribute="trailing" secondItem="CCe-Ig-gqw" secondAttribute="trailing" constant="14" id="S1n-C5-Ww4"/>
-                <constraint firstItem="1Ib-9z-eNM" firstAttribute="leading" secondItem="ZDO-Am-dI5" secondAttribute="leading" id="Spi-D1-GiA"/>
                 <constraint firstAttribute="leading" secondItem="kKy-wg-cCQ" secondAttribute="leading" constant="45" id="SqK-jE-2P0"/>
                 <constraint firstItem="kKy-wg-cCQ" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="45" id="Vjx-4i-qjd"/>
                 <constraint firstItem="MRG-DP-VlT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="Xm0-FQ-2DJ"/>
                 <constraint firstItem="ick-Ny-He0" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="13" id="bmz-5Z-nRg"/>
-                <constraint firstItem="ZDO-Am-dI5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="cdl-CK-Fnw"/>
                 <constraint firstItem="ick-Ny-He0" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="29" id="d6L-2x-fcU"/>
                 <constraint firstAttribute="leading" secondItem="ick-Ny-He0" secondAttribute="leading" constant="65" id="eI5-kn-D8d"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MRG-DP-VlT" secondAttribute="trailing" constant="20" symbolic="YES" id="fEr-tJ-O3o"/>
                 <constraint firstAttribute="leading" secondItem="ick-Ny-He0" secondAttribute="leading" constant="89" id="gXj-Ei-BEP"/>
-                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="1Ib-9z-eNM" secondAttribute="trailing" constant="275" id="gZO-dG-ElS"/>
-                <constraint firstItem="MRG-DP-VlT" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="35" id="msm-gn-I29"/>
+                <constraint firstItem="MRG-DP-VlT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="35" id="msm-gn-I29"/>
                 <constraint firstAttribute="top" secondItem="ick-Ny-He0" secondAttribute="top" constant="136" id="oue-sq-qST"/>
                 <constraint firstAttribute="leading" secondItem="CCe-Ig-gqw" secondAttribute="leading" constant="116" id="pUR-r3-ITI"/>
-                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="ZDO-Am-dI5" secondAttribute="trailing" constant="240" id="qnT-Q9-15H"/>
                 <constraint firstAttribute="trailing" secondItem="CCe-Ig-gqw" secondAttribute="trailing" constant="23" id="sL0-WQ-ZMf"/>
             </constraints>
             <variation key="default">

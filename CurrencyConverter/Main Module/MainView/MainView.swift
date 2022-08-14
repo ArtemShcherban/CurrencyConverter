@@ -14,14 +14,16 @@ class MainView: UIView {
     @IBOutlet weak var popUpWindow: ConverterWindowView!
     @IBOutlet weak var ratesWindowView: RatesWindowView!
     @IBOutlet weak var converterWindowView: ConverterWindowView!
-    @IBOutlet weak var ellipsesView: EllipsesView!
+//    @IBOutlet weak var ellipsesView: EllipsesView!
+  
+    @IBOutlet weak var updateDateLabel: UILabel!
     
 //    weak var delegate: MainViewDelegate?
     
     lazy var isFlipping = false  // change the name 🥸
     lazy var lastUpdateDate = String() {
         willSet {
-            ellipsesView.updateDateLabel.text = newValue
+            updateDateLabel.text = newValue
         }
     }
     

@@ -21,7 +21,6 @@ class ConverterCell: UITableViewCell {
         currencyButton.setTitle(currencies[indexPath.row].code, for: .normal)
         currencyButton.tag = indexPath.row
         sumLabel.text = "0.000"
-        print(sumLabel.frame.size)
     }
     
     @IBAction func delegateAction(_ sender: UIButton) {

@@ -103,7 +103,7 @@ class MainViewController: UIViewController {
     //    }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        //        print(self.view.frame)🥸
+//                print(self.view.frame) //🥸
         //        print("TextField frame ---- \(converterMainView.popUpWindow.usdTextField.frame)")
         //        print("TextField bounds ---- \(converterMainView.popUpWindow.usdTextField.bounds)")
         //        print()

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="ipad12_9rounded" orientation="landscape" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -33,14 +33,40 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="28" estimatedSectionHeaderHeight="-1" sectionFooterHeight="28" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="8Or-Bp-8lX">
-                    <rect key="frame" x="0.0" y="40" width="343" height="300"/>
+                    <rect key="frame" x="-8.5" y="40" width="360" height="300"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
+                        <constraint firstAttribute="width" constant="360" id="Bt3-El-Dqu"/>
                         <constraint firstAttribute="height" constant="300" id="THI-fa-kiN"/>
+                        <constraint firstAttribute="height" constant="180" id="vz1-qW-eGx"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="Bt3-El-Dqu"/>
+                            <exclude reference="THI-fa-kiN"/>
+                            <exclude reference="vz1-qW-eGx"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=compact">
+                        <mask key="constraints">
+                            <include reference="Bt3-El-Dqu"/>
+                            <include reference="vz1-qW-eGx"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=compact">
+                        <mask key="constraints">
+                            <include reference="THI-fa-kiN"/>
+                        </mask>
+                    </variation>
+                    <variation key="heightClass=regular-widthClass=regular">
+                        <mask key="constraints">
+                            <include reference="Bt3-El-Dqu"/>
+                            <include reference="THI-fa-kiN"/>
+                        </mask>
+                    </variation>
                 </tableView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sell" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSf-V8-pHD" userLabel="Sell RateLabel" customClass="RateTextLabel" customModule="CurrencyConverter" customModuleProvider="target">
-                    <rect key="frame" x="247" y="8" width="80" height="32"/>
+                    <rect key="frame" x="255.5" y="8" width="80" height="32"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="32" id="Dib-oy-Aix"/>
@@ -59,7 +85,7 @@
                     </userDefinedRuntimeAttributes>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Buy" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ooS-Gn-2cs" userLabel="Buy RateLabel" customClass="RateTextLabel" customModule="CurrencyConverter" customModuleProvider="target">
-                    <rect key="frame" x="135" y="8" width="80" height="32"/>
+                    <rect key="frame" x="143.5" y="8" width="80" height="32"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" name="Lato-SemiBold" family="Lato" pointSize="14"/>
                     <color key="textColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -102,22 +128,46 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Kci-IS-1xL" secondAttribute="trailing" constant="16" id="5yh-ZY-E34"/>
-                <constraint firstItem="8Or-Bp-8lX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="8er-Kh-4B1"/>
+                <constraint firstAttribute="trailing" secondItem="Kci-IS-1xL" secondAttribute="trailing" constant="16" id="5yh-ZY-E34"/>
+                <constraint firstItem="8Or-Bp-8lX" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="8er-Kh-4B1"/>
                 <constraint firstItem="8Or-Bp-8lX" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="40" id="9xM-Qm-muJ"/>
                 <constraint firstAttribute="bottom" secondItem="aad-2I-vfd" secondAttribute="bottom" constant="20" id="AKd-jo-GDf"/>
                 <constraint firstAttribute="trailing" secondItem="aad-2I-vfd" secondAttribute="trailing" constant="16" id="AdX-5K-IUa"/>
-                <constraint firstAttribute="trailing" secondItem="uSf-V8-pHD" secondAttribute="trailing" constant="16" id="JDp-dq-rdq"/>
+                <constraint firstItem="8Or-Bp-8lX" firstAttribute="trailing" secondItem="uSf-V8-pHD" secondAttribute="trailing" constant="16" id="JDp-dq-rdq"/>
+                <constraint firstItem="8Or-Bp-8lX" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Lq3-4U-dPU"/>
                 <constraint firstItem="8Or-Bp-8lX" firstAttribute="top" secondItem="uSf-V8-pHD" secondAttribute="bottom" id="M9h-Ma-mhW"/>
                 <constraint firstItem="uSf-V8-pHD" firstAttribute="leading" secondItem="ooS-Gn-2cs" secondAttribute="trailing" constant="32" id="QPA-S0-QNW"/>
                 <constraint firstItem="ooS-Gn-2cs" firstAttribute="height" secondItem="uSf-V8-pHD" secondAttribute="height" id="QkI-9Z-lez"/>
                 <constraint firstItem="aad-2I-vfd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="Ugl-28-pA4"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="8Or-Bp-8lX" secondAttribute="trailing" id="XLT-eq-L3Y"/>
+                <constraint firstAttribute="trailing" secondItem="8Or-Bp-8lX" secondAttribute="trailing" id="XLT-eq-L3Y"/>
                 <constraint firstItem="ooS-Gn-2cs" firstAttribute="centerY" secondItem="uSf-V8-pHD" secondAttribute="centerY" id="aBe-5m-HMr"/>
                 <constraint firstItem="ooS-Gn-2cs" firstAttribute="width" secondItem="uSf-V8-pHD" secondAttribute="width" id="rmX-LR-DoF"/>
                 <constraint firstItem="Kci-IS-1xL" firstAttribute="centerY" secondItem="aad-2I-vfd" secondAttribute="centerY" id="ymO-RT-6CD"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="8er-Kh-4B1"/>
+                    <exclude reference="Lq3-4U-dPU"/>
+                    <exclude reference="XLT-eq-L3Y"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=compact">
+                <mask key="constraints">
+                    <include reference="Lq3-4U-dPU"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="constraints">
+                    <include reference="8er-Kh-4B1"/>
+                    <include reference="XLT-eq-L3Y"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <include reference="Lq3-4U-dPU"/>
+                </mask>
+            </variation>
             <point key="canvasLocation" x="92.028985507246389" y="-121.20535714285714"/>
         </view>
     </objects>

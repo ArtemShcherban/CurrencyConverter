@@ -21,18 +21,18 @@ final class ConverterWindowView: PopUpWindowView {
     
 //    weak var delegate: ConverterWindowViewDelegate?
     
-    private var _isHidden = true
-    override var isHidden: Bool {
-        get {
-            return _isHidden
-        }
-        set (newValue) {
-            if newValue == false {
-                converterTableView.reloadData()
-            }
-            _isHidden = newValue
-        }
-    }
+//    private var _isHidden = true
+//    override var isHidden: Bool {
+//        get {
+//            return _isHidden
+//        }
+//        set (newValue) {
+//            if newValue == false {
+//                converterTableView.reloadData()
+//            }
+//            _isHidden = newValue
+//        }
+//    }
         
     override init(frame: CGRect) {
         super.init(frame: frame)

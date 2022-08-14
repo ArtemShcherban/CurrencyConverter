@@ -10,7 +10,6 @@ import UIKit
 @IBDesignable
 final class EllipsesView: UIView {
     @IBOutlet var contentView: UIView!
-    @IBOutlet weak var updateDateLabel: UILabel!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -22,7 +21,7 @@ final class EllipsesView: UIView {
         configureContentView()
     }
     
-    private func         configureContentView() {
+    private func configureContentView() {
         Bundle.main.loadNibNamed("EllipsesView", owner: self, options: nil)
         contentView.fixInView(self)
     }
