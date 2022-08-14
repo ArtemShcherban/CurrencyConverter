@@ -12,9 +12,19 @@ class ConverterCell: UITableViewCell {
     
     @IBOutlet weak var currencyButton: UIButton!
     @IBOutlet weak var sumLabel: AdjustableTextField!
-
+    
+    private lazy var resultDataSource = ResultDataSource.shared
+    weak var delegate: PopUpWindowDelegate?
+    
     func configure(with indexPath: IndexPath) {
-//        currencyButton.setTitle(String(indexPath.row), for: .normal)
-        sumLabel.text = "2345.56"
+        let currencies = resultDataSource.selectedCurrencies
+        currencyButton.setTitle(currencies[indexPath.row].code, for: .normal)
+        currencyButton.tag = indexPath.row
+        sumLabel.text = "0.000"
+        print(sumLabel.frame.size)
+    }
+    
+    @IBAction func delegateAction(_ sender: UIButton) {
+        delegate?.changeCurrency(sender: sender)
     }
 }

@@ -12,7 +12,12 @@ final class AdjustableTextField: UITextField {
     @IBInspectable var borderColor: UIColor? {
         didSet {
             layer.borderColor = borderColor?.cgColor
-            layer.cornerRadius = 6
+        }
+    }
+    
+    @IBInspectable var cornerRadius: CGFloat = 0.0 {
+        didSet {
+            layer.cornerRadius = cornerRadius
             clipsToBounds = true
         }
     }

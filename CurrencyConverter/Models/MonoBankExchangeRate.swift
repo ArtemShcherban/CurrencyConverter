@@ -1,4 +1,3 @@
-
 import Foundation
 struct MonoBankExchangeRate: Codable {
     let date: Int

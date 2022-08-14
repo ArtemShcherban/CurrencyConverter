@@ -18,7 +18,7 @@ class MainView: UIView {
     
 //    weak var delegate: MainViewDelegate?
     
-    lazy var isFlipping = false
+    lazy var isFlipping = false  // change the name 🥸
     lazy var lastUpdateDate = String() {
         willSet {
             ellipsesView.updateDateLabel.text = newValue
@@ -46,29 +46,38 @@ class MainView: UIView {
         centralView?.swipeAnimation()
     }
     
-//    func flipView() {
-//        isFlipping.toggle()
-//        UIView.animate(withDuration: 1, animations: {
-//            self.ratesWindowView.transform = CGAffineTransform(scaleX: 0.001, y: 1)}, completion: { _ in
-//                self.ratesWindowView.isHidden = true
-//            UIView.animate(withDuration: 1) {
-//                self.converterWindowView.isHidden = false
-//                self.converterWindowView.transform = CGAffineTransform(scaleX: 1, y: 1)
-//            }
-//        })
-//    }
-    
-    func flipView() {
+    func flipView(completion: @escaping(() -> Void) ) {
         let visibleWindow = !isFlipping ? ratesWindowView : converterWindowView
         let hiddenWindow = !isFlipping ? converterWindowView : ratesWindowView
         isFlipping.toggle()
         UIView.animate(withDuration: 1, animations: {
             visibleWindow?.transform = CGAffineTransform(scaleX: 0.001, y: 1)}, completion: { _ in
                 visibleWindow?.isHidden = true
+                completion()
             UIView.animate(withDuration: 1) {
                 hiddenWindow?.isHidden = false
                 hiddenWindow?.transform = CGAffineTransform(scaleX: 1, y: 1)
             }
         })
+    }
+    
+    func reloadTableViewData() {
+        var currentTableView: UITableView
+        switch isFlipping {
+        case true:
+            currentTableView = converterWindowView.converterTableView
+        default:
+            currentTableView = ratesWindowView.ratesTableView
+        }
+        currentTableView.reloadData()
+    }
+    
+    func setAddButtonStatus(_ isMaxNumberOfRows: Bool) {
+        switch isFlipping {
+        case true:
+            converterWindowView.addCurrencyButton.isEnabled = !isMaxNumberOfRows
+        default:
+            ratesWindowView.addButton.isEnabled = !isMaxNumberOfRows
+        }
     }
 }

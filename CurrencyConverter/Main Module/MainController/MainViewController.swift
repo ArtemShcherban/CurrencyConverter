@@ -8,17 +8,19 @@
 import UIKit
 import CoreData
 
-class MainViewController: UIViewController, PopUpWindowDelegate {
+class MainViewController: UIViewController {
     @IBOutlet weak var mainView: MainView!
     
-    lazy var ratesDataSource = RatesDataSource.shared
+    private lazy var coreDataStack = CoreDataStack.shared
     
     lazy var initialModel = InitialModel()
-    lazy var ratesModel = RatesModel()
+    lazy var exchangeRateModel = ExchangeRateModel()
     lazy var dateModel = DateModel()
     
-    lazy var currencyModel = CurrencyModel()
-    lazy var currencyDisplayedModel = CurrencyDisplayedModel()
+    lazy var resultModel = ResultModel.shared
+    lazy var currencyListModel = CurrencyListModel.shared
+    
+    lazy var resultDataSource = ResultDataSource.shared
     
     lazy var networkService = NetworkService()
     lazy var urlModel = URLModel()
@@ -33,15 +35,14 @@ class MainViewController: UIViewController, PopUpWindowDelegate {
         super.viewDidLoad()
         //        coreDataStack.deleteFromCoreData(entityName: "Currency")🥸
         //        coreDataStack.deleteFromCoreData(entityName: "Group")
-        //        coreDataStack.deleteAllEntities()
+//                coreDataStack.deleteAllEntities()
         
         mainAsyncQueue = AsyncQueue.main
-        
         initialModel.insertCurrencies()
         initialModel.insertGroups()
-        currencyDisplayedModel.fillRatesDataSource()
         setDelegates()
-        setAddButtonStatus()
+        fillDataSource()
+        updateAddButton()
         
         getMonoBankExchangeRate()
         
@@ -49,11 +50,15 @@ class MainViewController: UIViewController, PopUpWindowDelegate {
         mainView.lastUpdateDate = dateModel.formattedDate()
     }
     
-    func setDelegates() {
-        ratesDataSource.controller = self
+    private func setDelegates() {
+        resultDataSource.controller = self
         ratesWindowView?.popUpWindowDelegate = self
         converterWindowView?.popUpWindowDelegate = self
-        ratesWindowView?.delegate = self
+    }
+    
+    private func fillDataSource() {
+        resultModel.defineTableViewName(value: mainView.isFlipping)
+        resultModel.fillDataSource()
     }
     
     private func getMonoBankExchangeRate() {
@@ -64,18 +69,25 @@ class MainViewController: UIViewController, PopUpWindowDelegate {
             case .failure(let error):
                 print(error)
             case .success(let currencyRates):
-                self.ratesModel.createExchangeRates(monobankData: currencyRates, updateDate)
+                self.exchangeRateModel.createExchangeRates(monobankData: currencyRates, updateDate)
                 self.mainAsyncQueue?.dispatch {
-                    self.reloadTableView()
+                    self.resultsTableViewReloadData()
                     self.mainView.lastUpdateDate = self.dateModel.formattedDate()
                 }
             }
         }
     }
     
-    func swipe() {
-        mainView.startSwipeAnimation()
-        getMonoBankExchangeRate()
+    func openCurrencyViewController(sender: UIButton? = nil) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let viewController = storyboard.instantiateViewController(
+            withIdentifier: CurrencyListViewController.reuseIdentifier) as? CurrencyListViewController else { return }
+        viewController.modalPresentationStyle = .fullScreen
+        viewController.delegate = self
+        viewController.sender = sender
+        
+        let navigationController = UINavigationController(rootViewController: viewController)
+        present(navigationController, animated: true)
     }
     
     //    private func getPrivatExchangeRate() {🥸
@@ -103,13 +115,18 @@ class MainViewController: UIViewController, PopUpWindowDelegate {
     }
 }
 
-extension MainViewController: RatesWindowViewDelegate {
-    func setAddButtonStatus() {
-        ratesWindowView?.checkAddButtonStatus()
+extension MainViewController: ResultModelDelegate {
+    func resultsTableViewReloadData() {
+        fillDataSource()
+        updateAddButton()
+        mainView.reloadTableViewData()
     }
+}
     
-    func changeCurrency(sender: UIButton) {
-        openCurrencyViewController(requestor: sender)
+extension MainViewController: PopUpWindowDelegate {
+    func swipe() {
+        mainView.startSwipeAnimation()
+        getMonoBankExchangeRate()
     }
     
     func addButtonPressed() {
@@ -117,26 +134,16 @@ extension MainViewController: RatesWindowViewDelegate {
     }
     
     func rotateButtonPressed() {
-        mainView.flipView()       /// change the name 🥸
+        mainView.flipView { /// change the name 🥸
+            self.resultsTableViewReloadData()
+        }
     }
     
-    func openCurrencyViewController(requestor: UIButton? = nil) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let viewController = storyboard.instantiateViewController(
-            withIdentifier: CurrencyListViewController.reuseIdentifier) as? CurrencyListViewController else { return }
-        viewController.modalPresentationStyle = .fullScreen
-        viewController.delegate = self
-        viewController.requestor = requestor
-        
-        let navigationController = UINavigationController(rootViewController: viewController)
-        present(navigationController, animated: true)
+    func updateAddButton() {
+        mainView.setAddButtonStatus(resultModel.isMaxNumberOfRows())
     }
-}
-
-extension MainViewController: RatesTableViewDelegate {
-    func reloadTableView() {
-        guard let tableView = ratesTableView else { return }
-        ratesWindowView?.checkAddButtonStatus()
-        tableView.reloadData()
+    
+    func changeCurrency(sender: UIButton) {
+        openCurrencyViewController(sender: sender)
     }
 }

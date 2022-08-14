@@ -18,14 +18,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="CurrencyRatesCell" customModule="CurrencyConverter" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="RateCell" customModule="CurrencyConverter" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="right" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A7Q-hq-mZ6">
+                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A7Q-hq-mZ6">
                         <rect key="frame" x="16" y="0.0" width="100" height="44"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -34,7 +34,7 @@
                         <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                         <color key="tintColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                        <state key="normal" title="USD" image="small-right">
+                        <state key="normal" title="USD" image="chevron.right" catalog="system">
                             <color key="titleColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                         </state>
@@ -42,9 +42,9 @@
                             <action selector="delegateAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="NkO-hR-G12"/>
                         </connections>
                     </button>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lk-Sr-Sz4" userLabel="BuyRateLabel" customClass="RateTextLabel" customModule="CurrencyConverter" customModuleProvider="target">
-                        <rect key="frame" x="133.5" y="0.0" width="68.5" height="44"/>
-                        <color key="backgroundColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lk-Sr-Sz4" userLabel="Buy RateLabel" customClass="RateTextLabel" customModule="CurrencyConverter" customModuleProvider="target">
+                        <rect key="frame" x="112" y="0.0" width="80" height="44"/>
+                        <color key="backgroundColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="dcq-PM-u4F"/>
                         </constraints>
@@ -52,20 +52,17 @@
                         <color key="textColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                         <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
-                                <color key="value" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                <real key="value" value="1"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="6"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mz5-db-W6e" userLabel="BuyRateLabel" customClass="RateTextLabel" customModule="CurrencyConverter" customModuleProvider="target">
-                        <rect key="frame" x="234" y="0.0" width="70" height="44"/>
-                        <color key="backgroundColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mz5-db-W6e" userLabel="Sell RateLabel" customClass="RateTextLabel" customModule="CurrencyConverter" customModuleProvider="target">
+                        <rect key="frame" x="224" y="0.0" width="80" height="44"/>
+                        <color key="backgroundColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.98431372549999996" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="BHd-mD-Z4d"/>
-                            <constraint firstAttribute="width" constant="70" id="qYW-qn-Rx8"/>
+                            <constraint firstAttribute="width" constant="80" id="qYW-qn-Rx8"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Lato-SemiBold" family="Lato" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -81,7 +78,7 @@
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="6lk-Sr-Sz4" firstAttribute="width" secondItem="Mz5-db-W6e" secondAttribute="width" multiplier="0.978571" id="1Er-VE-PBW"/>
+                    <constraint firstItem="6lk-Sr-Sz4" firstAttribute="width" secondItem="Mz5-db-W6e" secondAttribute="width" id="1Er-VE-PBW"/>
                     <constraint firstItem="A7Q-hq-mZ6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5Ht-Ht-WzM"/>
                     <constraint firstItem="6lk-Sr-Sz4" firstAttribute="centerY" secondItem="Mz5-db-W6e" secondAttribute="centerY" id="J5R-89-DXf"/>
                     <constraint firstItem="A7Q-hq-mZ6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="JbD-pa-l0A"/>
@@ -102,13 +99,13 @@
     </objects>
     <designables>
         <designable name="6lk-Sr-Sz4">
-            <size key="intrinsicContentSize" width="35.5" height="16.5"/>
+            <size key="intrinsicContentSize" width="36" height="17"/>
         </designable>
         <designable name="Mz5-db-W6e">
-            <size key="intrinsicContentSize" width="35.5" height="16.5"/>
+            <size key="intrinsicContentSize" width="36" height="17"/>
         </designable>
     </designables>
     <resources>
-        <image name="small-right" width="24" height="24"/>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
     </resources>
 </document>

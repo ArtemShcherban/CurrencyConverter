@@ -8,11 +8,9 @@
 import Foundation
 import CoreData
 
-final class RatesModel {
+final class ExchangeRateModel {
     private lazy var coreDataStack = CoreDataStack.shared
-    private lazy var dataSource = RatesDataSource.shared
-    
-//    weak var delegate: RatesTableViewDelegate?
+    private lazy var dataSource = ResultDataSource.shared
     
     func createExchangeRates(monobankData: [MonoBankExchangeRate], _ updateDate: Date) {
         guard let bulletin = try? getBulettin() else { return }
@@ -61,7 +59,7 @@ final class RatesModel {
     }
     
     func setExchangeRate(for indexPath: IndexPath) {
-        let currency = dataSource.currenciesDisplayed[indexPath.row]
+        let currency = dataSource.selectedCurrencies[indexPath.row]
         let fetchRequest: NSFetchRequest<ExchangeRate> = ExchangeRate.fetchRequest()
         let predicate = NSPredicate(format: "%K == %D", #keyPath(ExchangeRate.number), currency.number)
         fetchRequest.predicate = predicate
@@ -74,28 +72,5 @@ final class RatesModel {
         currency.buy = exchangeRate.buy
         currency.sell = exchangeRate.sell
         coreDataStack.saveContext()
-    }
-    
-    func checkBulletin() {
-        let fetchRequest: NSFetchRequest<Bulletin> = Bulletin.fetchRequest()
-        
-        guard
-            let result = try? coreDataStack.managedContext.fetch(fetchRequest),
-            let bulletin = result.first,
-            let rates = bulletin.rates?.array as? [ExchangeRate] else { return }
-        rates.forEach {
-            let number = $0.number
-            let buy  = $0.buy
-            let sell = $0.sell
-            
-            let fetch: NSFetchRequest<Currency> = Currency.fetchRequest()
-            let predicate = NSPredicate(format: "%K == %D", #keyPath(Currency.number), number)
-            fetch.predicate = predicate
-            guard
-                let currencies = try? coreDataStack.managedContext.fetch(fetch),
-                let currency = currencies.first else { return }
-            
-            print("Rate of \(currency.currency) to UAH is: Buy: \(buy), Sell: \(sell)")
-        }
     }
 }

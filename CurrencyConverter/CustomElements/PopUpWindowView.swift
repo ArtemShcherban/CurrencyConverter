@@ -9,10 +9,14 @@ import UIKit
 
 protocol PopUpWindowDelegate: AnyObject {
     func swipe()
+    func addButtonPressed()
+    func changeCurrency(sender: UIButton)
     func rotateButtonPressed()
 }
 
 class PopUpWindowView: UIView {
+    weak var popUpWindowDelegate: PopUpWindowDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -23,8 +27,6 @@ class PopUpWindowView: UIView {
         configure()
         addSwipeGesture()
     }
-    
-    weak var popUpWindowDelegate: PopUpWindowDelegate?
     
     private func configure() {
         createShadow()

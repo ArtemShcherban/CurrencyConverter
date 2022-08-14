@@ -4,6 +4,7 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <relationship name="rates" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="ExchangeRate" inverseName="bulletin" inverseEntity="ExchangeRate"/>
     </entity>
+    <entity name="ConverterCurrencyContainer" representedClassName="ConverterCurrencyContainer" parentEntity="CurrencyContainer" syncable="YES"/>
     <entity name="Currency" representedClassName="Currency" syncable="YES">
         <attribute name="buy" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="code" optional="YES" attributeType="String"/>
@@ -14,6 +15,10 @@
         <attribute name="selected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="sell" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="sequenceId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <relationship name="container" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CurrencyContainer" inverseName="currencies" inverseEntity="CurrencyContainer"/>
+    </entity>
+    <entity name="CurrencyContainer" representedClassName="CurrencyContainer" syncable="YES">
+        <relationship name="currencies" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="Currency" inverseName="container" inverseEntity="Currency"/>
     </entity>
     <entity name="ExchangeRate" representedClassName="ExchangeRate" syncable="YES">
         <attribute name="buy" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
@@ -26,10 +31,14 @@
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="visible" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
+    <entity name="RateCurrencyContainer" representedClassName="RateCurrencyContainer" parentEntity="CurrencyContainer" syncable="YES"/>
     <elements>
         <element name="Bulletin" positionX="189" positionY="198" width="128" height="59"/>
-        <element name="Currency" positionX="243" positionY="279" width="128" height="164"/>
+        <element name="Currency" positionX="243" positionY="279" width="128" height="179"/>
         <element name="ExchangeRate" positionX="180" positionY="189" width="128" height="89"/>
         <element name="Group" positionX="216" positionY="270" width="128" height="74"/>
+        <element name="CurrencyContainer" positionX="261" positionY="351" width="128" height="44"/>
+        <element name="RateCurrencyContainer" positionX="279" positionY="360" width="128" height="29"/>
+        <element name="ConverterCurrencyContainer" positionX="234" positionY="306" width="128" height="29"/>
     </elements>
 </model>
