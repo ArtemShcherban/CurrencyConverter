@@ -456,10 +456,10 @@
 			isa = PBXGroup;
 			children = (
 				F405604E288D1403007CD5AA /* RatesWindowView.swift */,
+				F435D1BC2887E5EB00B27418 /* AdjustableTextField.swift */,
 				F4A2F88D28870F53007948A9 /* ConverterWindowView.swift */,
 				F4532CEA2884056400A05344 /* EllipseView.swift */,
 				F4A2F89A2887C728007948A9 /* EllipsesView.swift */,
-				F435D1BC2887E5EB00B27418 /* AdjustableTextField.swift */,
 				F405604C288D1017007CD5AA /* RateTextLabel.swift */,
 				F4AA60E2288D32D500E191E6 /* PopUpWindowView.swift */,
 				F4AA60EA288D4BCE00E191E6 /* RateCell.swift */,

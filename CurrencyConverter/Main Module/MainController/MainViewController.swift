@@ -26,7 +26,8 @@ class MainViewController: UIViewController {
     lazy var urlModel = URLModel()
     
     lazy var ratesWindowView = mainView.ratesWindowView
-    lazy var ratesTableView = ratesWindowView?.ratesTableView
+//    lazy var ratesTableView = ratesWindowView?.ratesTableView
+    lazy var ratesTableView = ratesWindowView.ratesTableView
     lazy var converterWindowView = mainView.converterWindowView
     
     var mainAsyncQueue: Dispatching?
@@ -52,8 +53,8 @@ class MainViewController: UIViewController {
     
     private func setDelegates() {
         resultDataSource.controller = self
-        ratesWindowView?.popUpWindowDelegate = self
-        converterWindowView?.popUpWindowDelegate = self
+        ratesWindowView.popUpWindowDelegate = self
+        converterWindowView.popUpWindowDelegate = self
     }
     
     private func fillDataSource() {
