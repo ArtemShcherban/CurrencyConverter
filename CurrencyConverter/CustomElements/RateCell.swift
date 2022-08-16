@@ -15,9 +15,12 @@ class RateCell: UITableViewCell {
     @IBOutlet private weak var sellLabel: RateTextLabel!
     
     private lazy var dataSource = ResultDataSource.shared
+    private lazy var exchangeRateModel = ExchangeRateModel()
+    
     weak var delegate: PopUpWindowDelegate?
     
     func configure(with indexPath: IndexPath) {
+        exchangeRateModel.setExchangeRate(for: indexPath)
         let code = dataSource.selectedCurrencies[indexPath.row].code
         currencyButton.setTitle(code, for: .normal)
         currencyButton.tag = indexPath.row

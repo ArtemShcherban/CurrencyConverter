@@ -61,6 +61,10 @@ final class ResultModel: FetchRequesting {
     }
     
     func changeCell(at row: Int, with currency: Currency) {
+        let replacedCurrency = dataSource.selectedCurrencies[row]
+        replacedCurrency.buy = 0
+        replacedCurrency.sell = 0
+        replacedCurrency.totalAmount = 0
         let result = performRequest(for: tableView)
         guard let container = result.first else { return }
         container.replaceCurrencies(at: row, with: currency)
@@ -68,6 +72,10 @@ final class ResultModel: FetchRequesting {
     }
     
     func removeCell(at indexPath: IndexPath) {
+        let removedCurrency = dataSource.selectedCurrencies[indexPath.row]
+        removedCurrency.buy = 0
+        removedCurrency.sell = 0
+        removedCurrency.totalAmount = 0
         let result = performRequest(for: tableView)
         guard let container = result.first else { return }
         container.removeFromCurrencies(at: indexPath.row)
@@ -75,6 +83,23 @@ final class ResultModel: FetchRequesting {
         dataSource.selectedCurrencies = currencies
         coreDataStack.saveContext()
     }
+    
+//    func removeCell(at indexPath: IndexPath) {
+//        let result = performRequest(for: tableView)
+//        guard
+//            let container = result.first,
+//            let currencies = container.currencies?.array as? [Currency] else {
+//            return
+//        }
+//        let removedCurrency = currencies[indexPath.row]
+//        removedCurrency.buy = 0
+//        removedCurrency.sell = 0
+//        removedCurrency.totalAmount = 0
+//        container.removeFromCurrencies(removedCurrency)
+//        guard let currencies = container.currencies?.array as? [Currency] else { return }
+//        dataSource.selectedCurrencies = currencies
+//        coreDataStack.saveContext()
+//    }
     
     private func createCurrencyContainer() -> CurrencyContainer? {
         switch tableView {

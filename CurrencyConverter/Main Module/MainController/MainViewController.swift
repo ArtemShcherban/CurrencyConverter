@@ -26,9 +26,10 @@ class MainViewController: UIViewController {
     lazy var urlModel = URLModel()
     
     lazy var ratesWindowView = mainView.ratesWindowView
-//    lazy var ratesTableView = ratesWindowView?.ratesTableView
-    lazy var ratesTableView = ratesWindowView.ratesTableView
+//    lazy var ratesTableView = ratesWindowView.ratesTableView
     lazy var converterWindowView = mainView.converterWindowView
+    
+    lazy var converterModel = ConverterModel()
     
     var mainAsyncQueue: Dispatching?
     
@@ -36,7 +37,7 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         //        coreDataStack.deleteFromCoreData(entityName: "Currency")🥸
         //        coreDataStack.deleteFromCoreData(entityName: "Group")
-//                coreDataStack.deleteAllEntities()
+        //                coreDataStack.deleteAllEntities()
         
         mainAsyncQueue = AsyncQueue.main
         initialModel.insertCurrencies()
@@ -47,8 +48,9 @@ class MainViewController: UIViewController {
         
         getMonoBankExchangeRate()
         
-        //        getPrivatExchangeRate()🥸    
+        //        getPrivatExchangeRate()🥸
         mainView.lastUpdateDate = dateModel.formattedDate()
+        setupHideKeyboardTapCesture()
     }
     
     private func setDelegates() {
@@ -104,7 +106,7 @@ class MainViewController: UIViewController {
     //    }
     
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-//                print(self.view.frame) //🥸
+        //                print(self.view.frame) //🥸
         //        print("TextField frame ---- \(converterMainView.popUpWindow.usdTextField.frame)")
         //        print("TextField bounds ---- \(converterMainView.popUpWindow.usdTextField.bounds)")
         //        print()
@@ -146,5 +148,37 @@ extension MainViewController: PopUpWindowDelegate {
     
     func changeCurrency(sender: UIButton) {
         openCurrencyViewController(sender: sender)
+    }
+}
+
+extension MainViewController: InputAmountFieldDeligate {
+    func amountChanged(in textField: AdjustableTextField) {
+        guard
+            let string = textField.text,
+            let amount = Double(string) else {
+            return
+        }
+        converterModel.doCalculation(amount: amount)
+        resultsTableViewReloadData()
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.selectedTextRange = textField.textRange(
+            from: textField.beginningOfDocument,
+            to: textField.endOfDocument
+        )
+        print("textField")
+    }
+}
+
+extension MainViewController {
+    func setupHideKeyboardTapCesture() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 }

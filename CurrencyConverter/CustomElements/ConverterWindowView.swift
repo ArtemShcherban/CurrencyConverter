@@ -40,8 +40,11 @@ final class ConverterWindowView: PopUpWindowView {
         converterTableView.dataSource = ResultDataSource.shared
         converterTableView.tag = 1
         converterTableView.register(
-            UINib(nibName: ConverterCell.reuseIdentifier, bundle: nil),
-            forCellReuseIdentifier: ConverterCell.reuseIdentifier)
+            UINib(nibName: InputAmountCell.reuseIdentifier, bundle: nil),
+            forCellReuseIdentifier: InputAmountCell.reuseIdentifier)
+        converterTableView.register(
+            UINib(nibName: TotalAmountCell.reuseIdentifier, bundle: nil),
+            forCellReuseIdentifier: TotalAmountCell.reuseIdentifier)
     }
     
     private func configure() {

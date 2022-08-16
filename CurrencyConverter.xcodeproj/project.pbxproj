@@ -40,8 +40,8 @@
 		F4532CDA2883E93400A05344 /* CurrencyConverterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4532CD92883E93400A05344 /* CurrencyConverterUITests.swift */; };
 		F4532CDC2883E93400A05344 /* CurrencyConverterUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4532CDB2883E93400A05344 /* CurrencyConverterUITestsLaunchTests.swift */; };
 		F4532CEB2884056400A05344 /* EllipseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4532CEA2884056400A05344 /* EllipseView.swift */; };
-		F45E03EB28A2828900902C73 /* ConverterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E03E928A2828900902C73 /* ConverterCell.swift */; };
-		F45E03EC28A2828900902C73 /* ConverterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45E03EA28A2828900902C73 /* ConverterCell.xib */; };
+		F45E03EB28A2828900902C73 /* InputAmountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E03E928A2828900902C73 /* InputAmountCell.swift */; };
+		F45E03EC28A2828900902C73 /* InputAmountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45E03EA28A2828900902C73 /* InputAmountCell.xib */; };
 		F45E042D28A4FA7400902C73 /* RateCurrencyContainer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E042728A4FA7400902C73 /* RateCurrencyContainer+CoreDataClass.swift */; };
 		F45E042E28A4FA7400902C73 /* RateCurrencyContainer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E042828A4FA7400902C73 /* RateCurrencyContainer+CoreDataProperties.swift */; };
 		F45E042F28A4FA7400902C73 /* CurrencyContainer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E042928A4FA7400902C73 /* CurrencyContainer+CoreDataClass.swift */; };
@@ -50,6 +50,9 @@
 		F45E043228A4FA7400902C73 /* ConverterCurrencyContainer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E042C28A4FA7400902C73 /* ConverterCurrencyContainer+CoreDataProperties.swift */; };
 		F45E043428A4FB8700902C73 /* FetchRequesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E043328A4FB8700902C73 /* FetchRequesting.swift */; };
 		F45E043628A62ABB00902C73 /* TableViewCostants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E043528A62ABB00902C73 /* TableViewCostants.swift */; };
+		F45E043E28AA639700902C73 /* TotalAmountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45E043D28AA639700902C73 /* TotalAmountCell.xib */; };
+		F45E044028AA671E00902C73 /* TotalAmountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E043F28AA671E00902C73 /* TotalAmountCell.swift */; };
+		F45E044228AB5F7F00902C73 /* ConverterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E044128AB5F7F00902C73 /* ConverterModel.swift */; };
 		F4A09AA6289BBF3E009D138E /* ExchangeRate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A09AA4289BBF3E009D138E /* ExchangeRate+CoreDataClass.swift */; };
 		F4A09AA7289BBF3E009D138E /* ExchangeRate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A09AA5289BBF3E009D138E /* ExchangeRate+CoreDataProperties.swift */; };
 		F4A09AAA289BBF55009D138E /* Bulletin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A09AA8289BBF55009D138E /* Bulletin+CoreDataClass.swift */; };
@@ -145,8 +148,8 @@
 		F4532CD92883E93400A05344 /* CurrencyConverterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterUITests.swift; sourceTree = "<group>"; };
 		F4532CDB2883E93400A05344 /* CurrencyConverterUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyConverterUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		F4532CEA2884056400A05344 /* EllipseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipseView.swift; sourceTree = "<group>"; };
-		F45E03E928A2828900902C73 /* ConverterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterCell.swift; sourceTree = "<group>"; };
-		F45E03EA28A2828900902C73 /* ConverterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConverterCell.xib; sourceTree = "<group>"; };
+		F45E03E928A2828900902C73 /* InputAmountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputAmountCell.swift; sourceTree = "<group>"; };
+		F45E03EA28A2828900902C73 /* InputAmountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InputAmountCell.xib; sourceTree = "<group>"; };
 		F45E042728A4FA7400902C73 /* RateCurrencyContainer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RateCurrencyContainer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F45E042828A4FA7400902C73 /* RateCurrencyContainer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RateCurrencyContainer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F45E042928A4FA7400902C73 /* CurrencyContainer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrencyContainer+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -155,6 +158,9 @@
 		F45E042C28A4FA7400902C73 /* ConverterCurrencyContainer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ConverterCurrencyContainer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F45E043328A4FB8700902C73 /* FetchRequesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchRequesting.swift; sourceTree = "<group>"; };
 		F45E043528A62ABB00902C73 /* TableViewCostants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCostants.swift; sourceTree = "<group>"; };
+		F45E043D28AA639700902C73 /* TotalAmountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TotalAmountCell.xib; sourceTree = "<group>"; };
+		F45E043F28AA671E00902C73 /* TotalAmountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalAmountCell.swift; sourceTree = "<group>"; };
+		F45E044128AB5F7F00902C73 /* ConverterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterModel.swift; sourceTree = "<group>"; };
 		F4A09AA4289BBF3E009D138E /* ExchangeRate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExchangeRate+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F4A09AA5289BBF3E009D138E /* ExchangeRate+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ExchangeRate+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F4A09AA8289BBF55009D138E /* Bulletin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bulletin+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -318,6 +324,7 @@
 				F4A09ACC289D21B5009D138E /* InitialModel.swift */,
 				F4429C6A289FB63400070620 /* DateModel.swift */,
 				F45137C1289E372200B2190D /* ResultModel.swift */,
+				F45E044128AB5F7F00902C73 /* ConverterModel.swift */,
 			);
 			path = MainModel;
 			sourceTree = "<group>";
@@ -329,7 +336,8 @@
 				F4A2F88F288710B1007948A9 /* ConverterWindowView.xib */,
 				F405604A288D0932007CD5AA /* RatesWindowView.xib */,
 				F4AA60EB288D4BCE00E191E6 /* RateCell.xib */,
-				F45E03EA28A2828900902C73 /* ConverterCell.xib */,
+				F45E03EA28A2828900902C73 /* InputAmountCell.xib */,
+				F45E043D28AA639700902C73 /* TotalAmountCell.xib */,
 			);
 			path = ElementsViews;
 			sourceTree = "<group>";
@@ -463,7 +471,8 @@
 				F405604C288D1017007CD5AA /* RateTextLabel.swift */,
 				F4AA60E2288D32D500E191E6 /* PopUpWindowView.swift */,
 				F4AA60EA288D4BCE00E191E6 /* RateCell.swift */,
-				F45E03E928A2828900902C73 /* ConverterCell.swift */,
+				F45E03E928A2828900902C73 /* InputAmountCell.swift */,
+				F45E043F28AA671E00902C73 /* TotalAmountCell.swift */,
 			);
 			path = CustomElements;
 			sourceTree = "<group>";
@@ -666,8 +675,9 @@
 			files = (
 				F4BA22EB2897A0F2002F3B54 /* WorldCurrencies.plist in Resources */,
 				F4AA60FA288D88B800E191E6 /* Currency.json in Resources */,
+				F45E043E28AA639700902C73 /* TotalAmountCell.xib in Resources */,
 				F4A2F88C28870A28007948A9 /* Lato-ExtraBold.ttf in Resources */,
-				F45E03EC28A2828900902C73 /* ConverterCell.xib in Resources */,
+				F45E03EC28A2828900902C73 /* InputAmountCell.xib in Resources */,
 				F4AA60ED288D4BCE00E191E6 /* RateCell.xib in Resources */,
 				F4A2F89228871BF7007948A9 /* Lato-Regular.ttf in Resources */,
 				F4A2F890288710B1007948A9 /* ConverterWindowView.xib in Resources */,
@@ -797,6 +807,7 @@
 				F4A6202E28912909009E3FB8 /* CurrencyListViewController.swift in Sources */,
 				F405603E28896967007CD5AA /* MainViewController.swift in Sources */,
 				F4AA60E3288D32D500E191E6 /* PopUpWindowView.swift in Sources */,
+				F45E044228AB5F7F00902C73 /* ConverterModel.swift in Sources */,
 				F45E042F28A4FA7400902C73 /* CurrencyContainer+CoreDataClass.swift in Sources */,
 				F405604F288D1403007CD5AA /* RatesWindowView.swift in Sources */,
 				F4056045288984CE007CD5AA /* Dispatcher.swift in Sources */,
@@ -805,6 +816,7 @@
 				F45137BE289D280C00B2190D /* CurrencyDataSource.swift in Sources */,
 				F40560472889887B007CD5AA /* AsyncQueue.swift in Sources */,
 				F4BA22F52897AB45002F3B54 /* CurrencyConverter.xcdatamodeld in Sources */,
+				F45E044028AA671E00902C73 /* TotalAmountCell.swift in Sources */,
 				F4056025288919AF007CD5AA /* URLModel.swift in Sources */,
 				F4AA60FD288D89E000E191E6 /* CurrencyListModel.swift in Sources */,
 				F45E042D28A4FA7400902C73 /* RateCurrencyContainer+CoreDataClass.swift in Sources */,
@@ -812,7 +824,7 @@
 				F4BA22ED2897A237002F3B54 /* CoreDataStack.swift in Sources */,
 				F405604D288D1017007CD5AA /* RateTextLabel.swift in Sources */,
 				F45E043228A4FA7400902C73 /* ConverterCurrencyContainer+CoreDataProperties.swift in Sources */,
-				F45E03EB28A2828900902C73 /* ConverterCell.swift in Sources */,
+				F45E03EB28A2828900902C73 /* InputAmountCell.swift in Sources */,
 				F4AA60F2288D62E200E191E6 /* ExchangeRateModel.swift in Sources */,
 				F45E043428A4FB8700902C73 /* FetchRequesting.swift in Sources */,
 				F4A09AC9289D210C009D138E /* Group+CoreDataProperties.swift in Sources */,
