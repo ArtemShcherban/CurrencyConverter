@@ -20,6 +20,7 @@ class PopUpWindowView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
+        addSwipeGesture()
     }
     
     required init?(coder: NSCoder) {

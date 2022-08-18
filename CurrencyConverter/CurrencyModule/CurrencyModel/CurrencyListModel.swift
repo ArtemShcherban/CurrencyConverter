@@ -107,7 +107,6 @@ class CurrencyListModel: FetchRequesting {
     
     func selectedFilteredCurrency(at indexPath: IndexPath) -> Currency {
         let currency = currencyDataSource.filteredCurrency[indexPath.row]
-        currency.selected = true
         return currency
     }
 }

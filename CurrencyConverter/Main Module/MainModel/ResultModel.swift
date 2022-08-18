@@ -18,6 +18,8 @@ final class ResultModel: FetchRequesting {
     private lazy var coreDataStack = CoreDataStack.shared
     private lazy var dataSource = ResultDataSource.shared
     private lazy var currencyListModel = CurrencyListModel.shared
+    private lazy var converterModel = ConverterModel.shared
+    private lazy var exchangeRateModel = ExchangeRateModel()
     
     private lazy var tableView = String() {
         didSet {
@@ -41,8 +43,13 @@ final class ResultModel: FetchRequesting {
         
         guard
             let container = result.first,
-            let currencies = container.currencies?.array as? [Currency] else {
+            var currencies = container.currencies?.array as? [Currency] else {
             return
+        }
+        if tableView == TableViewCostants.Name.converter {
+            let baseCurrency = currencies.removeFirst()
+            exchangeRateModel.setExchangeRate(for: baseCurrency)
+            dataSource.baseCurrency = baseCurrency
         }
         dataSource.selectedCurrencies = currencies
     }
@@ -61,45 +68,32 @@ final class ResultModel: FetchRequesting {
     }
     
     func changeCell(at row: Int, with currency: Currency) {
-        let replacedCurrency = dataSource.selectedCurrencies[row]
+        let result = performRequest(for: tableView)
+        guard
+            let container = result.first,
+            let currencies = container.currencies?.array as? [Currency] else {
+            return
+        }
+        let replacedCurrency = currencies[row]
         replacedCurrency.buy = 0
         replacedCurrency.sell = 0
-        replacedCurrency.totalAmount = 0
-        let result = performRequest(for: tableView)
-        guard let container = result.first else { return }
         container.replaceCurrencies(at: row, with: currency)
         coreDataStack.saveContext()
     }
     
     func removeCell(at indexPath: IndexPath) {
+        let result = performRequest(for: tableView)
+        guard
+            let container = result.first else {
+            return
+        }
         let removedCurrency = dataSource.selectedCurrencies[indexPath.row]
         removedCurrency.buy = 0
         removedCurrency.sell = 0
-        removedCurrency.totalAmount = 0
-        let result = performRequest(for: tableView)
-        guard let container = result.first else { return }
-        container.removeFromCurrencies(at: indexPath.row)
-        guard let currencies = container.currencies?.array as? [Currency] else { return }
-        dataSource.selectedCurrencies = currencies
+        container.removeFromCurrencies(removedCurrency)
         coreDataStack.saveContext()
+        fillDataSource()
     }
-    
-//    func removeCell(at indexPath: IndexPath) {
-//        let result = performRequest(for: tableView)
-//        guard
-//            let container = result.first,
-//            let currencies = container.currencies?.array as? [Currency] else {
-//            return
-//        }
-//        let removedCurrency = currencies[indexPath.row]
-//        removedCurrency.buy = 0
-//        removedCurrency.sell = 0
-//        removedCurrency.totalAmount = 0
-//        container.removeFromCurrencies(removedCurrency)
-//        guard let currencies = container.currencies?.array as? [Currency] else { return }
-//        dataSource.selectedCurrencies = currencies
-//        coreDataStack.saveContext()
-//    }
     
     private func createCurrencyContainer() -> CurrencyContainer? {
         switch tableView {

@@ -15,19 +15,20 @@ class TotalAmountCell: UITableViewCell {
     
     private lazy var resultDataSource = ResultDataSource.shared
     private lazy var exchangeRateModel = ExchangeRateModel()
+    private lazy var converterModel = ConverterModel.shared
     
     weak var delegate: PopUpWindowDelegate?
     
     func configure(with indexPath: IndexPath) {
-        exchangeRateModel.setExchangeRate(for: indexPath)
         let currency = resultDataSource.selectedCurrencies[indexPath.row]
+        exchangeRateModel.setExchangeRate(for: currency)
         currencyButton.setTitle(currency.code, for: .normal)
-        currencyButton.tag = indexPath.row
-        totalAmountLabel.text = String(format: "%.2f", currency.totalAmount)
+        currencyButton.tag = (indexPath.row + 1)
+        let totalAmount = converterModel.doCalculation(for: currency)
+        totalAmountLabel.text = totalAmount.decimalFormat()
     }
     
     @IBAction func delegateAction(_ sender: UIButton) {
-        print("Button")
         delegate?.changeCurrency(sender: sender)
     }
 }

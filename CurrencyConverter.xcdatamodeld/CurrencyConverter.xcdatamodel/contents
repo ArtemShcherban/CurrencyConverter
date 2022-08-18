@@ -12,10 +12,7 @@
         <attribute name="currency" optional="YES" attributeType="String"/>
         <attribute name="groupKey" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="selected" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
         <attribute name="sell" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="sequenceId" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="totalAmount" optional="YES" attributeType="Double" defaultValueString="0" usesScalarValueType="YES"/>
         <relationship name="container" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CurrencyContainer" inverseName="currencies" inverseEntity="CurrencyContainer"/>
     </entity>
     <entity name="CurrencyContainer" representedClassName="CurrencyContainer" syncable="YES">
@@ -36,7 +33,7 @@
     <elements>
         <element name="Bulletin" positionX="189" positionY="198" width="128" height="59"/>
         <element name="ConverterCurrencyContainer" positionX="234" positionY="306" width="128" height="29"/>
-        <element name="Currency" positionX="243" positionY="279" width="128" height="194"/>
+        <element name="Currency" positionX="243" positionY="279" width="128" height="149"/>
         <element name="CurrencyContainer" positionX="261" positionY="351" width="128" height="44"/>
         <element name="ExchangeRate" positionX="180" positionY="189" width="128" height="89"/>
         <element name="Group" positionX="216" positionY="270" width="128" height="74"/>

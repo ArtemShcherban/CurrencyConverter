@@ -11,6 +11,7 @@ class ResultDataSource: NSObject, UITableViewDataSource {
     static let shared = ResultDataSource()
     
     var controller: MainViewController?
+    var baseCurrency: Currency?
     lazy var selectedCurrencies: [Currency] = []
    
     private lazy var resultModel = ResultModel.shared
@@ -24,11 +25,7 @@ class ResultDataSource: NSObject, UITableViewDataSource {
         case 0:
             return rateCell(for: tableView, at: indexPath)
         case 1:
-            if indexPath.row == 0 {
-            return inputAmountCell(for: tableView, at: indexPath)
-            } else {
-                return totalAmountCell(for: tableView, at: indexPath)
-            }
+            return totalAmountCell(for: tableView, at: indexPath)
         default :
             return UITableViewCell()
         }
@@ -43,6 +40,7 @@ class ResultDataSource: NSObject, UITableViewDataSource {
         resultModel.removeCell(at: indexPath)
         tableView.deleteRows(at: [indexPath], with: .automatic)
         controller?.updateAddButton()
+        tableView.reloadData()
     }
     
     func rateCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
@@ -55,25 +53,7 @@ class ResultDataSource: NSObject, UITableViewDataSource {
         return cell
     }
     
-    func inputAmountCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: InputAmountCell.reuseIdentifier, for: indexPath) as? InputAmountCell else {
-            return UITableViewCell()
-        }
-        cell.delegate = controller
-        cell.inputAmountFieldDelegate = controller
-        cell.configure(with: indexPath)
-        return cell
-    }
-    
     func totalAmountCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
-//        guard
-//            let inputAmountCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? InputAmountCell,
-//            let text = inputAmountCell.inputAmountField.text,
-//            let amount = Double(text) else {
-//            return UITableViewCell()
-//        }
-        
     guard let cell = tableView.dequeueReusableCell(
         withIdentifier: TotalAmountCell.reuseIdentifier, for: indexPath) as? TotalAmountCell else {
         return UITableViewCell()

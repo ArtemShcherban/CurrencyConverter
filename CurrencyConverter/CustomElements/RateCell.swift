@@ -20,9 +20,9 @@ class RateCell: UITableViewCell {
     weak var delegate: PopUpWindowDelegate?
     
     func configure(with indexPath: IndexPath) {
-        exchangeRateModel.setExchangeRate(for: indexPath)
-        let code = dataSource.selectedCurrencies[indexPath.row].code
-        currencyButton.setTitle(code, for: .normal)
+        let currency = dataSource.selectedCurrencies[indexPath.row]
+        exchangeRateModel.setExchangeRate(for: currency)
+        currencyButton.setTitle(currency.code, for: .normal)
         currencyButton.tag = indexPath.row
         buyLabel.text = String(format: "%.3f", dataSource.selectedCurrencies[indexPath.row].buy)
         sellLabel.text = String(format: "%.3f", dataSource.selectedCurrencies[indexPath.row].sell)

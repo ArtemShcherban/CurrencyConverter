@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -17,8 +17,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConverterWindowView" customModule="CurrencyConverter" customModuleProvider="target">
             <connections>
                 <outlet property="addCurrencyButton" destination="1k8-5E-1Wv" id="tHZ-RG-6TO"/>
+                <outlet property="baseCurrencyButton" destination="256-Ro-6ZW" id="8Vb-yT-COK"/>
+                <outlet property="buyButton" destination="A39-Ul-ino" id="fHi-H9-46h"/>
                 <outlet property="contentView" destination="BBq-NP-G5L" id="dcD-Wb-I6C"/>
                 <outlet property="converterTableView" destination="94T-BW-afh" id="a9B-12-MvJ"/>
+                <outlet property="inputAmountField" destination="kvg-aA-lU0" id="lpv-Oj-nA3"/>
                 <outlet property="rotateButton" destination="9BC-F7-9hY" id="Wlf-cM-mDI"/>
                 <outlet property="sellButton" destination="CPV-80-a2e" id="hVF-nH-8C0"/>
             </connections>
@@ -29,19 +32,21 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="33" translatesAutoresizingMaskIntoConstraints="NO" id="Erg-FP-EiR" userLabel="ButtonsStackView">
-                    <rect key="frame" x="-8.5" y="16" width="360" height="34"/>
+                    <rect key="frame" x="16" y="16" width="311" height="44"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPV-80-a2e" userLabel="Sell Button">
-                            <rect key="frame" x="0.0" y="0.0" width="163.5" height="34"/>
+                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CPV-80-a2e" userLabel="Sell Button">
+                            <rect key="frame" x="0.0" y="0.0" width="139" height="44"/>
                             <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                            <accessibility key="accessibilityConfiguration" identifier="sell"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" identifier="SellButtonHeight" id="Ya8-ls-1GR"/>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="aIz-hr-85x"/>
                             </constraints>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Sell">
-                                <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="titleColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -64,11 +69,16 @@
                                     <include reference="Ya8-ls-1GR"/>
                                 </mask>
                             </variation>
+                            <connections>
+                                <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="0Z3-5a-6Wv"/>
+                            </connections>
                         </button>
                         <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A39-Ul-ino" userLabel="Buy Button">
-                            <rect key="frame" x="196.5" y="0.0" width="163.5" height="34"/>
-                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <rect key="frame" x="172" y="0.0" width="139" height="44"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <accessibility key="accessibilityConfiguration" identifier="buy"/>
                             <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="18"/>
+                            <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                             <state key="normal" title="Buy">
                                 <color key="titleColor" red="0.0" green="0.19215686274509802" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -78,18 +88,37 @@
                                     <integer key="value" value="6"/>
                                 </userDefinedRuntimeAttribute>
                             </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="buttonPressed:" destination="-1" eventType="touchUpInside" id="nyK-iN-Ync"/>
+                            </connections>
                         </button>
                     </subviews>
                     <constraints>
                         <constraint firstItem="CPV-80-a2e" firstAttribute="width" secondItem="A39-Ul-ino" secondAttribute="width" id="2G9-sz-ZA0"/>
                     </constraints>
                 </stackView>
+                <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" horizontalHuggingPriority="251" contentHorizontalAlignment="trailing" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="256-Ro-6ZW" userLabel="USD">
+                    <rect key="frame" x="16" y="100" width="55" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="bXo-gQ-f3R"/>
+                        <constraint firstAttribute="width" constant="55" id="pAk-M2-ceC"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                    <color key="tintColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="USD !!!" image="chevron.right" catalog="system">
+                        <color key="titleColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="baseCurrencyPressed:" destination="-1" eventType="touchUpInside" id="uaW-Ay-WLy"/>
+                    </connections>
+                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1k8-5E-1Wv" userLabel="Add Currency Button">
                     <rect key="frame" x="16" y="341" width="311" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="Ivj-lJ-Ccr"/>
                     </constraints>
-                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="13"/>
+                    <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="  Add Currency" image="plus.circle.fill" catalog="system"/>
                     <connections>
@@ -122,8 +151,29 @@
                         <action selector="rotateButtonPressed:" destination="-1" eventType="touchUpInside" id="HIE-mW-KlN"/>
                     </connections>
                 </button>
+                <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="input amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kvg-aA-lU0" customClass="AdjustableTextField" customModule="CurrencyConverter" customModuleProvider="target">
+                    <rect key="frame" x="121" y="100" width="206" height="44"/>
+                    <color key="backgroundColor" red="0.98039215690000003" green="0.96862745100000003" blue="0.99215686270000003" alpha="0.8980392157" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="206" id="btm-wg-PF1"/>
+                        <constraint firstAttribute="height" constant="44" id="tsZ-NS-v3P"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                            <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                            <real key="value" value="6"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </textField>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="94T-BW-afh">
-                    <rect key="frame" x="-8.5" y="90" width="360" height="180"/>
+                    <rect key="frame" x="16" y="152" width="311" height="180"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="180" id="N6o-dY-p1d"/>
@@ -149,19 +199,24 @@
             <viewLayoutGuide key="safeArea" id="aSi-gG-jyn"/>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="94T-BW-afh" firstAttribute="leading" secondItem="aSi-gG-jyn" secondAttribute="leading" constant="16" id="0uo-le-g9Z"/>
                 <constraint firstItem="Erg-FP-EiR" firstAttribute="top" secondItem="BBq-NP-G5L" secondAttribute="top" constant="16" id="7t4-bm-oP0"/>
                 <constraint firstItem="94T-BW-afh" firstAttribute="trailing" secondItem="Erg-FP-EiR" secondAttribute="trailing" id="8Gc-p0-SF5"/>
+                <constraint firstItem="256-Ro-6ZW" firstAttribute="leading" secondItem="94T-BW-afh" secondAttribute="leading" id="HmG-U4-0qe"/>
                 <constraint firstAttribute="trailing" secondItem="94T-BW-afh" secondAttribute="trailing" constant="16" id="ILK-V7-vJi"/>
+                <constraint firstItem="94T-BW-afh" firstAttribute="trailing" secondItem="kvg-aA-lU0" secondAttribute="trailing" id="NLq-mG-lxJ"/>
                 <constraint firstItem="9BC-F7-9hY" firstAttribute="centerY" secondItem="rAp-D3-aqN" secondAttribute="centerY" id="ZG4-ck-gmk"/>
                 <constraint firstItem="rAp-D3-aqN" firstAttribute="centerY" secondItem="1k8-5E-1Wv" secondAttribute="centerY" id="dDj-Rc-DBV"/>
                 <constraint firstItem="94T-BW-afh" firstAttribute="centerX" secondItem="BBq-NP-G5L" secondAttribute="centerX" id="hVI-gK-EzI"/>
-                <constraint firstItem="94T-BW-afh" firstAttribute="top" secondItem="Erg-FP-EiR" secondAttribute="bottom" constant="40" id="hbx-XP-dNu"/>
+                <constraint firstItem="94T-BW-afh" firstAttribute="top" secondItem="kvg-aA-lU0" secondAttribute="bottom" constant="8" id="hbx-XP-dNu"/>
+                <constraint firstItem="256-Ro-6ZW" firstAttribute="top" secondItem="Erg-FP-EiR" secondAttribute="bottom" constant="40" id="iDS-ge-RoF"/>
                 <constraint firstItem="1k8-5E-1Wv" firstAttribute="leading" secondItem="BBq-NP-G5L" secondAttribute="leading" constant="16" id="ip6-jC-uz4"/>
                 <constraint firstItem="94T-BW-afh" firstAttribute="top" secondItem="Erg-FP-EiR" secondAttribute="bottom" constant="5" id="mGq-so-2T5"/>
                 <constraint firstAttribute="trailing" secondItem="1k8-5E-1Wv" secondAttribute="trailing" constant="16" id="mOB-Y7-WSG"/>
                 <constraint firstAttribute="bottom" secondItem="rAp-D3-aqN" secondAttribute="bottom" constant="15" id="njS-bN-McJ"/>
                 <constraint firstItem="9BC-F7-9hY" firstAttribute="leading" secondItem="BBq-NP-G5L" secondAttribute="leading" constant="16" id="oj2-YV-3bf"/>
                 <constraint firstAttribute="trailing" secondItem="rAp-D3-aqN" secondAttribute="trailing" constant="13" id="qYx-DH-8gM"/>
+                <constraint firstItem="kvg-aA-lU0" firstAttribute="centerY" secondItem="256-Ro-6ZW" secondAttribute="centerY" id="t25-1w-oR1"/>
                 <constraint firstItem="1k8-5E-1Wv" firstAttribute="centerY" secondItem="9BC-F7-9hY" secondAttribute="centerY" id="vHZ-Wg-ye8"/>
                 <constraint firstItem="Erg-FP-EiR" firstAttribute="leading" secondItem="94T-BW-afh" secondAttribute="leading" id="vu1-sk-65u"/>
                 <constraint firstItem="94T-BW-afh" firstAttribute="leading" secondItem="BBq-NP-G5L" secondAttribute="leading" constant="16" id="wrn-es-Ys1"/>
@@ -202,8 +257,14 @@
             <point key="canvasLocation" x="526.81159420289862" y="-269.19642857142856"/>
         </view>
     </objects>
+    <designables>
+        <designable name="kvg-aA-lU0">
+            <size key="intrinsicContentSize" width="113.5" height="34"/>
+        </designable>
+    </designables>
     <resources>
         <image name="arrow.left" catalog="system" width="128" height="98"/>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
         <namedColor name="AccentColor">

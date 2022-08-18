@@ -37,7 +37,9 @@ class CurrencyDataSource: NSObject, UITableViewDataSource {
         } else if tableView.accessibilityIdentifier == "filtered" {
             return filteredCurrency.count
         }
-        return currencyList.filter { $0.selected == true }.count
+        
+        //        return currencyList.filter { $0.selected == true }.count
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {

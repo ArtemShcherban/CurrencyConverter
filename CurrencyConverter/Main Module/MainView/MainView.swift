@@ -24,6 +24,8 @@ class MainView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
+        containerView.addSubview(ratesWindowView)
+        ratesWindowView.setConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -31,7 +33,6 @@ class MainView: UIView {
         configure()
         containerView.addSubview(ratesWindowView)
         ratesWindowView.setConstraints()
-        print(containerView.frame)
     }
     
     func configure() {
@@ -67,6 +68,7 @@ class MainView: UIView {
         switch isFlipping {
         case true:
             currentTableView = converterWindowView.converterTableView
+            converterWindowView.configureBaseCarrencyButton()
         default:
             currentTableView = ratesWindowView.ratesTableView
         }

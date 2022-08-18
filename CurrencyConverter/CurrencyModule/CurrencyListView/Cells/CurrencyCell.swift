@@ -16,8 +16,9 @@ final class CurrencyCell: UITableViewCell {
     func configure(with indexPath: IndexPath) {
         var content = defaultContentConfiguration()
         let currency = dataSource.currencyList
-            .filter { $0.groupKey == dataSource.groups.filter { $0.visible == true }[indexPath.section].key }
-            .filter { $0.selected == false }[indexPath.row]
+            .filter { $0.groupKey == dataSource.groups
+            .filter { $0.visible == true }[indexPath.section].key
+            }[indexPath.row]
         content.attributedText = createTitle(currency.code, currency.currency)
         contentConfiguration = content
     }

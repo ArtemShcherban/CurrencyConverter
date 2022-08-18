@@ -32,7 +32,7 @@ final class InitialModel {
                 currency.currency = dict["Currency"] as? String ?? String()
                 currency.code = dict["Code"] as? String ?? String()
                 currency.country = dict["Country"] as? String ?? String()
-                currency.selected = false
+                //                currency.selected = false
                 if let number = dict["Number"] as? NSNumber {
                     currency.number = number.int16Value
                 }

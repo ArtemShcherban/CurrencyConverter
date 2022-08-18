@@ -24,10 +24,10 @@ class CurrencyListView: UIView {
     weak var delegate: CurrencyListViewDelegate?
     
     func createView() {
+        addAccessibilityId()
         configureTableView()
         createTableViewShadow()
         configureSearchController()
-        addAccessibilityId()
     }
     
     func createBackButton() -> UIButton {
@@ -56,6 +56,10 @@ class CurrencyListView: UIView {
         tableView.delegate = tableViewDelegate
         tableView.dataSource = dataSource
         tableView.register(CurrencyCell.self, forCellReuseIdentifier: CurrencyCell.reuseIdentifier)
+    }
+    
+    func addAccessibilityId() {
+        tableView.accessibilityIdentifier = "currency"
     }
     
     func createTableViewShadow() {
@@ -108,9 +112,5 @@ class CurrencyListView: UIView {
         searchController.hidesNavigationBarDuringPresentation = false
         tableView.tableHeaderView = searchController.searchBar
         searchController.searchBar.searchBarStyle = .minimal
-    }
-    
-    func addAccessibilityId() {
-        tableView.accessibilityIdentifier = "currency"
     }
 }

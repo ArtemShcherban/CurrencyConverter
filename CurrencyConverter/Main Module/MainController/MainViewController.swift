@@ -26,18 +26,17 @@ class MainViewController: UIViewController {
     lazy var urlModel = URLModel()
     
     lazy var ratesWindowView = mainView.ratesWindowView
-//    lazy var ratesTableView = ratesWindowView.ratesTableView
     lazy var converterWindowView = mainView.converterWindowView
     
-    lazy var converterModel = ConverterModel()
+    lazy var converterModel = ConverterModel.shared
     
     var mainAsyncQueue: Dispatching?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //        coreDataStack.deleteFromCoreData(entityName: "Currency")🥸
-        //        coreDataStack.deleteFromCoreData(entityName: "Group")
-        //                coreDataStack.deleteAllEntities()
+//                coreDataStack.deleteFromCoreData(entityName: "Currency")🥸
+//                coreDataStack.deleteFromCoreData(entityName: "Group")
+//                coreDataStack.deleteAllEntities()
         
         mainAsyncQueue = AsyncQueue.main
         initialModel.insertCurrencies()
@@ -45,6 +44,7 @@ class MainViewController: UIViewController {
         setDelegates()
         fillDataSource()
         updateAddButton()
+        converterModel.createDefaultBaseCurrency()
         
         getMonoBankExchangeRate()
         
@@ -57,6 +57,7 @@ class MainViewController: UIViewController {
         resultDataSource.controller = self
         ratesWindowView.popUpWindowDelegate = self
         converterWindowView.popUpWindowDelegate = self
+        converterWindowView.delegate = self
     }
     
     private func fillDataSource() {
@@ -152,22 +153,14 @@ extension MainViewController: PopUpWindowDelegate {
 }
 
 extension MainViewController: InputAmountFieldDeligate {
-    func amountChanged(in textField: AdjustableTextField) {
-        guard
-            let string = textField.text,
-            let amount = Double(string) else {
-            return
-        }
-        converterModel.doCalculation(amount: amount)
+    func buttonSelected() {
+        converterModel.isSellAction.toggle()
         resultsTableViewReloadData()
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.selectedTextRange = textField.textRange(
-            from: textField.beginningOfDocument,
-            to: textField.endOfDocument
-        )
-        print("textField")
+    func amountChanged(in textField: AdjustableTextField) {
+        converterWindowView.inputAmountField.text = converterModel.transform(textField.text)
+        resultsTableViewReloadData()
     }
 }
 
