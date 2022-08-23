@@ -8,11 +8,6 @@
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Lato-ExtraBold.ttf">
-            <string>Lato-ExtraBold</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EllipsesView" customModule="CurrencyConverter" customModuleProvider="target">
             <connections>
@@ -60,33 +55,21 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Currency Converter" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MRG-DP-VlT">
-                    <rect key="frame" x="16" y="96" width="212.66666666666666" height="29"/>
-                    <fontDescription key="fontDescription" name="Lato-ExtraBold" family="Lato" pointSize="24"/>
-                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
             <constraints>
                 <constraint firstAttribute="top" secondItem="CCe-Ig-gqw" secondAttribute="top" constant="136" id="0e0-Wo-0pL"/>
-                <constraint firstItem="MRG-DP-VlT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="75" id="2yu-Pv-jkW"/>
                 <constraint firstAttribute="top" secondItem="kKy-wg-cCQ" secondAttribute="top" constant="65" id="5Hr-uS-sOc"/>
-                <constraint firstItem="MRG-DP-VlT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="6fQ-bc-5aI"/>
                 <constraint firstItem="kKy-wg-cCQ" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="92" id="H4B-zd-AeS"/>
                 <constraint firstItem="kKy-wg-cCQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="21" id="Jhd-lQ-z3C"/>
-                <constraint firstItem="MRG-DP-VlT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="96" id="QlX-Ws-jGn"/>
                 <constraint firstAttribute="trailing" secondItem="CCe-Ig-gqw" secondAttribute="trailing" constant="14" id="S1n-C5-Ww4"/>
                 <constraint firstAttribute="leading" secondItem="kKy-wg-cCQ" secondAttribute="leading" constant="45" id="SqK-jE-2P0"/>
                 <constraint firstItem="kKy-wg-cCQ" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="45" id="Vjx-4i-qjd"/>
-                <constraint firstItem="MRG-DP-VlT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="Xm0-FQ-2DJ"/>
                 <constraint firstItem="ick-Ny-He0" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="13" id="bmz-5Z-nRg"/>
                 <constraint firstItem="ick-Ny-He0" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="29" id="d6L-2x-fcU"/>
                 <constraint firstAttribute="leading" secondItem="ick-Ny-He0" secondAttribute="leading" constant="65" id="eI5-kn-D8d"/>
-                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="MRG-DP-VlT" secondAttribute="trailing" constant="20" symbolic="YES" id="fEr-tJ-O3o"/>
                 <constraint firstAttribute="leading" secondItem="ick-Ny-He0" secondAttribute="leading" constant="89" id="gXj-Ei-BEP"/>
-                <constraint firstItem="MRG-DP-VlT" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="35" id="msm-gn-I29"/>
                 <constraint firstAttribute="top" secondItem="ick-Ny-He0" secondAttribute="top" constant="136" id="oue-sq-qST"/>
                 <constraint firstAttribute="leading" secondItem="CCe-Ig-gqw" secondAttribute="leading" constant="116" id="pUR-r3-ITI"/>
                 <constraint firstAttribute="trailing" secondItem="CCe-Ig-gqw" secondAttribute="trailing" constant="23" id="sL0-WQ-ZMf"/>
@@ -97,11 +80,6 @@
                     <exclude reference="Jhd-lQ-z3C"/>
                     <exclude reference="SqK-jE-2P0"/>
                     <exclude reference="Vjx-4i-qjd"/>
-                    <exclude reference="2yu-Pv-jkW"/>
-                    <exclude reference="6fQ-bc-5aI"/>
-                    <exclude reference="QlX-Ws-jGn"/>
-                    <exclude reference="Xm0-FQ-2DJ"/>
-                    <exclude reference="msm-gn-I29"/>
                     <exclude reference="bmz-5Z-nRg"/>
                     <exclude reference="d6L-2x-fcU"/>
                     <exclude reference="eI5-kn-D8d"/>
@@ -114,8 +92,6 @@
                 <mask key="constraints">
                     <include reference="H4B-zd-AeS"/>
                     <include reference="Jhd-lQ-z3C"/>
-                    <include reference="Xm0-FQ-2DJ"/>
-                    <include reference="msm-gn-I29"/>
                     <include reference="d6L-2x-fcU"/>
                     <include reference="eI5-kn-D8d"/>
                     <include reference="sL0-WQ-ZMf"/>
@@ -125,8 +101,6 @@
                 <mask key="constraints">
                     <include reference="SqK-jE-2P0"/>
                     <include reference="Vjx-4i-qjd"/>
-                    <include reference="6fQ-bc-5aI"/>
-                    <include reference="QlX-Ws-jGn"/>
                     <include reference="bmz-5Z-nRg"/>
                     <include reference="gXj-Ei-BEP"/>
                     <include reference="S1n-C5-Ww4"/>
@@ -136,8 +110,6 @@
                 <mask key="constraints">
                     <include reference="H4B-zd-AeS"/>
                     <include reference="Jhd-lQ-z3C"/>
-                    <include reference="2yu-Pv-jkW"/>
-                    <include reference="Xm0-FQ-2DJ"/>
                     <include reference="d6L-2x-fcU"/>
                     <include reference="eI5-kn-D8d"/>
                     <include reference="sL0-WQ-ZMf"/>

@@ -1,0 +1,13 @@
+//
+//  TitleConstants.swift
+//  CurrencyConverter
+//
+//  Created by Artem Shcherban on 23.08.2022.
+//
+
+import Foundation
+
+enum TitleConstants {
+    static let exchangeRates = "Exchange Rates"
+    static let currencyConverter = "Currency Converter"
+}

@@ -63,7 +63,8 @@ class ConverterModel: FetchRequesting {
     }
     
     func createDefaultBaseCurrency() {
-        let containerFetchRequest: NSFetchRequest<ConverterCurrencyContainer> = ConverterCurrencyContainer.fetchRequest()
+        let containerFetchRequest: NSFetchRequest<ConverterCurrencyContainer> =
+        ConverterCurrencyContainer.fetchRequest()
         guard
             let result = try? coreDataStack.managedContext.fetch(containerFetchRequest),
             result.isEmpty else {

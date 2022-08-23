@@ -138,7 +138,8 @@ extension MainViewController: PopUpWindowDelegate {
     }
     
     func rotateButtonPressed() {
-        mainView.flipView { /// change the name 🥸
+        mainView.startAnimation {
+            //        mainView.flipView { /// 
             self.resultsTableViewReloadData()
         }
     }

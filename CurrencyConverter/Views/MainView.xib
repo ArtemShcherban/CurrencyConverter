@@ -9,6 +9,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Lato-ExtraBold.ttf">
+            <string>Lato-ExtraBold</string>
+        </array>
         <array key="Lato-Regular.ttf">
             <string>Lato-Regular</string>
         </array>
@@ -16,8 +19,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MainView" customModule="CurrencyConverter" customModuleProvider="target">
             <connections>
-                <outlet property="containerView" destination="HfX-LT-SVC" id="2Xg-xl-NH7"/>
+                <outlet property="containerView" destination="HfX-LT-SVC" id="q42-4E-itc"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="piM-72-vzn"/>
+                <outlet property="titleLabel" destination="dv8-Jb-bSj" id="eXe-Nt-S2d"/>
                 <outlet property="updateDateLabel" destination="AN4-q2-FsM" id="e0L-gF-M2F"/>
             </connections>
         </placeholder>
@@ -30,6 +34,13 @@
                     <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
                     <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exchange Rates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dv8-Jb-bSj">
+                    <rect key="frame" x="16" y="96" width="274" height="29"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <fontDescription key="fontDescription" name="Lato-ExtraBold" family="Lato" pointSize="24"/>
+                    <color key="textColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
+                    <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HfX-LT-SVC" userLabel="Container View">
                     <rect key="frame" x="16" y="171" width="358" height="398"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -75,15 +86,18 @@
             <color key="backgroundColor" systemColor="systemOrangeColor"/>
             <constraints>
                 <constraint firstItem="c17-56-3Nc" firstAttribute="leading" secondItem="HfX-LT-SVC" secondAttribute="leading" id="2qE-zq-G2o"/>
+                <constraint firstItem="dv8-Jb-bSj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="3am-wQ-pTl"/>
                 <constraint firstItem="HfX-LT-SVC" firstAttribute="leading" secondItem="8qA-YV-Vjj" secondAttribute="leading" constant="48" id="CZc-Ld-ikf"/>
                 <constraint firstItem="HfX-LT-SVC" firstAttribute="top" secondItem="8qA-YV-Vjj" secondAttribute="top" constant="171" id="CdU-W5-ot5"/>
                 <constraint firstItem="HfX-LT-SVC" firstAttribute="top" secondItem="8qA-YV-Vjj" secondAttribute="top" constant="119" id="D0N-X0-U6f"/>
                 <constraint firstItem="8qA-YV-Vjj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="DYd-KN-6o1"/>
+                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="dv8-Jb-bSj" secondAttribute="trailing" constant="100" id="F5L-vx-n25"/>
                 <constraint firstItem="8qA-YV-Vjj" firstAttribute="trailing" secondItem="HfX-LT-SVC" secondAttribute="trailing" constant="48" id="Nod-vv-8d7"/>
                 <constraint firstItem="8qA-YV-Vjj" firstAttribute="trailing" secondItem="HfX-LT-SVC" secondAttribute="trailing" constant="16" id="SiE-9y-rEM"/>
                 <constraint firstItem="AN4-q2-FsM" firstAttribute="bottom" secondItem="c17-56-3Nc" secondAttribute="bottom" id="TUY-qA-eVH"/>
                 <constraint firstItem="AN4-q2-FsM" firstAttribute="top" secondItem="c17-56-3Nc" secondAttribute="bottom" constant="2" id="VKT-zl-sgF"/>
                 <constraint firstItem="HfX-LT-SVC" firstAttribute="top" secondItem="8qA-YV-Vjj" secondAttribute="top" constant="70" id="WME-II-WEk"/>
+                <constraint firstItem="dv8-Jb-bSj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="75" id="a0P-rb-Pfj"/>
                 <constraint firstItem="8qA-YV-Vjj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="beZ-pe-bbN"/>
                 <constraint firstItem="HfX-LT-SVC" firstAttribute="leading" secondItem="8qA-YV-Vjj" secondAttribute="leading" constant="16" id="bwh-B7-BUW"/>
                 <constraint firstItem="HfX-LT-SVC" firstAttribute="leading" secondItem="8qA-YV-Vjj" secondAttribute="leading" constant="48" id="cCs-Iy-ms0"/>
@@ -91,14 +105,22 @@
                 <constraint firstItem="8qA-YV-Vjj" firstAttribute="trailing" secondItem="HfX-LT-SVC" secondAttribute="trailing" constant="48" id="ech-Jh-z7b"/>
                 <constraint firstItem="AN4-q2-FsM" firstAttribute="leading" secondItem="c17-56-3Nc" secondAttribute="trailing" constant="4" id="hAR-fN-CYE"/>
                 <constraint firstAttribute="trailing" secondItem="8qA-YV-Vjj" secondAttribute="trailing" id="krQ-o8-aGN"/>
+                <constraint firstItem="dv8-Jb-bSj" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="lxN-Jp-lXA"/>
                 <constraint firstItem="AN4-q2-FsM" firstAttribute="leading" secondItem="c17-56-3Nc" secondAttribute="leading" id="mBO-jm-kET"/>
                 <constraint firstItem="c17-56-3Nc" firstAttribute="top" secondItem="HfX-LT-SVC" secondAttribute="bottom" constant="8" id="rjb-LQ-Afw"/>
+                <constraint firstItem="dv8-Jb-bSj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="35" id="sJD-MC-jdV"/>
+                <constraint firstItem="dv8-Jb-bSj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="96" id="vpl-KV-exx"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="Nod-vv-8d7"/>
                     <exclude reference="SiE-9y-rEM"/>
                     <exclude reference="ech-Jh-z7b"/>
+                    <exclude reference="3am-wQ-pTl"/>
+                    <exclude reference="a0P-rb-Pfj"/>
+                    <exclude reference="lxN-Jp-lXA"/>
+                    <exclude reference="sJD-MC-jdV"/>
+                    <exclude reference="vpl-KV-exx"/>
                     <exclude reference="CZc-Ld-ikf"/>
                     <exclude reference="CdU-W5-ot5"/>
                     <exclude reference="D0N-X0-U6f"/>
@@ -114,6 +136,8 @@
             <variation key="heightClass=compact">
                 <mask key="constraints">
                     <include reference="Nod-vv-8d7"/>
+                    <include reference="3am-wQ-pTl"/>
+                    <include reference="sJD-MC-jdV"/>
                     <include reference="WME-II-WEk"/>
                     <include reference="cCs-Iy-ms0"/>
                     <include reference="TUY-qA-eVH"/>
@@ -123,6 +147,8 @@
             <variation key="heightClass=regular-widthClass=compact">
                 <mask key="constraints">
                     <include reference="SiE-9y-rEM"/>
+                    <include reference="lxN-Jp-lXA"/>
+                    <include reference="vpl-KV-exx"/>
                     <include reference="CdU-W5-ot5"/>
                     <include reference="bwh-B7-BUW"/>
                     <include reference="VKT-zl-sgF"/>
@@ -132,6 +158,7 @@
             <variation key="heightClass=regular-widthClass=regular">
                 <mask key="constraints">
                     <include reference="ech-Jh-z7b"/>
+                    <include reference="a0P-rb-Pfj"/>
                     <include reference="CZc-Ld-ikf"/>
                     <include reference="D0N-X0-U6f"/>
                     <include reference="VKT-zl-sgF"/>

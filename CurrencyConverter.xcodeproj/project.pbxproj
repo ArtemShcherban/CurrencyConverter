@@ -83,6 +83,8 @@
 		F4BA22ED2897A237002F3B54 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BA22EC2897A237002F3B54 /* CoreDataStack.swift */; };
 		F4BA22F52897AB45002F3B54 /* CurrencyConverter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4BA22F32897AB45002F3B54 /* CurrencyConverter.xcdatamodeld */; };
 		F4DCC2F428AD10A100DC4D09 /* DoubleFormatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC2F328AD10A100DC4D09 /* DoubleFormatExtension.swift */; };
+		F4DCC2F628B4B41200DC4D09 /* MainViewAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC2F528B4B41200DC4D09 /* MainViewAnimationExtension.swift */; };
+		F4DCC2F828B4B50C00DC4D09 /* TitleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC2F728B4B50C00DC4D09 /* TitleConstants.swift */; };
 		F4ED8B7F28993211006DF9AE /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED8B7E28993211006DF9AE /* AppConstants.swift */; };
 		F4ED8BE4289B99B6006DF9AE /* CurrencyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED8BE3289B99B6006DF9AE /* CurrencyListView.swift */; };
 /* End PBXBuildFile section */
@@ -191,6 +193,8 @@
 		F4BA22EC2897A237002F3B54 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		F4BA22F42897AB45002F3B54 /* CurrencyConverter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CurrencyConverter.xcdatamodel; sourceTree = "<group>"; };
 		F4DCC2F328AD10A100DC4D09 /* DoubleFormatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleFormatExtension.swift; sourceTree = "<group>"; };
+		F4DCC2F528B4B41200DC4D09 /* MainViewAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewAnimationExtension.swift; sourceTree = "<group>"; };
+		F4DCC2F728B4B50C00DC4D09 /* TitleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleConstants.swift; sourceTree = "<group>"; };
 		F4ED8B7E28993211006DF9AE /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		F4ED8BE3289B99B6006DF9AE /* CurrencyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -260,6 +264,7 @@
 				F405602728891AE1007CD5AA /* URLConstants.swift */,
 				F4ED8B7E28993211006DF9AE /* AppConstants.swift */,
 				F45E043528A62ABB00902C73 /* TableViewCostants.swift */,
+				F4DCC2F728B4B50C00DC4D09 /* TitleConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -492,6 +497,7 @@
 			children = (
 				F4A2F8952887C4D7007948A9 /* UIViewFixInExtension.swift */,
 				F4DCC2F328AD10A100DC4D09 /* DoubleFormatExtension.swift */,
+				F4DCC2F528B4B41200DC4D09 /* MainViewAnimationExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -811,12 +817,14 @@
 				F45E042F28A4FA7400902C73 /* CurrencyContainer+CoreDataClass.swift in Sources */,
 				F405604F288D1403007CD5AA /* RatesWindowView.swift in Sources */,
 				F4056045288984CE007CD5AA /* Dispatcher.swift in Sources */,
+				F4DCC2F828B4B50C00DC4D09 /* TitleConstants.swift in Sources */,
 				F4A2F89B2887C728007948A9 /* EllipsesView.swift in Sources */,
 				F4ED8BE4289B99B6006DF9AE /* CurrencyListView.swift in Sources */,
 				F45137BE289D280C00B2190D /* CurrencyDataSource.swift in Sources */,
 				F40560472889887B007CD5AA /* AsyncQueue.swift in Sources */,
 				F4BA22F52897AB45002F3B54 /* CurrencyConverter.xcdatamodeld in Sources */,
 				F45E044028AA671E00902C73 /* TotalAmountCell.swift in Sources */,
+				F4DCC2F628B4B41200DC4D09 /* MainViewAnimationExtension.swift in Sources */,
 				F4056025288919AF007CD5AA /* URLModel.swift in Sources */,
 				F4AA60FD288D89E000E191E6 /* CurrencyListModel.swift in Sources */,
 				F45E042D28A4FA7400902C73 /* RateCurrencyContainer+CoreDataClass.swift in Sources */,

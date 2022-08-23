@@ -10,6 +10,7 @@ import UIKit
 class MainView: UIView {
     @IBOutlet private var contentView: UIView!
     @IBOutlet weak var containerView: UIView!
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var updateDateLabel: UILabel!
     
     lazy var ratesWindowView = RatesWindowView()
@@ -45,22 +46,14 @@ class MainView: UIView {
         centralView.swipeAnimation()
     }
     
-    func flipView(completion: @escaping(() -> Void) ) {
-        let visibleWindow = !isFlipping ? ratesWindowView : converterWindowView
-        let hiddenWindow = !isFlipping ? converterWindowView : ratesWindowView
-        isFlipping.toggle()
-        UIView.animate(withDuration: 1, animations: {
-            visibleWindow.transform = CGAffineTransform(scaleX: 0.001, y: 1)}, completion: { _ in
-                self.containerView.addSubview(hiddenWindow)
-                hiddenWindow.setConstraints()
-                visibleWindow.isHidden = true
-                visibleWindow.removeFromSuperview()
-                completion()
-            UIView.animate(withDuration: 1) {
-                hiddenWindow.isHidden = false
-                hiddenWindow.transform = CGAffineTransform(scaleX: 1, y: 1)
-            }
-        })
+    func startAnimation(completion: @escaping(() -> Void)) {
+        flipView { // change the name 🥸
+            completion()
+        }
+        titleTransition(
+            label: titleLabel,
+            title: isFlipping ? TitleConstants.currencyConverter : TitleConstants.exchangeRates,
+            direction: isFlipping ? AnimationDirection.back : AnimationDirection.forward)
     }
     
     func reloadTableViewData() {
