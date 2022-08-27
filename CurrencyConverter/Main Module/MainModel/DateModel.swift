@@ -10,20 +10,20 @@ import CoreData
 
 final class DateModel {
     private lazy var coreDataStack = CoreDataStack.shared
+    private let lastUpdateDateManager = LastUpdateDateManager()
     
-    func lastUpdateDate() -> Date {
-        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Bulletin")
-        fetchRequest.resultType = .dictionaryResultType
-        fetchRequest.propertiesToFetch = ["date"]
-        
+    private func lastUpdateDate() -> Date {
         guard
-            let result = try? coreDataStack.managedContext.fetch(fetchRequest),
-            let firstResult = result.first,
-            let dictionary = firstResult as? [String: Date],
-            let date = dictionary["date"] else {
-            return Date(timeIntervalSince1970: 197208000)// "1 Apr 1976 12:00:00"
+            let lastUpdateDate = lastUpdateDateManager.fetchLastUdateDate() else {
+            let defaultDate = Date(timeIntervalSince1970: 197208000) // "1 Apr 1976 12:00:00"
+            lastUpdateDateManager.create(lastUpdateDate: defaultDate)
+            return defaultDate
         }
-        return date
+        return lastUpdateDate
+    }
+    
+    func received(new date: Date) {
+        lastUpdateDateManager.updateLastUpdateDate(with: date)
     }
     
     func formattedDate() -> String {
@@ -34,7 +34,7 @@ final class DateModel {
         return formattedDate
     }
     
-    func checkLastUpdateDate() -> Bool {
+    func checkTimeInterval() -> Bool {
         let date = lastUpdateDate()
         let calendar = Calendar.current
         let components = calendar.dateComponents(in: .current, from: date)

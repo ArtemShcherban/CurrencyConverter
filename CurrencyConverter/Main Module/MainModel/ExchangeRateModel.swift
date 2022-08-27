@@ -12,51 +12,62 @@ final class ExchangeRateModel {
     private lazy var coreDataStack = CoreDataStack.shared
     private lazy var dataSource = ResultDataSource.shared
     
-    func createExchangeRates(monobankData: [MonoBankExchangeRate], _ updateDate: Date) {
-        guard let bulletin = try? getBulettin() else { return }
-        bulletin.date = updateDate
-        
-        monobankData.forEach { monoBankExchangeRate in
-            if monoBankExchangeRate.currencyCodeB == 980 {
-                let code = monoBankExchangeRate.currencyCodeA
-                let rate = handle(monoBankExchangeRate)
-                let exchangeRate = ExchangeRate(context: coreDataStack.managedContext)
-                exchangeRate.bulletin = bulletin
-                exchangeRate.number = Int16(code)
-                exchangeRate.buy = rate.buy
-                exchangeRate.sell = rate.sell
+    private let exchangeRateManager = ExchangeRateManager()
+    
+    func createExchangeRate(bankData: [MonoBankExchangeRate]) {
+        bankData.forEach { monoBankExchangeRate in
+            if monoBankExchangeRate.currencyNumberB == 980 {
+                let exchangeRate = ExchangeRate(from: monoBankExchangeRate)
+                exchangeRateManager.createExchangeRate(exchangeRate)
             }
         }
-        coreDataStack.saveContext()
     }
     
-    private func getBulettin() throws -> Bulletin {
-        let fetchRequest: NSFetchRequest<Bulletin> = Bulletin.fetchRequest()
-        
-        guard let result = try? coreDataStack.managedContext.fetch(fetchRequest) else {
-            throw CoreDataError.unresolved
-        }
-        if result.isEmpty {
-            return Bulletin(context: coreDataStack.managedContext)
-        }
-        guard let bulletin = result.first else { throw CoreDataError.unresolved }
-        return bulletin
-    }
+//    func createExchangeRate(bankData: [ExchangeRate], _ updateDate: Date) {
+//        guard let bulletin = try? getBulettin() else { return }
+//        bulletin.date = updateDate
+//
+//        bankData.forEach { monoBankExchangeRate in
+//            if monoBankExchangeRate.currencyNumberB == 980 {
+//                let code = monoBankExchangeRate.currencyNumberA
+//                let rate = handle(monoBankExchangeRate)
+//                let exchangeRate = CDExchangeRate(context: coreDataStack.managedContext)
+//                exchangeRate.bulletin = bulletin
+//                exchangeRate.currencyNumber = Int16(code)
+//                exchangeRate.buy = rate.buy
+//                exchangeRate.sell = rate.sell
+//            }
+//        }
+//        coreDataStack.saveContext()
+//    }
     
-    private func handle(_ rate: MonoBankExchangeRate) -> (buy: Double, sell: Double) {
-        if rate.buy == 0.0 || rate.sell == 0.0 {
-            let calculatedRate = calculateFrom(rate.cross)
-            return (calculatedRate.buy, calculatedRate.sell)
-        } else {
-            return (rate.buy, rate.sell)
-        }
-    }
+//    private func getBulettin() throws -> Bulletin {
+//        let fetchRequest: NSFetchRequest<Bulletin> = Bulletin.fetchRequest()
+//        
+//        guard let result = try? coreDataStack.managedContext.fetch(fetchRequest) else {
+//            throw CoreDataError.unresolved
+//        }
+//        if result.isEmpty {
+//            return Bulletin(context: coreDataStack.managedContext)
+//        }
+//        guard let bulletin = result.first else { throw CoreDataError.unresolved }
+//        return bulletin
+//    }
     
-    private func calculateFrom(_ rateCross: Double) -> (buy: Double, sell: Double) {
-        let rateBuy = rateCross - rateCross * 0.05
-        let rateSell = rateCross + rateCross * 0.05
-        return (rateBuy, rateSell)
-    }
+//    private func handle(_ rate: ExchangeRate) -> (buy: Double, sell: Double) {
+//        if rate.buy == 0.0 || rate.sell == 0.0 {
+//            let calculatedRate = calculateFrom(rate.cross)
+//            return (calculatedRate.buy, calculatedRate.sell)
+//        } else {
+//            return (rate.buy, rate.sell)
+//        }
+//    }
+//    
+//    private func calculateFrom(_ rateCross: Double) -> (buy: Double, sell: Double) {
+//        let rateBuy = rateCross - rateCross * 0.05
+//        let rateSell = rateCross + rateCross * 0.05
+//        return (rateBuy, rateSell)
+//    }
     
     func setExchangeRate(for currency: Currency) {
         guard currency.code != "UAH" else {
@@ -65,17 +76,31 @@ final class ExchangeRateModel {
             coreDataStack.saveContext()
             return
         }
-        let fetchRequest: NSFetchRequest<ExchangeRate> = ExchangeRate.fetchRequest()
-        let predicate = NSPredicate(format: "%K == %D", #keyPath(ExchangeRate.number), currency.number)
-        fetchRequest.predicate = predicate
-        
-        guard
-            let result = try? coreDataStack.managedContext.fetch(fetchRequest),
-            let exchangeRate = result.first else {
-            return
-        }
+        guard let exchangeRate = exchangeRateManager.fetchExchangeRate(by: currency.number) else { return }
         currency.buy = exchangeRate.buy
         currency.sell = exchangeRate.sell
+        
         coreDataStack.saveContext()
     }
+    
+//    func setExchangeRate(for currency: Currency) {
+//        guard currency.code != "UAH" else {
+//            currency.buy = 1
+//            currency.sell = 1
+//            coreDataStack.saveContext()
+//            return
+//        }
+//        let fetchRequest: NSFetchRequest<CDExchangeRate> = CDExchangeRate.fetchRequest()
+//        let predicate = NSPredicate(format: "%K == %D", #keyPath(CDExchangeRate.currencyNumber), currency.number)
+//        fetchRequest.predicate = predicate
+//
+//        guard
+//            let result = try? coreDataStack.managedContext.fetch(fetchRequest),
+//            let exchangeRate = result.first else {
+//            return
+//        }
+//        currency.buy = exchangeRate.buy
+//        currency.sell = exchangeRate.sell
+//        coreDataStack.saveContext()
+//    }
 }

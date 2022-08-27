@@ -30,6 +30,16 @@ class CoreDataStack {
         return container
     }()
     
+    func fetchManagedObject<T: NSManagedObject>(managedObject: T.Type) -> [T]? {
+        do {
+            let result = try managedContext.fetch(managedObject.fetchRequest()) as? [T]
+            return result
+        } catch let nserror as NSError {
+            debugPrint(nserror)
+        }
+        return nil
+    }
+    
     func saveContext() {
         guard managedContext.hasChanges else { return }
         

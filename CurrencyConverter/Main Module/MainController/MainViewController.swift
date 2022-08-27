@@ -56,6 +56,8 @@ class MainViewController: UIViewController, MessageModelDelegate {
         //        getPrivatExchangeRate()🥸
         mainView.lastUpdateDate = dateModel.formattedDate()
         setupHideKeyboardTapCesture()
+//        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+//        debugPrint(path[0])
     }
     
     private func setDelegates() {
@@ -72,14 +74,15 @@ class MainViewController: UIViewController, MessageModelDelegate {
     }
     
     private func getMonoBankExchangeRate() {
-        guard dateModel.checkLastUpdateDate() else { return }
+        guard dateModel.checkTimeInterval() else { return }
         guard let url = urlModel.createMonoBankURL() else { return }
         networkService.getMonoBankExchangeRate(url: url) { result, updateDate in
             switch result {
             case .failure(let error):
                 print(error)
             case .success(let currencyRates):
-                self.exchangeRateModel.createExchangeRates(monobankData: currencyRates, updateDate)
+                self.exchangeRateModel.createExchangeRate(bankData: currencyRates)
+                self.dateModel.received(new: updateDate)
                 self.mainAsyncQueue?.dispatch {
                     self.resultsTableViewReloadData()
                     self.mainView.lastUpdateDate = self.dateModel.formattedDate()
