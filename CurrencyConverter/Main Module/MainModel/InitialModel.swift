@@ -30,9 +30,9 @@ final class InitialModel {
             if let dict = dictionary as? [String: Any] {
                 let currency = Currency(context: coreDataStack.managedContext)
                 currency.currency = dict["Currency"] as? String ?? String()
+                currency.currencyPlural = dict["CurrencyPlural"] as? String ?? String()
                 currency.code = dict["Code"] as? String ?? String()
                 currency.country = dict["Country"] as? String ?? String()
-                //                currency.selected = false
                 if let number = dict["Number"] as? NSNumber {
                     currency.number = number.int16Value
                 }

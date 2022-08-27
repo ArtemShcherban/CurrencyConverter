@@ -2,7 +2,7 @@
 //  Currency+CoreDataProperties.swift
 //  CurrencyConverter
 //
-//  Created by Artem Shcherban on 17.08.2022.
+//  Created by Artem Shcherban on 24.08.2022.
 //
 //
 
@@ -22,6 +22,7 @@ extension Currency {
     @NSManaged public var groupKey: Int16
     @NSManaged public var number: Int16
     @NSManaged public var sell: Double
+    @NSManaged public var currencyPlural: String
     @NSManaged public var container: NSOrderedSet?
 }
 

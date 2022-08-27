@@ -15,7 +15,7 @@ class ConverterModel: FetchRequesting {
     private lazy var coreDataStack = CoreDataStack.shared
     
     lazy var isSellAction = true
-    private lazy var amount: Double = 0.0
+    lazy var amount: Double = 0.0
     
     func transform(_ text: String?) -> String {
         guard let text = text, !text.isEmpty else {

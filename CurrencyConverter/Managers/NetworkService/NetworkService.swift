@@ -90,8 +90,8 @@ class NetworkService: Networking {
     func updateDate(from response: HTTPURLResponse) -> Date? {
         guard let dateString = response.allHeaderFields["Date"] as? String else { return nil }
         let dateFormater = DateFormatter()
+        dateFormater.locale = Locale(identifier: "en_US_POSIX")
         dateFormater.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
-
         let date = dateFormater.date(from: dateString)
         return date
     }

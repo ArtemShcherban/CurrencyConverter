@@ -16,12 +16,12 @@ final class ConverterWindowView: PopUpWindowView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var sellButton: UIButton!
     @IBOutlet weak var buyButton: UIButton!
-    @IBOutlet weak var usdTextField: AdjustableTextField!
     @IBOutlet weak var rotateButton: UIButton!
     @IBOutlet weak var converterTableView: UITableView!
     @IBOutlet weak var addCurrencyButton: UIButton!
     @IBOutlet weak var baseCurrencyButton: UIButton!
     @IBOutlet weak var inputAmountField: AdjustableTextField!
+    @IBOutlet weak var shareRatesButton: UIButton!
     
     weak var delegate: InputAmountFieldDeligate?
     
@@ -71,7 +71,7 @@ final class ConverterWindowView: PopUpWindowView {
         transform = CGAffineTransform(scaleX: 0.001, y: 1)
     }
     
-    func updateButtonAppearence(_ selectedButton: UIButton) {
+    private func updateButtonAppearence(_ selectedButton: UIButton) {
         guard
             let deselectedButton = selectedButton == sellButton ? buyButton : sellButton else {
             return
@@ -83,6 +83,16 @@ final class ConverterWindowView: PopUpWindowView {
         deselectedButton.isSelected = false
         deselectedButton.isEnabled = true
         deselectedButton.backgroundColor = .white
+    }
+    
+    func createAlertController(with message: (title: String, message: String)) -> UIAlertController {
+        let alertController = UIAlertController(
+            title: message.title,
+            message: message.message,
+            preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .cancel)
+        alertController.addAction(alertAction)
+        return alertController
     }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
@@ -104,6 +114,9 @@ final class ConverterWindowView: PopUpWindowView {
     
     @IBAction func rotateButtonPressed(_ sender: Any) {
         popUpWindowDelegate?.rotateButtonPressed()
+    }
+    @IBAction func shareRatesButtonPressed(_ sender: Any) {
+        popUpWindowDelegate?.shareRatesPressed()
     }
 }
 

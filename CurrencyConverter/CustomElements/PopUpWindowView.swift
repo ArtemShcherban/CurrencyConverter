@@ -12,6 +12,7 @@ protocol PopUpWindowDelegate: AnyObject {
     func addButtonPressed()
     func changeCurrency(sender: UIButton)
     func rotateButtonPressed()
+    func shareRatesPressed()
 }
 
 class PopUpWindowView: UIView {

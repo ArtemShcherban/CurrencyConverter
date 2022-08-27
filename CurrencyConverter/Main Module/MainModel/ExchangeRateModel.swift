@@ -58,28 +58,6 @@ final class ExchangeRateModel {
         return (rateBuy, rateSell)
     }
     
-//    func setExchangeRate(for indexPath: IndexPath) {
-//        let currency = dataSource.selectedCurrencies[indexPath.row]
-//        guard currency.code != "UAH" else {
-//            currency.buy = 1
-//            currency.sell = 1
-//            coreDataStack.saveContext()
-//            return
-//        }
-//        let fetchRequest: NSFetchRequest<ExchangeRate> = ExchangeRate.fetchRequest()
-//        let predicate = NSPredicate(format: "%K == %D", #keyPath(ExchangeRate.number), currency.number)
-//        fetchRequest.predicate = predicate
-//        
-//        guard
-//            let result = try? coreDataStack.managedContext.fetch(fetchRequest),
-//            let exchangeRate = result.first else {
-//            return
-//        }
-//        currency.buy = exchangeRate.buy
-//        currency.sell = exchangeRate.sell
-//        coreDataStack.saveContext()
-//    }
-    
     func setExchangeRate(for currency: Currency) {
         guard currency.code != "UAH" else {
             currency.buy = 1

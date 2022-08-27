@@ -7,8 +7,11 @@
 
 import UIKit
 import CoreData
+import Contacts
+import ContactsUI
+import MessageUI
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, MessageModelDelegate {
     @IBOutlet weak var mainView: MainView!
     
     private lazy var coreDataStack = CoreDataStack.shared
@@ -29,6 +32,8 @@ class MainViewController: UIViewController {
     lazy var converterWindowView = mainView.converterWindowView
     
     lazy var converterModel = ConverterModel.shared
+    
+    lazy var messageModel = MessageModel.shared
     
     var mainAsyncQueue: Dispatching?
     
@@ -58,6 +63,7 @@ class MainViewController: UIViewController {
         ratesWindowView.popUpWindowDelegate = self
         converterWindowView.popUpWindowDelegate = self
         converterWindowView.delegate = self
+        messageModel.delegate = self
     }
     
     private func fillDataSource() {
@@ -139,7 +145,6 @@ extension MainViewController: PopUpWindowDelegate {
     
     func rotateButtonPressed() {
         mainView.startAnimation {
-            //        mainView.flipView { /// 
             self.resultsTableViewReloadData()
         }
     }
@@ -150,6 +155,32 @@ extension MainViewController: PopUpWindowDelegate {
     
     func changeCurrency(sender: UIButton) {
         openCurrencyViewController(sender: sender)
+    }
+    
+//    func shareRatesPressed() {
+//        CNContactStore().requestAccess(for: .contacts) { success, error in
+//            guard success else {
+//                print("not authorized error: \(String(describing: error))")
+//                return
+//            }
+//            self.mainAsyncQueue?.dispatch {
+//                let contactsViewController = ContactsViewController()
+//                self.present(contactsViewController, animated: true)
+//            }
+//        }
+//    }
+    
+    func shareRatesPressed() {
+        let text = messageModel.createMessage()
+        let textToShare = [text]
+        let activityController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+        activityController.popoverPresentationController?.sourceView = self.view
+        activityController.popoverPresentationController?.permittedArrowDirections = .any
+        present(activityController, animated: true, completion: nil)
+    }
+    
+    func message(controller: MFMessageComposeViewController) {
+        present(controller, animated: true)
     }
 }
 
@@ -174,5 +205,24 @@ extension MainViewController {
     
     @objc func dismissKeyboard() {
         view.endEditing(true)
+    }
+}
+
+extension MainViewController: MFMessageComposeViewControllerDelegate {
+    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+        switch result {
+        case .cancelled:
+            dismiss(animated: true)
+        case .sent:
+            let alertController = converterWindowView.createAlertController(with: AlertConstants.messageSent)
+            dismiss(animated: true)
+            present(alertController, animated: true)
+        case .failed:
+            let alertController = converterWindowView.createAlertController(with: AlertConstants.messageFailed)
+            dismiss(animated: true)
+            present(alertController, animated: true)
+        @unknown default:
+            dismiss(animated: true)
+        }
     }
 }
