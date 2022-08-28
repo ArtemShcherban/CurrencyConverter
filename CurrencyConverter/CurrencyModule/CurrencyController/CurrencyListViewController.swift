@@ -66,22 +66,44 @@ extension CurrencyListViewController: UITableViewDelegate {
         switch tableView.accessibilityIdentifier {
         case "currency":
             currency = currencyListModel.selectedCurrency(at: indexPath)
-        case "filtered":
-            currency = currencyListModel.selectedFilteredCurrency(at: indexPath)
+//        case "filtered":
+//            currency = currencyListModel.selectedFilteredCurrency(at: indexPath)
         default:
             return
         }
         
         if let sender = sender {
-            resultModel.changeCell(at: sender.tag, with: currency)
+//            resultModel.changeCell(at: sender.tag, with: currency)
         } else {
-            resultModel.addCell(with: currency)
+            resultModel.add(currency: currency)
         }
         
         currensyListView.searchController.isActive = false
         delegate?.resultsTableViewReloadData()
         self.dismiss(animated: true)
     }
+    
+//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        var currency: CurrencyOLD
+//        switch tableView.accessibilityIdentifier {
+//        case "currency":
+//            currency = currencyListModel.selectedCurrency(at: indexPath)
+//        case "filtered":
+//            currency = currencyListModel.selectedFilteredCurrency(at: indexPath)
+//        default:
+//            return
+//        }
+//
+//        if let sender = sender {
+//            resultModel.changeCell(at: sender.tag, with: currency)
+//        } else {
+//            resultModel.addCell(with: currency)
+//        }
+//
+//        currensyListView.searchController.isActive = false
+//        delegate?.resultsTableViewReloadData()
+//        self.dismiss(animated: true)
+//    }
 }
 
 extension CurrencyListViewController: UISearchResultsUpdating {

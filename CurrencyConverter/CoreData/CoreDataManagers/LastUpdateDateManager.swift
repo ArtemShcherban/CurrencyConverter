@@ -10,12 +10,12 @@ import Foundation
 struct LastUpdateDateManager {
     private let lastUpdateDateDataRepository = LastUpdateDateDataRepository()
     
-    func fetchLastUdateDate() -> Date? {
-        lastUpdateDateDataRepository.get()
+    func createLastUpdateDate(_ lastUpdateDate: Date) {
+        lastUpdateDateDataRepository.create(lastUpdateDate: lastUpdateDate)
     }
     
-    func create(lastUpdateDate: Date) {
-        lastUpdateDateDataRepository.create(lastUpdateDate: lastUpdateDate)
+    func fetchLastUdateDate() -> Date? {
+        lastUpdateDateDataRepository.get()
     }
     
     func updateLastUpdateDate(with date: Date) {

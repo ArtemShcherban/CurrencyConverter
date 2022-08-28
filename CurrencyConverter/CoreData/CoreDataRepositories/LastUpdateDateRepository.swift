@@ -9,23 +9,14 @@ import Foundation
 import CoreData
 
 protocol LastUpdateDateRepository {
-    func save(lastUpdateDate: Date)
     func create(lastUpdateDate: Date)
     func get() -> Date?
-    func delete()
     func update(with lastUpdateDate: Date)
+    func delete()
 }
 
 struct LastUpdateDateDataRepository: LastUpdateDateRepository {
     let coreDataStack = CoreDataStack.shared
-    
-    func save(lastUpdateDate: Date) {
-        guard let cdLastUpdateDate = getCDLastUpdateDate() else {
-            create(lastUpdateDate: lastUpdateDate)
-            return
-        }
-        update(with: lastUpdateDate)
-    }
     
     func create(lastUpdateDate: Date) {
         let cdLastUpdateDate = CDLastUpdateDate(context: coreDataStack.managedContext)
@@ -37,13 +28,13 @@ struct LastUpdateDateDataRepository: LastUpdateDateRepository {
         return cdLastUpdateDate.date
     }
     
-    func delete() {
-    }
-    
     func update(with lastUpdateDate: Date) {
         guard let cdLastUpdateDate = getCDLastUpdateDate() else { return }
         cdLastUpdateDate.date = lastUpdateDate
         coreDataStack.saveContext()
+    }
+    
+    func delete() {
     }
     
     private func getCDLastUpdateDate() -> CDLastUpdateDate? {

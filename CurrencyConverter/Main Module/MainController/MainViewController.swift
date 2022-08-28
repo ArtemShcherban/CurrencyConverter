@@ -39,6 +39,8 @@ class MainViewController: UIViewController, MessageModelDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        debugPrint(path[0])
 //                coreDataStack.deleteFromCoreData(entityName: "Currency")🥸
 //                coreDataStack.deleteFromCoreData(entityName: "Group")
 //                coreDataStack.deleteAllEntities()
@@ -46,6 +48,7 @@ class MainViewController: UIViewController, MessageModelDelegate {
         mainAsyncQueue = AsyncQueue.main
         initialModel.insertCurrencies()
         initialModel.insertGroups()
+        initialModel.createCurrencyContainers()
         setDelegates()
         fillDataSource()
         updateAddButton()
@@ -56,8 +59,6 @@ class MainViewController: UIViewController, MessageModelDelegate {
         //        getPrivatExchangeRate()🥸
         mainView.lastUpdateDate = dateModel.formattedDate()
         setupHideKeyboardTapCesture()
-//        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-//        debugPrint(path[0])
     }
     
     private func setDelegates() {

@@ -1,48 +1,48 @@
 //
-//  CurrencyContainer+CoreDataProperties.swift
+//  CDCurrencyContainer+CoreDataProperties.swift
 //  CurrencyConverter
 //
-//  Created by Artem Shcherban on 11.08.2022.
+//  Created by Artem Shcherban on 28.08.2022.
 //
 //
 
 import Foundation
 import CoreData
 
-extension CurrencyContainer {
+extension CDCurrencyContainer {
     @nonobjc public
-    class func fetchRequest() -> NSFetchRequest<CurrencyContainer> {
-        return NSFetchRequest<CurrencyContainer>(entityName: "CurrencyContainer")
+    class func fetchRequest() -> NSFetchRequest<CDCurrencyContainer> {
+        return NSFetchRequest<CDCurrencyContainer>(entityName: "CDCurrencyContainer")
     }
 
     @NSManaged public var currencies: NSOrderedSet?
 }
 
 // MARK: Generated accessors for currencies
-extension CurrencyContainer {
+extension CDCurrencyContainer {
     @objc(insertObject:inCurrenciesAtIndex:)
-    @NSManaged public func insertIntoCurrencies(_ value: Currency, at idx: Int)
+    @NSManaged public func insertIntoCurrencies(_ value: CDCurrency, at idx: Int)
 
     @objc(removeObjectFromCurrenciesAtIndex:)
     @NSManaged public func removeFromCurrencies(at idx: Int)
 
     @objc(insertCurrencies:atIndexes:)
-    @NSManaged public func insertIntoCurrencies(_ values: [Currency], at indexes: NSIndexSet)
+    @NSManaged public func insertIntoCurrencies(_ values: [CDCurrency], at indexes: NSIndexSet)
 
     @objc(removeCurrenciesAtIndexes:)
     @NSManaged public func removeFromCurrencies(at indexes: NSIndexSet)
 
     @objc(replaceObjectInCurrenciesAtIndex:withObject:)
-    @NSManaged public func replaceCurrencies(at idx: Int, with value: Currency)
+    @NSManaged public func replaceCurrencies(at idx: Int, with value: CDCurrency)
 
     @objc(replaceCurrenciesAtIndexes:withCurrencies:)
-    @NSManaged public func replaceCurrencies(at indexes: NSIndexSet, with values: [Currency])
+    @NSManaged public func replaceCurrencies(at indexes: NSIndexSet, with values: [CDCurrency])
 
     @objc(addCurrenciesObject:)
-    @NSManaged public func addToCurrencies(_ value: Currency)
+    @NSManaged public func addToCurrencies(_ value: CDCurrency)
 
     @objc(removeCurrenciesObject:)
-    @NSManaged public func removeFromCurrencies(_ value: Currency)
+    @NSManaged public func removeFromCurrencies(_ value: CDCurrency)
 
     @objc(addCurrencies:)
     @NSManaged public func addToCurrencies(_ values: NSOrderedSet)
@@ -51,5 +51,5 @@ extension CurrencyContainer {
     @NSManaged public func removeFromCurrencies(_ values: NSOrderedSet)
 }
 
-extension CurrencyContainer: Identifiable {
+extension CDCurrencyContainer: Identifiable {
 }

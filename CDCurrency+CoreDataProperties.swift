@@ -1,5 +1,5 @@
 //
-//  CurrencyOLD+CoreDataProperties.swift
+//  CDCurrency+CoreDataProperties.swift
 //  CurrencyConverter
 //
 //  Created by Artem Shcherban on 27.08.2022.
@@ -9,10 +9,10 @@
 import Foundation
 import CoreData
 
-extension CurrencyOLD {
+extension CDCurrency {
     @nonobjc public
-    class func fetchRequest() -> NSFetchRequest<CurrencyOLD> {
-        return NSFetchRequest<CurrencyOLD>(entityName: "CurrencyOLD")
+    class func fetchRequest() -> NSFetchRequest<CDCurrency> {
+        return NSFetchRequest<CDCurrency>(entityName: "CDCurrency")
     }
 
     @NSManaged public var buy: Double
@@ -27,7 +27,7 @@ extension CurrencyOLD {
 }
 
 // MARK: Generated accessors for container
-extension CurrencyOLD {
+extension CDCurrency {
     @objc(insertObject:inContainerAtIndex:)
     @NSManaged public func insertIntoContainer(_ value: CDCurrencyContainer, at idx: Int)
 
@@ -59,5 +59,5 @@ extension CurrencyOLD {
     @NSManaged public func removeFromContainer(_ values: NSOrderedSet)
 }
 
-extension CurrencyOLD: Identifiable {
+extension CDCurrency: Identifiable {
 }

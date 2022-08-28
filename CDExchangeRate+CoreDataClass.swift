@@ -11,4 +11,11 @@ import CoreData
 
 @objc(CDExchangeRate)
 public class CDExchangeRate: NSManagedObject {
+    func convertToExchangeRate() -> ExchangeRate {
+        let exchangeRate = ExchangeRate(
+            buy: self.buy,
+            sell: self.sell,
+            currencyNumber: Int(self.currencyNumber))
+        return exchangeRate
+    }
 }

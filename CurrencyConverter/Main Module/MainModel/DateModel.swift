@@ -9,14 +9,13 @@ import Foundation
 import CoreData
 
 final class DateModel {
-    private lazy var coreDataStack = CoreDataStack.shared
     private let lastUpdateDateManager = LastUpdateDateManager()
     
     private func lastUpdateDate() -> Date {
         guard
             let lastUpdateDate = lastUpdateDateManager.fetchLastUdateDate() else {
             let defaultDate = Date(timeIntervalSince1970: 197208000) // "1 Apr 1976 12:00:00"
-            lastUpdateDateManager.create(lastUpdateDate: defaultDate)
+            lastUpdateDateManager.createLastUpdateDate(defaultDate)
             return defaultDate
         }
         return lastUpdateDate

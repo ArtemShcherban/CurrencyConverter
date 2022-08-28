@@ -10,5 +10,5 @@ import Foundation
 import CoreData
 
 @objc(RateCurrencyContainer)
-public class RateCurrencyContainer: CurrencyContainer {
+public class RateCurrencyContainer: CDCurrencyContainer {
 }

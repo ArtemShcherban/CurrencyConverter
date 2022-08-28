@@ -18,33 +18,59 @@ class CurrencyListModel: FetchRequesting {
     private lazy var coreDataStack = CoreDataStack.shared
     private lazy var currencyDataSource = CurrencyDataSource.shared
     
+    private let currencyManager = CurrencyManager()
+    
     lazy var tableView = String()
     
     weak var delegate: CurrencyListModelDelegate?
     
     func fillDataSourceCurrencies() {
-        var predicates: [NSPredicate] = []
+//        var predicates: [NSPredicate] = []
+//
+//        let result = performRequest(for: tableView)
+//
+//        if !result.isEmpty {
+//            guard
+//                let container = result.first,
+//                let currencies = container.currencies?.array as? [CurrencyOLD] else {
+//                return
+//            }
+//            predicates = createPredicate(from: currencies)
+//        }
+//        
+//        let currencyRequest: NSFetchRequest<CurrencyOLD> = CurrencyOLD.fetchRequest()
+//        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+//        let codeSortDescriptor = NSSortDescriptor(key: #keyPath(CurrencyOLD.code), ascending: true)
+//        currencyRequest.predicate = compoundPredicate
+//        currencyRequest.sortDescriptors = [codeSortDescriptor]
         
-        let result = performRequest(for: tableView)
-        
-        if !result.isEmpty {
-            guard
-                let container = result.first,
-                let currencies = container.currencies?.array as? [Currency] else {
-                return
-            }
-            predicates = createPredicate(from: currencies)
-        }
-        
-        let currencyRequest: NSFetchRequest<Currency> = Currency.fetchRequest()
-        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-        let codeSortDescriptor = NSSortDescriptor(key: #keyPath(Currency.code), ascending: true)
-        currencyRequest.predicate = compoundPredicate
-        currencyRequest.sortDescriptors = [codeSortDescriptor]
-        
-        guard let currencies = try? coreDataStack.managedContext.fetch(currencyRequest) else { return }
+        guard let currencies = currencyManager.fetchCurrencyExcept(currencies: []) else { return }
         currencyDataSource.currencyList = currencies
     }
+    
+//    func fillDataSourceCurrencies() {
+//        var predicates: [NSPredicate] = []
+//
+//        let result = performRequest(for: tableView)
+//
+//        if !result.isEmpty {
+//            guard
+//                let container = result.first,
+//                let currencies = container.currencies?.array as? [CurrencyOLD] else {
+//                return
+//            }
+//            predicates = createPredicate(from: currencies)
+//        }
+//
+//        let currencyRequest: NSFetchRequest<CurrencyOLD> = CurrencyOLD.fetchRequest()
+//        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
+//        let codeSortDescriptor = NSSortDescriptor(key: #keyPath(CurrencyOLD.code), ascending: true)
+//        currencyRequest.predicate = compoundPredicate
+//        currencyRequest.sortDescriptors = [codeSortDescriptor]
+//
+//        guard let currencies = try? coreDataStack.managedContext.fetch(currencyRequest) else { return }
+//        currencyDataSource.currencyList = currencies
+//    }
     
     func fillDataSourceGroups() {
         let groupsCurrencies = currencyDataSource.currencyList
@@ -69,33 +95,33 @@ class CurrencyListModel: FetchRequesting {
         currencyDataSource.groups = groups
     }
     
-    private func createPredicate(from currencies: [Currency]) -> [NSPredicate] {
+    private func createPredicate(from currencies: [CurrencyOLD]) -> [NSPredicate] {
         var predicates: [NSPredicate] = []
         for currency in currencies {
-            let predicate = NSPredicate(format: "%K != %@", #keyPath(Currency.code), currency.code)
+            let predicate = NSPredicate(format: "%K != %@", #keyPath(CurrencyOLD.code), currency.code)
             predicates.append(predicate)
         }
         return predicates
     }
     
     func filterCurrency(text: String) {
-        if !text.isEmpty {
-            let whitespaceCharacterSet = CharacterSet.whitespaces
-            let text = text.trimmingCharacters(in: whitespaceCharacterSet).lowercased()
-            
-            let filtered = currencyDataSource.currencyList.filter {
-                $0.code.lowercased().contains(text) ||
-                $0.currency.lowercased().contains(text)
-            }
-            if !filtered.isEmpty {
-                currencyDataSource.filteredCurrency.removeAll()
-                currencyDataSource.filteredCurrency = filtered
-            } else {
-                currencyDataSource.filteredCurrency = []
-            }
-        } else {
-            currencyDataSource.filteredCurrency = []
-        }
+//        if !text.isEmpty {
+//            let whitespaceCharacterSet = CharacterSet.whitespaces
+//            let text = text.trimmingCharacters(in: whitespaceCharacterSet).lowercased()
+//
+//            let filtered = currencyDataSource.currencyList.filter {
+//                $0.code.lowercased().contains(text) ||
+//                $0.currency.lowercased().contains(text)
+//            }
+//            if !filtered.isEmpty {
+//                currencyDataSource.filteredCurrency.removeAll()
+//                currencyDataSource.filteredCurrency = filtered
+//            } else {
+//                currencyDataSource.filteredCurrency = []
+//            }
+//        } else {
+//            currencyDataSource.filteredCurrency = []
+//        }
     }
     
     func selectedCurrency(at indexPath: IndexPath) -> Currency {
@@ -105,8 +131,15 @@ class CurrencyListModel: FetchRequesting {
         return  currencies[indexPath.row]
     }
     
-    func selectedFilteredCurrency(at indexPath: IndexPath) -> Currency {
-        let currency = currencyDataSource.filteredCurrency[indexPath.row]
-        return currency
-    }
+//    func selectedCurrency(at indexPath: IndexPath) -> CurrencyOLD {
+//        let groupsCurrencies = currencyDataSource.currencyList
+//        let groups = currencyDataSource.groups
+//        let currencies = groupsCurrencies.filter { $0.groupKey == groups[indexPath.section].key }
+//        return  currencies[indexPath.row]
+//    }
+    
+//    func selectedFilteredCurrency(at indexPath: IndexPath) -> CurrencyOLD {
+//        let currency = currencyDataSource.filteredCurrency[indexPath.row]
+//        return currency
+//    }
 }

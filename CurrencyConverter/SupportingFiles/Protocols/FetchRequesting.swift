@@ -12,7 +12,7 @@ protocol FetchRequesting: AnyObject {
 }
 
 extension FetchRequesting {
-    func performRequest(for tableView: String) -> [CurrencyContainer] {
+    func performRequest(for tableView: String) -> [CDCurrencyContainer] {
         let coreDataStack = CoreDataStack.shared
         switch tableView {
         case TableViewCostants.Name.rate:

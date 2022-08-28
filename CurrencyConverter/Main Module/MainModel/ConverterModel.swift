@@ -53,7 +53,7 @@ class ConverterModel: FetchRequesting {
         return amountAsString
     }
     
-    func doCalculation(for currency: Currency) -> Double {
+    func doCalculation(for currency: CurrencyOLD) -> Double {
         guard let baseCurrency = resultDataSource.baseCurrency else { return 0.00 }
         if isSellAction {
             return  currency.sell > 0 ? amount * baseCurrency.buy / currency.sell : 0.00
@@ -73,8 +73,8 @@ class ConverterModel: FetchRequesting {
         
         let container = ConverterCurrencyContainer(context: coreDataStack.managedContext)
         
-        let currencyFetchRequest: NSFetchRequest<Currency> = Currency.fetchRequest()
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(Currency.code), AppConstants.defaultCurrency)
+        let currencyFetchRequest: NSFetchRequest<CurrencyOLD> = CurrencyOLD.fetchRequest()
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(CurrencyOLD.code), AppConstants.defaultCurrency)
         currencyFetchRequest.predicate = predicate
         guard
             let result = try? coreDataStack.managedContext.fetch(currencyFetchRequest),
@@ -82,7 +82,7 @@ class ConverterModel: FetchRequesting {
             return
         }
         
-        container.addToCurrencies(currency)
+//        container.addToCurrencies(currency)
         coreDataStack.saveContext()
     }
 }

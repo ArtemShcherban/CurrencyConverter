@@ -11,8 +11,8 @@ class ResultDataSource: NSObject, UITableViewDataSource {
     static let shared = ResultDataSource()
     
     var controller: MainViewController?
-    var baseCurrency: Currency?
-    lazy var selectedCurrencies: [Currency] = []
+    var baseCurrency: CurrencyOLD?
+    lazy var selectedCurrencies: [CurrencyOLD] = []
    
     private lazy var resultModel = ResultModel.shared
     

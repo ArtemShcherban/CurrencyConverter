@@ -69,7 +69,7 @@ final class ExchangeRateModel {
 //        return (rateBuy, rateSell)
 //    }
     
-    func setExchangeRate(for currency: Currency) {
+    func setExchangeRate(for currency: CurrencyOLD) {
         guard currency.code != "UAH" else {
             currency.buy = 1
             currency.sell = 1

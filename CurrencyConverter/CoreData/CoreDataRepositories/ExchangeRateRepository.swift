@@ -12,17 +12,16 @@ protocol ExchangeRateRepository {
     func create(exchangeRate: ExchangeRate)
     func getAll() -> [ExchangeRate]?
     func get(byCurrency number: Int16) -> ExchangeRate?
-    func delete(byCurrency number: Int16)
     func update(exchangeRate: ExchangeRate)
+    func delete(byCurrency number: Int16)
 }
 
 struct ExchangeRateDataRepository: ExchangeRateRepository {
     private let coreDataStack = CoreDataStack.shared
     
     func create(exchangeRate: ExchangeRate) {
-        let currencyNumber = exchangeRate.currencyNumber
         let cdExchangeRate = CDExchangeRate(context: coreDataStack.managedContext)
-        cdExchangeRate.currencyNumber = Int16(currencyNumber)
+        cdExchangeRate.currencyNumber = Int16(exchangeRate.currencyNumber)
         cdExchangeRate.buy = exchangeRate.buy
         cdExchangeRate.sell = exchangeRate.sell
         coreDataStack.saveContext()
@@ -34,20 +33,17 @@ struct ExchangeRateDataRepository: ExchangeRateRepository {
     
     func get(byCurrency number: Int16) -> ExchangeRate? {
         guard let cdExchangeRate = getCDExchangeRate(byCurrency: number) else { return nil }
-        let exchangeRate = ExchangeRate(
-            buy: cdExchangeRate.buy,
-            sell: cdExchangeRate.sell,
-            currencyNumber: Int(cdExchangeRate.currencyNumber))
-        return exchangeRate
-    }
-    
-    func delete(byCurrency number: Int16) {
+        
+        return cdExchangeRate.convertToExchangeRate()
     }
     
     func update(exchangeRate: ExchangeRate) {
     }
     
-    func getCDExchangeRate(byCurrency number: Int16) -> CDExchangeRate? {
+    func delete(byCurrency number: Int16) {
+    }
+    
+    private func getCDExchangeRate(byCurrency number: Int16) -> CDExchangeRate? {
         let fetchRequest: NSFetchRequest<CDExchangeRate> = CDExchangeRate.fetchRequest()
         let predicate = NSPredicate(format: "%K == %D", #keyPath(CDExchangeRate.currencyNumber), number)
         fetchRequest.predicate = predicate

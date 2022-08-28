@@ -14,12 +14,14 @@ protocol ResultModelDelegate: AnyObject {
 
 final class ResultModel: FetchRequesting {
     static let shared = ResultModel()
-    
-    private lazy var coreDataStack = CoreDataStack.shared
+ 
     private lazy var dataSource = ResultDataSource.shared
     private lazy var currencyListModel = CurrencyListModel.shared
     private lazy var converterModel = ConverterModel.shared
     private lazy var exchangeRateModel = ExchangeRateModel()
+    
+    private lazy var coreDataStack = CoreDataStack.shared // 🥸
+    private let currencyContainerManager = CurrencyContainerManager()
     
     private lazy var tableView = String() {
         didSet {
@@ -43,7 +45,7 @@ final class ResultModel: FetchRequesting {
         
         guard
             let container = result.first,
-            var currencies = container.currencies?.array as? [Currency] else {
+            var currencies = container.currencies?.array as? [CurrencyOLD] else {
             return
         }
         if tableView == TableViewCostants.Name.converter {
@@ -54,48 +56,52 @@ final class ResultModel: FetchRequesting {
         dataSource.selectedCurrencies = currencies
     }
     
-    func addCell(with currency: Currency) {
-        let result = performRequest(for: tableView)
-        
-        if !result.isEmpty {
-            guard let container = result.first else { return }
-            container.addToCurrencies(currency)
-        } else {
-            guard let container = createCurrencyContainer() else { return }
-            container.addToCurrencies(currency)
-        }
-        coreDataStack.saveContext()
+    func add(currency: Currency) {
+        currencyContainerManager.updateContainer(tableView, with: currency)
     }
     
-    func changeCell(at row: Int, with currency: Currency) {
-        let result = performRequest(for: tableView)
-        guard
-            let container = result.first,
-            let currencies = container.currencies?.array as? [Currency] else {
-            return
-        }
-        let replacedCurrency = currencies[row]
-        replacedCurrency.buy = 0
-        replacedCurrency.sell = 0
-        container.replaceCurrencies(at: row, with: currency)
-        coreDataStack.saveContext()
+//   👻 func addCell(with currency: CurrencyOLD) {
+//        let result = performRequest(for: tableView)
+//
+//        if !result.isEmpty {
+//            guard let container = result.first else { return }
+//            container.addToCurrencies(currency)
+//        } else {
+//            guard let container = createCurrencyContainer() else { return }
+//            container.addToCurrencies(currency)
+//        }
+//        coreDataStack.saveContext()
+//    }
+    
+    func changeCell(at row: Int, with currency: CurrencyOLD) {
+//        let result = performRequest(for: tableView)
+//        guard
+//            let container = result.first,
+//            let currencies = container.currencies?.array as? [CurrencyOLD] else {
+//            return
+//        }
+//        let replacedCurrency = currencies[row]
+//        replacedCurrency.buy = 0
+//        replacedCurrency.sell = 0
+//        container.replaceCurrencies(at: row, with: currency)
+//        coreDataStack.saveContext()
     }
     
     func removeCell(at indexPath: IndexPath) {
-        let result = performRequest(for: tableView)
-        guard
-            let container = result.first else {
-            return
-        }
-        let removedCurrency = dataSource.selectedCurrencies[indexPath.row]
-        removedCurrency.buy = 0
-        removedCurrency.sell = 0
-        container.removeFromCurrencies(removedCurrency)
-        coreDataStack.saveContext()
-        fillDataSource()
+//        let result = performRequest(for: tableView)
+//        guard
+//            let container = result.first else {
+//            return
+//        }
+//        let removedCurrency = dataSource.selectedCurrencies[indexPath.row]
+//        removedCurrency.buy = 0
+//        removedCurrency.sell = 0
+//        container.removeFromCurrencies(removedCurrency)
+//        coreDataStack.saveContext()
+//        fillDataSource()
     }
     
-    private func createCurrencyContainer() -> CurrencyContainer? {
+    private func createCurrencyContainer() -> CDCurrencyContainer? {
         switch tableView {
         case TableViewCostants.Name.rate:
             return RateCurrencyContainer(context: coreDataStack.managedContext)

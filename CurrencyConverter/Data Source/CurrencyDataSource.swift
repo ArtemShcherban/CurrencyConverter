@@ -11,8 +11,9 @@ class CurrencyDataSource: NSObject, UITableViewDataSource {
     static let shared = CurrencyDataSource()
     static let sharedTwo = CurrencyDataSource()
     
+//    lazy var currencyList: [CurrencyOLD] = []
     lazy var currencyList: [Currency] = []
-    lazy var filteredCurrency: [Currency] = []
+    lazy var filteredCurrency: [CurrencyOLD] = []
     lazy var groups: [Group] = []
     
     func numberOfSections(in tableView: UITableView) -> Int {
