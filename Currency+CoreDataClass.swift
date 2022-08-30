@@ -9,6 +9,6 @@
 import Foundation
 import CoreData
 
-@objc(CurrencyOLD)
-public class CurrencyOLD: NSManagedObject {
-}
+//@objc(CurrencyOLD)
+//public class CurrencyOLD: NSManagedObject {
+//}

@@ -49,10 +49,10 @@ class MainViewController: UIViewController, MessageModelDelegate {
         initialModel.insertCurrencies()
         initialModel.insertGroups()
         initialModel.createCurrencyContainers()
+        initialModel.updateContainerWithBaseCurrency()
         setDelegates()
         fillDataSource()
         updateAddButton()
-        converterModel.createDefaultBaseCurrency()
         
         getMonoBankExchangeRate()
         
@@ -70,7 +70,7 @@ class MainViewController: UIViewController, MessageModelDelegate {
     }
     
     private func fillDataSource() {
-        resultModel.defineTableViewName(value: mainView.isFlipping)
+        resultModel.defineContainerName(value: mainView.isFlipping)
         resultModel.fillDataSource()
     }
     

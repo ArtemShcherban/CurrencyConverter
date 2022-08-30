@@ -15,11 +15,11 @@ extension FetchRequesting {
     func performRequest(for tableView: String) -> [CDCurrencyContainer] {
         let coreDataStack = CoreDataStack.shared
         switch tableView {
-        case TableViewCostants.Name.rate:
+        case ContainerConstants.Name.rate:
             let fetchRequest: NSFetchRequest<RateCurrencyContainer> = RateCurrencyContainer.fetchRequest()
             guard let result = try? coreDataStack.managedContext.fetch(fetchRequest) else { return [] }
             return result
-        case TableViewCostants.Name.converter:
+        case ContainerConstants.Name.converter:
             let fetchRequest: NSFetchRequest<ConverterCurrencyContainer> = ConverterCurrencyContainer.fetchRequest()
             guard let result = try? coreDataStack.managedContext.fetch(fetchRequest) else { return [] }
             return result

@@ -20,13 +20,21 @@ class RateCell: UITableViewCell {
     weak var delegate: PopUpWindowDelegate?
     
     func configure(with indexPath: IndexPath) {
-        let currency = dataSource.selectedCurrencies[indexPath.row]
-        exchangeRateModel.setExchangeRate(for: currency)
+        var currency = dataSource.selectedCurrencies[indexPath.row]
+        exchangeRateModel.setExchangeRate(for: &currency)
         currencyButton.setTitle(currency.code, for: .normal)
         currencyButton.tag = indexPath.row
-        buyLabel.text = String(format: "%.3f", dataSource.selectedCurrencies[indexPath.row].buy)
-        sellLabel.text = String(format: "%.3f", dataSource.selectedCurrencies[indexPath.row].sell)
+        buyLabel.text = String(format: "%.3f", currency.buy)
+        sellLabel.text = String(format: "%.3f", currency.sell)
     }
+//    func configure(with indexPath: IndexPath) {
+//        let currency = dataSource.selectedCurrencies[indexPath.row]
+//        exchangeRateModel.setExchangeRate(for: currency)
+//        currencyButton.setTitle(currency.code, for: .normal)
+//        currencyButton.tag = indexPath.row
+//        buyLabel.text = String(format: "%.3f", dataSource.selectedCurrencies[indexPath.row].buy)
+//        sellLabel.text = String(format: "%.3f", dataSource.selectedCurrencies[indexPath.row].sell)
+//    }
     
     @IBAction func delegateAction(_ sender: UIButton) {
         delegate?.changeCurrency(sender: sender)

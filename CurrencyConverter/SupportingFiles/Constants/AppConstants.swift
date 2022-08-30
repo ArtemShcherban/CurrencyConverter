@@ -9,5 +9,5 @@ import Foundation
 
 enum AppConstants {
     static let popularCurrencies: [String] = ["USD", "EUR", "UAH"]
-    static let defaultCurrency = "UAH"
+    static let baseCurrencyNumber: Int16 = 980
 }

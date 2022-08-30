@@ -53,7 +53,7 @@ class ConverterModel: FetchRequesting {
         return amountAsString
     }
     
-    func doCalculation(for currency: CurrencyOLD) -> Double {
+    func doCalculation(for currency: Currency) -> Double {
         guard let baseCurrency = resultDataSource.baseCurrency else { return 0.00 }
         if isSellAction {
             return  currency.sell > 0 ? amount * baseCurrency.buy / currency.sell : 0.00
@@ -62,27 +62,51 @@ class ConverterModel: FetchRequesting {
         }
     }
     
-    func createDefaultBaseCurrency() {
-        let containerFetchRequest: NSFetchRequest<ConverterCurrencyContainer> =
-        ConverterCurrencyContainer.fetchRequest()
-        guard
-            let result = try? coreDataStack.managedContext.fetch(containerFetchRequest),
-            result.isEmpty else {
-            return
-        }
-        
-        let container = ConverterCurrencyContainer(context: coreDataStack.managedContext)
-        
-        let currencyFetchRequest: NSFetchRequest<CurrencyOLD> = CurrencyOLD.fetchRequest()
-        let predicate = NSPredicate(format: "%K == %@", #keyPath(CurrencyOLD.code), AppConstants.defaultCurrency)
-        currencyFetchRequest.predicate = predicate
-        guard
-            let result = try? coreDataStack.managedContext.fetch(currencyFetchRequest),
-            let currency = result.first else {
-            return
-        }
+//    func createDefaultBaseCurrency() {
+//        let containerFetchRequest: NSFetchRequest<ConverterCurrencyContainer> =
+//        ConverterCurrencyContainer.fetchRequest()
+//        guard
+//            let result = try? coreDataStack.managedContext.fetch(containerFetchRequest),
+//            result.isEmpty else {
+//            return
+//        }
+//        
+//        let container = ConverterCurrencyContainer(context: coreDataStack.managedContext)
+//        
+//        let currencyFetchRequest: NSFetchRequest<CurrencyOLD> = CurrencyOLD.fetchRequest()
+//        let predicate = NSPredicate(format: "%K == %@", #keyPath(CurrencyOLD.code), AppConstants.defaultCurrency)
+//        currencyFetchRequest.predicate = predicate
+//        guard
+//            let result = try? coreDataStack.managedContext.fetch(currencyFetchRequest),
+//            let currency = result.first else {
+//            return
+//        }
         
 //        container.addToCurrencies(currency)
-        coreDataStack.saveContext()
-    }
+//        coreDataStack.saveContext()
+//    }
+    
+//    func createDefaultBaseCurrency() {
+//        let containerFetchRequest: NSFetchRequest<ConverterCurrencyContainer> =
+//        ConverterCurrencyContainer.fetchRequest()
+//        guard
+//            let result = try? coreDataStack.managedContext.fetch(containerFetchRequest),
+//            result.isEmpty else {
+//            return
+//        }
+//
+//        let container = ConverterCurrencyContainer(context: coreDataStack.managedContext)
+//
+//        let currencyFetchRequest: NSFetchRequest<CurrencyOLD> = CurrencyOLD.fetchRequest()
+//        let predicate = NSPredicate(format: "%K == %@", #keyPath(CurrencyOLD.code), AppConstants.defaultCurrency)
+//        currencyFetchRequest.predicate = predicate
+//        guard
+//            let result = try? coreDataStack.managedContext.fetch(currencyFetchRequest),
+//            let currency = result.first else {
+//            return
+//        }
+//
+////        container.addToCurrencies(currency)
+//        coreDataStack.saveContext()
+//    }
 }

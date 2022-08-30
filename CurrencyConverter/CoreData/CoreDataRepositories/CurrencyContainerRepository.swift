@@ -11,7 +11,11 @@ import CoreData
 protocol CurrencyContainerRepository {
     func getCount() -> Int
     func createCurrenciesContainers()
-//    func get(for tableViewName: String) -> CurrencyContainer?
+    func getCurrencyCount(inContainer name: String) -> Int
+    func getFromContainer(name: String) -> [Currency]?
+    func update(container: String, with currency: Currency)
+    func replace(inContainer name: String, at row: Int, with currency: Currency)
+    func delete(currency: Currency, fromContainer name: String)
 }
 
 struct CurrencyContainerDataRepository: CurrencyContainerRepository {
@@ -28,32 +32,68 @@ struct CurrencyContainerDataRepository: CurrencyContainerRepository {
         coreDataStack.saveContext()
     }
     
+    func getCurrencyCount(inContainer name: String) -> Int {
+        let cdCurrencyContainer = getCDCurrencyContainer(name: name)
+        let currenciesCount = cdCurrencyContainer?.currencies?.count
+        return currenciesCount ?? 0
+    }
+    
+    func getFromContainer(name: String) -> [Currency]? {
+        var currencies: [Currency] = []
+        guard
+            let cdContainer = getCDCurrencyContainer(name: name),
+            let cdCurrencies = cdContainer.currencies?.array as? [CDCurrency]  else {
+            return nil
+        }
+        cdCurrencies.forEach { currency in
+            currencies.append(currency.convertToCurrency())
+        }
+        return currencies
+    }
+    
     func update(container: String, with currency: Currency) {
         guard
             let container = getCDCurrencyContainer(name: container),
             let cdCurrency = getCDCurrency(by: currency.number) else {
-            print("Container: failed to update")
+            print("Failed to update \(container) container")
             return
         }
         container.addToCurrencies(cdCurrency)
         coreDataStack.saveContext()
     }
     
-//    func get(for tableViewName: String) -> CurrencyContainer? {
-//        guard let cdCurrencyContainer = getCDCurrencyContainer(name: tableViewName) else { return nil }
-//        return cdCurrencyContainer.convertToCurrencyContainer()
-//    }
+    func replace(inContainer name: String, at row: Int, with currency: Currency) {
+        guard
+            let cdCurrency = getCDCurrency(by: currency.number),
+            let cdCurrencyContainer = getCDCurrencyContainer(name: name) else {
+            print("Failed to replace with new currency: \(currency)")
+            return
+        }
+        cdCurrencyContainer.replaceCurrencies(at: row, with: cdCurrency)
+        coreDataStack.saveContext()
+    }
+    
+    func delete(currency: Currency, fromContainer name: String) {
+        guard
+            let cdCurrencyContainer = getCDCurrencyContainer(name: name),
+            let cdCurrency = getCDCurrency(by: currency.number) else {
+            print("Failed to delete currency: \(currency) from the container)")
+            return
+        }
+        cdCurrencyContainer.removeFromCurrencies(cdCurrency)
+        coreDataStack.saveContext()
+    }
     
     private func getCDCurrencyContainer(name: String) -> CDCurrencyContainer? {
         switch name {
-        case TableViewCostants.Name.rate:
+        case ContainerConstants.Name.rate:
             guard
                 let result = coreDataStack.fetchManagedObject(managedObject: RateCurrencyContainer.self),
                 let container = result.first else {
                 return nil
             }
             return container
-        case TableViewCostants.Name.converter:
+        case ContainerConstants.Name.converter:
             guard
                 let result = coreDataStack.fetchManagedObject(managedObject: ConverterCurrencyContainer.self),
                 let container = result.first else {

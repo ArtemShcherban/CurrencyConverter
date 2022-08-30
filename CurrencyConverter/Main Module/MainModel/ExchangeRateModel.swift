@@ -13,6 +13,7 @@ final class ExchangeRateModel {
     private lazy var dataSource = ResultDataSource.shared
     
     private let exchangeRateManager = ExchangeRateManager()
+    private let currencyManager = CurrencyManager()
     
     func createExchangeRate(bankData: [MonoBankExchangeRate]) {
         bankData.forEach { monoBankExchangeRate in
@@ -69,18 +70,17 @@ final class ExchangeRateModel {
 //        return (rateBuy, rateSell)
 //    }
     
-    func setExchangeRate(for currency: CurrencyOLD) {
+    func setExchangeRate(for currency: inout Currency) {
         guard currency.code != "UAH" else {
-            currency.buy = 1
-            currency.sell = 1
-            coreDataStack.saveContext()
+            currency.buy = 1.0
+            currency.sell = 1.0
+            currencyManager.updateCurrency(currency)
             return
         }
         guard let exchangeRate = exchangeRateManager.fetchExchangeRate(by: currency.number) else { return }
         currency.buy = exchangeRate.buy
         currency.sell = exchangeRate.sell
-        
-        coreDataStack.saveContext()
+        currencyManager.updateCurrency(currency)
     }
     
 //    func setExchangeRate(for currency: Currency) {

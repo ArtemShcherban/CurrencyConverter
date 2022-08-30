@@ -19,6 +19,7 @@ protocol CurrencyRepository {
 }
 
 struct CurrencyDataRepository: CurrencyRepository {
+    
     private let coreDataStack = CoreDataStack.shared
     
     func getCount() -> Int {
@@ -33,10 +34,10 @@ struct CurrencyDataRepository: CurrencyRepository {
         cdCurrency.sell = currency.sell
         cdCurrency.buy = currency.buy
         cdCurrency.code = currency.code
-        cdCurrency.country = cdCurrency.country
-        cdCurrency.currencyPlural = cdCurrency.currencyPlural
-        cdCurrency.groupKey = cdCurrency.groupKey
-        cdCurrency.container = cdCurrency.container
+        cdCurrency.country = currency.country
+        cdCurrency.currencyPlural = currency.currencyPlural
+        cdCurrency.groupKey = currency.groupKey
+        cdCurrency.container = currency.container
         coreDataStack.saveContext()
     }
     
@@ -45,23 +46,41 @@ struct CurrencyDataRepository: CurrencyRepository {
     }
     
     func get(byCurrency number: Int16) -> Currency? {
-        return nil
+        let cdCurrency = getCDCurrency(by: number)
+        return cdCurrency?.convertToCurrency()
     }
     
     func getAllExcept(currencies: [Currency]) -> [Currency]? {
-        var currencies: [Currency] = []
         guard let cdCurrencies = getAllCDCurrenciesExcept(currencies) else { return nil }
-        
-        cdCurrencies.forEach { cdCurrency in
-            currencies.append(cdCurrency.convertToCurrency())
+        var currencies: [Currency] = []
+        cdCurrencies.forEach { currency in
+            currencies.append(currency.convertToCurrency())
         }
         return currencies
     }
     
     func update(currency: Currency) {
+        guard let cdCurrency = getCDCurrency(by: currency.number) else { return }
+        cdCurrency.buy = currency.buy
+        cdCurrency.sell = currency.sell
+        coreDataStack.saveContext()
+    }
+  
+    func delete(byCurrency number: Int16) {
     }
     
-    func delete(byCurrency number: Int16) {
+    private func getCDCurrency(by number: Int16) -> CDCurrency? {
+        let predicate = createPredicate(by: number)
+        let fetchRequest: NSFetchRequest<CDCurrency> = CDCurrency.fetchRequest()
+        fetchRequest.predicate = predicate
+        do {
+            let result = try coreDataStack.managedContext.fetch(fetchRequest)
+            let cdCurrency = result.first
+            return cdCurrency
+        } catch let nserror as NSError {
+            debugPrint(nserror)
+        }
+        return nil
     }
     
     private func getAllCDCurrenciesExcept(_ currencies: [Currency]) -> [CDCurrency]? {
@@ -79,6 +98,10 @@ struct CurrencyDataRepository: CurrencyRepository {
             debugPrint(nserror)
         }
         return nil
+    }
+    
+    private func createPredicate(by currencyNumber: Int16) -> NSPredicate {
+        NSPredicate(format: "%K == %D", #keyPath(CDCurrency.number), currencyNumber)
     }
     
     private func createPredicate(from currencies: [Currency]) -> [NSPredicate] {

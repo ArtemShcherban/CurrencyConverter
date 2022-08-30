@@ -66,14 +66,14 @@ extension CurrencyListViewController: UITableViewDelegate {
         switch tableView.accessibilityIdentifier {
         case "currency":
             currency = currencyListModel.selectedCurrency(at: indexPath)
-//        case "filtered":
-//            currency = currencyListModel.selectedFilteredCurrency(at: indexPath)
+        case "filtered":
+            currency = currencyListModel.selectedFilteredCurrency(at: indexPath)
         default:
             return
         }
         
         if let sender = sender {
-//            resultModel.changeCell(at: sender.tag, with: currency)
+            resultModel.replaceCurrency(at: sender.tag, with: currency)
         } else {
             resultModel.add(currency: currency)
         }

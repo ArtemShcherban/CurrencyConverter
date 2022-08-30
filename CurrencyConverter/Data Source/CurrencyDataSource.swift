@@ -12,8 +12,9 @@ class CurrencyDataSource: NSObject, UITableViewDataSource {
     static let sharedTwo = CurrencyDataSource()
     
 //    lazy var currencyList: [CurrencyOLD] = []
+//    lazy var filteredCurrency: [CurrencyOLD] = []
     lazy var currencyList: [Currency] = []
-    lazy var filteredCurrency: [CurrencyOLD] = []
+    lazy var filteredCurrency: [Currency] = []
     lazy var groups: [Group] = []
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -38,8 +39,6 @@ class CurrencyDataSource: NSObject, UITableViewDataSource {
         } else if tableView.accessibilityIdentifier == "filtered" {
             return filteredCurrency.count
         }
-        
-        //        return currencyList.filter { $0.selected == true }.count
         return 0
     }
     

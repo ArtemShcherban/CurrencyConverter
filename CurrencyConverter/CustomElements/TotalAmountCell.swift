@@ -20,8 +20,8 @@ class TotalAmountCell: UITableViewCell {
     weak var delegate: PopUpWindowDelegate?
     
     func configure(with indexPath: IndexPath) {
-        let currency = resultDataSource.selectedCurrencies[indexPath.row]
-        exchangeRateModel.setExchangeRate(for: currency)
+        var currency = resultDataSource.selectedCurrencies[indexPath.row]
+        exchangeRateModel.setExchangeRate(for: &currency)
         currencyButton.setTitle(currency.code, for: .normal)
         currencyButton.tag = (indexPath.row + 1)
         let totalAmount = converterModel.doCalculation(for: currency)

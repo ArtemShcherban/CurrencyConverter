@@ -19,32 +19,18 @@ class CurrencyListModel: FetchRequesting {
     private lazy var currencyDataSource = CurrencyDataSource.shared
     
     private let currencyManager = CurrencyManager()
+    private let currencyContainerManager = CurrencyContainerManager()
     
-    lazy var tableView = String()
+    lazy var containerName = String()
     
     weak var delegate: CurrencyListModelDelegate?
     
     func fillDataSourceCurrencies() {
-//        var predicates: [NSPredicate] = []
-//
-//        let result = performRequest(for: tableView)
-//
-//        if !result.isEmpty {
-//            guard
-//                let container = result.first,
-//                let currencies = container.currencies?.array as? [CurrencyOLD] else {
-//                return
-//            }
-//            predicates = createPredicate(from: currencies)
-//        }
-//        
-//        let currencyRequest: NSFetchRequest<CurrencyOLD> = CurrencyOLD.fetchRequest()
-//        let compoundPredicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-//        let codeSortDescriptor = NSSortDescriptor(key: #keyPath(CurrencyOLD.code), ascending: true)
-//        currencyRequest.predicate = compoundPredicate
-//        currencyRequest.sortDescriptors = [codeSortDescriptor]
-        
-        guard let currencies = currencyManager.fetchCurrencyExcept(currencies: []) else { return }
+        guard
+            let exceptCurrencies = currencyContainerManager.getCurrencyFromContainer(name: containerName),
+            let currencies = currencyManager.fetchCurrencyExcept(currencies: exceptCurrencies) else {
+            return
+        }
         currencyDataSource.currencyList = currencies
     }
     
@@ -105,23 +91,23 @@ class CurrencyListModel: FetchRequesting {
     }
     
     func filterCurrency(text: String) {
-//        if !text.isEmpty {
-//            let whitespaceCharacterSet = CharacterSet.whitespaces
-//            let text = text.trimmingCharacters(in: whitespaceCharacterSet).lowercased()
-//
-//            let filtered = currencyDataSource.currencyList.filter {
-//                $0.code.lowercased().contains(text) ||
-//                $0.currency.lowercased().contains(text)
-//            }
-//            if !filtered.isEmpty {
-//                currencyDataSource.filteredCurrency.removeAll()
-//                currencyDataSource.filteredCurrency = filtered
-//            } else {
-//                currencyDataSource.filteredCurrency = []
-//            }
-//        } else {
-//            currencyDataSource.filteredCurrency = []
-//        }
+        if !text.isEmpty {
+            let whitespaceCharacterSet = CharacterSet.whitespaces
+            let text = text.trimmingCharacters(in: whitespaceCharacterSet).lowercased()
+
+            let filtered = currencyDataSource.currencyList.filter {
+                $0.code.lowercased().contains(text) ||
+                $0.currency.lowercased().contains(text)
+            }
+            if !filtered.isEmpty {
+                currencyDataSource.filteredCurrency.removeAll()
+                currencyDataSource.filteredCurrency = filtered
+            } else {
+                currencyDataSource.filteredCurrency = []
+            }
+        } else {
+            currencyDataSource.filteredCurrency = []
+        }
     }
     
     func selectedCurrency(at indexPath: IndexPath) -> Currency {
@@ -130,6 +116,11 @@ class CurrencyListModel: FetchRequesting {
         let currencies = groupsCurrencies.filter { $0.groupKey == groups[indexPath.section].key }
         return  currencies[indexPath.row]
     }
+    
+        func selectedFilteredCurrency(at indexPath: IndexPath) -> Currency {
+            let currency = currencyDataSource.filteredCurrency[indexPath.row]
+            return currency
+        }
     
 //    func selectedCurrency(at indexPath: IndexPath) -> CurrencyOLD {
 //        let groupsCurrencies = currencyDataSource.currencyList

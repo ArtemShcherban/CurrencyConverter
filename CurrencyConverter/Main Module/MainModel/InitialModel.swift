@@ -14,6 +14,8 @@ final class InitialModel {
     private let currencyManager = CurrencyManager()
     private let currencyContainerManager = CurrencyContainerManager()
     
+    private let exchangeRateModel = ExchangeRateModel()
+    
     func insertCurrencies() {
         let currencyCount = currencyManager.fetchCurrencyCount()
         if currencyCount > 0 {
@@ -140,6 +142,16 @@ final class InitialModel {
             return
         }
         currencyContainerManager.createCurrencyContainers()
+    }
+    
+    func updateContainerWithBaseCurrency() {
+        let containerName = ContainerConstants.Name.converter
+        let currnciesInContainerCount = currencyContainerManager.getCurrencyCountInContainer(name: containerName)
+        if currnciesInContainerCount > 0 { return }
+        guard var currency = currencyManager.fetchCurrency(byCurrency: AppConstants.baseCurrencyNumber) else {
+            return
+        }
+        currencyContainerManager.updateContainer(containerName, with: currency)
     }
         
 //        func insertGroups() {

@@ -12,52 +12,72 @@ protocol ResultModelDelegate: AnyObject {
     func resultsTableViewReloadData()
 }
 
-final class ResultModel: FetchRequesting {
+final class ResultModel: FetchRequesting { // 🥸 RENAME
     static let shared = ResultModel()
  
-    private lazy var dataSource = ResultDataSource.shared
+    private lazy var resultDataSource = ResultDataSource.shared
     private lazy var currencyListModel = CurrencyListModel.shared
-    private lazy var converterModel = ConverterModel.shared
+//    private lazy var converterModel = ConverterModel.shared
     private lazy var exchangeRateModel = ExchangeRateModel()
     
-    private lazy var coreDataStack = CoreDataStack.shared // 🥸
+//    private lazy var coreDataStack = CoreDataStack.shared // 🥸
+    private let currencyManager = CurrencyManager()
     private let currencyContainerManager = CurrencyContainerManager()
     
-    private lazy var tableView = String() {
+    private lazy var containerName = String() { // 🥸 RENAME
         didSet {
-            currencyListModel.tableView = tableView
+            currencyListModel.containerName = containerName
         }
     }
     
     weak var delegate: ResultModelDelegate?
     
-    func defineTableViewName(value: Bool) {
-        tableView = value ? TableViewCostants.Name.converter : TableViewCostants.Name.rate
+    func defineContainerName(value: Bool) {
+        containerName = value ? ContainerConstants.Name.converter : ContainerConstants.Name.rate
     }
     
     func fillDataSource() {
-        let result = performRequest(for: tableView)
-        
-        if result.isEmpty {
-            dataSource.selectedCurrencies = []
-            return
-        }
-        
         guard
-            let container = result.first,
-            var currencies = container.currencies?.array as? [CurrencyOLD] else {
-            return
+            var currencies = currencyContainerManager.getCurrencyFromContainer(name: containerName),
+                !currencies.isEmpty else {
+            resultDataSource.selectedCurrencies = []
+            return }
+        
+        if containerName == ContainerConstants.Name.converter {
+            setupBaseCurrency(from: &currencies)
         }
-        if tableView == TableViewCostants.Name.converter {
-            let baseCurrency = currencies.removeFirst()
-            exchangeRateModel.setExchangeRate(for: baseCurrency)
-            dataSource.baseCurrency = baseCurrency
-        }
-        dataSource.selectedCurrencies = currencies
+        resultDataSource.selectedCurrencies = currencies
+    }
+    
+//    func fillDataSource() {
+//        let result = performRequest(for: tableView)
+//
+//        if result.isEmpty {
+//            dataSource.selectedCurrencies = []
+//            return
+//        }
+//
+//        guard
+//            let container = result.first,
+//            var currencies = container.currencies?.array as? [CurrencyOLD] else {
+//            return
+//        }
+//        if tableView == TableViewCostants.Name.converter {
+//            let baseCurrency = currencies.removeFirst()
+//            exchangeRateModel.setExchangeRate(for: baseCurrency)
+//            dataSource.baseCurrency = baseCurrency
+//        }
+//        dataSource.selectedCurrencies = currencies
+//    }
+    
+    private func setupBaseCurrency(from currencies: inout [Currency]) {
+        var baseCurrency = currencies.removeFirst()
+        exchangeRateModel.setExchangeRate(for: &baseCurrency)
+        resultDataSource.baseCurrency = baseCurrency
     }
     
     func add(currency: Currency) {
-        currencyContainerManager.updateContainer(tableView, with: currency)
+        currencyContainerManager.updateContainer(containerName, with: currency)
     }
     
 //   👻 func addCell(with currency: CurrencyOLD) {
@@ -73,7 +93,11 @@ final class ResultModel: FetchRequesting {
 //        coreDataStack.saveContext()
 //    }
     
-    func changeCell(at row: Int, with currency: CurrencyOLD) {
+    func replaceCurrency(at row: Int, with currency: Currency) {
+        currencyContainerManager.replaceCurrency(in: containerName, at: row, with: currency)
+    }
+    
+//    func changeCell(at row: Int, with currency: CurrencyOLD) {
 //        let result = performRequest(for: tableView)
 //        guard
 //            let container = result.first,
@@ -85,9 +109,18 @@ final class ResultModel: FetchRequesting {
 //        replacedCurrency.sell = 0
 //        container.replaceCurrencies(at: row, with: currency)
 //        coreDataStack.saveContext()
-    }
+//    }
     
     func removeCell(at indexPath: IndexPath) {
+        var currency = resultDataSource.selectedCurrencies[indexPath.row]
+        currency.buy = 0.0
+        currency.sell = 0.0
+        currencyManager.updateCurrency(currency)
+        currencyContainerManager.deleteCurrency(currency, from: containerName)
+        fillDataSource()
+    }
+    
+//    func removeCell(at indexPath: IndexPath) {
 //        let result = performRequest(for: tableView)
 //        guard
 //            let container = result.first else {
@@ -99,30 +132,30 @@ final class ResultModel: FetchRequesting {
 //        container.removeFromCurrencies(removedCurrency)
 //        coreDataStack.saveContext()
 //        fillDataSource()
-    }
+//    }
     
-    private func createCurrencyContainer() -> CDCurrencyContainer? {
-        switch tableView {
-        case TableViewCostants.Name.rate:
-            return RateCurrencyContainer(context: coreDataStack.managedContext)
-            
-        case TableViewCostants.Name.converter:
-            return ConverterCurrencyContainer(context: coreDataStack.managedContext)
-        default:
-            return nil
-        }
-    }
+//    private func createCurrencyContainer() -> CDCurrencyContainer? {
+//        switch tableView {
+//        case ContainerConstants.Name.rate:
+//            return RateCurrencyContainer(context: coreDataStack.managedContext)
+//
+//        case ContainerConstants.Name.converter:
+//            return ConverterCurrencyContainer(context: coreDataStack.managedContext)
+//        default:
+//            return nil
+//        }
+//    }
 
     func isMaxNumberOfRows() -> Bool {
-        switch tableView {
-        case TableViewCostants.Name.rate:
-            if dataSource.selectedCurrencies.count <= 4 {
+        switch containerName {
+        case ContainerConstants.Name.rate:
+            if resultDataSource.selectedCurrencies.count <= 4 {
                 return false
             } else {
                 return true
             }
-        case TableViewCostants.Name.converter:
-            if dataSource.selectedCurrencies.count <= 2 {
+        case ContainerConstants.Name.converter:
+            if resultDataSource.selectedCurrencies.count <= 2 {
                 return false
             } else {
                 return true

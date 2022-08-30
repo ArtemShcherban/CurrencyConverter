@@ -22,7 +22,7 @@ struct CurrencyManager {
     }
     
     func fetchCurrencyExcept(currencies: [Currency]) -> [Currency]? {
-        currencyDateRepositrory.getAllExcept(currencies: currencies)
+     currencyDateRepositrory.getAllExcept(currencies: currencies)
     }
     
     func fetchCurrency(byCurrency number: Int16) -> Currency? {
