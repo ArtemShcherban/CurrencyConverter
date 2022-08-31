@@ -17,23 +17,24 @@ struct CurrencyManager {
     func createCurrency(_ currency: Currency) {
         currencyDateRepositrory.create(currency: currency)
     }
-    func fetchCurrency() -> [Currency]? {
-        currencyDateRepositrory.getAll()
-    }
     
     func fetchCurrencyExcept(currencies: [Currency]) -> [Currency]? {
-     currencyDateRepositrory.getAllExcept(currencies: currencies)
+        currencyDateRepositrory.getAllExcept(currencies: currencies)
+    }
+    
+    func fetchSpecified(byCurrency numbers: [Int16]) -> [Currency]? {
+        currencyDateRepositrory.getSpecified(by: numbers)
     }
     
     func fetchCurrency(byCurrency number: Int16) -> Currency? {
         currencyDateRepositrory.get(byCurrency: number)
     }
     
-    func updateCurrency(_ currency: Currency) {
-        currencyDateRepositrory.update(currency: currency)
+    func updateCurrencyRate(_ currency: Currency) {
+        currencyDateRepositrory.updateCurrencyRate(currency: currency)
     }
     
-    func deleteCurrency(byCurrency number: Int16) {
-        currencyDateRepositrory.delete(byCurrency: number)
+    func updateCurrencyGroup(by currencyNumbers: [Int16], with groupKey: Int16) {
+        currencyDateRepositrory.updateCurrencyGroup(byCurrency: currencyNumbers, with: groupKey)
     }
 }

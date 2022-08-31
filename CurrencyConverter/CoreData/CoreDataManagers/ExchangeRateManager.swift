@@ -22,11 +22,7 @@ struct ExchangeRateManager {
         exchangeRateDataReository.get(byCurrency: currencyNumber)
     }
     
-    func updateExchangeRate(_ exchangeRate: ExchangeRate) {
-        exchangeRateDataReository.update(exchangeRate: exchangeRate)
-    }
-    
-    func deleteExchangeRate(by currencyNumber: Int16) {
-        exchangeRateDataReository.delete(byCurrency: currencyNumber)
+    func deleteExchangeRates() {
+        exchangeRateDataReository.deleteExchangeRates()
     }
 }

@@ -1,5 +1,5 @@
 //
-//  Group+CoreDataProperties.swift
+//  CDGroup+CoreDataProperties.swift
 //  CurrencyConverter
 //
 //  Created by Artem Shcherban on 05.08.2022.
@@ -9,10 +9,10 @@
 import Foundation
 import CoreData
 
-extension Group {
+extension CDGroup {
     @nonobjc public
-    class func fetchRequest() -> NSFetchRequest<Group> {
-        return NSFetchRequest<Group>(entityName: "Group")
+    class func fetchRequest() -> NSFetchRequest<CDGroup> {
+        return NSFetchRequest<CDGroup>(entityName: "CDGroup")
     }
 
     @NSManaged public var visible: Bool
@@ -20,5 +20,5 @@ extension Group {
     @NSManaged public var key: Int16
 }
 
-extension Group: Identifiable {
+extension CDGroup: Identifiable {
 }

@@ -26,10 +26,6 @@ struct CurrencyContainerManager {
         currencyContainerDataRepository.getFromContainer(name: name)
     }
     
-//    func fetchCurrencyContainer(for tableViewName: String) -> CurrencyContainer? {
-//      currencyContainerDataRepository.get(for: tableViewName)
-//    }
-    
     func updateContainer(_ container: String, with currency: Currency) {
         currencyContainerDataRepository.update(container: container, with: currency)
     }

@@ -12,8 +12,7 @@ protocol ExchangeRateRepository {
     func create(exchangeRate: ExchangeRate)
     func getAll() -> [ExchangeRate]?
     func get(byCurrency number: Int16) -> ExchangeRate?
-    func update(exchangeRate: ExchangeRate)
-    func delete(byCurrency number: Int16)
+    func deleteExchangeRates()
 }
 
 struct ExchangeRateDataRepository: ExchangeRateRepository {
@@ -37,10 +36,8 @@ struct ExchangeRateDataRepository: ExchangeRateRepository {
         return cdExchangeRate.convertToExchangeRate()
     }
     
-    func update(exchangeRate: ExchangeRate) {
-    }
-    
-    func delete(byCurrency number: Int16) {
+    func deleteExchangeRates() {
+        coreDataStack.deleteFromCoreData(entityName: "CDExchangeRate")
     }
     
     private func getCDExchangeRate(byCurrency number: Int16) -> CDExchangeRate? {

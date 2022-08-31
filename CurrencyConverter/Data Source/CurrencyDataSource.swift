@@ -13,6 +13,7 @@ class CurrencyDataSource: NSObject, UITableViewDataSource {
     
 //    lazy var currencyList: [CurrencyOLD] = []
 //    lazy var filteredCurrency: [CurrencyOLD] = []
+//    lazy var groups: [CDGroup] = []
     lazy var currencyList: [Currency] = []
     lazy var filteredCurrency: [Currency] = []
     lazy var groups: [Group] = []

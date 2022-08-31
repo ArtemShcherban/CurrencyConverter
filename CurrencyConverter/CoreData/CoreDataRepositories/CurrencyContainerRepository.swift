@@ -22,13 +22,13 @@ struct CurrencyContainerDataRepository: CurrencyContainerRepository {
     private let coreDataStack = CoreDataStack.shared
     
     func getCount() -> Int {
-        let containerCount = coreDataStack.fetchManagedObjectCount(managedObgect: CDCurrencyContainer.self)
+        let containerCount = coreDataStack.fetchManagedObjectCount(managedObgect: CDContainer.self)
         return containerCount
     }
     
     func createCurrenciesContainers() {
-        _ = RateCurrencyContainer(context: coreDataStack.managedContext)
-        _ = ConverterCurrencyContainer(context: coreDataStack.managedContext)
+        _ = CDRateContainer(context: coreDataStack.managedContext)
+        _ = CDConverterContainer(context: coreDataStack.managedContext)
         coreDataStack.saveContext()
     }
     
@@ -84,18 +84,18 @@ struct CurrencyContainerDataRepository: CurrencyContainerRepository {
         coreDataStack.saveContext()
     }
     
-    private func getCDCurrencyContainer(name: String) -> CDCurrencyContainer? {
+    private func getCDCurrencyContainer(name: String) -> CDContainer? {
         switch name {
         case ContainerConstants.Name.rate:
             guard
-                let result = coreDataStack.fetchManagedObject(managedObject: RateCurrencyContainer.self),
+                let result = coreDataStack.fetchManagedObject(managedObject: CDRateContainer.self),
                 let container = result.first else {
                 return nil
             }
             return container
         case ContainerConstants.Name.converter:
             guard
-                let result = coreDataStack.fetchManagedObject(managedObject: ConverterCurrencyContainer.self),
+                let result = coreDataStack.fetchManagedObject(managedObject: CDConverterContainer.self),
                 let container = result.first else {
                 return nil
             }

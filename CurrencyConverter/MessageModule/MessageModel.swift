@@ -53,16 +53,16 @@ class MessageModel {
         }
         
         for (index, currency) in currencies.enumerated() {
-//            let sum = converterModel.doCalculation(for: currency)
-//            let sumString = sum.decimalFormat()
-//            let currencyName = (sum <= 2) ? currency.currency : currency.currencyPlural
-//            if index != currencies.count - 1 {
-//                let subString = "\(sumString) \(currencyName) or\n"
-//                message += subString
-//            } else {
-//                let subString = "\(sumString) \(currencyName)."
-//                message += subString
-//            }
+            let sum = converterModel.doCalculation(for: currency)
+            let sumString = sum.decimalFormat()
+            let currencyName = (sum <= 2) ? currency.currency : currency.currencyPlural
+            if index != currencies.count - 1 {
+                let subString = "\(sumString) \(currencyName) or\n"
+                message += subString
+            } else {
+                let subString = "\(sumString) \(currencyName)."
+                message += subString
+            }
         }
         return message
     }

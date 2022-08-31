@@ -29,28 +29,28 @@ extension CDCurrency {
 // MARK: Generated accessors for container
 extension CDCurrency {
     @objc(insertObject:inContainerAtIndex:)
-    @NSManaged public func insertIntoContainer(_ value: CDCurrencyContainer, at idx: Int)
+    @NSManaged public func insertIntoContainer(_ value: CDContainer, at idx: Int)
 
     @objc(removeObjectFromContainerAtIndex:)
     @NSManaged public func removeFromContainer(at idx: Int)
 
     @objc(insertContainer:atIndexes:)
-    @NSManaged public func insertIntoContainer(_ values: [CDCurrencyContainer], at indexes: NSIndexSet)
+    @NSManaged public func insertIntoContainer(_ values: [CDContainer], at indexes: NSIndexSet)
 
     @objc(removeContainerAtIndexes:)
     @NSManaged public func removeFromContainer(at indexes: NSIndexSet)
 
     @objc(replaceObjectInContainerAtIndex:withObject:)
-    @NSManaged public func replaceContainer(at idx: Int, with value: CDCurrencyContainer)
+    @NSManaged public func replaceContainer(at idx: Int, with value: CDContainer)
 
     @objc(replaceContainerAtIndexes:withContainer:)
-    @NSManaged public func replaceContainer(at indexes: NSIndexSet, with values: [CDCurrencyContainer])
+    @NSManaged public func replaceContainer(at indexes: NSIndexSet, with values: [CDContainer])
 
     @objc(addContainerObject:)
-    @NSManaged public func addToContainer(_ value: CDCurrencyContainer)
+    @NSManaged public func addToContainer(_ value: CDContainer)
 
     @objc(removeContainerObject:)
-    @NSManaged public func removeFromContainer(_ value: CDCurrencyContainer)
+    @NSManaged public func removeFromContainer(_ value: CDContainer)
 
     @objc(addContainer:)
     @NSManaged public func addToContainer(_ values: NSOrderedSet)

@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="20086" systemVersion="21F79" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="CDContainer" representedClassName=".CDContainer" syncable="YES">
+        <relationship name="currencies" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CDCurrency" inverseName="container" inverseEntity="CDCurrency"/>
+    </entity>
+    <entity name="CDConverterContainer" representedClassName=".CDConverterContainer" parentEntity="CDContainer" syncable="YES"/>
     <entity name="CDCurrency" representedClassName=".CDCurrency" syncable="YES">
         <attribute name="buy" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="code" optional="YES" attributeType="String"/>
@@ -9,44 +13,29 @@
         <attribute name="groupKey" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="sell" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <relationship name="container" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CDCurrencyContainer" inverseName="currencies" inverseEntity="CDCurrencyContainer"/>
-    </entity>
-    <entity name="CDCurrencyContainer" representedClassName=".CDCurrencyContainer" syncable="YES">
-        <relationship name="currencies" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CDCurrency" inverseName="container" inverseEntity="CDCurrency"/>
+        <relationship name="container" optional="YES" toMany="YES" deletionRule="Nullify" ordered="YES" destinationEntity="CDContainer" inverseName="currencies" inverseEntity="CDContainer"/>
     </entity>
     <entity name="CDExchangeRate" representedClassName=".CDExchangeRate" syncable="YES">
         <attribute name="buy" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
         <attribute name="currencyNumber" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="sell" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
     </entity>
-    <entity name="CDLastUpdateDate" representedClassName=".CDLastUpdateDate" syncable="YES">
-        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
-    </entity>
-    <entity name="ConverterCurrencyContainer" representedClassName=".ConverterCurrencyContainer" parentEntity="CDCurrencyContainer" syncable="YES"/>
-    <entity name="CurrencyOLD" representedClassName=".CurrencyOLD" syncable="YES">
-        <attribute name="buy" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-        <attribute name="code" optional="YES" attributeType="String"/>
-        <attribute name="country" optional="YES" attributeType="String"/>
-        <attribute name="currency" optional="YES" attributeType="String"/>
-        <attribute name="currencyPlural" optional="YES" attributeType="String"/>
-        <attribute name="groupKey" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="number" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="sell" optional="YES" attributeType="Double" defaultValueString="0.0" usesScalarValueType="YES"/>
-    </entity>
-    <entity name="Group" representedClassName=".Group" syncable="YES">
+    <entity name="CDGroup" representedClassName=".CDGroup" syncable="YES">
         <attribute name="key" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
         <attribute name="name" optional="YES" attributeType="String"/>
         <attribute name="visible" optional="YES" attributeType="Boolean" usesScalarValueType="YES"/>
     </entity>
-    <entity name="RateCurrencyContainer" representedClassName=".RateCurrencyContainer" parentEntity="CDCurrencyContainer" syncable="YES"/>
+    <entity name="CDLastUpdateDate" representedClassName=".CDLastUpdateDate" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+    </entity>
+    <entity name="CDRateContainer" representedClassName=".CDRateContainer" parentEntity="CDContainer" syncable="YES"/>
     <elements>
-        <element name="CDCurrency" positionX="-36" positionY="9" width="128" height="164"/>
-        <element name="CDCurrencyContainer" positionX="0" positionY="117" width="128" height="44"/>
-        <element name="CDExchangeRate" positionX="27" positionY="108" width="128" height="74"/>
-        <element name="CDLastUpdateDate" positionX="18" positionY="99" width="128" height="44"/>
-        <element name="ConverterCurrencyContainer" positionX="54" positionY="144" width="128" height="29"/>
-        <element name="CurrencyOLD" positionX="36" positionY="117" width="128" height="149"/>
-        <element name="Group" positionX="27" positionY="126" width="128" height="74"/>
-        <element name="RateCurrencyContainer" positionX="9" positionY="90" width="128" height="29"/>
+        <element name="CDCurrency" positionX="-407.83984375" positionY="-190.79296875" width="128" height="164"/>
+        <element name="CDContainer" positionX="-122.44140625" positionY="12.5234375" width="128" height="44"/>
+        <element name="CDExchangeRate" positionX="-217.10546875" positionY="143.3125" width="128" height="74"/>
+        <element name="CDGroup" positionX="-215.625" positionY="304.578125" width="128" height="74"/>
+        <element name="CDLastUpdateDate" positionX="-215.59375" positionY="236.31640625" width="128" height="44"/>
+        <element name="CDConverterContainer" positionX="54" positionY="144" width="128" height="29"/>
+        <element name="CDRateContainer" positionX="45.046875" positionY="-136.6875" width="128" height="29"/>
     </elements>
 </model>

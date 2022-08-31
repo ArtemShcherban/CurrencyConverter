@@ -10,13 +10,13 @@ import UIKit
 final class CurrencyCell: UITableViewCell {
     static let reuseIdentifier = String(describing: CurrencyCell.self)
     
-    private let dataSource = CurrencyDataSource.shared
+    private let currencyDataSource = CurrencyDataSource.shared
     
     /// Сonfigures the cell with complete data
     func configure(with indexPath: IndexPath) {
         var content = defaultContentConfiguration()
-        let currency = dataSource.currencyList
-            .filter { $0.groupKey == dataSource.groups
+        let currency = currencyDataSource.currencyList
+            .filter { $0.groupKey == currencyDataSource.groups
             .filter { $0.visible == true }[indexPath.section].key
             }[indexPath.row]
         content.attributedText = createTitle(currency.code, currency.currency)
@@ -26,7 +26,7 @@ final class CurrencyCell: UITableViewCell {
     /// Configures the cell with filtered data
     func configureWith(indexPath: IndexPath) {
         var content = defaultContentConfiguration()
-        let currency = dataSource.filteredCurrency[indexPath.row]
+        let currency = currencyDataSource.filteredCurrency[indexPath.row]
         content.attributedText = createTitle(currency.code, currency.currency)
         contentConfiguration = content
     }

@@ -42,7 +42,7 @@ class MainViewController: UIViewController, MessageModelDelegate {
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         debugPrint(path[0])
 //                coreDataStack.deleteFromCoreData(entityName: "Currency")🥸
-//                coreDataStack.deleteFromCoreData(entityName: "Group")
+//                coreDataStack.deleteFromCoreData(entityName: "CDGroup")
 //                coreDataStack.deleteAllEntities()
         
         mainAsyncQueue = AsyncQueue.main

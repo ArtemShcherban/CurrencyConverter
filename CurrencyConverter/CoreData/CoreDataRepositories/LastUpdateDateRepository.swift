@@ -12,7 +12,6 @@ protocol LastUpdateDateRepository {
     func create(lastUpdateDate: Date)
     func get() -> Date?
     func update(with lastUpdateDate: Date)
-    func delete()
 }
 
 struct LastUpdateDateDataRepository: LastUpdateDateRepository {
@@ -34,14 +33,10 @@ struct LastUpdateDateDataRepository: LastUpdateDateRepository {
         coreDataStack.saveContext()
     }
     
-    func delete() {
-    }
-    
     private func getCDLastUpdateDate() -> CDLastUpdateDate? {
         guard
             let result = coreDataStack.fetchManagedObject(managedObject: CDLastUpdateDate.self),
             let cdLastUpdateDate = result.first else {
-            print("LastUpdateDate was not found")
             return nil
         }
         return cdLastUpdateDate
