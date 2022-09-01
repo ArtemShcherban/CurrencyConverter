@@ -17,12 +17,12 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConverterWindowView" customModule="CurrencyConverter" customModuleProvider="target">
             <connections>
                 <outlet property="addCurrencyButton" destination="1k8-5E-1Wv" id="tHZ-RG-6TO"/>
+                <outlet property="arrowButton" destination="9BC-F7-9hY" id="Wlf-cM-mDI"/>
                 <outlet property="baseCurrencyButton" destination="256-Ro-6ZW" id="8Vb-yT-COK"/>
                 <outlet property="buyButton" destination="A39-Ul-ino" id="fHi-H9-46h"/>
                 <outlet property="contentView" destination="BBq-NP-G5L" id="dcD-Wb-I6C"/>
                 <outlet property="converterTableView" destination="94T-BW-afh" id="a9B-12-MvJ"/>
                 <outlet property="inputAmountField" destination="kvg-aA-lU0" id="lpv-Oj-nA3"/>
-                <outlet property="rotateButton" destination="9BC-F7-9hY" id="Wlf-cM-mDI"/>
                 <outlet property="sellButton" destination="CPV-80-a2e" id="hVF-nH-8C0"/>
                 <outlet property="shareRatesButton" destination="rAp-D3-aqN" id="6a6-o1-755"/>
             </connections>
@@ -141,7 +141,7 @@
                         <action selector="shareRatesButtonPressed:" destination="-1" eventType="touchUpInside" id="PtU-Tx-yO8"/>
                     </connections>
                 </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9BC-F7-9hY">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9BC-F7-9hY" userLabel="Arrow Button">
                     <rect key="frame" x="16" y="343" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="Wul-lH-mlL"/>
@@ -152,7 +152,7 @@
                         <color key="titleColor" name="AccentColor"/>
                     </state>
                     <connections>
-                        <action selector="rotateButtonPressed:" destination="-1" eventType="touchUpInside" id="HIE-mW-KlN"/>
+                        <action selector="arrowButtonPressed:" destination="-1" eventType="touchUpInside" id="V2K-hr-WIL"/>
                     </connections>
                 </button>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="input amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kvg-aA-lU0" customClass="AdjustableTextField" customModule="CurrencyConverter" customModuleProvider="target">

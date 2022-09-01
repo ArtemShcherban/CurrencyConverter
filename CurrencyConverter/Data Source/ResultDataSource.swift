@@ -14,8 +14,6 @@ class ResultDataSource: NSObject, UITableViewDataSource {
     
     var baseCurrency: Currency?
     lazy var selectedCurrencies: [Currency] = []
-//    lazy var selectedCurrencies: [CurrencyOLD] = []
-//    var baseCurrency: CurrencyOLD?
     private lazy var resultModel = ResultModel.shared
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -24,7 +22,7 @@ class ResultDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch tableView.tag {
-        case 0:
+        case 0, 2:
             return rateCell(for: tableView, at: indexPath)
         case 1:
             return totalAmountCell(for: tableView, at: indexPath)

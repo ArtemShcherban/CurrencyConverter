@@ -49,6 +49,15 @@
 		F45E043E28AA639700902C73 /* TotalAmountCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45E043D28AA639700902C73 /* TotalAmountCell.xib */; };
 		F45E044028AA671E00902C73 /* TotalAmountCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E043F28AA671E00902C73 /* TotalAmountCell.swift */; };
 		F45E044228AB5F7F00902C73 /* ConverterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E044128AB5F7F00902C73 /* ConverterModel.swift */; };
+		F47F0BB628C09E6B0029E224 /* HistoryRateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BB528C09E6B0029E224 /* HistoryRateModel.swift */; };
+		F47F0BB928C0A8DA0029E224 /* CDHistoricalRate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BB728C0A8DA0029E224 /* CDHistoricalRate+CoreDataClass.swift */; };
+		F47F0BBA28C0A8DA0029E224 /* CDHistoricalRate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BB828C0A8DA0029E224 /* CDHistoricalRate+CoreDataProperties.swift */; };
+		F47F0BBC28C0A9E20029E224 /* HistoricalRateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BBB28C0A9E20029E224 /* HistoricalRateRepository.swift */; };
+		F47F0BBE28C0AAF70029E224 /* HistoricalRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BBD28C0AAF70029E224 /* HistoricalRate.swift */; };
+		F47F0BC128C0C0480029E224 /* NationalBankBulletin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BBF28C0C0480029E224 /* NationalBankBulletin.swift */; };
+		F47F0BC228C0C0490029E224 /* NationalBankRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BC028C0C0480029E224 /* NationalBankRate.swift */; };
+		F47F0BC528C0D7810029E224 /* CDHistoricalBulletin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BC328C0D7810029E224 /* CDHistoricalBulletin+CoreDataClass.swift */; };
+		F47F0BC628C0D7810029E224 /* CDHistoricalBulletin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BC428C0D7810029E224 /* CDHistoricalBulletin+CoreDataProperties.swift */; };
 		F49AB41328B9E3BF00868776 /* ExchangeRateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49AB41228B9E3BF00868776 /* ExchangeRateManager.swift */; };
 		F49AB41628B9E43200868776 /* ExchangeRateRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49AB41528B9E43200868776 /* ExchangeRateRepository.swift */; };
 		F49AB41828B9FCA100868776 /* MonoBankExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49AB41728B9FCA100868776 /* MonoBankExchangeRate.swift */; };
@@ -86,6 +95,8 @@
 		F4AA6103288E5A5200E191E6 /* CurrencyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AA6102288E5A5200E191E6 /* CurrencyCell.swift */; };
 		F4BA22ED2897A237002F3B54 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4BA22EC2897A237002F3B54 /* CoreDataStack.swift */; };
 		F4C7FAEB28B8A7C100E92A43 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C7FAEA28B8A7C100E92A43 /* MapKit.framework */; };
+		F4D35F0B28BF80C0001FE74A /* HistoryRateView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4D35F0A28BF80C0001FE74A /* HistoryRateView.xib */; };
+		F4D35F0D28BF8438001FE74A /* HistoryRateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D35F0C28BF8438001FE74A /* HistoryRateView.swift */; };
 		F4DCC2F428AD10A100DC4D09 /* DoubleFormatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC2F328AD10A100DC4D09 /* DoubleFormatExtension.swift */; };
 		F4DCC2F628B4B41200DC4D09 /* MainViewAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC2F528B4B41200DC4D09 /* MainViewAnimationExtension.swift */; };
 		F4DCC2F828B4B50C00DC4D09 /* TitleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC2F728B4B50C00DC4D09 /* TitleConstants.swift */; };
@@ -151,6 +162,7 @@
 		F42CD258288FE8320010FA7D /* SFProText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.ttf"; sourceTree = "<group>"; };
 		F435D1BC2887E5EB00B27418 /* AdjustableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustableTextField.swift; sourceTree = "<group>"; };
 		F4429C6A289FB63400070620 /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
+		F44B72F128BF962200E06D54 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
 		F45137BD289D280C00B2190D /* CurrencyDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDataSource.swift; sourceTree = "<group>"; };
 		F45137BF289E326A00B2190D /* ResultDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultDataSource.swift; sourceTree = "<group>"; };
 		F45137C1289E372200B2190D /* ResultModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
@@ -176,6 +188,15 @@
 		F45E043D28AA639700902C73 /* TotalAmountCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TotalAmountCell.xib; sourceTree = "<group>"; };
 		F45E043F28AA671E00902C73 /* TotalAmountCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TotalAmountCell.swift; sourceTree = "<group>"; };
 		F45E044128AB5F7F00902C73 /* ConverterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterModel.swift; sourceTree = "<group>"; };
+		F47F0BB528C09E6B0029E224 /* HistoryRateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRateModel.swift; sourceTree = "<group>"; };
+		F47F0BB728C0A8DA0029E224 /* CDHistoricalRate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDHistoricalRate+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F47F0BB828C0A8DA0029E224 /* CDHistoricalRate+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDHistoricalRate+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F47F0BBB28C0A9E20029E224 /* HistoricalRateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalRateRepository.swift; sourceTree = "<group>"; };
+		F47F0BBD28C0AAF70029E224 /* HistoricalRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoricalRate.swift; sourceTree = "<group>"; };
+		F47F0BBF28C0C0480029E224 /* NationalBankBulletin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NationalBankBulletin.swift; sourceTree = "<group>"; };
+		F47F0BC028C0C0480029E224 /* NationalBankRate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NationalBankRate.swift; sourceTree = "<group>"; };
+		F47F0BC328C0D7810029E224 /* CDHistoricalBulletin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDHistoricalBulletin+CoreDataClass.swift"; sourceTree = "<group>"; };
+		F47F0BC428C0D7810029E224 /* CDHistoricalBulletin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDHistoricalBulletin+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F49AB41228B9E3BF00868776 /* ExchangeRateManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateManager.swift; sourceTree = "<group>"; };
 		F49AB41528B9E43200868776 /* ExchangeRateRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateRepository.swift; sourceTree = "<group>"; };
 		F49AB41728B9FCA100868776 /* MonoBankExchangeRate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MonoBankExchangeRate.swift; sourceTree = "<group>"; };
@@ -213,6 +234,8 @@
 		F4AA6102288E5A5200E191E6 /* CurrencyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyCell.swift; sourceTree = "<group>"; };
 		F4BA22EC2897A237002F3B54 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		F4C7FAEA28B8A7C100E92A43 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		F4D35F0A28BF80C0001FE74A /* HistoryRateView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HistoryRateView.xib; sourceTree = "<group>"; };
+		F4D35F0C28BF8438001FE74A /* HistoryRateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryRateView.swift; sourceTree = "<group>"; };
 		F4DCC2F328AD10A100DC4D09 /* DoubleFormatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleFormatExtension.swift; sourceTree = "<group>"; };
 		F4DCC2F528B4B41200DC4D09 /* MainViewAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewAnimationExtension.swift; sourceTree = "<group>"; };
 		F4DCC2F728B4B50C00DC4D09 /* TitleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleConstants.swift; sourceTree = "<group>"; };
@@ -313,8 +336,11 @@
 				F49AB43328BA3F3A00868776 /* Currency.swift */,
 				F4DE3C1628BB36F8000F6D04 /* CurrencyContainer.swift */,
 				F4056032288946DA007CD5AA /* ExchangeRate.swift */,
+				F47F0BBD28C0AAF70029E224 /* HistoricalRate.swift */,
 				F49AB41728B9FCA100868776 /* MonoBankExchangeRate.swift */,
 				F4056030288941F0007CD5AA /* PrivatBankExchangeRate.swift */,
+				F47F0BBF28C0C0480029E224 /* NationalBankBulletin.swift */,
+				F47F0BC028C0C0480029E224 /* NationalBankRate.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -371,6 +397,7 @@
 				F4429C6A289FB63400070620 /* DateModel.swift */,
 				F45137C1289E372200B2190D /* ResultModel.swift */,
 				F45E044128AB5F7F00902C73 /* ConverterModel.swift */,
+				F47F0BB528C09E6B0029E224 /* HistoryRateModel.swift */,
 			);
 			path = MainModel;
 			sourceTree = "<group>";
@@ -379,8 +406,9 @@
 			isa = PBXGroup;
 			children = (
 				F4A2F8982887C57E007948A9 /* EllipsesView.xib */,
-				F4A2F88F288710B1007948A9 /* ConverterWindowView.xib */,
 				F405604A288D0932007CD5AA /* RatesWindowView.xib */,
+				F4A2F88F288710B1007948A9 /* ConverterWindowView.xib */,
+				F4D35F0A28BF80C0001FE74A /* HistoryRateView.xib */,
 				F4AA60EB288D4BCE00E191E6 /* RateCell.xib */,
 				F45E03EA28A2828900902C73 /* InputAmountCell.xib */,
 				F45E043D28AA639700902C73 /* TotalAmountCell.xib */,
@@ -411,6 +439,10 @@
 		F4532CAC2883E93300A05344 = {
 			isa = PBXGroup;
 			children = (
+				F47F0BC328C0D7810029E224 /* CDHistoricalBulletin+CoreDataClass.swift */,
+				F47F0BC428C0D7810029E224 /* CDHistoricalBulletin+CoreDataProperties.swift */,
+				F47F0BB728C0A8DA0029E224 /* CDHistoricalRate+CoreDataClass.swift */,
+				F47F0BB828C0A8DA0029E224 /* CDHistoricalRate+CoreDataProperties.swift */,
 				F4DE3C1928BB586A000F6D04 /* CDContainer+CoreDataClass.swift */,
 				F4DE3C1A28BB586A000F6D04 /* CDContainer+CoreDataProperties.swift */,
 				F49AB42928BA3A4400868776 /* CDCurrency+CoreDataClass.swift */,
@@ -509,8 +541,9 @@
 			isa = PBXGroup;
 			children = (
 				F405604E288D1403007CD5AA /* RatesWindowView.swift */,
-				F435D1BC2887E5EB00B27418 /* AdjustableTextField.swift */,
 				F4A2F88D28870F53007948A9 /* ConverterWindowView.swift */,
+				F4D35F0C28BF8438001FE74A /* HistoryRateView.swift */,
+				F435D1BC2887E5EB00B27418 /* AdjustableTextField.swift */,
 				F4532CEA2884056400A05344 /* EllipseView.swift */,
 				F4A2F89A2887C728007948A9 /* EllipsesView.swift */,
 				F405604C288D1017007CD5AA /* RateTextLabel.swift */,
@@ -551,6 +584,7 @@
 				F4DE3C1028BB3316000F6D04 /* CurrencyContainerRepository.swift */,
 				F49AB41528B9E43200868776 /* ExchangeRateRepository.swift */,
 				F4E0363A28BE1FBD00BD64ED /* GroupRepository.swift */,
+				F47F0BBB28C0A9E20029E224 /* HistoricalRateRepository.swift */,
 				F49AB41D28BA0B2C00868776 /* LastUpdateDateRepository.swift */,
 			);
 			path = CoreDataRepositories;
@@ -560,6 +594,7 @@
 			isa = PBXGroup;
 			children = (
 				F4A2F89128871BF7007948A9 /* Lato-Regular.ttf */,
+				F44B72F128BF962200E06D54 /* Lato-Bold.ttf */,
 				F4A2F88B28870A28007948A9 /* Lato-ExtraBold.ttf */,
 				F4A2F89328871DD4007948A9 /* Lato-SemiBold.ttf */,
 				F42CD258288FE8320010FA7D /* SFProText-Regular.ttf */,
@@ -769,6 +804,7 @@
 				F42CD259288FE8320010FA7D /* SFProText-Regular.ttf in Resources */,
 				F4A2F8992887C57E007948A9 /* EllipsesView.xib in Resources */,
 				F4532CC02883E93300A05344 /* Main.storyboard in Resources */,
+				F4D35F0B28BF80C0001FE74A /* HistoryRateView.xib in Resources */,
 				F4A2F89428871DD4007948A9 /* Lato-SemiBold.ttf in Resources */,
 				F405603A288966B5007CD5AA /* MainView.xib in Resources */,
 			);
@@ -888,15 +924,18 @@
 				F4A2F88E28870F53007948A9 /* ConverterWindowView.swift in Sources */,
 				F49AB41328B9E3BF00868776 /* ExchangeRateManager.swift in Sources */,
 				F4429C6B289FB63400070620 /* DateModel.swift in Sources */,
+				F47F0BC228C0C0490029E224 /* NationalBankRate.swift in Sources */,
 				F4ED8B7F28993211006DF9AE /* NumberConstants.swift in Sources */,
 				F4A09AAD289BD338009D138E /* CoreDataError.swift in Sources */,
 				F4DE3C1C28BB586A000F6D04 /* CDContainer+CoreDataProperties.swift in Sources */,
+				F47F0BBA28C0A8DA0029E224 /* CDHistoricalRate+CoreDataProperties.swift in Sources */,
 				F4A6202E28912909009E3FB8 /* CurrencyListViewController.swift in Sources */,
 				F405603E28896967007CD5AA /* MainViewController.swift in Sources */,
 				F4AA60E3288D32D500E191E6 /* PopUpWindowView.swift in Sources */,
 				F45E044228AB5F7F00902C73 /* ConverterModel.swift in Sources */,
 				F49AB41E28BA0B2C00868776 /* LastUpdateDateRepository.swift in Sources */,
 				F4DE3C1128BB3316000F6D04 /* CurrencyContainerRepository.swift in Sources */,
+				F47F0BC528C0D7810029E224 /* CDHistoricalBulletin+CoreDataClass.swift in Sources */,
 				F405604F288D1403007CD5AA /* RatesWindowView.swift in Sources */,
 				F4056045288984CE007CD5AA /* Dispatcher.swift in Sources */,
 				F4DCC2F828B4B50C00DC4D09 /* TitleConstants.swift in Sources */,
@@ -909,6 +948,7 @@
 				F4DCC33F28B5EE5100DC4D09 /* AlertConstants.swift in Sources */,
 				F45E044028AA671E00902C73 /* TotalAmountCell.swift in Sources */,
 				F49AB43428BA3F3A00868776 /* Currency.swift in Sources */,
+				F47F0BBE28C0AAF70029E224 /* HistoricalRate.swift in Sources */,
 				F4DCC2F628B4B41200DC4D09 /* MainViewAnimationExtension.swift in Sources */,
 				F4E0363D28BE20EC00BD64ED /* GroupManager.swift in Sources */,
 				F4056025288919AF007CD5AA /* URLModel.swift in Sources */,
@@ -930,6 +970,7 @@
 				F45E043128A4FA7400902C73 /* CDConverterContainer+CoreDataClass.swift in Sources */,
 				F4532CB92883E93300A05344 /* AppDelegate.swift in Sources */,
 				F49AB43228BA3C5A00868776 /* CurrencyRepository.swift in Sources */,
+				F47F0BBC28C0A9E20029E224 /* HistoricalRateRepository.swift in Sources */,
 				F45E043628A62ABB00902C73 /* ContainerConstants.swift in Sources */,
 				F4056033288946DA007CD5AA /* ExchangeRate.swift in Sources */,
 				F4056049288988CE007CD5AA /* SyncQueue.swift in Sources */,
@@ -938,20 +979,25 @@
 				F4A09AC8289D210C009D138E /* CDGroup+CoreDataClass.swift in Sources */,
 				F4532CBB2883E93300A05344 /* SceneDelegate.swift in Sources */,
 				F405602A28891CBE007CD5AA /* NetworkService.swift in Sources */,
+				F4D35F0D28BF8438001FE74A /* HistoryRateView.swift in Sources */,
 				F405602C2889202D007CD5AA /* NetworkServiceError.swift in Sources */,
 				F405603C288966EF007CD5AA /* MainView.swift in Sources */,
+				F47F0BB628C09E6B0029E224 /* HistoryRateModel.swift in Sources */,
 				F4056031288941F0007CD5AA /* PrivatBankExchangeRate.swift in Sources */,
 				F49AB41C28BA0A6600868776 /* CDLastUpdateDate+CoreDataProperties.swift in Sources */,
 				F4532CEB2884056400A05344 /* EllipseView.swift in Sources */,
 				F405602828891AE1007CD5AA /* URLConstants.swift in Sources */,
 				F4A2F8962887C4D7007948A9 /* UIViewFixInExtension.swift in Sources */,
+				F47F0BC628C0D7810029E224 /* CDHistoricalBulletin+CoreDataProperties.swift in Sources */,
 				F4A09AA6289BBF3E009D138E /* CDExchangeRate+CoreDataClass.swift in Sources */,
 				F4AA60EC288D4BCE00E191E6 /* RateCell.swift in Sources */,
 				F4DCC33D28B4E98400DC4D09 /* MessageModel.swift in Sources */,
 				F4DE3C3028BBA91E000F6D04 /* CurrencyConverter.xcdatamodeld in Sources */,
 				F49AB43628BA417B00868776 /* CurrencyManager.swift in Sources */,
+				F47F0BC128C0C0480029E224 /* NationalBankBulletin.swift in Sources */,
 				F45137C0289E326A00B2190D /* ResultDataSource.swift in Sources */,
 				F4AA6103288E5A5200E191E6 /* CurrencyCell.swift in Sources */,
+				F47F0BB928C0A8DA0029E224 /* CDHistoricalRate+CoreDataClass.swift in Sources */,
 				F4DCC2F428AD10A100DC4D09 /* DoubleFormatExtension.swift in Sources */,
 				F4DE3C1728BB36F8000F6D04 /* CurrencyContainer.swift in Sources */,
 				F49AB42E28BA3A4400868776 /* CDCurrency+CoreDataProperties.swift in Sources */,

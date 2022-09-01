@@ -23,8 +23,17 @@ enum URLConstants {
         static let coursid = "coursid"
         static let five = "5"
     }
+    
+    enum NationalBank {
+        static let scheme = "https"
+        static let baseURL = "api.privatbank.ua"
+        static let path = "/p24api/exchange_rates"
+        static let query = "json"
+        static let date = "date"
+    }
 }
 
+//https://api.privatbank.ua/p24api/exchange_rates?json&date=01.12.2014
 // https://api.openweathermap.org/data/2.5/weather?q=London&appid=59a2b233df10c0b64ce48ebeb844ddf2
 // https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5
-// https://api.privatbank.ua/p24api/pubinfo?json%26exchange%26coursid=5
+

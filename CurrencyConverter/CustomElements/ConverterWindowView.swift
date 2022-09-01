@@ -16,7 +16,7 @@ final class ConverterWindowView: PopUpWindowView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var sellButton: UIButton!
     @IBOutlet weak var buyButton: UIButton!
-    @IBOutlet weak var rotateButton: UIButton!
+    @IBOutlet weak var arrowButton: UIButton!
     @IBOutlet weak var converterTableView: UITableView!
     @IBOutlet weak var addCurrencyButton: UIButton!
     @IBOutlet weak var baseCurrencyButton: UIButton!
@@ -84,6 +84,7 @@ final class ConverterWindowView: PopUpWindowView {
         deselectedButton.isEnabled = true
         deselectedButton.backgroundColor = .white
     }
+
     
     func createAlertController(with message: (title: String, message: String)) -> UIAlertController {
         let alertController = UIAlertController(
@@ -112,7 +113,7 @@ final class ConverterWindowView: PopUpWindowView {
         popUpWindowDelegate?.addButtonPressed()
     }
     
-    @IBAction func rotateButtonPressed(_ sender: Any) {
+    @IBAction func arrowButtonPressed(_ sender: Any) {
         popUpWindowDelegate?.rotateButtonPressed()
     }
     @IBAction func shareRatesButtonPressed(_ sender: Any) {

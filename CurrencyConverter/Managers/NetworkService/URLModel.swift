@@ -17,6 +17,18 @@ final class URLModel {
         return url
     }
     
+    func createNationalBankURL(with date: String) -> URL? {
+        var components = URLComponents()
+        components.scheme = URLConstants.NationalBank.scheme
+        components.host = URLConstants.NationalBank.baseURL
+        components.path = URLConstants.NationalBank.path
+        let queryItemQuery = URLQueryItem(name: URLConstants.NationalBank.query, value: nil)
+        let queryItemDate = URLQueryItem(name: URLConstants.NationalBank.date, value: date)
+        components.queryItems = [queryItemQuery, queryItemDate]
+        let url = components.url
+        return url
+    }
+    
     func createPrivatBankURL() -> URL? {
         var components = URLComponents()
         components.scheme = URLConstants.PrivatBank.scheme

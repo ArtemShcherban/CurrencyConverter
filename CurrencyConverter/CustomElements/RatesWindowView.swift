@@ -12,7 +12,7 @@ final class RatesWindowView: PopUpWindowView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var ratesTableView: UITableView!
     @IBOutlet weak var addButton: UIButton!
-    @IBOutlet weak var rotateButton: UIButton!
+    @IBOutlet weak var arrowButton: UIButton!
     
     lazy var dataSource = ResultDataSource.shared
     
@@ -46,7 +46,7 @@ final class RatesWindowView: PopUpWindowView {
         popUpWindowDelegate?.addButtonPressed()
     }
     
-    @IBAction func rotateButtonPressed(_ sender: Any) {
+    @IBAction func arrowButtonPressed(_ sender: Any) {
         popUpWindowDelegate?.rotateButtonPressed()
     }
 }

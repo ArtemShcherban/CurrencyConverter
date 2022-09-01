@@ -17,7 +17,7 @@ final class ExchangeRateModel {
     
     func createExchangeRate(bankData: [MonoBankExchangeRate]) {
         bankData.forEach { monoBankExchangeRate in
-            exchangeRateManager.deleteExchangeRates()
+//            exchangeRateManager.deleteExchangeRates()
             if monoBankExchangeRate.currencyNumberB == 980 {
                 let exchangeRate = ExchangeRate(from: monoBankExchangeRate)
                 exchangeRateManager.createExchangeRate(exchangeRate)

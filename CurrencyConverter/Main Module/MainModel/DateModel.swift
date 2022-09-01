@@ -11,30 +11,42 @@ import CoreData
 final class DateModel {
     private let lastUpdateDateManager = LastUpdateDateManager()
     
-    private func lastUpdateDate() -> Date {
+    func lastUpdateDate() -> String {
         guard
             let lastUpdateDate = lastUpdateDateManager.fetchLastUdateDate() else {
             let defaultDate = Date(timeIntervalSince1970: 197208000) // "1 Apr 1976 12:00:00"
             lastUpdateDateManager.createLastUpdateDate(defaultDate)
-            return defaultDate
+            return formattedDate(date: defaultDate)
         }
-        return lastUpdateDate
+        return formattedDate(date: lastUpdateDate)
     }
     
     func received(new date: Date) {
         lastUpdateDateManager.updateLastUpdateDate(with: date)
     }
     
-    func formattedDate() -> String {
+    func minimumDate() -> Date {
+        let calendar = Calendar.current
+        var components = DateComponents()
+        components.year = -1
+        let date = calendar.date(byAdding: components, to: Date())
+        return date ?? Date()
+    }
+    
+    func formattedDate(date: Date, format: String = "d MMM yyyy HH:mm") -> String {
         let dateFormaterSet = DateFormatter()
-        dateFormaterSet.dateFormat = "d MMM yyyy HH:mm"
+        dateFormaterSet.dateFormat = format
         
-        let formattedDate = dateFormaterSet.string(from: lastUpdateDate())
+        let formattedDate = dateFormaterSet.string(from: date)
         return formattedDate
     }
     
+    func checkPickerDate(_ date: Date) -> Bool { 
+        return date < Calendar.current.startOfDay(for: Date())
+    }
+ 
     func checkTimeInterval() -> Bool {
-        let date = lastUpdateDate()
+        guard let date = lastUpdateDateManager.fetchLastUdateDate() else { return true }
         let calendar = Calendar.current
         let components = calendar.dateComponents(in: .current, from: date)
         

@@ -11,7 +11,7 @@ import Contacts
 import ContactsUI
 import MessageUI
 
-class MainViewController: UIViewController, MessageModelDelegate {
+class MainViewController: UIViewController { // MessageModelDelegate {
     @IBOutlet weak var mainView: MainView!
     
     private lazy var coreDataStack = CoreDataStack.shared
@@ -30,8 +30,10 @@ class MainViewController: UIViewController, MessageModelDelegate {
     
     lazy var ratesWindowView = mainView.ratesWindowView
     lazy var converterWindowView = mainView.converterWindowView
+    lazy var historyRateView = mainView.historyRateView
     
     lazy var converterModel = ConverterModel.shared
+    lazy var historicalRateModel = HistoryRateModel()
     
     lazy var messageModel = MessageModel.shared
     
@@ -57,7 +59,7 @@ class MainViewController: UIViewController, MessageModelDelegate {
         getMonoBankExchangeRate()
         
         //        getPrivatExchangeRate()🥸
-        mainView.lastUpdateDate = dateModel.formattedDate()
+        mainView.lastUpdateDate = dateModel.lastUpdateDate()
         setupHideKeyboardTapCesture()
     }
     
@@ -66,7 +68,9 @@ class MainViewController: UIViewController, MessageModelDelegate {
         ratesWindowView.popUpWindowDelegate = self
         converterWindowView.popUpWindowDelegate = self
         converterWindowView.delegate = self
-        messageModel.delegate = self
+//        messageModel.delegate = self
+        mainView.delegate = self
+        historyRateView.delegate = self
     }
     
     private func fillDataSource() {
@@ -86,7 +90,7 @@ class MainViewController: UIViewController, MessageModelDelegate {
                 self.dateModel.received(new: updateDate)
                 self.mainAsyncQueue?.dispatch {
                     self.resultsTableViewReloadData()
-                    self.mainView.lastUpdateDate = self.dateModel.formattedDate()
+                    self.mainView.lastUpdateDate = self.dateModel.lastUpdateDate()
                 }
             }
         }
@@ -136,6 +140,27 @@ extension MainViewController: ResultModelDelegate {
         mainView.reloadTableViewData()
     }
 }
+
+extension MainViewController: MainViewDelegate {
+    func historyButtonPressed() {
+        historyRateView.datePicker.minimumDate = dateModel.minimumDate()
+        historyRateView.dateTextField.text = dateModel.formattedDate(date: Date(), format: "d MMM yyyy")
+    }
+}
+
+extension MainViewController: HistoryRateViewDelegate {
+    func pickerAction(sender: UIDatePicker) {
+        let date = sender.date
+        historyRateView.dateTextField.text = dateModel.formattedDate(date: sender.date, format: "d MMM yyyy")
+        let timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [self] timer in
+            guard self.dateModel.checkPickerDate(sender.date) else { return }
+            if let historicalRates = self.historicalRateModel.getHistoricalRates(for: date) {}
+            guard let url = urlModel.createNationalBankURL(with: dateModel.formattedDate(date: date, format: "dd.MM.YYYY")) else { return }
+            networkService.getNationalBankHistoricalRates(url: url)
+        }
+
+    }
+}
     
 extension MainViewController: PopUpWindowDelegate {
     func swipe() {
@@ -161,6 +186,15 @@ extension MainViewController: PopUpWindowDelegate {
         openCurrencyViewController(sender: sender)
     }
     
+    func shareRatesPressed() {
+        let text = messageModel.createMessage()
+        let textToShare = [text]
+        let activityController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
+        activityController.popoverPresentationController?.sourceView = self.view
+        activityController.popoverPresentationController?.permittedArrowDirections = .any
+        present(activityController, animated: true, completion: nil)
+    }
+    
 //    func shareRatesPressed() {
 //        CNContactStore().requestAccess(for: .contacts) { success, error in
 //            guard success else {
@@ -173,19 +207,10 @@ extension MainViewController: PopUpWindowDelegate {
 //            }
 //        }
 //    }
-    
-    func shareRatesPressed() {
-        let text = messageModel.createMessage()
-        let textToShare = [text]
-        let activityController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
-        activityController.popoverPresentationController?.sourceView = self.view
-        activityController.popoverPresentationController?.permittedArrowDirections = .any
-        present(activityController, animated: true, completion: nil)
-    }
-    
-    func message(controller: MFMessageComposeViewController) {
-        present(controller, animated: true)
-    }
+
+//    func message(controller: MFMessageComposeViewController) {
+//        present(controller, animated: true)
+//    }
 }
 
 extension MainViewController: InputAmountFieldDeligate {

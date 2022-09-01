@@ -48,6 +48,27 @@ class NetworkService: Networking {
         .resume()
     }
     
+    func getNationalBankHistoricalRates(url: URL) {
+        urlSession.dataTask(with: url) { data, response, error in
+            guard error == nil else {
+                if let error = error {
+                    print(error)
+                }
+                return
+            }
+            
+            guard let response = response as? HTTPURLResponse, (200 ..< 299) ~= response.statusCode else {
+                return
+            }
+            
+            guard let data = data else { return }
+            
+            guard let bulletin = try? JSONDecoder().decode(NationalBankBulletin.self, from: data) else { return }
+            print(bulletin)
+        }
+        .resume()
+    }
+    
     func getPrivatExchangeRate(url: URL, comletion: @escaping (Result<[PrivatBankExchangeRate], NetworkServiceError>) -> Void ) {
         urlSession.dataTask(with: url) { data, response, error in
             guard error == nil else {
