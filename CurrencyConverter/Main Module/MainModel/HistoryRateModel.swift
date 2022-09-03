@@ -8,7 +8,9 @@
 import Foundation
 
 struct HistoryRateModel {
-    func getHistoricalRates(for date: Date) -> [HistoricalRate]? {
-        return nil
+    let bulletinManager = BulletinManager()
+    
+    func getHistoricalBulletin(for date: Date) -> [ExchangeRate]? {
+    return nil
     }
 }

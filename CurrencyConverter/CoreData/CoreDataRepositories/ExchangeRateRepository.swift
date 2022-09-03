@@ -32,7 +32,6 @@ struct ExchangeRateDataRepository: ExchangeRateRepository {
     
     func get(byCurrency number: Int16) -> ExchangeRate? {
         guard let cdExchangeRate = getCDExchangeRate(byCurrency: number) else { return nil }
-        
         return cdExchangeRate.convertToExchangeRate()
     }
     

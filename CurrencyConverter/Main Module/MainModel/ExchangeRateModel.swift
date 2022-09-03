@@ -9,18 +9,29 @@ import Foundation
 import CoreData
 
 final class ExchangeRateModel {
-    private lazy var coreDataStack = CoreDataStack.shared
-    private lazy var dataSource = ResultDataSource.shared
-    
+    private let bulletinManager = BulletinManager()
     private let exchangeRateManager = ExchangeRateManager()
     private let currencyManager = CurrencyManager()
     
-    func createExchangeRate(bankData: [MonoBankExchangeRate]) {
-        bankData.forEach { monoBankExchangeRate in
-//            exchangeRateManager.deleteExchangeRates()
-            if monoBankExchangeRate.currencyNumberB == 980 {
-                let exchangeRate = ExchangeRate(from: monoBankExchangeRate)
-                exchangeRateManager.createExchangeRate(exchangeRate)
+    func fetchBulletin(of date: Date) -> Bulletin? {
+        guard let bulletin = bulletinManager.fetchBulletin(of: date) else {
+            return nil
+        }
+        return bulletin
+    }
+    
+    func updateBulletin(for date: Date, bankData: [ExchangeRate]) {
+        if bulletinManager.fetchBulletin(of: date.startOfDay) != nil {
+        } else {
+            bulletinManager.createBulletin(Bulletin(from: "MonoBank&PrivatBank", date: date.startOfDay))
+        }
+        updateExchangeRates(of: date.startOfDay, with: bankData)
+    }
+    
+    private func updateExchangeRates(of date: Date, with bankData: [ExchangeRate]) {
+        bankData.forEach { exchangeRate in
+            if exchangeRate.currencyNumber != 0 {
+                bulletinManager.saveExchangeRate(exchangeRate, date.startOfDay)
             }
         }
     }

@@ -1,11 +1,12 @@
 import Foundation
+import UIKit
 struct  NationalBankRate: Codable {
     let baseCurrency: String
-    let currency: String
+    let currency: Int16
     let saleRateNB: Double
     let purchaseRateNB: Double
-    let saleRate: Double?
-    let purchaseRate: Double?
+    let saleRate: Double
+    let purchaseRate: Double
     
     enum CodingKeys: String, CodingKey {
         case baseCurrency
@@ -19,7 +20,9 @@ struct  NationalBankRate: Codable {
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         baseCurrency = try values.decode(String.self, forKey: .baseCurrency)
-        currency = try values.decodeIfPresent(String.self, forKey: .currency) ?? String()
+       
+        let code = try values.decodeIfPresent(String.self, forKey: .currency) ?? "OOO"
+        self.currency = getCurrencyNumber(by: code) ?? 0
         saleRateNB = try values.decode(Double.self, forKey: .saleRateNB)
         purchaseRateNB = try values.decode(Double.self, forKey: .purchaseRateNB)
         if
@@ -32,5 +35,16 @@ struct  NationalBankRate: Codable {
             self.saleRate = saleRateNB + saleRateNB * 0.05
             self.purchaseRate = purchaseRateNB
         }
+        
+        func getCurrencyNumber(by code: String) -> Int16? {
+            let currencyManager = CurrencyManager()
+            let baseCurrency = currencyManager.fetchSpecified(byCurrency: code)?.number
+            return baseCurrency
+        }
+    }
+    
+    func convertToExchangeRate() -> ExchangeRate {
+        let exchangeRate = ExchangeRate(from: self)
+        return exchangeRate
     }
 }

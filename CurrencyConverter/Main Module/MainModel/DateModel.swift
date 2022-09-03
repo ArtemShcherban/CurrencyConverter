@@ -16,12 +16,14 @@ final class DateModel {
             let lastUpdateDate = lastUpdateDateManager.fetchLastUdateDate() else {
             let defaultDate = Date(timeIntervalSince1970: 197208000) // "1 Apr 1976 12:00:00"
             lastUpdateDateManager.createLastUpdateDate(defaultDate)
-            return formattedDate(date: defaultDate)
+            
+            return defaultDate.dMMMyyyyHHmm
         }
-        return formattedDate(date: lastUpdateDate)
+        return lastUpdateDate.dMMMyyyyHHmm
     }
     
     func received(new date: Date) {
+        if date < Date().startOfDay { return }
         lastUpdateDateManager.updateLastUpdateDate(with: date)
     }
     
@@ -33,31 +35,27 @@ final class DateModel {
         return date ?? Date()
     }
     
-    func formattedDate(date: Date, format: String = "d MMM yyyy HH:mm") -> String {
-        let dateFormaterSet = DateFormatter()
-        dateFormaterSet.dateFormat = format
-        
-        let formattedDate = dateFormaterSet.string(from: date)
-        return formattedDate
-    }
-    
-    func checkPickerDate(_ date: Date) -> Bool { 
+    func checkPickerDate(_ date: Date) -> Bool {
         return date < Calendar.current.startOfDay(for: Date())
     }
- 
-    func checkTimeInterval() -> Bool {
-        guard let date = lastUpdateDateManager.fetchLastUdateDate() else { return true }
+    
+    func checkTimeInterval(to date: Date) -> Bool {
+        if date < Date().startOfDay { print("return true")
+            return true }
+        guard let lastUpdateDate = lastUpdateDateManager.fetchLastUdateDate() else { print("return true")
+            return true }
         let calendar = Calendar.current
-        let components = calendar.dateComponents(in: .current, from: date)
-        
+        let components = calendar.dateComponents(in: .current, from: lastUpdateDate)
         if
             let minutes = components.minute,
             let seconds = components.second {
-            let timeInterval = -Int(date.timeIntervalSinceNow)
+            let timeInterval = -Int(lastUpdateDate.timeIntervalSinceNow)
             if timeInterval > 3600 - (minutes * 60 + seconds) {
+                print("return true")
                 return true
             }
         }
+        print("return false")
         return false
     }
 }

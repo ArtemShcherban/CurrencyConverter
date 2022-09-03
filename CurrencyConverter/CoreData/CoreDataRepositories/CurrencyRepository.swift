@@ -53,6 +53,14 @@ struct CurrencyDataRepository: CurrencyRepository {
         return currency
     }
     
+    func get(byCurrency code: String) -> Currency? {
+        let predicate = NSPredicate(format: "%K == %@", #keyPath(CDCurrency.code), code)
+        let fetchRequest: NSFetchRequest<CDCurrency> = CDCurrency.fetchRequest()
+        fetchRequest.predicate = predicate
+        guard let currency = getCurrencies(from: fetchRequest)?.first else { return nil }
+        return currency
+    }
+    
     func getAllExcept(currencies: [Currency]) -> [Currency]? {
         var currencyNumbers: [Int16] = []
         currencies.forEach { currencyNumbers.append($0.number) }

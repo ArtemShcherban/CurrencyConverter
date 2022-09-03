@@ -17,8 +17,6 @@ final class HistoryRateView: PopUpWindowView {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var arrowButton: UIButton!
     
-//    private lazy var dateModel = DateModel()
-    
     lazy var datePicker: UIDatePicker = {
              let datePicker = UIDatePicker()
              datePicker.date = Date()
@@ -53,7 +51,7 @@ final class HistoryRateView: PopUpWindowView {
     }
     
     private func configureTextFild() {
-//        dateTextField.text = getDateAsString(from: Date())
+        dateTextField.text = Date().dMMMyyy
         dateTextField.inputView = datePicker
     }
     
@@ -64,25 +62,8 @@ final class HistoryRateView: PopUpWindowView {
             UINib(nibName: RateCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: RateCell.reuseIdentifier)
     }
     
-//   private func createDatePicker() -> UIDatePicker {
-//        let datePicker = UIDatePicker()
-//        datePicker.date = Date()
-//        datePicker.datePickerMode = .date
-//        datePicker.preferredDatePickerStyle = .wheels
-//        datePicker.addTarget(self, action: #selector(delegatePickerAction), for: .valueChanged)
-//        datePicker.minimumDate = dateModel.minimumDate()
-//        datePicker.maximumDate = Date()
-//        datePicker.frame.size = CGSize(width: 0, height: 200)
-//        return datePicker
-//    }
-    
-//    private func getDateAsString(from date: Date) -> String {
-//        let format = "d MMM yyy"
-//        return dateModel.formattedDate(date: date, format: format)
-//    }
-    
     @objc func delegatePickerAction(sender: UIDatePicker) {
-//        dateTextField.text = getDateAsString(from: sender.date)
+        dateTextField.text = sender.date.dMMMyyy
         delegate?.pickerAction(sender: sender)
     }
     

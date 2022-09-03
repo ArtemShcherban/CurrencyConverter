@@ -2,7 +2,7 @@
 //  CDExchangeRate+CoreDataProperties.swift
 //  CurrencyConverter
 //
-//  Created by Artem Shcherban on 04.08.2022.
+//  Created by Artem Shcherban on 01.09.2022.
 //
 //
 
@@ -16,8 +16,9 @@ extension CDExchangeRate {
     }
 
     @NSManaged public var buy: Double
-    @NSManaged public var sell: Double
     @NSManaged public var currencyNumber: Int16
+    @NSManaged public var sell: Double
+    @NSManaged public var bulletin: CDBulletin
 }
 
 extension CDExchangeRate: Identifiable {

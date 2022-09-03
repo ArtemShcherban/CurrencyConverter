@@ -43,9 +43,9 @@ class MainViewController: UIViewController { // MessageModelDelegate {
         super.viewDidLoad()
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         debugPrint(path[0])
-//                coreDataStack.deleteFromCoreData(entityName: "Currency")🥸
-//                coreDataStack.deleteFromCoreData(entityName: "CDGroup")
-//                coreDataStack.deleteAllEntities()
+        //                coreDataStack.deleteFromCoreData(entityName: "Currency")🥸
+        //                coreDataStack.deleteFromCoreData(entityName: "CDGroup")
+//                        coreDataStack.deleteAllEntities()
         
         mainAsyncQueue = AsyncQueue.main
         initialModel.insertCurrencies()
@@ -56,9 +56,8 @@ class MainViewController: UIViewController { // MessageModelDelegate {
         fillDataSource()
         updateAddButton()
         
-        getMonoBankExchangeRate()
+        getExchangeRates()
         
-        //        getPrivatExchangeRate()🥸
         mainView.lastUpdateDate = dateModel.lastUpdateDate()
         setupHideKeyboardTapCesture()
     }
@@ -68,7 +67,7 @@ class MainViewController: UIViewController { // MessageModelDelegate {
         ratesWindowView.popUpWindowDelegate = self
         converterWindowView.popUpWindowDelegate = self
         converterWindowView.delegate = self
-//        messageModel.delegate = self
+        //        messageModel.delegate = self
         mainView.delegate = self
         historyRateView.delegate = self
     }
@@ -78,20 +77,28 @@ class MainViewController: UIViewController { // MessageModelDelegate {
         resultModel.fillDataSource()
     }
     
-    private func getMonoBankExchangeRate() {
-        guard dateModel.checkTimeInterval() else { return }
-        guard let url = urlModel.createMonoBankURL() else { return }
-        networkService.getMonoBankExchangeRate(url: url) { result, updateDate in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let currencyRates):
-                self.exchangeRateModel.createExchangeRate(bankData: currencyRates)
-                self.dateModel.received(new: updateDate)
-                self.mainAsyncQueue?.dispatch {
-                    self.resultsTableViewReloadData()
-                    self.mainView.lastUpdateDate = self.dateModel.lastUpdateDate()
-                }
+    private func getExchangeRates(for date: Date = Date()) {
+        guard dateModel.checkTimeInterval(to: date) else { return }
+        let urlMono = urlModel.createMonoBankURL()
+        let urlPrivat = urlModel.createPrivatBankURL(with: date.forURL)
+        networkService.getMonoBankExchangeRate(url: urlMono) { result in
+            self.handleResult(result, date)
+            self.networkService.getMonoBankExchangeRate(url: urlPrivat) { result in
+                self.handleResult(result, date)
+            }
+        }
+    }
+    
+    private func handleResult(_ result: Result<[ExchangeRate], NetworkServiceError>, _ date: Date) {
+        switch result {
+        case .failure(let error):
+            print(error)
+        case .success(let exchangeRates):
+            self.exchangeRateModel.updateBulletin(for: date, bankData: exchangeRates)
+            self.dateModel.received(new: date)
+            self.mainAsyncQueue?.dispatch {
+                self.resultsTableViewReloadData()
+                self.mainView.lastUpdateDate = self.dateModel.lastUpdateDate()
             }
         }
     }
@@ -144,28 +151,28 @@ extension MainViewController: ResultModelDelegate {
 extension MainViewController: MainViewDelegate {
     func historyButtonPressed() {
         historyRateView.datePicker.minimumDate = dateModel.minimumDate()
-        historyRateView.dateTextField.text = dateModel.formattedDate(date: Date(), format: "d MMM yyyy")
+//        historyRateView.dateTextField.text = dateModel.formattedDate(date: Date(), format: "d MMM yyyy")
     }
 }
 
 extension MainViewController: HistoryRateViewDelegate {
     func pickerAction(sender: UIDatePicker) {
         let date = sender.date
-        historyRateView.dateTextField.text = dateModel.formattedDate(date: sender.date, format: "d MMM yyyy")
-        let timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false) { [self] timer in
+        historyRateView.dateTextField.text = date.dMMMyyy
+        _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
             guard self.dateModel.checkPickerDate(sender.date) else { return }
-            if let historicalRates = self.historicalRateModel.getHistoricalRates(for: date) {}
-            guard let url = urlModel.createNationalBankURL(with: dateModel.formattedDate(date: date, format: "dd.MM.YYYY")) else { return }
-            networkService.getNationalBankHistoricalRates(url: url)
+            if let historicalRates = self.historicalRateModel.getHistoricalBulletin(for: date) {
+                self.resultsTableViewReloadData()
+            }
+            self.getExchangeRates(for: date)
         }
-
     }
 }
-    
+
 extension MainViewController: PopUpWindowDelegate {
     func swipe() {
         mainView.startSwipeAnimation()
-        getMonoBankExchangeRate()
+        getExchangeRates()
     }
     
     func addButtonPressed() {
@@ -195,22 +202,22 @@ extension MainViewController: PopUpWindowDelegate {
         present(activityController, animated: true, completion: nil)
     }
     
-//    func shareRatesPressed() {
-//        CNContactStore().requestAccess(for: .contacts) { success, error in
-//            guard success else {
-//                print("not authorized error: \(String(describing: error))")
-//                return
-//            }
-//            self.mainAsyncQueue?.dispatch {
-//                let contactsViewController = ContactsViewController()
-//                self.present(contactsViewController, animated: true)
-//            }
-//        }
-//    }
-
-//    func message(controller: MFMessageComposeViewController) {
-//        present(controller, animated: true)
-//    }
+    //    func shareRatesPressed() {
+    //        CNContactStore().requestAccess(for: .contacts) { success, error in
+    //            guard success else {
+    //                print("not authorized error: \(String(describing: error))")
+    //                return
+    //            }
+    //            self.mainAsyncQueue?.dispatch {
+    //                let contactsViewController = ContactsViewController()
+    //                self.present(contactsViewController, animated: true)
+    //            }
+    //        }
+    //    }
+    
+    //    func message(controller: MFMessageComposeViewController) {
+    //        present(controller, animated: true)
+    //    }
 }
 
 extension MainViewController: InputAmountFieldDeligate {

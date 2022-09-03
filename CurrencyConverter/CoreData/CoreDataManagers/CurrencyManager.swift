@@ -26,6 +26,10 @@ struct CurrencyManager {
         currencyDateRepositrory.getSpecified(by: numbers)
     }
     
+    func fetchSpecified(byCurrency code: String) -> Currency? {
+        currencyDateRepositrory.get(byCurrency: code)
+    }
+    
     func fetchCurrency(byCurrency number: Int16) -> Currency? {
         currencyDateRepositrory.get(byCurrency: number)
     }

@@ -17,16 +17,6 @@ enum URLConstants {
     enum PrivatBank {
         static let scheme = "https"
         static let baseURL = "api.privatbank.ua"
-        static let path = "/p24api/pubinfo"
-        static let query = "json"
-        static let exchange = "exchange"
-        static let coursid = "coursid"
-        static let five = "5"
-    }
-    
-    enum NationalBank {
-        static let scheme = "https"
-        static let baseURL = "api.privatbank.ua"
         static let path = "/p24api/exchange_rates"
         static let query = "json"
         static let date = "date"

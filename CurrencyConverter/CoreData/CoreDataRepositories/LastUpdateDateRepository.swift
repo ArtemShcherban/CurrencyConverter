@@ -20,6 +20,7 @@ struct LastUpdateDateDataRepository: LastUpdateDateRepository {
     func create(lastUpdateDate: Date) {
         let cdLastUpdateDate = CDLastUpdateDate(context: coreDataStack.managedContext)
         cdLastUpdateDate.date = lastUpdateDate
+        coreDataStack.saveContext()
     }
     
     func get() -> Date? {

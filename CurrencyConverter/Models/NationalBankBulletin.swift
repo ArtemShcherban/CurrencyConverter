@@ -12,7 +12,7 @@ For support, please feel free to contact me at https://www.linkedin.com/in/syeda
 */
 
 import Foundation
-struct NationalBankBulletin: Codable {
+struct NationalBankBulletin: Decodable {
 	let date: String
 	let bank: String
 	let baseCurrency: Int
