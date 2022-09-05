@@ -12,8 +12,6 @@ final class InitialModel {
     private let currencyManager = CurrencyManager()
     private let currencyContainerManager = CurrencyContainerManager()
     
-    private let exchangeRateModel = ExchangeRateModel()
-    
     func insertCurrencies() {
         let currencyCount = currencyManager.fetchCurrencyCount()
         if currencyCount > 0 {

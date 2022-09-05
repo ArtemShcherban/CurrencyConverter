@@ -14,8 +14,8 @@ extension MainView {
     }
     
     func flipView(completion: @escaping(() -> Void) ) {  // change name 🥸
-        let visibleWindow = !isFlipping ? ratesWindowView : converterWindowView
-        let hiddenWindow = !isFlipping ? converterWindowView : ratesWindowView
+        let visibleWindow = !isFlipping ? exchangeRatesView : converterWindowView
+        let hiddenWindow = !isFlipping ? converterWindowView : exchangeRatesView
         isFlipping.toggle()
         UIView.animate(withDuration: 0.75, animations: {
             visibleWindow.transform = CGAffineTransform(scaleX: 0.001, y: 1)}, completion: { _ in

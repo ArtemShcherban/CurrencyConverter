@@ -2,27 +2,27 @@
 //  ExchangeRateManager.swift
 //  CurrencyConverter
 //
-//  Created by Artem Shcherban on 27.08.2022.
+//  Created by Artem Shcherban on 01.09.2022.
 //
 
 import Foundation
 
 struct ExchangeRateManager {
-    private let exchangeRateDataReository = ExchangeRateDataRepository()
+    let exchangeRateDataRepository = ExchangeRateDataRepository()
     
-    func createExchangeRate(_ exchangeRate: ExchangeRate) {
-        exchangeRateDataReository.create(exchangeRate: exchangeRate)
+    func createBulletin(_ bulletin: Bulletin) {
+        exchangeRateDataRepository.create(bulletin: bulletin)
     }
     
-    func fetchExchangeRate() -> [ExchangeRate]? {
-        exchangeRateDataReository.getAll()
+    func checkBulletinInDatabase(for date: Date) -> Bool {
+        return exchangeRateDataRepository.checkBulletin(for: date)
     }
     
-    func fetchExchangeRate(by currencyNumber: Int16) -> ExchangeRate? {
-        exchangeRateDataReository.get(byCurrency: currencyNumber)
+    func fetchExchangeRate(for currency: Currency, on date: Date) -> ExchangeRate? {
+        exchangeRateDataRepository.getExchangeRate(for: currency, on: date)
     }
     
-    func deleteExchangeRates() {
-        exchangeRateDataReository.deleteExchangeRates()
+    func saveExchangeRate(_ exchangeRate: ExchangeRate, _ date: Date) {
+        exchangeRateDataRepository.handleSaving(exchangeRate: exchangeRate, on: date)
     }
 }

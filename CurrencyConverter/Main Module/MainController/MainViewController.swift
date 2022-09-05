@@ -17,7 +17,7 @@ class MainViewController: UIViewController { // MessageModelDelegate {
     private lazy var coreDataStack = CoreDataStack.shared
     
     lazy var initialModel = InitialModel()
-    lazy var exchangeRateModel = ExchangeRateModel()
+    lazy var exchangeRateModel = ExchangeRateModel.shared
     lazy var dateModel = DateModel()
     
     lazy var resultModel = ResultModel.shared
@@ -28,12 +28,10 @@ class MainViewController: UIViewController { // MessageModelDelegate {
     lazy var networkService = NetworkService()
     lazy var urlModel = URLModel()
     
-    lazy var ratesWindowView = mainView.ratesWindowView
+    lazy var exchangeRatesView = mainView.exchangeRatesView
     lazy var converterWindowView = mainView.converterWindowView
-    lazy var historyRateView = mainView.historyRateView
     
     lazy var converterModel = ConverterModel.shared
-    lazy var historicalRateModel = HistoryRateModel()
     
     lazy var messageModel = MessageModel.shared
     
@@ -47,6 +45,11 @@ class MainViewController: UIViewController { // MessageModelDelegate {
         //                coreDataStack.deleteFromCoreData(entityName: "CDGroup")
 //                        coreDataStack.deleteAllEntities()
         
+//        let bulletinDataRepo = ExchangeRateDataRepository()
+//        bulletinDataRepo.deleteCDExchangeRatesWithNullBulletin()
+//        bulletinDataRepo.updateCDBulletinName()
+//        bulletinDataRepo.deleteCDBulletinAndRates(for: Date(timeIntervalSinceReferenceDate: 683676000).startOfDay)
+
         mainAsyncQueue = AsyncQueue.main
         initialModel.insertCurrencies()
         initialModel.insertGroups()
@@ -64,12 +67,11 @@ class MainViewController: UIViewController { // MessageModelDelegate {
     
     private func setDelegates() {
         resultDataSource.controller = self
-        ratesWindowView.popUpWindowDelegate = self
+        exchangeRatesView.popUpWindowDelegate = self
         converterWindowView.popUpWindowDelegate = self
         converterWindowView.delegate = self
         //        messageModel.delegate = self
         mainView.delegate = self
-        historyRateView.delegate = self
     }
     
     private func fillDataSource() {
@@ -149,23 +151,8 @@ extension MainViewController: ResultModelDelegate {
 }
 
 extension MainViewController: MainViewDelegate {
-    func historyButtonPressed() {
-        historyRateView.datePicker.minimumDate = dateModel.minimumDate()
-//        historyRateView.dateTextField.text = dateModel.formattedDate(date: Date(), format: "d MMM yyyy")
-    }
-}
-
-extension MainViewController: HistoryRateViewDelegate {
-    func pickerAction(sender: UIDatePicker) {
-        let date = sender.date
-        historyRateView.dateTextField.text = date.dMMMyyy
-        _ = Timer.scheduledTimer(withTimeInterval: 5, repeats: false) { _ in
-            guard self.dateModel.checkPickerDate(sender.date) else { return }
-            if let historicalRates = self.historicalRateModel.getHistoricalBulletin(for: date) {
-                self.resultsTableViewReloadData()
-            }
-            self.getExchangeRates(for: date)
-        }
+    func screenButtonPressed() {
+        resultsTableViewReloadData()
     }
 }
 
@@ -202,6 +189,20 @@ extension MainViewController: PopUpWindowDelegate {
         present(activityController, animated: true, completion: nil)
     }
     
+    func dateWasChanged(new date: Date) {
+        exchangeRateModel.selectedDate = date.startOfDay
+        guard self.dateModel.checkPickerDate(date) else {
+            self.resultsTableViewReloadData()
+            return
+        }
+        if exchangeRateModel.isBulletinInDatabase(for: date) {
+            print("Update from Database")
+            self.resultsTableViewReloadData()
+        } else {
+            self.getExchangeRates(for: date)
+        }
+    }
+
     //    func shareRatesPressed() {
     //        CNContactStore().requestAccess(for: .contacts) { success, error in
     //            guard success else {
@@ -244,21 +245,21 @@ extension MainViewController {
     }
 }
 
-extension MainViewController: MFMessageComposeViewControllerDelegate {
-    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
-        switch result {
-        case .cancelled:
-            dismiss(animated: true)
-        case .sent:
-            let alertController = converterWindowView.createAlertController(with: AlertConstants.messageSent)
-            dismiss(animated: true)
-            present(alertController, animated: true)
-        case .failed:
-            let alertController = converterWindowView.createAlertController(with: AlertConstants.messageFailed)
-            dismiss(animated: true)
-            present(alertController, animated: true)
-        @unknown default:
-            dismiss(animated: true)
-        }
-    }
-}
+//extension MainViewController: MFMessageComposeViewControllerDelegate {
+//    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
+//        switch result {
+//        case .cancelled:
+//            dismiss(animated: true)
+//        case .sent:
+//            let alertController = converterWindowView.createAlertController(with: AlertConstants.messageSent)
+//            dismiss(animated: true)
+//            present(alertController, animated: true)
+//        case .failed:
+//            let alertController = converterWindowView.createAlertController(with: AlertConstants.messageFailed)
+//            dismiss(animated: true)
+//            present(alertController, animated: true)
+//        @unknown default:
+//            dismiss(animated: true)
+//        }
+//    }
+//}

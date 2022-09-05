@@ -17,7 +17,7 @@ final class ResultModel { // 🥸 RENAME
  
     private lazy var resultDataSource = ResultDataSource.shared
     private lazy var currencyListModel = CurrencyListModel.shared
-    private lazy var exchangeRateModel = ExchangeRateModel()
+    private lazy var exchangeRateModel = ExchangeRateModel.shared
     
     private let currencyManager = CurrencyManager()
     private let currencyContainerManager = CurrencyContainerManager()
@@ -27,7 +27,7 @@ final class ResultModel { // 🥸 RENAME
             currencyListModel.containerName = containerName
         }
     }
-    
+        
     weak var delegate: ResultModelDelegate?
     
     func defineContainerName(value: Bool) {
@@ -37,20 +37,22 @@ final class ResultModel { // 🥸 RENAME
     func fillDataSource() {
         guard
             var currencies = currencyContainerManager.getCurrencyFromContainer(name: containerName),
-                !currencies.isEmpty else {
+            !currencies.isEmpty else {
             resultDataSource.selectedCurrencies = []
             return }
         
+        setExchangeRateFor(currencies: &currencies)
+        
         if containerName == ContainerConstants.Name.converter {
-            setupBaseCurrency(from: &currencies)
+            resultDataSource.baseCurrency = currencies.removeFirst()
         }
         resultDataSource.selectedCurrencies = currencies
     }
-    
-    private func setupBaseCurrency(from currencies: inout [Currency]) {
-        var baseCurrency = currencies.removeFirst()
-        exchangeRateModel.setExchangeRate(for: &baseCurrency)
-        resultDataSource.baseCurrency = baseCurrency
+        
+    private func setExchangeRateFor(currencies: inout [Currency]) {
+        currencies = currencies.map { currency in
+            exchangeRateModel.setExchangeRate(for: currency)
+        }
     }
     
     func add(currency: Currency) {
@@ -73,13 +75,13 @@ final class ResultModel { // 🥸 RENAME
     func isMaxNumberOfRows() -> Bool {
         switch containerName {
         case ContainerConstants.Name.rate:
-            if resultDataSource.selectedCurrencies.count <= 4 {
+            if resultDataSource.selectedCurrencies.count <= 2 {
                 return false
             } else {
                 return true
             }
         case ContainerConstants.Name.converter:
-            if resultDataSource.selectedCurrencies.count <= 2 {
+            if resultDataSource.selectedCurrencies.count <= 1 {
                 return false
             } else {
                 return true

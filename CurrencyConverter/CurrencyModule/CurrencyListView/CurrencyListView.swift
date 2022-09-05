@@ -17,7 +17,7 @@ class CurrencyListView: UIView {
     @IBOutlet weak var navigationBar: UINavigationBar!
     
     lazy var searchController = UISearchController()
-    lazy var dataSource = CurrencyDataSource.shared
+    lazy var dataSource = CurrencyListDataSource.shared
     
     weak var tableViewDelegate: UITableViewDelegate?
     weak var searchResultsDelegate: UISearchResultsUpdating?

@@ -20,6 +20,10 @@ extension Date {
         return formattedDate(date: self, format: "d MMM yyyy")
     }
     
+    var yyyyMMdd: String {
+        return formattedDate(date: self, format: "yyyy-MM-dd" )
+    }
+    
     var dMMMyyyyHHmm: String {
         return formattedDate(date: self, format: "d MMM yyyy HH:mm")
     }

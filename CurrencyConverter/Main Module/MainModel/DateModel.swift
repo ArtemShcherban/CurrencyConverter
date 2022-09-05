@@ -27,14 +27,6 @@ final class DateModel {
         lastUpdateDateManager.updateLastUpdateDate(with: date)
     }
     
-    func minimumDate() -> Date {
-        let calendar = Calendar.current
-        var components = DateComponents()
-        components.year = -1
-        let date = calendar.date(byAdding: components, to: Date())
-        return date ?? Date()
-    }
-    
     func checkPickerDate(_ date: Date) -> Bool {
         return date < Calendar.current.startOfDay(for: Date())
     }

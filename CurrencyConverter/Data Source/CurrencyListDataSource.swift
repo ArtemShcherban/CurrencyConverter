@@ -1,5 +1,5 @@
 //
-//  CurrencyDataSource.swift
+//  CurrencyListDataSource.swift
 //  CurrencyConverter
 //
 //  Created by Artem Shcherban on 05.08.2022.
@@ -7,9 +7,9 @@
 
 import UIKit
 
-class CurrencyDataSource: NSObject, UITableViewDataSource {
-    static let shared = CurrencyDataSource()
-    static let sharedTwo = CurrencyDataSource()
+class CurrencyListDataSource: NSObject, UITableViewDataSource {
+    static let shared = CurrencyListDataSource()
+    static let sharedTwo = CurrencyListDataSource()
     
     lazy var currencyList: [Currency] = []
     lazy var filteredCurrency: [Currency] = []

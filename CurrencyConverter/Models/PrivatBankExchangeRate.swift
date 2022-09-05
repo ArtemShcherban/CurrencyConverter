@@ -15,14 +15,9 @@ struct PrivatBankExchangeRate: Codable {
 
 	init(from decoder: Decoder) throws {
 		let values = try decoder.container(keyedBy: CodingKeys.self)
-//        buy = try values.decode(String.self, forKey: .buy)
-//        sale = try values.decode(String.self, forKey: .sale)
-//		currency = try values.decode(String.self, forKey: .currency)
-//		baseCurrency = try values.decode(String.self, forKey: .baseCurrency)
-        
-        buy = "try values.decode(String.self, forKey: .buy)"
-        sale = "try values.decode(String.self, forKey: .sale)"
-        currency = "try values.decode(String.self, forKey: .currency)"
-        baseCurrency = "try values.decode(String.self, forKey: .baseCurrency)"
+        buy = try values.decode(String.self, forKey: .buy)
+        sale = try values.decode(String.self, forKey: .sale)
+		currency = try values.decode(String.self, forKey: .currency)
+		baseCurrency = try values.decode(String.self, forKey: .baseCurrency)
 	}
 }

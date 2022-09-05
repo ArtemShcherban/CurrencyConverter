@@ -45,8 +45,11 @@ struct CurrencyContainerDataRepository: CurrencyContainerRepository {
             let cdCurrencies = cdContainer.currencies?.array as? [CDCurrency]  else {
             return nil
         }
-        cdCurrencies.forEach { currency in
-            currencies.append(currency.convertToCurrency())
+        cdCurrencies.forEach { cdCurrency in
+            var currency: Currency
+            currency = cdCurrency.convertToCurrency()
+            currencies.append(currency)
+//            currencies.append(cdCurrency.convertToCurrency())
         }
         return currencies
     }

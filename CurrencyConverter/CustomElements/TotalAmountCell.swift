@@ -13,19 +13,12 @@ class TotalAmountCell: UITableViewCell {
     @IBOutlet weak var currencyButton: UIButton!
     @IBOutlet weak var totalAmountLabel: UILabel!
     
-    private lazy var resultDataSource = ResultDataSource.shared
-    private lazy var exchangeRateModel = ExchangeRateModel()
-    private lazy var converterModel = ConverterModel.shared
-    
     weak var delegate: PopUpWindowDelegate?
     
-    func configure(with indexPath: IndexPath) {
-        var currency = resultDataSource.selectedCurrencies[indexPath.row]
-        exchangeRateModel.setExchangeRate(for: &currency)
+    func configureAt(row: Int, with currency: Currency, and amount: Double) {
         currencyButton.setTitle(currency.code, for: .normal)
-        currencyButton.tag = (indexPath.row + 1)
-        let totalAmount = converterModel.doCalculation(for: currency)
-        totalAmountLabel.text = totalAmount.decimalFormat()
+        currencyButton.tag = row + 1
+        totalAmountLabel.text = amount.decimalFormat()
     }
     
     @IBAction func delegateAction(_ sender: UIButton) {

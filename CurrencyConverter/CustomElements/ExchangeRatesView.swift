@@ -1,5 +1,5 @@
 //
-//  HistoryRateView.swift
+//  ExchangeRatesView.swift
 //  CurrencyConverter
 //
 //  Created by Artem Shcherban on 31.08.2022.
@@ -7,28 +7,26 @@
 
 import UIKit
 
-protocol HistoryRateViewDelegate: AnyObject {
-    func pickerAction(sender: UIDatePicker)
-}
-
-final class HistoryRateView: PopUpWindowView {
+final class ExchangeRatesView: PopUpWindowView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var dateTextField: AdjustableTextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var arrowButton: UIButton!
+    @IBOutlet weak var addButton: UIButton!
+    
+    lazy var currentDate = Date().startOfDay
     
     lazy var datePicker: UIDatePicker = {
-             let datePicker = UIDatePicker()
-             datePicker.date = Date()
-             datePicker.datePickerMode = .date
-             datePicker.preferredDatePickerStyle = .wheels
-             datePicker.addTarget(self, action: #selector(delegatePickerAction), for: .valueChanged)
-             datePicker.maximumDate = Date()
-             datePicker.frame.size = CGSize(width: 0, height: 200)
-             return datePicker
+        let datePicker = UIDatePicker()
+        datePicker.date = Date()
+        datePicker.datePickerMode = .date
+        datePicker.preferredDatePickerStyle = .wheels
+        datePicker.addTarget(self, action: #selector(delegatePickerAction), for: .valueChanged)
+        datePicker.minimumDate = minimumDate()
+        datePicker.maximumDate = Date()
+        datePicker.frame.size = CGSize(width: 0, height: 200)
+        return datePicker
     }()
-    
-    weak var delegate: HistoryRateViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -45,29 +43,48 @@ final class HistoryRateView: PopUpWindowView {
     }
     
     private func  configureContentView() {
-        Bundle.main.loadNibNamed("HistoryRateView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("ExchangeRatesView", owner: self, options: nil)
         contentView.layer.cornerRadius = 10
         contentView.fixInView(self)
     }
     
     private func configureTextFild() {
+        dateTextField.delegate = self
         dateTextField.text = Date().dMMMyyy
         dateTextField.inputView = datePicker
     }
     
     private func configureTableView() {
         tableView.dataSource = ResultDataSource.shared
-        tableView.tag = 2
+        tableView.tag = 0
         tableView.register(
             UINib(nibName: RateCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: RateCell.reuseIdentifier)
     }
     
+    private func minimumDate() -> Date {
+        let calendar = Calendar.current
+        var components = DateComponents()
+        components.year = -1
+        let date = calendar.date(byAdding: components, to: Date())
+        return date ?? Date()
+    }
+    
     @objc func delegatePickerAction(sender: UIDatePicker) {
         dateTextField.text = sender.date.dMMMyyy
-        delegate?.pickerAction(sender: sender)
+        currentDate = sender.date.startOfDay
+    }
+    
+    @IBAction func addButtonPressed(_ sender: Any) {
+        popUpWindowDelegate?.addButtonPressed()
     }
     
     @IBAction func arrowButtonPressed(_ sender: Any) {
         removeFromSuperview()
+    }
+}
+
+extension ExchangeRatesView: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        popUpWindowDelegate?.dateWasChanged(new: currentDate)
     }
 }

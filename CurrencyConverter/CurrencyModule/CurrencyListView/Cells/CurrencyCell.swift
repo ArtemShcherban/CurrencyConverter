@@ -10,7 +10,7 @@ import UIKit
 final class CurrencyCell: UITableViewCell {
     static let reuseIdentifier = String(describing: CurrencyCell.self)
     
-    private let currencyDataSource = CurrencyDataSource.shared
+    private let currencyDataSource = CurrencyListDataSource.shared
     
     /// Сonfigures the cell with complete data
     func configure(with indexPath: IndexPath) {

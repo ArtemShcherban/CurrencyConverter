@@ -24,7 +24,7 @@
             <connections>
                 <outlet property="containerView" destination="HfX-LT-SVC" id="q42-4E-itc"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="piM-72-vzn"/>
-                <outlet property="historyButton" destination="Jfy-HQ-mO5" id="vL4-rS-Zyu"/>
+                <outlet property="screenButton" destination="Jfy-HQ-mO5" id="vL4-rS-Zyu"/>
                 <outlet property="titleLabel" destination="dv8-Jb-bSj" id="eXe-Nt-S2d"/>
                 <outlet property="updateDateLabel" destination="AN4-q2-FsM" id="e0L-gF-M2F"/>
             </connections>
@@ -92,9 +92,9 @@
                     </constraints>
                     <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="18"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="National Bank Exchange Rate"/>
+                    <state key="normal" title="Currency Converter"/>
                     <connections>
-                        <action selector="historyButtonPressed:" destination="-1" eventType="touchUpInside" id="hTg-rz-rrW"/>
+                        <action selector="screenButtonPressed:" destination="-1" eventType="touchUpInside" id="00s-js-LeS"/>
                     </connections>
                 </button>
             </subviews>

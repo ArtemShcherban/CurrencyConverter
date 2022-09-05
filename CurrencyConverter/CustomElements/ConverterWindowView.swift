@@ -50,7 +50,7 @@ final class ConverterWindowView: PopUpWindowView {
     }
     
     func configureBaseCarrencyButton() {
-        guard let currency = resultDataSource.baseCurrency else { return }
+        guard let currency = resultDataSource.baseCurrency else { return } // ??remove to MainViewController?? 🥸
         baseCurrencyButton.setTitle(currency.code, for: .normal)
     }
     
@@ -86,15 +86,15 @@ final class ConverterWindowView: PopUpWindowView {
     }
 
     
-    func createAlertController(with message: (title: String, message: String)) -> UIAlertController {
-        let alertController = UIAlertController(
-            title: message.title,
-            message: message.message,
-            preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .cancel)
-        alertController.addAction(alertAction)
-        return alertController
-    }
+//    func createAlertController(with message: (title: String, message: String)) -> UIAlertController {
+//        let alertController = UIAlertController(
+//            title: message.title,
+//            message: message.message,
+//            preferredStyle: .alert)
+//        let alertAction = UIAlertAction(title: "OK", style: .cancel)
+//        alertController.addAction(alertAction)
+//        return alertController
+//    }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         updateButtonAppearence(sender)

@@ -14,7 +14,7 @@ protocol CurrencyListModelDelegate: AnyObject {
 class CurrencyListModel {
     static let shared = CurrencyListModel()
     
-    private lazy var currencyDataSource = CurrencyDataSource.shared
+    private lazy var currencyDataSource = CurrencyListDataSource.shared
     
     private let groupManager = GroupManager()
     private let currencyManager = CurrencyManager()

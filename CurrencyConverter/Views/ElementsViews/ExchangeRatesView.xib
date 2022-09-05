@@ -17,9 +17,9 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HistoryRateView" customModule="CurrencyConverter" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ExchangeRatesView" customModule="CurrencyConverter" customModuleProvider="target">
             <connections>
-                <outlet property="arrowButton" destination="0zE-Ta-med" id="8uZ-2o-I1c"/>
+                <outlet property="addButton" destination="WEd-gm-e9Q" id="nWa-x8-fVz"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="ktI-JP-wMd"/>
                 <outlet property="dateTextField" destination="dvj-2i-ukK" id="dQt-rr-ZGE"/>
                 <outlet property="tableView" destination="xw2-Vv-iKT" id="Oh1-3d-4rs"/>
@@ -52,20 +52,11 @@
                 </textField>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="55" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xw2-Vv-iKT">
                     <rect key="frame" x="16" y="100" width="311" height="165"/>
-                    <color key="backgroundColor" red="0.49324956990000002" green="0.32760566099999999" blue="0.91976243260000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="165" id="Sox-qy-25k"/>
                     </constraints>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="0zE-Ta-med" userLabel="Arrow Button">
-                    <rect key="frame" x="16" y="347" width="67" height="31"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
-                    <state key="normal" title="Button" image="arrow.down" catalog="system"/>
-                    <connections>
-                        <action selector="arrowButtonPressed:" destination="-1" eventType="touchUpInside" id="IAV-jn-dKj"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WEd-gm-e9Q" userLabel="Add Currency Button">
                     <rect key="frame" x="111.5" y="302" width="120" height="30"/>
                     <constraints>
@@ -75,6 +66,9 @@
                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" title="  Add Currency" image="plus.circle.fill" catalog="system"/>
+                    <connections>
+                        <action selector="addButtonPressed:" destination="-1" eventType="touchUpInside" id="qO6-1d-5TJ"/>
+                    </connections>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sell" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TJp-yy-acU" customClass="RateTextLabel" customModule="CurrencyConverter" customModuleProvider="target">
                     <rect key="frame" x="271" y="77" width="40" height="21"/>
@@ -127,7 +121,6 @@
                 <constraint firstItem="WEd-gm-e9Q" firstAttribute="centerY" secondItem="xw2-Vv-iKT" secondAttribute="bottom" constant="52" id="WMh-6W-9c0"/>
                 <constraint firstAttribute="trailing" secondItem="dvj-2i-ukK" secondAttribute="trailing" constant="32" id="a4D-DI-dvo"/>
                 <constraint firstItem="xw2-Vv-iKT" firstAttribute="top" secondItem="TJp-yy-acU" secondAttribute="bottom" constant="2" id="cpi-W7-HPx"/>
-                <constraint firstItem="0zE-Ta-med" firstAttribute="leading" secondItem="xw2-Vv-iKT" secondAttribute="leading" id="dsm-Ns-VUO"/>
                 <constraint firstItem="WEd-gm-e9Q" firstAttribute="centerX" secondItem="xw2-Vv-iKT" secondAttribute="centerX" id="tIw-I0-zpc"/>
                 <constraint firstItem="xw2-Vv-iKT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="uBy-Lu-SJQ"/>
                 <constraint firstAttribute="trailing" secondItem="xw2-Vv-iKT" secondAttribute="trailing" constant="16" id="xcb-Fs-YOK"/>
@@ -148,7 +141,6 @@
         </designable>
     </designables>
     <resources>
-        <image name="arrow.down" catalog="system" width="120" height="128"/>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

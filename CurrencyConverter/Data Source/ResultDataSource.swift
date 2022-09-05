@@ -21,11 +21,12 @@ class ResultDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let currency = selectedCurrencies[indexPath.row]
         switch tableView.tag {
-        case 0, 2:
-            return rateCell(for: tableView, at: indexPath)
+        case 0:
+            return rateCell(for: tableView, at: indexPath, with: currency)
         case 1:
-            return totalAmountCell(for: tableView, at: indexPath)
+            return totalAmountCell(for: tableView, at: indexPath, with: currency)
         default :
             return UITableViewCell()
         }
@@ -43,23 +44,24 @@ class ResultDataSource: NSObject, UITableViewDataSource {
         tableView.reloadData()
     }
     
-    func rateCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+    private func rateCell(for tableView: UITableView, at indexPath: IndexPath, with currency: Currency) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: RateCell.reuseIdentifier, for: indexPath) as? RateCell else {
             return UITableViewCell()
         }
         cell.delegate = controller
-        cell.configure(with: indexPath)
+        cell.configureAt(row: indexPath.row, with: currency)
         return cell
     }
     
-    func totalAmountCell(for tableView: UITableView, at indexPath: IndexPath) -> UITableViewCell {
+    private func totalAmountCell(for tableView: UITableView, at indexPath: IndexPath, with currency: Currency) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(
         withIdentifier: TotalAmountCell.reuseIdentifier, for: indexPath) as? TotalAmountCell else {
         return UITableViewCell()
         }
         cell.delegate = controller
-        cell.configure(with: indexPath)
+        let amount = ConverterModel.shared.doCalculation(for: currency)
+        cell.configureAt(row: indexPath.row, with: currency, and: amount)
         return cell
     }
 }

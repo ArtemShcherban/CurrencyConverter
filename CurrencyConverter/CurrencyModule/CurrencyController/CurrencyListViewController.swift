@@ -17,7 +17,7 @@ class CurrencyListViewController: UIViewController, CurrencyListViewDelegate {
     weak var delegate: ResultModelDelegate?
     weak var sender: UIButton?
     
-    private lazy var dataSource = CurrencyDataSource.shared
+    private lazy var dataSource = CurrencyListDataSource.shared
     private lazy var coreDataStack = CoreDataStack.shared
     private lazy var currencyListModel = CurrencyListModel.shared
     private lazy var resultModel = ResultModel.shared

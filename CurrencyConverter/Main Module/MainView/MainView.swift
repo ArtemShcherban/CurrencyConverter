@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainViewDelegate: AnyObject {
-    func historyButtonPressed()
+    func screenButtonPressed()
 }
 
 class MainView: UIView {
@@ -16,11 +16,11 @@ class MainView: UIView {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var updateDateLabel: UILabel!
-    @IBOutlet weak var historyButton: UIButton!
+    @IBOutlet weak var screenButton: UIButton!
     
-    lazy var ratesWindowView = RatesWindowView()
+//    lazy var ratesWindowView = RatesWindowView()
+    lazy var exchangeRatesView = ExchangeRatesView()
     lazy var converterWindowView = ConverterWindowView()
-    lazy var historyRateView = HistoryRateView()
     
     lazy var isFlipping = false  // change the name 🥸
     lazy var lastUpdateDate = String() {
@@ -34,17 +34,17 @@ class MainView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
-        containerView.addSubview(ratesWindowView)
+        containerView.addSubview(exchangeRatesView)
         configureHistoryButton()
-        ratesWindowView.setConstraints()
+        exchangeRatesView.setConstraints()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configure()
-        containerView.addSubview(ratesWindowView)
+        containerView.addSubview(exchangeRatesView)
         configureHistoryButton()
-        ratesWindowView.setConstraints()
+        exchangeRatesView.setConstraints()
     }
     
     func configure() {
@@ -53,13 +53,13 @@ class MainView: UIView {
     }
     
     func configureHistoryButton() {
-        historyButton.layer.cornerRadius = 14
-        historyButton.layer.borderColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1).cgColor
-        historyButton.layer.borderWidth = 1
+        screenButton.layer.cornerRadius = 14
+        screenButton.layer.borderColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1).cgColor
+        screenButton.layer.borderWidth = 1
     }
     
     func startSwipeAnimation() {
-        let centralView = !isFlipping ? ratesWindowView : converterWindowView
+        let centralView = !isFlipping ? exchangeRatesView : converterWindowView
         centralView.swipeAnimation()
     }
     
@@ -80,7 +80,7 @@ class MainView: UIView {
             currentTableView = converterWindowView.converterTableView
             converterWindowView.configureBaseCarrencyButton()
         default:
-            currentTableView = ratesWindowView.ratesTableView
+            currentTableView = exchangeRatesView.tableView
         }
         currentTableView.reloadData()
     }
@@ -90,14 +90,21 @@ class MainView: UIView {
         case true:
             converterWindowView.addCurrencyButton.isEnabled = !isMaxNumberOfRows
         default:
-            ratesWindowView.addButton.isEnabled = !isMaxNumberOfRows
+            exchangeRatesView.addButton.isEnabled = !isMaxNumberOfRows
         }
     }
     
-    @IBAction func historyButtonPressed(_ sender: Any) {
-        containerView.addSubview(historyRateView)
-        historyRateView.setConstraints()
-        historyRateView.tableView.reloadData()
-        delegate?.historyButtonPressed()
+    private func buttonTitleAnimation() {
+        screenButton.fadeTransition(1.0)
+        screenButton.titleLabel?.text = ""
+        let title = isFlipping ? "Currency Converter" : "National Bank Exchange Rate"
+        screenButton.setTitle(title, for: .normal)
+    }
+    
+    @IBAction func screenButtonPressed(_ sender: Any) {
+        self.buttonTitleAnimation()
+        startAnimation {
+            self.delegate?.screenButtonPressed()
+        }
     }
 }

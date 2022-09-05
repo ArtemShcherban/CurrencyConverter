@@ -11,7 +11,8 @@ protocol PopUpWindowDelegate: AnyObject {
     func swipe()
     func addButtonPressed()
     func changeCurrency(sender: UIButton)
-    func rotateButtonPressed()
+    func dateWasChanged(new date: Date)
+    func rotateButtonPressed() // Delete
     func shareRatesPressed()
 }
 

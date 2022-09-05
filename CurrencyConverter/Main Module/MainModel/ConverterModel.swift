@@ -21,6 +21,7 @@ class ConverterModel {
             return String()
         }
         var noSpacesText = text.replacingOccurrences(of: " ", with: "")
+        var noSpace = text.split(separator: " ").joined()
         if noSpacesText.count >= 4 &&
             noSpacesText[noSpacesText.index(noSpacesText.endIndex, offsetBy: -4)] == "." {
             noSpacesText.removeLast()
