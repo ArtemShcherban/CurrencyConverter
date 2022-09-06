@@ -36,10 +36,10 @@ final class InitialModel {
         if groupCount > 0 { return }
         
         guard
-            let popularCurrencies = currencyManager.fetchSpecified(byCurrency: NumberConstants.popularCurrencies) else {
+            let popularCurrencies = currencyManager.fetchSpecified(byCurrency: DefaultConstants.popularCurrencies) else {
             return
         }
-        createPopularGroup(currencyNumbers: NumberConstants.popularCurrencies)
+        createPopularGroup(currencyNumbers: DefaultConstants.popularCurrencies)
         
         var groupKey: Int16 = 0
         guard let currencies = currencyManager.fetchCurrencyExcept(currencies: popularCurrencies) else { return }
@@ -75,13 +75,44 @@ final class InitialModel {
         currencyContainerManager.createCurrencyContainers()
     }
     
-    func updateContainerWithBaseCurrency() {
+    func updateContainersWithDefaultCurrencies() {
+        updateRatesContainer()
+        updateConverterContainer()
+    }
+    
+    private func updateRatesContainer() {
+        let containerName = ContainerConstants.Name.rate
+        let countInContainer = currencyContainerManager.getCurrencyCountInContainer(name: containerName)
+        if countInContainer > 0 { return }
+        let currencyNumbers = DefaultConstants.currencies.sorted()
+        currencyNumbers.forEach { currencyNumber in
+            guard let currency = currencyManager.fetchCurrency(byCurrency: currencyNumber) else { return }
+            currencyContainerManager.updateContainer(containerName, with: currency)
+        }
+    }
+    
+    private func updateConverterContainer() {
         let containerName = ContainerConstants.Name.converter
-        let currnciesInContainerCount = currencyContainerManager.getCurrencyCountInContainer(name: containerName)
-        if currnciesInContainerCount > 0 { return }
-        guard let currency = currencyManager.fetchCurrency(byCurrency: NumberConstants.baseCurrency) else {
+        let currencyNumbers = DefaultConstants.currencies
+        let countInContainer = currencyContainerManager.getCurrencyCountInContainer(name: containerName)
+        if countInContainer > 0 { return }
+        guard let currency = currencyManager.fetchCurrency(byCurrency: DefaultConstants.baseCurrency) else {
             return
         }
         currencyContainerManager.updateContainer(containerName, with: currency)
+        for currencyNumber in currencyNumbers.sorted() where currencyNumber != 985 {
+            guard let currency = currencyManager.fetchCurrency(byCurrency: currencyNumber) else { return }
+            currencyContainerManager.updateContainer(containerName, with: currency)
+        }
     }
+    
+    //    func updateContainerWithBaseCurrency() {
+    //        let containerName = ContainerConstants.Name.converter
+    //        let countInContainer = currencyContainerManager.getCurrencyCountInContainer(name: containerName)
+    //        if countInContainer > 0 { return }
+    //        guard let currency = currencyManager.fetchCurrency(byCurrency: DefaultConstants.baseCurrency) else {
+    //            return
+    //        }
+    //        currencyContainerManager.updateContainer(containerName, with: currency)
+    //    }
 }

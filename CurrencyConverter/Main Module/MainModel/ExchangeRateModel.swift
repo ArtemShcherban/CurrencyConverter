@@ -53,4 +53,8 @@ final class ExchangeRateModel {
         currencyManager.updateCurrencyRate(currency)
         return currency
     }
+    
+    func removeOldExchangeRates() {
+        exchangeRateManager.deleteExchangeRates(before: Date().oneYearAgo)
+    }
 }

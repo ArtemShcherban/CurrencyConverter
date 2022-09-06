@@ -1,5 +1,5 @@
 //
-//  TotalAmountCell.swift
+//  ConverterCell.swift
 //  CurrencyConverter
 //
 //  Created by Artem Shcherban on 15.08.2022.
@@ -7,8 +7,8 @@
 
 import UIKit
 
-class TotalAmountCell: UITableViewCell {
-    static let reuseIdentifier = String(describing: TotalAmountCell.self)
+class ConverterCell: UITableViewCell {
+    static let reuseIdentifier = String(describing: ConverterCell.self)
     
     @IBOutlet weak var currencyButton: UIButton!
     @IBOutlet weak var totalAmountLabel: UILabel!

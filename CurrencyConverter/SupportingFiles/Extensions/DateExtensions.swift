@@ -28,9 +28,18 @@ extension Date {
         return formattedDate(date: self, format: "d MMM yyyy HH:mm")
     }
     
+    var oneYearAgo: Date {
+        let calendar = Calendar.current
+        var components = DateComponents()
+        components.year = -1
+        let date = calendar.date(byAdding: components, to: self.startOfDay) ?? Date() - 31_536_000
+        return date
+    }
+    
     private func formattedDate(date: Date, format: String) -> String {
         let dateFormater = DateFormatter()
         dateFormater.dateFormat = format
+        dateFormater.locale = Locale(identifier: "en_US_POSIX")
         
         let formattedDate = dateFormater.string(from: date)
         return formattedDate

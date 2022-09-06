@@ -26,11 +26,13 @@ class MainViewController: UIViewController {
         mainAsyncQueue = AsyncQueue.main
         initialSetup()
         setDelegates()
+        firstTimeLaunched()
         fillDataSource()
         updateAddButton()
         getExchangeRates()
         setupHideKeyboardTapCesture()
         mainView.lastUpdateDate = dateModel.lastUpdateDate()
+        exchangeRateModel.removeOldExchangeRates()
     }
     
     private func setDelegates() {

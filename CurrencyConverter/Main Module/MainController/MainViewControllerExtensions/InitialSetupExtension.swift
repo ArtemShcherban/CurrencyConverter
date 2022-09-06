@@ -16,6 +16,14 @@ extension MainViewController {
         initialModel.insertCurrencies()
         initialModel.insertGroups()
         initialModel.createCurrencyContainers()
-        initialModel.updateContainerWithBaseCurrency()
+    }
+    
+    func firstTimeLaunched() {
+        if UserDefaults.standard.bool(forKey: "launchedBefore") {
+            return
+        } else {
+            initialModel.updateContainersWithDefaultCurrencies()
+            UserDefaults.standard.set(true, forKey: "launchedBefore")
+        }
     }
 }

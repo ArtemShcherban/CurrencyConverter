@@ -13,6 +13,7 @@ protocol ExchangeRateRepository {
     func checkBulletin(for date: Date) -> Bool
     func getExchangeRate(for currency: Currency, on date: Date) -> ExchangeRate?
     func handleSaving(exchangeRate: ExchangeRate, on date: Date)
+    func deleteBulletinAndRates(before date: Date)
 }
 
 struct ExchangeRateDataRepository: ExchangeRateRepository {
@@ -54,6 +55,25 @@ struct ExchangeRateDataRepository: ExchangeRateRepository {
             return
         }
         print("Unable to handle saving the \(exchangeRate)")
+    }
+    
+    func deleteBulletinAndRates(before date: Date) {
+        let predicate = NSPredicate(format: "%K < %@", #keyPath(CDBulletin.date), date as NSDate)
+        let fetchRequest = fetchRequest(with: predicate)
+        
+        do {
+            let cdBulletins = try coreDataStack.managedContext.fetch(fetchRequest)
+            cdBulletins.forEach { cdBulletin in
+                guard let cdExchangeRates = cdBulletin.rates.array as? [CDExchangeRate] else { return }
+                cdExchangeRates.forEach { cdExchangeRate in
+                    coreDataStack.managedContext.delete(cdExchangeRate)
+                }
+                coreDataStack.managedContext.delete(cdBulletin)
+                coreDataStack.saveContext()
+            }
+        } catch let nserror as NSError {
+            debugPrint(nserror)
+        }
     }
     
     private func createCD(exchangeRate: ExchangeRate, in bulletin: CDBulletin) {

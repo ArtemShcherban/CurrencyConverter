@@ -25,4 +25,8 @@ struct ExchangeRateManager {
     func saveExchangeRate(_ exchangeRate: ExchangeRate, _ date: Date) {
         exchangeRateDataRepository.handleSaving(exchangeRate: exchangeRate, on: date)
     }
+    
+    func deleteExchangeRates(before date: Date) {
+        exchangeRateDataRepository.deleteBulletinAndRates(before: date)
+    }
 }

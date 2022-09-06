@@ -21,7 +21,7 @@ final class ExchangeRatesView: CentralView {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .wheels
         datePicker.addTarget(self, action: #selector(delegatePickerAction), for: .valueChanged)
-        datePicker.minimumDate = minimumDate()
+        datePicker.minimumDate = Date().oneYearAgo
         datePicker.maximumDate = Date()
         datePicker.frame.size = CGSize(width: 0, height: 200)
         return datePicker
@@ -58,14 +58,6 @@ final class ExchangeRatesView: CentralView {
         tableView.tag = 0
         tableView.register(
             UINib(nibName: RateCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: RateCell.reuseIdentifier)
-    }
-    
-    private func minimumDate() -> Date {
-        let calendar = Calendar.current
-        var components = DateComponents()
-        components.year = -1
-        let date = calendar.date(byAdding: components, to: Date())
-        return date ?? Date()
     }
     
     @objc func delegatePickerAction(sender: UIDatePicker) {

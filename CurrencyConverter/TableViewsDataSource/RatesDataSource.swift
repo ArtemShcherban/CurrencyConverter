@@ -26,7 +26,7 @@ class RatesDataSource: NSObject, UITableViewDataSource {
         case 0:
             return rateCell(for: tableView, at: indexPath, with: currency)
         case 1:
-            return totalAmountCell(for: tableView, at: indexPath, with: currency)
+            return converterCell(for: tableView, at: indexPath, with: currency)
         default :
             return UITableViewCell()
         }
@@ -54,9 +54,9 @@ class RatesDataSource: NSObject, UITableViewDataSource {
         return cell
     }
     
-    private func totalAmountCell(for tableView: UITableView, at indexPath: IndexPath, with currency: Currency) -> UITableViewCell {
+    private func converterCell(for tableView: UITableView, at indexPath: IndexPath, with currency: Currency) -> UITableViewCell {
     guard let cell = tableView.dequeueReusableCell(
-        withIdentifier: TotalAmountCell.reuseIdentifier, for: indexPath) as? TotalAmountCell else {
+        withIdentifier: ConverterCell.reuseIdentifier, for: indexPath) as? ConverterCell else {
         return UITableViewCell()
         }
         cell.delegate = cellDelegate

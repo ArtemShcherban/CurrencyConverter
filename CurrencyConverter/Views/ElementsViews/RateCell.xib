@@ -45,9 +45,6 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6lk-Sr-Sz4" userLabel="Buy RateLabel" customClass="RateTextLabel" customModule="CurrencyConverter" customModuleProvider="target">
                         <rect key="frame" x="112" y="0.0" width="80" height="44"/>
                         <color key="backgroundColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="44" id="dcq-PM-u4F"/>
-                        </constraints>
                         <fontDescription key="fontDescription" name="Lato-SemiBold" family="Lato" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.19215686269999999" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -63,6 +60,7 @@
                         <color key="backgroundColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="44" id="BHd-mD-Z4d"/>
+                            <constraint firstAttribute="height" constant="44" id="o5D-pg-Dso"/>
                             <constraint firstAttribute="width" constant="80" id="qYW-qn-Rx8"/>
                         </constraints>
                         <fontDescription key="fontDescription" name="Lato-SemiBold" family="Lato" pointSize="14"/>
@@ -80,6 +78,16 @@
                                 <real key="value" value="6"/>
                             </userDefinedRuntimeAttribute>
                         </userDefinedRuntimeAttributes>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="o5D-pg-Dso"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=compact">
+                            <mask key="constraints">
+                                <include reference="o5D-pg-Dso"/>
+                            </mask>
+                        </variation>
                     </label>
                 </subviews>
                 <constraints>
@@ -87,6 +95,7 @@
                     <constraint firstItem="A7Q-hq-mZ6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5Ht-Ht-WzM"/>
                     <constraint firstItem="6lk-Sr-Sz4" firstAttribute="centerY" secondItem="Mz5-db-W6e" secondAttribute="centerY" id="J5R-89-DXf"/>
                     <constraint firstItem="A7Q-hq-mZ6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="JbD-pa-l0A"/>
+                    <constraint firstItem="Mz5-db-W6e" firstAttribute="height" secondItem="6lk-Sr-Sz4" secondAttribute="height" id="WZ2-Q7-aIR"/>
                     <constraint firstItem="Mz5-db-W6e" firstAttribute="leading" secondItem="6lk-Sr-Sz4" secondAttribute="trailing" constant="32" id="XLP-TX-auL"/>
                     <constraint firstAttribute="bottom" secondItem="A7Q-hq-mZ6" secondAttribute="bottom" id="htN-rN-jGc"/>
                     <constraint firstAttribute="trailing" secondItem="Mz5-db-W6e" secondAttribute="trailing" constant="16" id="ihj-Uz-9g7"/>
