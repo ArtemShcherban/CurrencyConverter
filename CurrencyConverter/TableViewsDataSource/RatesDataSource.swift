@@ -1,5 +1,5 @@
 //
-//  ResultDataSource.swift
+//  RatesDataSource.swift
 //  CurrencyConverter
 //
 //  Created by Artem Shcherban on 06.08.2022.
@@ -7,14 +7,14 @@
 
 import UIKit
 
-class ResultDataSource: NSObject, UITableViewDataSource {
-    static let shared = ResultDataSource()
+class RatesDataSource: NSObject, UITableViewDataSource {
+    static let shared = RatesDataSource()
     
-    var controller: MainViewController?
+    weak var cellDelegate: MainViewController?
     
     var baseCurrency: Currency?
     lazy var selectedCurrencies: [Currency] = []
-    private lazy var resultModel = ResultModel.shared
+    private lazy var ratesModel = RatesModel.shared
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         selectedCurrencies.count
@@ -38,9 +38,9 @@ class ResultDataSource: NSObject, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
-        resultModel.removeCell(at: indexPath)
+        ratesModel.removeCell(at: indexPath)
         tableView.deleteRows(at: [indexPath], with: .automatic)
-        controller?.updateAddButton()
+        cellDelegate?.updateAddButton()
         tableView.reloadData()
     }
     
@@ -49,7 +49,7 @@ class ResultDataSource: NSObject, UITableViewDataSource {
             withIdentifier: RateCell.reuseIdentifier, for: indexPath) as? RateCell else {
             return UITableViewCell()
         }
-        cell.delegate = controller
+        cell.delegate = cellDelegate
         cell.configureAt(row: indexPath.row, with: currency)
         return cell
     }
@@ -59,7 +59,7 @@ class ResultDataSource: NSObject, UITableViewDataSource {
         withIdentifier: TotalAmountCell.reuseIdentifier, for: indexPath) as? TotalAmountCell else {
         return UITableViewCell()
         }
-        cell.delegate = controller
+        cell.delegate = cellDelegate
         let amount = ConverterModel.shared.doCalculation(for: currency)
         cell.configureAt(row: indexPath.row, with: currency, and: amount)
         return cell

@@ -7,11 +7,10 @@
 
 import UIKit
 
-final class ExchangeRatesView: PopUpWindowView {
+final class ExchangeRatesView: CentralView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var dateTextField: AdjustableTextField!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var arrowButton: UIButton!
     @IBOutlet weak var addButton: UIButton!
     
     lazy var currentDate = Date().startOfDay
@@ -55,7 +54,7 @@ final class ExchangeRatesView: PopUpWindowView {
     }
     
     private func configureTableView() {
-        tableView.dataSource = ResultDataSource.shared
+        tableView.dataSource = RatesDataSource.shared
         tableView.tag = 0
         tableView.register(
             UINib(nibName: RateCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: RateCell.reuseIdentifier)
@@ -75,16 +74,12 @@ final class ExchangeRatesView: PopUpWindowView {
     }
     
     @IBAction func addButtonPressed(_ sender: Any) {
-        popUpWindowDelegate?.addButtonPressed()
-    }
-    
-    @IBAction func arrowButtonPressed(_ sender: Any) {
-        removeFromSuperview()
+        centralViewDelegate?.addButtonPressed()
     }
 }
 
 extension ExchangeRatesView: UITextFieldDelegate {
     func textFieldDidEndEditing(_ textField: UITextField) {
-        popUpWindowDelegate?.dateWasChanged(new: currentDate)
+        centralViewDelegate?.dateWasChanged(new: currentDate)
     }
 }

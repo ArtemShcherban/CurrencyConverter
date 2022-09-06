@@ -13,16 +13,16 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConverterWindowView" customModule="CurrencyConverter" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ConverterView" customModule="CurrencyConverter" customModuleProvider="target">
             <connections>
-                <outlet property="addCurrencyButton" destination="1k8-5E-1Wv" id="tHZ-RG-6TO"/>
+                <outlet property="addButton" destination="1k8-5E-1Wv" id="tHZ-RG-6TO"/>
                 <outlet property="baseCurrencyButton" destination="256-Ro-6ZW" id="8Vb-yT-COK"/>
                 <outlet property="buyButton" destination="A39-Ul-ino" id="fHi-H9-46h"/>
                 <outlet property="contentView" destination="BBq-NP-G5L" id="dcD-Wb-I6C"/>
-                <outlet property="converterTableView" destination="94T-BW-afh" id="a9B-12-MvJ"/>
-                <outlet property="inputAmountField" destination="kvg-aA-lU0" id="lpv-Oj-nA3"/>
                 <outlet property="sellButton" destination="CPV-80-a2e" id="hVF-nH-8C0"/>
                 <outlet property="shareRatesButton" destination="rAp-D3-aqN" id="6a6-o1-755"/>
+                <outlet property="tableView" destination="94T-BW-afh" id="a9B-12-MvJ"/>
+                <outlet property="textField" destination="kvg-aA-lU0" id="lpv-Oj-nA3"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

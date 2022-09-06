@@ -7,17 +7,16 @@
 
 import UIKit
 
-protocol PopUpWindowDelegate: AnyObject {
+protocol CentralViewDelegate: AnyObject {
     func swipe()
     func addButtonPressed()
-    func changeCurrency(sender: UIButton)
+    func changeCurrency(at row: Int)
     func dateWasChanged(new date: Date)
-    func rotateButtonPressed() // Delete
     func shareRatesPressed()
 }
 
-class PopUpWindowView: UIView {
-    weak var popUpWindowDelegate: PopUpWindowDelegate?
+class CentralView: UIView {
+    weak var centralViewDelegate: CentralViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -74,6 +73,6 @@ class PopUpWindowView: UIView {
     }
     
     @objc func swipeDelegateAction() {
-        popUpWindowDelegate?.swipe()
+        centralViewDelegate?.swipe()
     }
 }

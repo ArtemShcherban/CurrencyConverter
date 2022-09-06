@@ -16,7 +16,7 @@ class NetworkService {
         return urlSession
     }()
     
-    func getMonoBankExchangeRate(url: URL?, comletion: @escaping (Result<[ExchangeRate], NetworkServiceError>) -> Void ) {
+    func performQuery(with url: URL?, comletion: @escaping (Result<[ExchangeRate], NetworkServiceError>) -> Void ) {
         guard let url = url else {
             comletion(.failure(NetworkServiceError.cannotCreateURL))
             return

@@ -53,7 +53,7 @@ struct ExchangeRateDataRepository: ExchangeRateRepository {
             update(cdExchangeRate: cdExchangeRate, with: exchangeRate)
             return
         }
-        print("Enable to handle saving the \(exchangeRate)")
+        print("Unable to handle saving the \(exchangeRate)")
     }
     
     private func createCD(exchangeRate: ExchangeRate, in bulletin: CDBulletin) {

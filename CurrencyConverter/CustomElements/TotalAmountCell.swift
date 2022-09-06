@@ -13,15 +13,18 @@ class TotalAmountCell: UITableViewCell {
     @IBOutlet weak var currencyButton: UIButton!
     @IBOutlet weak var totalAmountLabel: UILabel!
     
-    weak var delegate: PopUpWindowDelegate?
+    var row: Int?
+    weak var delegate: CentralViewDelegate?
     
     func configureAt(row: Int, with currency: Currency, and amount: Double) {
+        self.row = row + 1
         currencyButton.setTitle(currency.code, for: .normal)
         currencyButton.tag = row + 1
         totalAmountLabel.text = amount.decimalFormat()
     }
     
     @IBAction func delegateAction(_ sender: UIButton) {
-        delegate?.changeCurrency(sender: sender)
+        guard let row = row else { return }
+        delegate?.changeCurrency(at: row)
     }
 }

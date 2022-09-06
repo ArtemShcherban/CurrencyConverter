@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainViewDelegate: AnyObject {
-    func screenButtonPressed()
+    func switchViewButtonPressed()
 }
 
 class MainView: UIView {
@@ -16,13 +16,12 @@ class MainView: UIView {
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var updateDateLabel: UILabel!
-    @IBOutlet weak var screenButton: UIButton!
+    @IBOutlet weak var switchViewButton: UIButton!
     
-//    lazy var ratesWindowView = RatesWindowView()
     lazy var exchangeRatesView = ExchangeRatesView()
-    lazy var converterWindowView = ConverterWindowView()
+    lazy var converterWindowView = ConverterView()
     
-    lazy var isFlipping = false  // change the name 🥸
+    lazy var isRatesView = true
     lazy var lastUpdateDate = String() {
         willSet {
             updateDateLabel.text = newValue
@@ -34,16 +33,16 @@ class MainView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
-        containerView.addSubview(exchangeRatesView)
         configureHistoryButton()
+        containerView.addSubview(exchangeRatesView)
         exchangeRatesView.setConstraints()
     }
     
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         configure()
-        containerView.addSubview(exchangeRatesView)
         configureHistoryButton()
+        containerView.addSubview(exchangeRatesView)
         exchangeRatesView.setConstraints()
     }
     
@@ -52,59 +51,66 @@ class MainView: UIView {
         contentView.fixInView(self)
     }
     
+    func setDelegates(delegate: MainViewController) {
+        self.delegate = delegate
+        exchangeRatesView.centralViewDelegate = delegate
+        converterWindowView.centralViewDelegate = delegate
+        converterWindowView.delegate = delegate //// RENAME 🥸
+    }
+    
     func configureHistoryButton() {
-        screenButton.layer.cornerRadius = 14
-        screenButton.layer.borderColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1).cgColor
-        screenButton.layer.borderWidth = 1
+        switchViewButton.layer.cornerRadius = 14
+        switchViewButton.layer.borderColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1).cgColor
+        switchViewButton.layer.borderWidth = 1
     }
     
     func startSwipeAnimation() {
-        let centralView = !isFlipping ? exchangeRatesView : converterWindowView
+        let centralView = isRatesView ? exchangeRatesView : converterWindowView
         centralView.swipeAnimation()
     }
     
     func startAnimation(completion: @escaping(() -> Void)) {
-        flipView { // change the name 🥸
+        animateSwitchView {
             completion()
         }
         titleTransition(
             label: titleLabel,
-            title: isFlipping ? TitleConstants.currencyConverter : TitleConstants.exchangeRates,
-            direction: isFlipping ? AnimationDirection.back : AnimationDirection.forward)
+            title: isRatesView ? TitleConstants.exchangeRates : TitleConstants.currencyConverter,
+            direction: isRatesView ? AnimationDirection.back : AnimationDirection.forward)
     }
     
-    func reloadTableViewData() {
+    func updateTableView() {
         var currentTableView: UITableView
-        switch isFlipping {
+        switch isRatesView {
         case true:
-            currentTableView = converterWindowView.converterTableView
-            converterWindowView.configureBaseCarrencyButton()
-        default:
             currentTableView = exchangeRatesView.tableView
+        default:
+            currentTableView = converterWindowView.tableView
+            converterWindowView.configureBaseCarrencyButton()
         }
         currentTableView.reloadData()
     }
     
     func setAddButtonStatus(_ isMaxNumberOfRows: Bool) {
-        switch isFlipping {
+        switch isRatesView {
         case true:
-            converterWindowView.addCurrencyButton.isEnabled = !isMaxNumberOfRows
+            exchangeRatesView.addButton.isEnabled = isMaxNumberOfRows
         default:
-            exchangeRatesView.addButton.isEnabled = !isMaxNumberOfRows
+            converterWindowView.addButton.isEnabled = isMaxNumberOfRows
         }
     }
     
     private func buttonTitleAnimation() {
-        screenButton.fadeTransition(1.0)
-        screenButton.titleLabel?.text = ""
-        let title = isFlipping ? "Currency Converter" : "National Bank Exchange Rate"
-        screenButton.setTitle(title, for: .normal)
+        switchViewButton.fadeTransition(1.0)
+        switchViewButton.titleLabel?.text = ""
+        let title = isRatesView ? "National Bank Exchange Rate" : "Currency Converter"
+        switchViewButton.setTitle(title, for: .normal)
     }
     
     @IBAction func screenButtonPressed(_ sender: Any) {
         self.buttonTitleAnimation()
         startAnimation {
-            self.delegate?.screenButtonPressed()
+            self.delegate?.switchViewButtonPressed()
         }
     }
 }

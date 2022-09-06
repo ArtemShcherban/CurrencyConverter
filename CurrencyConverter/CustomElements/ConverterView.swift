@@ -6,26 +6,25 @@
 //
 
 import UIKit
-protocol InputAmountFieldDeligate: AnyObject { ///////////////////// RENAME
-    func amountChanged(in textField: AdjustableTextField)
+protocol ConverterViewDelegate: AnyObject { ///////////////////// RENAME
+    func valueChanged(in textField: inout AdjustableTextField)
     func buttonSelected()
 }
 
 @IBDesignable
-final class ConverterWindowView: PopUpWindowView {
+final class ConverterView: CentralView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var sellButton: UIButton!
     @IBOutlet weak var buyButton: UIButton!
-    @IBOutlet weak var arrowButton: UIButton!
-    @IBOutlet weak var converterTableView: UITableView!
-    @IBOutlet weak var addCurrencyButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var addButton: UIButton!
     @IBOutlet weak var baseCurrencyButton: UIButton!
-    @IBOutlet weak var inputAmountField: AdjustableTextField!
+    @IBOutlet weak var textField: AdjustableTextField!
     @IBOutlet weak var shareRatesButton: UIButton!
     
-    weak var delegate: InputAmountFieldDeligate?
+    weak var delegate: ConverterViewDelegate?
     
-    private lazy var resultDataSource = ResultDataSource.shared
+    private lazy var ratesDataSource = RatesDataSource.shared
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,25 +43,25 @@ final class ConverterWindowView: PopUpWindowView {
     }
     
     private func configureContentView() {
-        Bundle.main.loadNibNamed("ConverterWindowView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("ConverterView", owner: self, options: nil)
         contentView.layer.cornerRadius = 10
         contentView.fixInView(self)
     }
     
     func configureBaseCarrencyButton() {
-        guard let currency = resultDataSource.baseCurrency else { return } // ??remove to MainViewController?? 🥸
+        guard let currency = ratesDataSource.baseCurrency else { return } // ??remove to MainViewController?? 🥸
         baseCurrencyButton.setTitle(currency.code, for: .normal)
     }
     
     func configureInputAmountField() {
-        inputAmountField.delegate = self
-        inputAmountField.addTarget(self, action: #selector(amountChanged), for: .editingChanged)
+        textField.delegate = self
+        textField.addTarget(self, action: #selector(valueChangedInTextField), for: .editingChanged)
     }
     
     private func configureTableView() {
-        converterTableView.dataSource = resultDataSource
-        converterTableView.tag = 1
-        converterTableView.register(
+        tableView.dataSource = ratesDataSource
+        tableView.tag = 1
+        tableView.register(
             UINib(nibName: TotalAmountCell.reuseIdentifier, bundle: nil),
             forCellReuseIdentifier: TotalAmountCell.reuseIdentifier)
     }
@@ -84,44 +83,30 @@ final class ConverterWindowView: PopUpWindowView {
         deselectedButton.isEnabled = true
         deselectedButton.backgroundColor = .white
     }
-
-    
-//    func createAlertController(with message: (title: String, message: String)) -> UIAlertController {
-//        let alertController = UIAlertController(
-//            title: message.title,
-//            message: message.message,
-//            preferredStyle: .alert)
-//        let alertAction = UIAlertAction(title: "OK", style: .cancel)
-//        alertController.addAction(alertAction)
-//        return alertController
-//    }
     
     @IBAction func buttonPressed(_ sender: UIButton) {
         updateButtonAppearence(sender)
         delegate?.buttonSelected()
     }
     
-    @objc func amountChanged(_ sender: AdjustableTextField) {
-        delegate?.amountChanged(in: sender)
+    @objc func valueChangedInTextField() {
+        delegate?.valueChanged(in: &textField)
     }
     
     @IBAction func baseCurrencyPressed(_ sender: UIButton) {
-        popUpWindowDelegate?.changeCurrency(sender: sender)
+        centralViewDelegate?.changeCurrency(at: 0)
     }
     
     @IBAction func addCurrencyPressed(_ sender: UIButton) {
-        popUpWindowDelegate?.addButtonPressed()
+        centralViewDelegate?.addButtonPressed()
     }
     
-    @IBAction func arrowButtonPressed(_ sender: Any) {
-        popUpWindowDelegate?.rotateButtonPressed()
-    }
     @IBAction func shareRatesButtonPressed(_ sender: Any) {
-        popUpWindowDelegate?.shareRatesPressed()
+        centralViewDelegate?.shareRatesPressed()
     }
 }
 
-extension ConverterWindowView: UITextFieldDelegate {
+extension ConverterView: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let currentText = textField.text ?? String()
         guard let stringRange = Range(range, in: currentText) else { return false }

@@ -60,8 +60,6 @@ class CoreDataStack {
         }
     }
     
-// For deleting
-    
     func deleteFromCoreData(entityName: String) {
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         let deleteFetch = NSBatchDeleteRequest(fetchRequest: fetch)

@@ -13,10 +13,10 @@ extension MainView {
         case back = -1
     }
     
-    func flipView(completion: @escaping(() -> Void) ) {  // change name 🥸
-        let visibleWindow = !isFlipping ? exchangeRatesView : converterWindowView
-        let hiddenWindow = !isFlipping ? converterWindowView : exchangeRatesView
-        isFlipping.toggle()
+    func animateSwitchView(completion: @escaping(() -> Void) ) {
+        let visibleWindow = isRatesView ? exchangeRatesView : converterWindowView
+        let hiddenWindow = isRatesView ? converterWindowView : exchangeRatesView
+        isRatesView.toggle()
         UIView.animate(withDuration: 0.75, animations: {
             visibleWindow.transform = CGAffineTransform(scaleX: 0.001, y: 1)}, completion: { _ in
                 self.containerView.addSubview(hiddenWindow)

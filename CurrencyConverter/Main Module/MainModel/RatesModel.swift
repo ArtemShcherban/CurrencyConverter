@@ -1,5 +1,5 @@
 //
-//  ResultModel.swift
+//  RatesModel.swift
 //  CurrencyConverter
 //
 //  Created by Artem Shcherban on 06.08.2022.
@@ -8,14 +8,14 @@
 import Foundation
 import CoreData
 
-protocol ResultModelDelegate: AnyObject {
-    func resultsTableViewReloadData()
+protocol RatesModelDelegate: AnyObject {
+    func updateCurrentTableView()
 }
 
-final class ResultModel { // 🥸 RENAME
-    static let shared = ResultModel()
+final class RatesModel {
+    static let shared = RatesModel()
  
-    private lazy var resultDataSource = ResultDataSource.shared
+    private lazy var ratesDataSource = RatesDataSource.shared
     private lazy var currencyListModel = CurrencyListModel.shared
     private lazy var exchangeRateModel = ExchangeRateModel.shared
     
@@ -28,25 +28,25 @@ final class ResultModel { // 🥸 RENAME
         }
     }
         
-    weak var delegate: ResultModelDelegate?
+    weak var delegate: RatesModelDelegate?
     
     func defineContainerName(value: Bool) {
-        containerName = value ? ContainerConstants.Name.converter : ContainerConstants.Name.rate
+        containerName = value ? ContainerConstants.Name.rate : ContainerConstants.Name.converter
     }
     
     func fillDataSource() {
         guard
             var currencies = currencyContainerManager.getCurrencyFromContainer(name: containerName),
             !currencies.isEmpty else {
-            resultDataSource.selectedCurrencies = []
+            ratesDataSource.selectedCurrencies = []
             return }
         
         setExchangeRateFor(currencies: &currencies)
         
         if containerName == ContainerConstants.Name.converter {
-            resultDataSource.baseCurrency = currencies.removeFirst()
+            ratesDataSource.baseCurrency = currencies.removeFirst()
         }
-        resultDataSource.selectedCurrencies = currencies
+        ratesDataSource.selectedCurrencies = currencies
     }
         
     private func setExchangeRateFor(currencies: inout [Currency]) {
@@ -64,7 +64,7 @@ final class ResultModel { // 🥸 RENAME
     }
     
     func removeCell(at indexPath: IndexPath) {
-        var currency = resultDataSource.selectedCurrencies[indexPath.row]
+        var currency = ratesDataSource.selectedCurrencies[indexPath.row]
         currency.buy = 0.0
         currency.sell = 0.0
         currencyManager.updateCurrencyRate(currency)
@@ -75,16 +75,16 @@ final class ResultModel { // 🥸 RENAME
     func isMaxNumberOfRows() -> Bool {
         switch containerName {
         case ContainerConstants.Name.rate:
-            if resultDataSource.selectedCurrencies.count <= 2 {
-                return false
-            } else {
+            if ratesDataSource.selectedCurrencies.count <= 2 {
                 return true
+            } else {
+                return false
             }
         case ContainerConstants.Name.converter:
-            if resultDataSource.selectedCurrencies.count <= 1 {
-                return false
-            } else {
+            if ratesDataSource.selectedCurrencies.count <= 1 {
                 return true
+            } else {
+                return false
             }
         default:
             return true

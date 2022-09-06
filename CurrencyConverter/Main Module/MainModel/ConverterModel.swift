@@ -10,7 +10,7 @@ import UIKit
 class ConverterModel {
     static let shared = ConverterModel()
     
-    private lazy var resultDataSource = ResultDataSource.shared
+    private lazy var ratesDataSource = RatesDataSource.shared
     
     lazy var isSellAction = true
     lazy var amount: Double = 0.0
@@ -53,7 +53,7 @@ class ConverterModel {
     }
     
     func doCalculation(for currency: Currency) -> Double {
-        guard let baseCurrency = resultDataSource.baseCurrency else { return 0.00 }
+        guard let baseCurrency = ratesDataSource.baseCurrency else { return 0.00 }
         if isSellAction {
             return  currency.sell > 0 ? amount * baseCurrency.buy / currency.sell : 0.00
         } else {

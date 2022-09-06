@@ -8,7 +8,7 @@
 import Foundation
 
 final class URLModel {
-    func createMonoBankURL() -> URL? {
+    func createMonoURL() -> URL? {
         var components = URLComponents()
         components.scheme = URLConstants.MonoBank.scheme
         components.host = URLConstants.MonoBank.baseURL
@@ -17,7 +17,7 @@ final class URLModel {
         return url
     }
     
-    func createPrivatBankURL(with date: String) -> URL? {
+    func createPrivatURL(with date: String) -> URL? {
         var components = URLComponents()
         components.scheme = URLConstants.PrivatBank.scheme
         components.host = URLConstants.PrivatBank.baseURL

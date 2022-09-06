@@ -14,27 +14,14 @@ protocol MessageModelDelegate: MFMessageComposeViewControllerDelegate {
 
 class MessageModel {
     static let shared = MessageModel()
-    weak var delegate: MessageModelDelegate?
-    private lazy var resultDataSource = ResultDataSource.shared
+    private lazy var ratesDataSource = RatesDataSource.shared
     private lazy var converterModel = ConverterModel.shared
     
-    func prepareMessage(for phoneNumber: String) {
-        if MFMessageComposeViewController.canSendText() {
-            let controller = MFMessageComposeViewController()
-            controller.body = createMessage()
-            controller.recipients = [phoneNumber]
-            if let delegate = delegate {
-                controller.messageComposeDelegate = delegate
-                delegate.message(controller: controller)
-            }
-        }
-    }
-    
     func createMessage() -> String {
-        let currencies = resultDataSource.selectedCurrencies
+        let currencies = ratesDataSource.selectedCurrencies
         let amount = converterModel.amount
         guard
-            let baseCurrency = resultDataSource.baseCurrency,
+            let baseCurrency = ratesDataSource.baseCurrency,
             !currencies.isEmpty else {
             return String()
         }

@@ -71,15 +71,13 @@ struct GroupDataRepository: GroupRepository {
                 let predicate = NSPredicate(format: "%K == %D", #keyPath(CDGroup.key), groupKey)
                 predicates.append(predicate)
             }
-            return predicates
         } else if let predict = predict as? [String] {
             predict.forEach { groupName in
                 let predicate = NSPredicate(format: "%K == %@", #keyPath(CDGroup.name), groupName)
                 predicates.append(predicate)
             }
-            return predicates
         }
-        return []
+        return predicates
     }
 }
 

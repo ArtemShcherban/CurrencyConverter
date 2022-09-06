@@ -23,7 +23,3 @@ enum URLConstants {
     }
 }
 
-//https://api.privatbank.ua/p24api/exchange_rates?json&date=01.12.2014
-// https://api.openweathermap.org/data/2.5/weather?q=London&appid=59a2b233df10c0b64ce48ebeb844ddf2
-// https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5
-

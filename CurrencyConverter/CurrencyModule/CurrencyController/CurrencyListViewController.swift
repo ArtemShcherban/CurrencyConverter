@@ -14,13 +14,13 @@ class CurrencyListViewController: UIViewController, CurrencyListViewDelegate {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var currensyListView: CurrencyListView!
     
-    weak var delegate: ResultModelDelegate?
-    weak var sender: UIButton?
+    weak var delegate: RatesModelDelegate?
+    var editingRow: Int?
     
     private lazy var dataSource = CurrencyListDataSource.shared
     private lazy var coreDataStack = CoreDataStack.shared
     private lazy var currencyListModel = CurrencyListModel.shared
-    private lazy var resultModel = ResultModel.shared
+    private lazy var ratesModel = RatesModel.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -71,14 +71,14 @@ extension CurrencyListViewController: UITableViewDelegate {
             return
         }
         
-        if let sender = sender {
-            resultModel.replaceCurrency(at: sender.tag, with: currency)
+        if let editingRow = editingRow {
+            ratesModel.replaceCurrency(at: editingRow, with: currency)
         } else {
-            resultModel.add(currency: currency)
+            ratesModel.add(currency: currency)
         }
         
         currensyListView.searchController.isActive = false
-        delegate?.resultsTableViewReloadData()
+        delegate?.updateCurrentTableView()
         self.dismiss(animated: true)
     }
 }

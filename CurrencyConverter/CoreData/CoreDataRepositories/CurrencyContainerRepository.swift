@@ -46,10 +46,7 @@ struct CurrencyContainerDataRepository: CurrencyContainerRepository {
             return nil
         }
         cdCurrencies.forEach { cdCurrency in
-            var currency: Currency
-            currency = cdCurrency.convertToCurrency()
-            currencies.append(currency)
-//            currencies.append(cdCurrency.convertToCurrency())
+            currencies.append(cdCurrency.convertToCurrency())
         }
         return currencies
     }
@@ -58,7 +55,7 @@ struct CurrencyContainerDataRepository: CurrencyContainerRepository {
         guard
             let container = getCDCurrencyContainer(name: container),
             let cdCurrency = getCDCurrency(by: currency.number) else {
-            print("Failed to update \(container) container")
+            print("Failed to update container with \(currency)")
             return
         }
         container.addToCurrencies(cdCurrency)
@@ -80,7 +77,7 @@ struct CurrencyContainerDataRepository: CurrencyContainerRepository {
         guard
             let cdCurrencyContainer = getCDCurrencyContainer(name: name),
             let cdCurrency = getCDCurrency(by: currency.number) else {
-            print("Failed to delete currency: \(currency) from the container)")
+            print("Failed to delete currency: \(currency)")
             return
         }
         cdCurrencyContainer.removeFromCurrencies(cdCurrency)

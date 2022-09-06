@@ -24,7 +24,7 @@
             <connections>
                 <outlet property="containerView" destination="HfX-LT-SVC" id="q42-4E-itc"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="piM-72-vzn"/>
-                <outlet property="screenButton" destination="Jfy-HQ-mO5" id="vL4-rS-Zyu"/>
+                <outlet property="switchViewButton" destination="Jfy-HQ-mO5" id="vL4-rS-Zyu"/>
                 <outlet property="titleLabel" destination="dv8-Jb-bSj" id="eXe-Nt-S2d"/>
                 <outlet property="updateDateLabel" destination="AN4-q2-FsM" id="e0L-gF-M2F"/>
             </connections>

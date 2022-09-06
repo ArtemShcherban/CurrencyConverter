@@ -14,16 +14,18 @@ class RateCell: UITableViewCell {
     @IBOutlet private weak var buyLabel: RateTextLabel!
     @IBOutlet private weak var sellLabel: RateTextLabel!
     
-    weak var delegate: PopUpWindowDelegate?
+    var row: Int?
+    weak var delegate: CentralViewDelegate?
     
     func configureAt(row: Int, with currency: Currency) {
+        self.row = row
         currencyButton.setTitle(currency.code, for: .normal)
-        currencyButton.tag = row
         buyLabel.text = String(format: "%.3f", currency.buy)
         sellLabel.text = String(format: "%.3f", currency.sell)
     }
     
     @IBAction func delegateAction(_ sender: UIButton) {
-        delegate?.changeCurrency(sender: sender)
+        guard let row = row else { return }
+        delegate?.changeCurrency(at: row)
     }
 }

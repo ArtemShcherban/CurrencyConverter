@@ -12,8 +12,9 @@ protocol CurrencyRepository {
     func getCount() -> Int
     func create(currency: Currency)
     func getSpecified(by numbers: [Int16]) -> [Currency]?
-    func getAllExcept(currencies: [Currency]) -> [Currency]?
     func get(byCurrency number: Int16) -> Currency?
+    func get(byCurrency code: String) -> Currency?
+    func getAllExcept(currencies: [Currency]) -> [Currency]?
     func updateCurrencyRate(currency: Currency)
     func updateCurrencyGroup(byCurrency numbers: [Int16], with groupKey: Int16)
 }
