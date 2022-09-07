@@ -20,8 +20,7 @@ class ConverterModel {
             self.amount = 0.0
             return String()
         }
-        var noSpacesText = text.replacingOccurrences(of: " ", with: "")
-        var noSpace = text.split(separator: " ").joined()
+        var noSpacesText = text.components(separatedBy: " ").joined()
         if noSpacesText.count >= 4 &&
             noSpacesText[noSpacesText.index(noSpacesText.endIndex, offsetBy: -4)] == "." {
             noSpacesText.removeLast()

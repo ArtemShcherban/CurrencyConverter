@@ -36,9 +36,9 @@ final class InitialModel {
         if groupCount > 0 { return }
         
         guard
-            let popularCurrencies = currencyManager.fetchSpecified(byCurrency: DefaultConstants.popularCurrencies) else {
-            return
-        }
+            let popularCurrencies = currencyManager.fetchSpecified(byCurrency: DefaultConstants.popularCurrencies)
+        else { return }
+        
         createPopularGroup(currencyNumbers: DefaultConstants.popularCurrencies)
         
         var groupKey: Int16 = 0

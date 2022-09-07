@@ -22,7 +22,7 @@ final class RatesModel {
     private let currencyManager = CurrencyManager()
     private let currencyContainerManager = CurrencyContainerManager()
     
-    private lazy var containerName = String() { // 🥸 RENAME
+    private lazy var containerName = String() {
         didSet {
             currencyListModel.containerName = containerName
         }

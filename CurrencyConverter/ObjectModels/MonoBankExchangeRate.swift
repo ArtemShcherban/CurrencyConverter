@@ -47,8 +47,7 @@ struct MonoBankExchangeRate: Codable {
     }
 }
 
-
-//class MonoBankExchangeRate: BankExchangeRate, Decodable {
+// class MonoBankExchangeRate: BankExchangeRate, Decodable {
 //    let date: Int
 //    let rateBuy: Double
 //    let rateSell: Double
@@ -81,4 +80,4 @@ struct MonoBankExchangeRate: Codable {
 //            currencyNumberA = try values.decode(Int16.self, forKey: .currencyNumberA)
 //            currencyNumberB = try values.decode(Int16.self, forKey: .currencyNumberB)
 //        }
-//}
+// }

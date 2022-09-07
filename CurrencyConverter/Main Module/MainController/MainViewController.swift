@@ -84,7 +84,7 @@ class MainViewController: UIViewController {
     }
 }
 
-//extension MainViewController: MFMessageComposeViewControllerDelegate {
+// extension MainViewController: MFMessageComposeViewControllerDelegate {
 //    func messageComposeViewController(_ controller: MFMessageComposeViewController, didFinishWith result: MessageComposeResult) {
 //        switch result {
 //        case .cancelled:
@@ -101,8 +101,7 @@ class MainViewController: UIViewController {
 //            dismiss(animated: true)
 //        }
 //    }
-//}
-
+// }
 
 //    func shareRatesPressed() {
 //        CNContactStore().requestAccess(for: .contacts) { success, error in
@@ -136,7 +135,6 @@ class MainViewController: UIViewController {
 //                        coreDataStack.deleteAllEntities()
 
 //                        let bulletinDataRepo = ExchangeRateDataRepository()
-        //        bulletinDataRepo.deleteCDExchangeRatesWithNullBulletin()
-        //        bulletinDataRepo.updateCDBulletinName()
+//        bulletinDataRepo.deleteCDExchangeRatesWithNullBulletin()
+//        bulletinDataRepo.updateCDBulletinName()
 //                        bulletinDataRepo.deleteCDBulletinAndRates(for: Date(timeIntervalSinceReferenceDate: 657932400).startOfDay)
-

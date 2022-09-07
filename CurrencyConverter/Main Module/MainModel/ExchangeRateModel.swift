@@ -23,12 +23,15 @@ final class ExchangeRateModel {
     func updateBulletin(for date: Date, bankData: [ExchangeRate]) {
         if !exchangeRateManager.checkBulletinInDatabase(for: date.startOfDay) {
             print(date.timeIntervalSinceReferenceDate)
-            exchangeRateManager.createBulletin(Bulletin(from: "\(date.yyyyMMdd) MonoBank&PrivatBank", date: date.startOfDay))
+            exchangeRateManager.createBulletin(Bulletin(
+                from: "\(date.yyyyMMdd) MonoBank&PrivatBank",
+                date: date.startOfDay)
+            )
         }
         updateExchangeRates(of: date.startOfDay, with: bankData)
     }
     
-    private func updateExchangeRates(of date: Date, with bankData: [ExchangeRate]) { // rename addExRatesToBulletin🥸
+    private func updateExchangeRates(of date: Date, with bankData: [ExchangeRate]) {
         bankData.forEach { exchangeRate in
             if exchangeRate.currencyNumber != 0 {
                 exchangeRateManager.saveExchangeRate(exchangeRate, date.startOfDay)

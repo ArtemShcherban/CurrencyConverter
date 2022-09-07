@@ -19,7 +19,7 @@ class MainView: UIView {
     @IBOutlet weak var switchViewButton: UIButton!
     
     lazy var exchangeRatesView = ExchangeRatesView()
-    lazy var converterWindowView = ConverterView()
+    lazy var converterView = ConverterView()
     
     lazy var isRatesView = true
     lazy var lastUpdateDate = String() {
@@ -54,8 +54,8 @@ class MainView: UIView {
     func setDelegates(delegate: MainViewController) {
         self.delegate = delegate
         exchangeRatesView.centralViewDelegate = delegate
-        converterWindowView.centralViewDelegate = delegate
-        converterWindowView.delegate = delegate //// RENAME 🥸
+        converterView.centralViewDelegate = delegate
+        converterView.delegate = delegate
     }
     
     func configureHistoryButton() {
@@ -65,7 +65,7 @@ class MainView: UIView {
     }
     
     func startSwipeAnimation() {
-        let centralView = isRatesView ? exchangeRatesView : converterWindowView
+        let centralView = isRatesView ? exchangeRatesView : converterView
         centralView.swipeAnimation()
     }
     
@@ -85,8 +85,8 @@ class MainView: UIView {
         case true:
             currentTableView = exchangeRatesView.tableView
         default:
-            currentTableView = converterWindowView.tableView
-            converterWindowView.configureBaseCarrencyButton()
+            currentTableView = converterView.tableView
+            converterView.configureBaseCarrencyButton()
         }
         currentTableView.reloadData()
     }
@@ -96,7 +96,7 @@ class MainView: UIView {
         case true:
             exchangeRatesView.addButton.isEnabled = isMaxNumberOfRows
         default:
-            converterWindowView.addButton.isEnabled = isMaxNumberOfRows
+            converterView.addButton.isEnabled = isMaxNumberOfRows
         }
     }
     

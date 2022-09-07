@@ -22,4 +22,3 @@ enum URLConstants {
         static let date = "date"
     }
 }
-

@@ -18,5 +18,3 @@ struct Bulletin {
         self.rates = []
     }
 }
-
-

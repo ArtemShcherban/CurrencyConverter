@@ -9,7 +9,6 @@
 import Foundation
 import CoreData
 
-
 extension CDBulletin {
     @nonobjc public
     class func fetchRequest() -> NSFetchRequest<CDBulletin> {

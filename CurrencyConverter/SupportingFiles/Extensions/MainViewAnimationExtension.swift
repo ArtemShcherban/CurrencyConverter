@@ -14,8 +14,8 @@ extension MainView {
     }
     
     func animateSwitchView(completion: @escaping(() -> Void) ) {
-        let visibleWindow = isRatesView ? exchangeRatesView : converterWindowView
-        let hiddenWindow = isRatesView ? converterWindowView : exchangeRatesView
+        let visibleWindow = isRatesView ? exchangeRatesView : converterView
+        let hiddenWindow = isRatesView ? converterView : exchangeRatesView
         isRatesView.toggle()
         UIView.animate(withDuration: 0.75, animations: {
             visibleWindow.transform = CGAffineTransform(scaleX: 0.001, y: 1)}, completion: { _ in
