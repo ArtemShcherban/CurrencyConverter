@@ -6,13 +6,9 @@ struct ExchangeRate: Codable {
     let currencyNumber: Int16
     
     init(from monoBankExchangeRate: MonoBankExchangeRate) {
-        self.buy = monoBankExchangeRate.buy
-        self.sell = monoBankExchangeRate.sell
-        if monoBankExchangeRate.currencyNumberB == 980 {
-        self.currencyNumber = monoBankExchangeRate.currencyNumberA
-        } else {
-        self.currencyNumber = 0
-        }
+        self.buy = monoBankExchangeRate.buyRate
+        self.sell = monoBankExchangeRate.sellRate
+        self.currencyNumber = monoBankExchangeRate.currencyNumber
     }
     
     init(from privatBankExchangeRate: PrivatBankExchangeRate) {
@@ -20,12 +16,6 @@ struct ExchangeRate: Codable {
         self.sell = privatBankExchangeRate.sellRate
         self.currencyNumber = privatBankExchangeRate.currencyNumber
     }
-    
-//    init(from privatBankExchangeRate: NationalBankRate) {
-//        self.buy = privatBankExchangeRate.purchaseRate
-//        self.sell = privatBankExchangeRate.saleRate
-//        self.currencyNumber = privatBankExchangeRate.currency
-//    }
     
     init(buy: Double, sell: Double, currencyNumber: Int16) {
         self.buy = buy
