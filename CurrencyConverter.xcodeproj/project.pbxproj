@@ -54,8 +54,7 @@
 		F45E043E28AA639700902C73 /* ConverterCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F45E043D28AA639700902C73 /* ConverterCell.xib */; };
 		F45E044028AA671E00902C73 /* ConverterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E043F28AA671E00902C73 /* ConverterCell.swift */; };
 		F45E044228AB5F7F00902C73 /* ConverterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E044128AB5F7F00902C73 /* ConverterModel.swift */; };
-		F47F0BC128C0C0480029E224 /* NationalBankBulletin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BBF28C0C0480029E224 /* NationalBankBulletin.swift */; };
-		F47F0BC228C0C0490029E224 /* NationalBankRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BC028C0C0480029E224 /* NationalBankRate.swift */; };
+		F47F0BC128C0C0480029E224 /* PrivatBankData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BBF28C0C0480029E224 /* PrivatBankData.swift */; };
 		F47F0BC928C0DC880029E224 /* CDBulletin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BC728C0DC880029E224 /* CDBulletin+CoreDataClass.swift */; };
 		F47F0BCA28C0DC880029E224 /* CDBulletin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BC828C0DC880029E224 /* CDBulletin+CoreDataProperties.swift */; };
 		F47F0BCC28C0DE4D0029E224 /* Bulletin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BCB28C0DE4D0029E224 /* Bulletin.swift */; };
@@ -192,8 +191,7 @@
 		F45E043D28AA639700902C73 /* ConverterCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConverterCell.xib; sourceTree = "<group>"; };
 		F45E043F28AA671E00902C73 /* ConverterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterCell.swift; sourceTree = "<group>"; };
 		F45E044128AB5F7F00902C73 /* ConverterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterModel.swift; sourceTree = "<group>"; };
-		F47F0BBF28C0C0480029E224 /* NationalBankBulletin.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NationalBankBulletin.swift; sourceTree = "<group>"; };
-		F47F0BC028C0C0480029E224 /* NationalBankRate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NationalBankRate.swift; sourceTree = "<group>"; };
+		F47F0BBF28C0C0480029E224 /* PrivatBankData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivatBankData.swift; sourceTree = "<group>"; };
 		F47F0BC728C0DC880029E224 /* CDBulletin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDBulletin+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F47F0BC828C0DC880029E224 /* CDBulletin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDBulletin+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F47F0BCB28C0DE4D0029E224 /* Bulletin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Bulletin.swift; sourceTree = "<group>"; };
@@ -336,8 +334,7 @@
 				F4056032288946DA007CD5AA /* ExchangeRate.swift */,
 				F49AB41728B9FCA100868776 /* MonoBankExchangeRate.swift */,
 				F4056030288941F0007CD5AA /* PrivatBankExchangeRate.swift */,
-				F47F0BBF28C0C0480029E224 /* NationalBankBulletin.swift */,
-				F47F0BC028C0C0480029E224 /* NationalBankRate.swift */,
+				F47F0BBF28C0C0480029E224 /* PrivatBankData.swift */,
 				F47F0BCB28C0DE4D0029E224 /* Bulletin.swift */,
 			);
 			path = ObjectModels;
@@ -949,7 +946,6 @@
 				F4E0363928BE1F1300BD64ED /* Group.swift in Sources */,
 				F4A2F88E28870F53007948A9 /* ConverterView.swift in Sources */,
 				F4429C6B289FB63400070620 /* DateModel.swift in Sources */,
-				F47F0BC228C0C0490029E224 /* NationalBankRate.swift in Sources */,
 				F4ED8B7F28993211006DF9AE /* DefaultConstants.swift in Sources */,
 				F4129DB028C7504500905320 /* MainViewDelegateExtension.swift in Sources */,
 				F4A09AAD289BD338009D138E /* CoreDataError.swift in Sources */,
@@ -1021,7 +1017,7 @@
 				F45B03FA28C32E6700221721 /* UIViewAnimationExtension.swift in Sources */,
 				F4129DB228C750DF00905320 /* CentralViewDelegateExtension.swift in Sources */,
 				F49AB43628BA417B00868776 /* CurrencyManager.swift in Sources */,
-				F47F0BC128C0C0480029E224 /* NationalBankBulletin.swift in Sources */,
+				F47F0BC128C0C0480029E224 /* PrivatBankData.swift in Sources */,
 				F45137C0289E326A00B2190D /* RatesDataSource.swift in Sources */,
 				F47F0BCA28C0DC880029E224 /* CDBulletin+CoreDataProperties.swift in Sources */,
 				F4AA6103288E5A5200E191E6 /* CurrencyCell.swift in Sources */,

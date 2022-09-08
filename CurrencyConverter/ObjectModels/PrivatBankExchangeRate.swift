@@ -1,23 +1,45 @@
 import Foundation
 
-struct PrivatBankExchangeRate: Codable {
-	let buy: String
-	let sale: String
-    let currency: String
-    let baseCurrency: String
-
-	enum CodingKeys: String, CodingKey {
-        case buy
-        case sale
-		case currency = "ccy"
-		case baseCurrency = "base_ccy"
-	}
-
-	init(from decoder: Decoder) throws {
-		let values = try decoder.container(keyedBy: CodingKeys.self)
-        buy = try values.decode(String.self, forKey: .buy)
-        sale = try values.decode(String.self, forKey: .sale)
-		currency = try values.decode(String.self, forKey: .currency)
-		baseCurrency = try values.decode(String.self, forKey: .baseCurrency)
-	}
+struct  PrivatBankExchangeRate: Decodable {
+    let buyRate: Double
+    let sellRate: Double
+    let currencyNumber: Int16
+    
+    enum CodingKeys: String, CodingKey {
+        case baseCurrency
+        case currency
+        case saleRateNB
+        case purchaseRateNB
+        case saleRate
+        case purchaseRate
+    }
+    
+    init(from decoder: Decoder) throws {
+        let values = try decoder.container(keyedBy: CodingKeys.self)
+        let code = try values.decodeIfPresent(String.self, forKey: .currency) ?? "OOO"
+        let sellRateNB = try values.decode(Double.self, forKey: .saleRateNB)
+        let buyRateNB = try values.decode(Double.self, forKey: .purchaseRateNB)
+        if
+            let sellRateCash = try values.decodeIfPresent(Double.self, forKey: .saleRate),
+            let buyRateCash = try values.decodeIfPresent(Double.self, forKey: .purchaseRate)
+        {
+            self.sellRate = sellRateCash
+            self.buyRate = buyRateCash
+        } else {
+            self.sellRate = sellRateNB + sellRateNB * 0.05
+            self.buyRate = buyRateNB
+        }
+        self.currencyNumber = getCurrencyNumber(by: code) ?? 0
+        
+        func getCurrencyNumber(by code: String) -> Int16? {
+            let currencyManager = CurrencyManager()
+            let baseCurrency = currencyManager.fetchSpecified(byCurrency: code)?.number
+            return baseCurrency
+        }
+    }
+    
+    func convertToExchangeRate() -> ExchangeRate {
+        let exchangeRate = ExchangeRate(from: self)
+        return exchangeRate
+    }
 }

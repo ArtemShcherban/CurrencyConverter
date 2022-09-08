@@ -15,11 +15,17 @@ struct ExchangeRate: Codable {
         }
     }
     
-    init(from privatBankExchangeRate: NationalBankRate) {
-        self.buy = privatBankExchangeRate.purchaseRate
-        self.sell = privatBankExchangeRate.saleRate
-        self.currencyNumber = privatBankExchangeRate.currency
+    init(from privatBankExchangeRate: PrivatBankExchangeRate) {
+        self.buy = privatBankExchangeRate.buyRate
+        self.sell = privatBankExchangeRate.sellRate
+        self.currencyNumber = privatBankExchangeRate.currencyNumber
     }
+    
+//    init(from privatBankExchangeRate: NationalBankRate) {
+//        self.buy = privatBankExchangeRate.purchaseRate
+//        self.sell = privatBankExchangeRate.saleRate
+//        self.currencyNumber = privatBankExchangeRate.currency
+//    }
     
     init(buy: Double, sell: Double, currencyNumber: Int16) {
         self.buy = buy

@@ -64,10 +64,10 @@ class NetworkService {
     
     private func privatBankJSONHandle(data: Data) -> [ExchangeRate]? {
         var exchangeRates: [ExchangeRate] = []
-        guard let privatData = try? JSONDecoder().decode(NationalBankBulletin.self, from: data) else {
+        guard let privatData = try? JSONDecoder().decode(PrivatBankData.self, from: data) else {
             return nil
         }
-        let privatExchangeRates = privatData.exchangeRate
+        let privatExchangeRates = privatData.exchangeRates
         privatExchangeRates.forEach {
             exchangeRates.append($0.convertToExchangeRate())
         }
