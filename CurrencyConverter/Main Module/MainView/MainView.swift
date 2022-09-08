@@ -103,7 +103,7 @@ class MainView: UIView {
     private func buttonTitleAnimation() {
         switchViewButton.fadeTransition(1.0)
         switchViewButton.titleLabel?.text = ""
-        let title = isRatesView ? "National Bank Exchange Rate" : "Currency Converter"
+        let title = isRatesView ? "Exchange Rate" : "Currency Converter"
         switchViewButton.setTitle(title, for: .normal)
     }
     

@@ -11,7 +11,8 @@ final class ExchangeRatesView: CentralView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var dateTextField: AdjustableTextField!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var addButton: UIButton!
+//    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var addButton: AddButton!
     
     lazy var currentDate = Date().startOfDay
     
@@ -32,6 +33,8 @@ final class ExchangeRatesView: CentralView {
         configureContentView()
         configureTextFild()
         configureTableView()
+        addButton.setupConstraints()
+        addButton.activateConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -39,6 +42,8 @@ final class ExchangeRatesView: CentralView {
         configureContentView()
         configureTextFild()
         configureTableView()
+        addButton.setupConstraints()
+        addButton.activateConstraints()
     }
     
     private func  configureContentView() {

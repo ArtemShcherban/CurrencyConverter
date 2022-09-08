@@ -17,7 +17,7 @@ protocol CentralViewDelegate: AnyObject {
 
 class CentralView: UIView {
     weak var centralViewDelegate: CentralViewDelegate?
-    
+        
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()

@@ -17,7 +17,7 @@ final class ConverterView: CentralView {
     @IBOutlet weak var sellButton: UIButton!
     @IBOutlet weak var buyButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var addButton: AddButton!
     @IBOutlet weak var baseCurrencyButton: UIButton!
     @IBOutlet weak var textField: AdjustableTextField!
     @IBOutlet weak var shareRatesButton: UIButton!
@@ -32,6 +32,8 @@ final class ConverterView: CentralView {
         configureInputAmountField()
         configureTableView()
         configure()
+        addButton.setupConstraints()
+        addButton.activateConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -40,6 +42,8 @@ final class ConverterView: CentralView {
         configureInputAmountField()
         configureTableView()
         configure()
+        addButton.setupConstraints()
+        addButton.activateConstraints()
     }
     
     private func configureContentView() {
