@@ -51,14 +51,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ioQ-IO-KMU">
-                                <rect key="frame" x="0.0" y="40" width="844" height="350"/>
+                                <rect key="frame" x="150" y="84" width="544" height="306"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyCell" id="vAA-G2-dAr">
-                                        <rect key="frame" x="64" y="49" width="716" height="43.666667938232422"/>
+                                        <rect key="frame" x="20" y="49" width="504" height="43.666667938232422"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vAA-G2-dAr" id="Oe4-pS-T0K">
-                                            <rect key="frame" x="0.0" y="0.0" width="716" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="504" height="43.666667938232422"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -71,6 +71,11 @@
                                     <navigationItem title="Currency" id="ald-ly-tNw"/>
                                 </items>
                             </navigationBar>
+                            <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="isw-K7-gqk">
+                                <rect key="frame" x="150" y="33" width="544" height="51"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="2YU-Qf-yrP"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -78,29 +83,44 @@
                             <constraint firstAttribute="trailing" secondItem="bjK-wp-Fcl" secondAttribute="trailing" id="7A1-1Y-aTm"/>
                             <constraint firstAttribute="top" secondItem="bjK-wp-Fcl" secondAttribute="top" id="81u-MH-fvC"/>
                             <constraint firstAttribute="trailing" secondItem="ioQ-IO-KMU" secondAttribute="trailing" id="ArF-9W-rd1"/>
-                            <constraint firstItem="ioQ-IO-KMU" firstAttribute="top" secondItem="bjK-wp-Fcl" secondAttribute="bottom" constant="8" id="C79-Dp-Lez"/>
+                            <constraint firstItem="ioQ-IO-KMU" firstAttribute="trailing" secondItem="isw-K7-gqk" secondAttribute="trailing" id="XqP-wS-e7e"/>
+                            <constraint firstItem="ioQ-IO-KMU" firstAttribute="leading" secondItem="4iZ-mh-pTo" secondAttribute="leading" constant="150" id="YT2-3i-9dQ"/>
                             <constraint firstAttribute="bottom" secondItem="ioQ-IO-KMU" secondAttribute="bottom" id="YXe-WL-bRS"/>
                             <constraint firstItem="ioQ-IO-KMU" firstAttribute="leading" secondItem="4iZ-mh-pTo" secondAttribute="leading" id="YiU-N7-8HS"/>
+                            <constraint firstItem="ioQ-IO-KMU" firstAttribute="top" secondItem="isw-K7-gqk" secondAttribute="bottom" id="edW-Yk-XKB"/>
                             <constraint firstItem="bjK-wp-Fcl" firstAttribute="leading" secondItem="4iZ-mh-pTo" secondAttribute="leading" id="mLZ-Vk-Y5l"/>
-                            <constraint firstItem="ioQ-IO-KMU" firstAttribute="centerX" secondItem="2YU-Qf-yrP" secondAttribute="centerX" id="u2k-Hn-7ft"/>
+                            <constraint firstAttribute="trailing" secondItem="ioQ-IO-KMU" secondAttribute="trailing" constant="150" id="n0N-sP-hWq"/>
+                            <constraint firstItem="isw-K7-gqk" firstAttribute="leading" secondItem="ioQ-IO-KMU" secondAttribute="leading" id="oE8-fY-zFc"/>
+                            <constraint firstItem="isw-K7-gqk" firstAttribute="top" secondItem="bjK-wp-Fcl" secondAttribute="bottom" constant="1" id="x7f-Ya-bNB"/>
                         </constraints>
                         <variation key="default">
                             <mask key="constraints">
-                                <exclude reference="u2k-Hn-7ft"/>
+                                <exclude reference="YT2-3i-9dQ"/>
+                                <exclude reference="ArF-9W-rd1"/>
+                                <exclude reference="YiU-N7-8HS"/>
+                                <exclude reference="n0N-sP-hWq"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=compact">
                             <mask key="constraints">
-                                <include reference="u2k-Hn-7ft"/>
+                                <include reference="YT2-3i-9dQ"/>
+                                <include reference="n0N-sP-hWq"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=compact-widthClass=regular">
                             <mask key="constraints">
-                                <include reference="u2k-Hn-7ft"/>
+                                <include reference="YT2-3i-9dQ"/>
+                                <include reference="n0N-sP-hWq"/>
+                            </mask>
+                        </variation>
+                        <variation key="heightClass=regular-widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="ArF-9W-rd1"/>
+                                <include reference="YiU-N7-8HS"/>
                             </mask>
                         </variation>
                         <connections>
-                            <outlet property="navigationBar" destination="bjK-wp-Fcl" id="nJy-UH-W5k"/>
+                            <outlet property="searchBar" destination="isw-K7-gqk" id="Wbz-2H-5Aw"/>
                             <outlet property="tableView" destination="ioQ-IO-KMU" id="ZA9-j2-MHr"/>
                         </connections>
                     </view>

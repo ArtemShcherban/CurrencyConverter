@@ -553,13 +553,14 @@
 			path = CustomElements;
 			sourceTree = "<group>";
 		};
-		F45B03F828C32E4100221721 /* UIViewExtension */ = {
+		F45B03F828C32E4100221721 /* UIViewExtensions */ = {
 			isa = PBXGroup;
 			children = (
+				F4DCC2F528B4B41200DC4D09 /* MainViewAnimationExtension.swift */,
 				F45B03F928C32E6700221721 /* UIViewAnimationExtension.swift */,
 				F4A2F8952887C4D7007948A9 /* UIViewFixInExtension.swift */,
 			);
-			path = UIViewExtension;
+			path = UIViewExtensions;
 			sourceTree = "<group>";
 		};
 		F45B040128C7121E00221721 /* MainViewControllerExtensions */ = {
@@ -567,7 +568,6 @@
 			children = (
 				F45B040228C7149400221721 /* InitialSetupExtension.swift */,
 				F45B040428C74A6C00221721 /* RatesModelDelegateExtension.swift */,
-				F4129DAD28C74F6900905320 /* HideKeyboardExtension.swift */,
 				F4129DAF28C7504500905320 /* MainViewDelegateExtension.swift */,
 				F4129DB128C750DF00905320 /* CentralViewDelegateExtension.swift */,
 				F4129DB328C7531B00905320 /* ConverterViewDelegateExtension.swift */,
@@ -626,9 +626,9 @@
 		F4A2F8972887C4DE007948A9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				F45B03F828C32E4100221721 /* UIViewExtension */,
+				F4DB319128C9D7880010E900 /* UIViewControllerExtension */,
+				F45B03F828C32E4100221721 /* UIViewExtensions */,
 				F4DCC2F328AD10A100DC4D09 /* DoubleFormatExtension.swift */,
-				F4DCC2F528B4B41200DC4D09 /* MainViewAnimationExtension.swift */,
 				F47F0BD128C0E9240029E224 /* DateExtensions.swift */,
 			);
 			path = Extensions;
@@ -685,6 +685,14 @@
 				F4ED8BE3289B99B6006DF9AE /* CurrencyListView.swift */,
 			);
 			path = CurrencyListView;
+			sourceTree = "<group>";
+		};
+		F4DB319128C9D7880010E900 /* UIViewControllerExtension */ = {
+			isa = PBXGroup;
+			children = (
+				F4129DAD28C74F6900905320 /* HideKeyboardExtension.swift */,
+			);
+			path = UIViewControllerExtension;
 			sourceTree = "<group>";
 		};
 		F4DCC33B28B4E95400DC4D09 /* MessageModule */ = {

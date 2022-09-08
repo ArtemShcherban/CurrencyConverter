@@ -14,20 +14,19 @@ protocol CurrencyListViewDelegate: AnyObject {
 @IBDesignable
 class CurrencyListView: UIView {
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var navigationBar: UINavigationBar!
+    @IBOutlet weak var searchBar: UISearchBar!
     
-    lazy var searchController = UISearchController()
     lazy var dataSource = CurrencyListDataSource.shared
     
     weak var tableViewDelegate: UITableViewDelegate?
-    weak var searchResultsDelegate: UISearchResultsUpdating?
+    weak var searchBarDelegate: UISearchBarDelegate?
     weak var delegate: CurrencyListViewDelegate?
     
     func createView() {
         addAccessibilityId()
         configureTableView()
         createTableViewShadow()
-        configureSearchController()
+        searchBar.delegate = searchBarDelegate
     }
     
     func createBackButton() -> UIButton {
@@ -105,12 +104,5 @@ class CurrencyListView: UIView {
             ])
         content.attributedText = attributedString
         titleView.contentConfiguration = content
-    }
-    
-    func configureSearchController() {
-        searchController.searchResultsUpdater = searchResultsDelegate
-        searchController.hidesNavigationBarDuringPresentation = false
-        tableView.tableHeaderView = searchController.searchBar
-        searchController.searchBar.searchBarStyle = .minimal
     }
 }

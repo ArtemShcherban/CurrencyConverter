@@ -28,11 +28,14 @@ class CurrencyListViewController: UIViewController, CurrencyListViewDelegate {
         currensyListView.createView()
         currencyListModel.fillCurrencyDataSource()
         addBackButton()
+        
+        setupHideKeyboardTapCesture()
     }
     
     func setDelegates() {
         currensyListView.tableViewDelegate = self
-        currensyListView.searchResultsDelegate = self
+        currensyListView.searchBarDelegate = self
+        //        currensyListView.searchResultsDelegate = self
         currensyListView.delegate = self
     }
     
@@ -77,21 +80,38 @@ extension CurrencyListViewController: UITableViewDelegate {
             ratesModel.add(currency: currency)
         }
         
-        currensyListView.searchController.isActive = false
         delegate?.updateCurrentTableView()
         self.dismiss(animated: true)
     }
 }
 
-extension CurrencyListViewController: UISearchResultsUpdating {
-    func updateSearchResults(for searchController: UISearchController) {
-        if searchController.searchBar.text != String() {
-            currencyListModel.filterCurrency(text: searchController.searchBar.text ?? String())
+extension CurrencyListViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text != String() {
+            currencyListModel.filterCurrency(text: searchBar.text ?? String())
             currensyListView.tableView.accessibilityIdentifier = "filtered"
         } else {
             currencyListModel.filterCurrency(text: String())
             currensyListView.tableView.accessibilityIdentifier = "currency"
         }
         currensyListView.tableView.reloadData()
+    }
+    
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.setShowsCancelButton(true, animated: true)
+        return true
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.text = nil
+        searchBar.endEditing(true)
+        searchBar.setShowsCancelButton(false, animated: true)
+        currensyListView.tableView.accessibilityIdentifier = "currency"
+        currensyListView.tableView.reloadData()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.setShowsCancelButton(false, animated: true)
+        searchBar.endEditing(true)
     }
 }
