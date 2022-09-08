@@ -35,7 +35,8 @@ class AddButton: UIButton {
             NSLayoutConstraint.activate(sharedConstraints)
         }
 
-        if traitCollection.horizontalSizeClass == .compact && traitCollection.verticalSizeClass == .regular {
+        if (traitCollection.horizontalSizeClass == .compact || traitCollection.horizontalSizeClass == .regular) &&
+            traitCollection.verticalSizeClass == .regular {
             if !regularConstraints.isEmpty && regularConstraints[0].isActive {
                 NSLayoutConstraint.deactivate(regularConstraints)
             }

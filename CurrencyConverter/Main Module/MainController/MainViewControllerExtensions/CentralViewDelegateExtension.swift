@@ -29,12 +29,13 @@ extension MainViewController: CentralViewDelegate {
         openCurrencyViewController(for: row)
         }
     
-    func shareRatesPressed() {
+    func shareRatesPressed(sender: UIButton) {
         let text = messageModel.createMessage()
         let textToShare = [text]
         let activityController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = self.view
-        activityController.popoverPresentationController?.permittedArrowDirections = .any
+        activityController.popoverPresentationController?.sourceRect = sender.frame
+        activityController.popoverPresentationController?.permittedArrowDirections = .right
         present(activityController, animated: true, completion: nil)
     }
     

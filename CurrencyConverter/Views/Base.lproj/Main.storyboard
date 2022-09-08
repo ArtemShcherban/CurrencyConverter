@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yyj-38-yN5">
-    <device id="retina6_0" orientation="landscape" appearance="light"/>
+    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -14,11 +14,11 @@
             <objects>
                 <viewController storyboardIdentifier="ConverterMainViewController" id="AAN-dq-q1k" customClass="MainViewController" customModule="CurrencyConverter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wgP-lB-3Wz">
-                        <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
+                        <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UuM-85-qOE" customClass="MainView" customModule="CurrencyConverter" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </view>
                         </subviews>
@@ -47,18 +47,18 @@
             <objects>
                 <viewController storyboardIdentifier="CurrencyListViewController" id="pEz-Nw-DVb" customClass="CurrencyListViewController" customModule="CurrencyConverter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="4iZ-mh-pTo" customClass="CurrencyListView" customModule="CurrencyConverter" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="844" height="390"/>
+                        <rect key="frame" x="0.0" y="0.0" width="704" height="995.5"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" directionalLockEnabled="YES" alwaysBounceVertical="YES" contentInsetAdjustmentBehavior="never" bouncesZoom="NO" dataMode="prototypes" style="insetGrouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" estimatedSectionHeaderHeight="-1" sectionFooterHeight="18" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="ioQ-IO-KMU">
-                                <rect key="frame" x="150" y="84" width="544" height="306"/>
+                                <rect key="frame" x="0.0" y="108" width="704" height="887.5"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="CurrencyCell" id="vAA-G2-dAr">
-                                        <rect key="frame" x="20" y="49" width="504" height="43.666667938232422"/>
+                                        <rect key="frame" x="16" y="49.5" width="672" height="43.5"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="vAA-G2-dAr" id="Oe4-pS-T0K">
-                                            <rect key="frame" x="0.0" y="0.0" width="504" height="43.666667938232422"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="672" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -66,13 +66,13 @@
                                 <sections/>
                             </tableView>
                             <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bjK-wp-Fcl">
-                                <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
+                                <rect key="frame" x="0.0" y="0.0" width="704" height="56"/>
                                 <items>
                                     <navigationItem title="Currency" id="ald-ly-tNw"/>
                                 </items>
                             </navigationBar>
                             <searchBar contentMode="redraw" searchBarStyle="minimal" placeholder="Search" translatesAutoresizingMaskIntoConstraints="NO" id="isw-K7-gqk">
-                                <rect key="frame" x="150" y="33" width="544" height="51"/>
+                                <rect key="frame" x="0.0" y="57" width="704" height="51"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
@@ -119,6 +119,12 @@
                                 <include reference="YiU-N7-8HS"/>
                             </mask>
                         </variation>
+                        <variation key="heightClass=regular-widthClass=regular">
+                            <mask key="constraints">
+                                <include reference="ArF-9W-rd1"/>
+                                <include reference="YiU-N7-8HS"/>
+                            </mask>
+                        </variation>
                         <connections>
                             <outlet property="searchBar" destination="isw-K7-gqk" id="Wbz-2H-5Aw"/>
                             <outlet property="tableView" destination="ioQ-IO-KMU" id="ZA9-j2-MHr"/>
@@ -138,7 +144,7 @@
             <objects>
                 <navigationController id="yyj-38-yN5" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="b2K-Ae-Wte">
-                        <rect key="frame" x="0.0" y="0.0" width="844" height="32"/>
+                        <rect key="frame" x="0.0" y="24" width="1024" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>

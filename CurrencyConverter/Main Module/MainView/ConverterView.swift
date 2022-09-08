@@ -105,8 +105,8 @@ final class ConverterView: CentralView {
         centralViewDelegate?.addButtonPressed()
     }
     
-    @IBAction func shareRatesButtonPressed(_ sender: Any) {
-        centralViewDelegate?.shareRatesPressed()
+    @IBAction func shareRatesButtonPressed(_ sender: UIButton) {
+        centralViewDelegate?.shareRatesPressed(sender: sender)
     }
 }
 
