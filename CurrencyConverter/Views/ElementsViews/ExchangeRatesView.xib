@@ -22,6 +22,7 @@
                 <outlet property="addButton" destination="WEd-gm-e9Q" id="oAz-Xs-sb2"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="ktI-JP-wMd"/>
                 <outlet property="dateTextField" destination="dvj-2i-ukK" id="dQt-rr-ZGE"/>
+                <outlet property="helpButton" destination="ruy-UN-Nbl" id="wOV-hG-cmm"/>
                 <outlet property="tableView" destination="xw2-Vv-iKT" id="Oh1-3d-4rs"/>
             </connections>
         </placeholder>
@@ -133,6 +134,19 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="tailInset" value="YES"/>
                     </userDefinedRuntimeAttributes>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ruy-UN-Nbl" userLabel="Question Button">
+                    <rect key="frame" x="288" y="348" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="ruy-UN-Nbl" secondAttribute="height" multiplier="1:1" id="Fdh-OZ-URp"/>
+                        <constraint firstAttribute="height" constant="40" id="Jvy-6X-jfD"/>
+                    </constraints>
+                    <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" image="questionmark.circle" catalog="system"/>
+                    <connections>
+                        <action selector="helpButtonPressed:" destination="-1" eventType="touchUpInside" id="zpz-wx-FUH"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -142,6 +156,7 @@
                 <constraint firstItem="TJp-yy-acU" firstAttribute="trailing" secondItem="Flk-Jl-Pgf" secondAttribute="trailing" constant="112" id="Dw6-4O-icQ"/>
                 <constraint firstItem="xw2-Vv-iKT" firstAttribute="trailing" secondItem="TJp-yy-acU" secondAttribute="trailing" constant="16" id="HqR-JL-f3J"/>
                 <constraint firstItem="TJp-yy-acU" firstAttribute="bottom" secondItem="Flk-Jl-Pgf" secondAttribute="bottom" id="Hsw-v4-qPv"/>
+                <constraint firstAttribute="bottom" secondItem="ruy-UN-Nbl" secondAttribute="centerY" constant="30" id="Ue6-2g-KC9"/>
                 <constraint firstItem="dvj-2i-ukK" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="16" id="VJv-tk-1aD"/>
                 <constraint firstItem="xw2-Vv-iKT" firstAttribute="trailing" secondItem="dvj-2i-ukK" secondAttribute="trailing" constant="16" id="a4D-DI-dvo"/>
                 <constraint firstItem="xw2-Vv-iKT" firstAttribute="top" secondItem="TJp-yy-acU" secondAttribute="bottom" constant="2" id="cpi-W7-HPx"/>
@@ -149,6 +164,7 @@
                 <constraint firstItem="xw2-Vv-iKT" firstAttribute="top" secondItem="dvj-2i-ukK" secondAttribute="bottom" constant="30" id="s58-as-yCl"/>
                 <constraint firstItem="xw2-Vv-iKT" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="uBy-Lu-SJQ"/>
                 <constraint firstAttribute="trailing" secondItem="xw2-Vv-iKT" secondAttribute="trailing" constant="16" id="xcb-Fs-YOK"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="ruy-UN-Nbl" secondAttribute="trailing" constant="15" id="zLB-Uy-D9J"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <variation key="default">
@@ -203,6 +219,7 @@
     </designables>
     <resources>
         <image name="plus.circle.fill" catalog="system" width="128" height="121"/>
+        <image name="questionmark.circle" catalog="system" width="128" height="121"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

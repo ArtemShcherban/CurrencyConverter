@@ -24,6 +24,7 @@
             <connections>
                 <outlet property="containerView" destination="HfX-LT-SVC" id="q42-4E-itc"/>
                 <outlet property="contentView" destination="iN0-l3-epB" id="piM-72-vzn"/>
+                <outlet property="lastUpdatedLabel" destination="c17-56-3Nc" id="efC-Aw-tNK"/>
                 <outlet property="switchViewButton" destination="Jfy-HQ-mO5" id="vL4-rS-Zyu"/>
                 <outlet property="titleLabel" destination="dv8-Jb-bSj" id="eXe-Nt-S2d"/>
                 <outlet property="updateDateLabel" destination="AN4-q2-FsM" id="e0L-gF-M2F"/>
@@ -80,14 +81,14 @@
                         </mask>
                     </variation>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last updated" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c17-56-3Nc">
-                    <rect key="frame" x="48" y="525" width="68.5" height="14.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Updated" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c17-56-3Nc" userLabel="Last updated">
+                    <rect key="frame" x="48" y="525" width="70.5" height="14.5"/>
                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="22 July 2022 23:59 PM" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AN4-q2-FsM">
-                    <rect key="frame" x="48" y="541.5" width="123.5" height="14.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AN4-q2-FsM" userLabel="Update date">
+                    <rect key="frame" x="48" y="541.5" width="123" height="14.5"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="123" id="Arl-Ki-ftx"/>

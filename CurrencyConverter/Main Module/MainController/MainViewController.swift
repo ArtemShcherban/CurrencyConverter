@@ -26,13 +26,13 @@ class MainViewController: UIViewController {
         mainAsyncQueue = AsyncQueue.main
         initialSetup()
         setDelegates()
-        firstTimeLaunched()
         fillDataSource()
-        updateAddButton()
-        getExchangeRates()
         setupHideKeyboardTapCesture()
-        mainView.lastUpdateDate = dateModel.lastUpdateDate()
+        updateAddButton()
+        executeOnFirstStartup()
         exchangeRateModel.removeOldExchangeRates()
+        mainView.lastUpdateDate = dateModel.lastUpdateDate()
+        getExchangeRates()
     }
     
     private func setDelegates() {
@@ -60,14 +60,27 @@ class MainViewController: UIViewController {
     private func handleResult(_ result: Result<[ExchangeRate], NetworkServiceError>, _ date: Date) {
         switch result {
         case .failure(let error):
-            print(error)
+            self.mainAsyncQueue?.dispatch {
+                self.mainView.updateMessage(error: error)
+            }
         case .success(let exchangeRates):
+            print("MainViewController \(Thread.current)")
             self.exchangeRateModel.updateBulletin(for: date, bankData: exchangeRates)
-            self.dateModel.received(new: date)
+            self.dateModel.renew(updateDate: date)
             self.mainAsyncQueue?.dispatch {
                 self.updateCurrentTableView()
                 self.mainView.lastUpdateDate = self.dateModel.lastUpdateDate()
             }
+        }
+    }
+    
+    func checkUpdateTime(date: Date) -> Bool {
+        if dateModel.checkTimeInterval(to: date) {
+            return true
+        } else {
+            let hour = dateModel.nextUpdateHour(from: date)
+            mainView.nextUpdateMessage(hour)
+            return false
         }
     }
     

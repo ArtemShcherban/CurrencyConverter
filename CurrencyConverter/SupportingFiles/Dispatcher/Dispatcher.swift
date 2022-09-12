@@ -17,4 +17,6 @@ class Dispatcher {
 
 protocol Dispatching {
     func dispatch(work: @escaping () -> Void)
+    func dispatchAfter(deadline: DispatchTime, work: @escaping () -> Void)
+    func dispatchAfter(deadline: DispatchTime, work: DispatchWorkItem)
 }

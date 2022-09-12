@@ -23,7 +23,7 @@ struct CurrencyDataRepository: CurrencyRepository {
     private let coreDataStack = CoreDataStack.shared
     
     func getCount() -> Int {
-        let currencyCount = coreDataStack.fetchManagedObjectCount(managedObgect: CDCurrency.self)
+        let currencyCount = coreDataStack.fetchManagedObjectCount(managedObject: CDCurrency.self)
         return currencyCount
     }
     

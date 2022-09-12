@@ -49,16 +49,23 @@ class CentralView: UIView {
         self.addGestureRecognizer(swipe)
     }
     
-    func swipeAnimation() {
+    func swipeAnimation(labelOne: UIView, labelTwo: UIView, complition: @escaping () -> Void) {
         transform = CGAffineTransform(translationX: 0.0, y: 30)
+        labelOne.transform = CGAffineTransform(translationX: 0.0, y: 30)
+        labelTwo.transform = CGAffineTransform(translationX: 0.0, y: 30)
         UIView.animate(
             withDuration: 2.0,
             delay: 0,
             usingSpringWithDamping: 0.2,
             initialSpringVelocity: 0.0,
-            options: .curveEaseIn) {
-            self.transform = .identity
-        }
+            options: .curveEaseIn,
+            animations: {
+                self.transform = .identity
+                labelOne.transform = .identity
+                labelTwo.transform = .identity
+            },
+            completion: { _ in complition() }
+        )
     }
     
     func setConstraints() {

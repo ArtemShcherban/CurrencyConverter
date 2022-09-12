@@ -27,6 +27,7 @@ final class ExchangeRateModel {
                 from: "\(date.yyyyMMdd) MonoBank&PrivatBank",
                 date: date.startOfDay)
             )
+            print("Bulletin was create")
         }
         updateExchangeRates(of: date.startOfDay, with: bankData)
     }
@@ -35,6 +36,7 @@ final class ExchangeRateModel {
         bankData.forEach { exchangeRate in
             if exchangeRate.currencyNumber != 0 {
                 exchangeRateManager.saveExchangeRate(exchangeRate, date.startOfDay)
+                print(exchangeRate.currencyNumber)
             }
         }
     }

@@ -19,7 +19,7 @@ struct GroupDataRepository: GroupRepository {
     private let coreDataStack = CoreDataStack.shared
    
     func getCount() -> Int {
-        let groupCount = coreDataStack.fetchManagedObjectCount(managedObgect: CDGroup.self)
+        let groupCount = coreDataStack.fetchManagedObjectCount(managedObject: CDGroup.self)
         return groupCount
     }
     

@@ -17,4 +17,12 @@ extension SyncQueue: Dispatching {
     func dispatch(work: @escaping () -> Void) {
         queue.sync(execute: work)
     }
+    
+    func dispatchAfter(deadline: DispatchTime, work: @escaping () -> Void) {
+        queue.asyncAfter(deadline: deadline, execute: work)
+    }
+    
+    func dispatchAfter(deadline: DispatchTime, work: DispatchWorkItem) {
+        queue.asyncAfter(deadline: deadline, execute: work)
+    }
 }

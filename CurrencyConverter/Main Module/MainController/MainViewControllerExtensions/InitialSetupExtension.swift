@@ -8,6 +8,10 @@
 import Foundation
 
 extension MainViewController {
+    var isFirstTimeLaunched: Bool {
+        !UserDefaults.standard.bool(forKey: "launchedBefore")
+    }
+    
     private var initialModel: InitialModel {
         return InitialModel()
     }
@@ -18,12 +22,16 @@ extension MainViewController {
         initialModel.createCurrencyContainers()
     }
     
-    func firstTimeLaunched() {
-        if UserDefaults.standard.bool(forKey: "launchedBefore") {
-            return
-        } else {
-            initialModel.updateContainersWithDefaultCurrencies()
+    func executeOnFirstStartup() {
+        if isFirstTimeLaunched {
+            self.initialModel.updateContainersWithDefaultCurrencies()
+            self.mainAsyncQueue?.dispatchAfter(
+                deadline: .now() + .seconds(2)) {
+                    self.mainView.guidelinesMessage()
+            }
             UserDefaults.standard.set(true, forKey: "launchedBefore")
+            return
         }
+        return
     }
 }

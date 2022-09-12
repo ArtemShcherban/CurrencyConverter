@@ -22,9 +22,9 @@ final class DateModel {
         return lastUpdateDate.dMMMyyyyHHmm
     }
     
-    func received(new date: Date) {
-        if date < Date().startOfDay { return }
-        lastUpdateDateManager.updateLastUpdateDate(with: date)
+    func renew(updateDate: Date) {
+        if updateDate < Date().startOfDay { return }
+        lastUpdateDateManager.updateLastUpdateDate(with: updateDate)
     }
     
     func checkPickerDate(_ date: Date) -> Bool {
@@ -49,5 +49,15 @@ final class DateModel {
         }
         print("return false")
         return false
+    }
+    
+    func nextUpdateHour(from date: Date) -> Int? {
+        let calendar = Calendar.current
+        let components = calendar.dateComponents(in: .current, from: date)
+        if let hour = components.hour {
+            return hour + 1
+        } else {
+            return nil
+        }
     }
 }

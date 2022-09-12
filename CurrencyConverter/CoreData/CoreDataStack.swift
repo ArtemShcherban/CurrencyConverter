@@ -30,9 +30,9 @@ class CoreDataStack {
         return container
     }()
     
-    func fetchManagedObjectCount<T: NSManagedObject>(managedObgect: T.Type) -> Int {
+    func fetchManagedObjectCount<T: NSManagedObject>(managedObject: T.Type) -> Int {
         do {
-            let resultCount = try managedContext.count(for: managedObgect.fetchRequest())
+            let resultCount = try managedContext.count(for: managedObject.fetchRequest())
             return resultCount
         } catch let nserror as NSError {
             debugPrint(nserror)

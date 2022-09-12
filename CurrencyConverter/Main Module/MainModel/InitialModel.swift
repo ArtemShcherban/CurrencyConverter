@@ -105,14 +105,4 @@ final class InitialModel {
             currencyContainerManager.updateContainer(containerName, with: currency)
         }
     }
-    
-    //    func updateContainerWithBaseCurrency() {
-    //        let containerName = ContainerConstants.Name.converter
-    //        let countInContainer = currencyContainerManager.getCurrencyCountInContainer(name: containerName)
-    //        if countInContainer > 0 { return }
-    //        guard let currency = currencyManager.fetchCurrency(byCurrency: DefaultConstants.baseCurrency) else {
-    //            return
-    //        }
-    //        currencyContainerManager.updateContainer(containerName, with: currency)
-    //    }
 }

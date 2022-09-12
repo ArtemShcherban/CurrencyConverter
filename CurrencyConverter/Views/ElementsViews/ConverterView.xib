@@ -122,7 +122,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAp-D3-aqN" userLabel="Send Button">
-                    <rect key="frame" x="290" y="343" width="40" height="40"/>
+                    <rect key="frame" x="288" y="348" width="40" height="40"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="40" id="kLS-mr-U5r"/>
                         <constraint firstAttribute="width" secondItem="rAp-D3-aqN" secondAttribute="height" multiplier="1:1" id="oPI-4R-xEa"/>
@@ -157,7 +157,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </textField>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="94T-BW-afh">
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" scrollEnabled="NO" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="60" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="94T-BW-afh">
                     <rect key="frame" x="16" y="142" width="311" height="110"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
@@ -188,8 +188,8 @@
                 <constraint firstItem="94T-BW-afh" firstAttribute="trailing" secondItem="kvg-aA-lU0" secondAttribute="trailing" id="NLq-mG-lxJ"/>
                 <constraint firstItem="94T-BW-afh" firstAttribute="top" secondItem="kvg-aA-lU0" secondAttribute="bottom" constant="8" id="iYg-tc-138"/>
                 <constraint firstItem="kvg-aA-lU0" firstAttribute="top" secondItem="Erg-FP-EiR" secondAttribute="bottom" constant="30" id="mT3-80-1HA"/>
-                <constraint firstAttribute="bottom" secondItem="rAp-D3-aqN" secondAttribute="bottom" constant="15" id="njS-bN-McJ"/>
-                <constraint firstAttribute="trailing" secondItem="rAp-D3-aqN" secondAttribute="trailing" constant="13" id="qYx-DH-8gM"/>
+                <constraint firstAttribute="bottom" secondItem="rAp-D3-aqN" secondAttribute="centerY" constant="30" id="njS-bN-McJ"/>
+                <constraint firstAttribute="trailing" secondItem="rAp-D3-aqN" secondAttribute="trailing" constant="15" id="qYx-DH-8gM"/>
                 <constraint firstItem="94T-BW-afh" firstAttribute="centerX" secondItem="aSi-gG-jyn" secondAttribute="centerX" id="rMz-Lb-Ncm"/>
                 <constraint firstItem="kvg-aA-lU0" firstAttribute="centerY" secondItem="256-Ro-6ZW" secondAttribute="centerY" id="t25-1w-oR1"/>
                 <constraint firstItem="aSi-gG-jyn" firstAttribute="trailing" secondItem="Erg-FP-EiR" secondAttribute="trailing" constant="48" id="vam-kc-zUb"/>

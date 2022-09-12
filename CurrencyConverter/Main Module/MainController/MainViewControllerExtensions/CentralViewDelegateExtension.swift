@@ -13,8 +13,10 @@ extension MainViewController: CentralViewDelegate {
     }
     
     func swipe() {
-        mainView.startSwipeAnimation()
-        getExchangeRates()
+        mainView.startSwipeAnimation {
+            guard self.checkUpdateTime(date: Date()) else { return }
+            self.getExchangeRates()
+        }
     }
     
     func addButtonPressed() {

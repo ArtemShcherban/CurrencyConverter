@@ -96,6 +96,9 @@
 		F4C7FAEB28B8A7C100E92A43 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F4C7FAEA28B8A7C100E92A43 /* MapKit.framework */; };
 		F4D35F0B28BF80C0001FE74A /* ExchangeRatesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4D35F0A28BF80C0001FE74A /* ExchangeRatesView.xib */; };
 		F4D35F0D28BF8438001FE74A /* ExchangeRatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4D35F0C28BF8438001FE74A /* ExchangeRatesView.swift */; };
+		F4DB319828CB281A0010E900 /* MessageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DB319728CB281A0010E900 /* MessageConstants.swift */; };
+		F4DB319A28CB70820010E900 /* ExchangeRatesViewDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DB319928CB70820010E900 /* ExchangeRatesViewDelegateExtension.swift */; };
+		F4DB319E28CDBEEF0010E900 /* InfoLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DB319D28CDBEEF0010E900 /* InfoLabel.swift */; };
 		F4DCC2F428AD10A100DC4D09 /* DoubleFormatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC2F328AD10A100DC4D09 /* DoubleFormatExtension.swift */; };
 		F4DCC2F628B4B41200DC4D09 /* MainViewAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC2F528B4B41200DC4D09 /* MainViewAnimationExtension.swift */; };
 		F4DCC2F828B4B50C00DC4D09 /* TitleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC2F728B4B50C00DC4D09 /* TitleConstants.swift */; };
@@ -233,6 +236,9 @@
 		F4C7FAEA28B8A7C100E92A43 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		F4D35F0A28BF80C0001FE74A /* ExchangeRatesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExchangeRatesView.xib; sourceTree = "<group>"; };
 		F4D35F0C28BF8438001FE74A /* ExchangeRatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesView.swift; sourceTree = "<group>"; };
+		F4DB319728CB281A0010E900 /* MessageConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConstants.swift; sourceTree = "<group>"; };
+		F4DB319928CB70820010E900 /* ExchangeRatesViewDelegateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesViewDelegateExtension.swift; sourceTree = "<group>"; };
+		F4DB319D28CDBEEF0010E900 /* InfoLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoLabel.swift; sourceTree = "<group>"; };
 		F4DCC2F328AD10A100DC4D09 /* DoubleFormatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleFormatExtension.swift; sourceTree = "<group>"; };
 		F4DCC2F528B4B41200DC4D09 /* MainViewAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewAnimationExtension.swift; sourceTree = "<group>"; };
 		F4DCC2F728B4B50C00DC4D09 /* TitleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleConstants.swift; sourceTree = "<group>"; };
@@ -321,6 +327,7 @@
 				F45E043528A62ABB00902C73 /* ContainerConstants.swift */,
 				F4DCC2F728B4B50C00DC4D09 /* TitleConstants.swift */,
 				F4DCC33E28B5EE5100DC4D09 /* AlertConstants.swift */,
+				F4DB319728CB281A0010E900 /* MessageConstants.swift */,
 			);
 			path = Constants;
 			sourceTree = "<group>";
@@ -546,6 +553,7 @@
 				F4AA60EA288D4BCE00E191E6 /* RateCell.swift */,
 				F45E043F28AA671E00902C73 /* ConverterCell.swift */,
 				F4129DB828C8E42300905320 /* AddButton.swift */,
+				F4DB319D28CDBEEF0010E900 /* InfoLabel.swift */,
 			);
 			path = CustomElements;
 			sourceTree = "<group>";
@@ -567,6 +575,7 @@
 				F45B040428C74A6C00221721 /* RatesModelDelegateExtension.swift */,
 				F4129DAF28C7504500905320 /* MainViewDelegateExtension.swift */,
 				F4129DB128C750DF00905320 /* CentralViewDelegateExtension.swift */,
+				F4DB319928CB70820010E900 /* ExchangeRatesViewDelegateExtension.swift */,
 				F4129DB328C7531B00905320 /* ConverterViewDelegateExtension.swift */,
 			);
 			path = MainViewControllerExtensions;
@@ -977,12 +986,15 @@
 				F49AB41828B9FCA100868776 /* MonoBankExchangeRate.swift in Sources */,
 				F4AA60FD288D89E000E191E6 /* CurrencyListModel.swift in Sources */,
 				F4129DB928C8E42300905320 /* AddButton.swift in Sources */,
+				F4DB319E28CDBEEF0010E900 /* InfoLabel.swift in Sources */,
 				F4E0363B28BE1FBD00BD64ED /* GroupRepository.swift in Sources */,
 				F45E042D28A4FA7400902C73 /* CDRateContainer+CoreDataClass.swift in Sources */,
 				F4BA22ED2897A237002F3B54 /* CoreDataStack.swift in Sources */,
 				F405604D288D1017007CD5AA /* RateTextLabel.swift in Sources */,
+				F4DB319828CB281A0010E900 /* MessageConstants.swift in Sources */,
 				F45E043228A4FA7400902C73 /* CDConverterContainer+CoreDataProperties.swift in Sources */,
 				F4DE3C1B28BB586A000F6D04 /* CDContainer+CoreDataClass.swift in Sources */,
+				F4DB319A28CB70820010E900 /* ExchangeRatesViewDelegateExtension.swift in Sources */,
 				F4129DB428C7531B00905320 /* ConverterViewDelegateExtension.swift in Sources */,
 				F4AA60F2288D62E200E191E6 /* ExchangeRateModel.swift in Sources */,
 				F4A09AC9289D210C009D138E /* CDGroup+CoreDataProperties.swift in Sources */,

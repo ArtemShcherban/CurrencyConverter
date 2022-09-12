@@ -7,11 +7,15 @@
 
 import UIKit
 
+protocol ExchangeRatesViewDelegate: AnyObject {
+    func helpButtonPressed()
+}
+
 final class ExchangeRatesView: CentralView {
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var dateTextField: AdjustableTextField!
     @IBOutlet weak var tableView: UITableView!
-//    @IBOutlet weak var addButton: UIButton!
+    @IBOutlet weak var helpButton: UIButton!
     @IBOutlet weak var addButton: AddButton!
     
     lazy var currentDate = Date().startOfDay
@@ -27,6 +31,8 @@ final class ExchangeRatesView: CentralView {
         datePicker.frame.size = CGSize(width: 0, height: 200)
         return datePicker
     }()
+    
+    weak var delegate: ExchangeRatesViewDelegate?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -72,6 +78,10 @@ final class ExchangeRatesView: CentralView {
     
     @IBAction func addButtonPressed(_ sender: Any) {
         centralViewDelegate?.addButtonPressed()
+    }
+    
+    @IBAction func helpButtonPressed(_ sender: Any) {
+        delegate?.helpButtonPressed()
     }
 }
 
