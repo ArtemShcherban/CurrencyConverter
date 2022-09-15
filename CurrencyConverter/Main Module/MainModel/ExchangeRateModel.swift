@@ -46,7 +46,7 @@ final class ExchangeRateModel {
         guard currency.code != "UAH" else {
             currency.buy = 1.0
             currency.sell = 1.0
-            currencyManager.updateCurrencyRate(currency)
+            currencyManager.updateCurrencyRate(for: currency)
             return currency
         }
         guard
@@ -55,7 +55,7 @@ final class ExchangeRateModel {
         }
         currency.buy = exchangeRate.buy
         currency.sell = exchangeRate.sell
-        currencyManager.updateCurrencyRate(currency)
+        currencyManager.updateCurrencyRate(for: currency)
         return currency
     }
     

@@ -10,7 +10,7 @@ import Foundation
 struct CurrencyManager {
     private let currencyDateRepositrory = CurrencyDataRepository()
     
-    func fetchCurrencyCount() -> Int {
+    func getCurrencyCount() -> Int {
         currencyDateRepositrory.getCount()
     }
     
@@ -18,27 +18,23 @@ struct CurrencyManager {
         currencyDateRepositrory.create(currency: currency)
     }
     
-    func fetchCurrencyExcept(currencies: [Currency]) -> [Currency]? {
+    func getCurrencyExcept(currencies: [Currency]) -> [Currency]? {
         currencyDateRepositrory.getAllExcept(currencies: currencies)
     }
     
-    func fetchSpecified(byCurrency numbers: [Int16]) -> [Currency]? {
-        currencyDateRepositrory.getSpecified(by: numbers)
-    }
-    
-    func fetchSpecified(byCurrency code: String) -> Currency? {
+    func getCurrency(by code: String) -> Currency? {
         currencyDateRepositrory.get(byCurrency: code)
     }
     
-    func fetchCurrency(byCurrency number: Int16) -> Currency? {
+    func getCurrency(by number: Int16) -> Currency? {
         currencyDateRepositrory.get(byCurrency: number)
     }
     
-    func updateCurrencyRate(_ currency: Currency) {
-        currencyDateRepositrory.updateCurrencyRate(currency: currency)
+    func updateCurrencyRate(for currency: Currency) {
+        currencyDateRepositrory.updateRate(for: currency)
     }
     
-    func updateCurrencyGroup(by currencyNumbers: [Int16], with groupKey: Int16) {
-        currencyDateRepositrory.updateCurrencyGroup(byCurrency: currencyNumbers, with: groupKey)
+    func setGroupKeyForCurrency(with number: Int16, with groupKey: Int16) {
+        currencyDateRepositrory.setGroupKey(forCurrency: number, with: groupKey)
     }
 }

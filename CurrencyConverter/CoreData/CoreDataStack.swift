@@ -20,6 +20,12 @@ class CoreDataStack {
         return self.storeContainer.viewContext
     }()
     
+    lazy var backgroundContext: NSManagedObjectContext = {
+        let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
+        context.parent = managedContext
+        return context
+    }()
+    
     private lazy var storeContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: self.modelName)
         container.loadPersistentStores { _, error in
@@ -31,32 +37,86 @@ class CoreDataStack {
     }()
     
     func fetchManagedObjectCount<T: NSManagedObject>(managedObject: T.Type) -> Int {
-        do {
-            let resultCount = try managedContext.count(for: managedObject.fetchRequest())
-            return resultCount
-        } catch let nserror as NSError {
-            debugPrint(nserror)
+        var resultCount = 0
+        managedContext.performAndWait {
+            do {
+                resultCount = try managedContext.count(for: managedObject.fetchRequest())
+            } catch let nserror as NSError {
+                debugPrint(nserror)
+            }
         }
-        return 0
+        return resultCount
     }
     
+//    func fetchManagedObject<T: NSManagedObject>(managedObject: T.Type) -> [T]? {
+//        var results: [T]?
+//        print("CoreDataStack fetchManagedObject ------ \(Thread.current) #1")
+//        do {
+//            let result = try managedContext.fetch(managedObject.fetchRequest()) as? [T]
+//            let backResult = try backgroundContext.fetch(managedObject.fetchRequest()) as? [T]
+//            results = result
+//            //                    return result
+//        } catch let nserror as NSError {
+//            debugPrint(nserror)
+//        }
+//        let fetchRequest = managedObject.fetchRequest()
+//        let asyncFetch = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { [weak self] result in
+//            guard let result = result.finalResult else { return }
+//            guard let array = result as? [T] else { return }
+//            results = array
+//            print("CoreDataStack fetchManagedObject ------ \(Thread.current) #1")
+//        }
+//
+//        do {
+//            let backgroundContext = storeContainer.newBackgroundContext()
+//            try backgroundContext.execute(asyncFetch)
+//        } catch let nserror as NSError {
+//            debugPrint(nserror)
+//        }
+//        return results
+//    }
+    
     func fetchManagedObject<T: NSManagedObject>(managedObject: T.Type) -> [T]? {
-        do {
-            let result = try managedContext.fetch(managedObject.fetchRequest()) as? [T]
-            return result
-        } catch let nserror as NSError {
-            debugPrint(nserror)
+        var result: [T]?
+        managedContext.performAndWait {
+            do {
+                result = try managedContext.fetch(managedObject.fetchRequest()) as? [T]
+            } catch let nserror as NSError {
+                debugPrint(nserror)
+            }
         }
-        return nil
+        return result
+    }
+    
+//    func save(_ backgroundContext: NSManagedObjectContext) {
+//        guard backgroundContext.hasChanges else { return }
+//        
+//        do {
+//            try backgroundContext.save()
+//        } catch let error as NSError {
+//            print("Unresolved error \(error), \(error.userInfo)")
+//        }
+//    }
+    
+    func saveBackgroundContext() {
+        guard backgroundContext.hasChanges else { return }
+        
+        do {
+            try backgroundContext.save()
+        } catch let error as NSError {
+            print("Unresolved error \(error), \(error.userInfo)")
+        }
     }
     
     func saveContext() {
-        guard managedContext.hasChanges else { return }
-        
-        do {
-            try managedContext.save()
-        } catch let error as NSError {
-            print("Unresolved error \(error), \(error.userInfo)")
+        managedContext.perform {
+            guard self.managedContext.hasChanges else { return }
+            
+            do {
+                try self.managedContext.save()
+            } catch let error as NSError {
+                print("Unresolved error \(error), \(error.userInfo)")
+            }
         }
     }
     

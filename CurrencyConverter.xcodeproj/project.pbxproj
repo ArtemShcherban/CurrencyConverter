@@ -105,9 +105,9 @@
 		F4DCC33D28B4E98400DC4D09 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC33C28B4E98400DC4D09 /* MessageModel.swift */; };
 		F4DCC33F28B5EE5100DC4D09 /* AlertConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC33E28B5EE5100DC4D09 /* AlertConstants.swift */; };
 		F4DCC34128B624C300DC4D09 /* WorldCurrencies.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4DCC34028B624C300DC4D09 /* WorldCurrencies.plist */; };
-		F4DE3C0F28BB32F2000F6D04 /* CurrencyContainerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE3C0E28BB32F2000F6D04 /* CurrencyContainerManager.swift */; };
-		F4DE3C1128BB3316000F6D04 /* CurrencyContainerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE3C1028BB3316000F6D04 /* CurrencyContainerRepository.swift */; };
-		F4DE3C1728BB36F8000F6D04 /* CurrencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE3C1628BB36F8000F6D04 /* CurrencyContainer.swift */; };
+		F4DE3C0F28BB32F2000F6D04 /* ContainerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE3C0E28BB32F2000F6D04 /* ContainerManager.swift */; };
+		F4DE3C1128BB3316000F6D04 /* ContainerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE3C1028BB3316000F6D04 /* ContainerRepository.swift */; };
+		F4DE3C1728BB36F8000F6D04 /* Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE3C1628BB36F8000F6D04 /* Container.swift */; };
 		F4DE3C1B28BB586A000F6D04 /* CDContainer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE3C1928BB586A000F6D04 /* CDContainer+CoreDataClass.swift */; };
 		F4DE3C1C28BB586A000F6D04 /* CDContainer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE3C1A28BB586A000F6D04 /* CDContainer+CoreDataProperties.swift */; };
 		F4DE3C3028BBA91E000F6D04 /* CurrencyConverter.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F4DE3C2E28BBA91E000F6D04 /* CurrencyConverter.xcdatamodeld */; };
@@ -245,9 +245,9 @@
 		F4DCC33C28B4E98400DC4D09 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		F4DCC33E28B5EE5100DC4D09 /* AlertConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertConstants.swift; sourceTree = "<group>"; };
 		F4DCC34028B624C300DC4D09 /* WorldCurrencies.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WorldCurrencies.plist; sourceTree = "<group>"; };
-		F4DE3C0E28BB32F2000F6D04 /* CurrencyContainerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyContainerManager.swift; sourceTree = "<group>"; };
-		F4DE3C1028BB3316000F6D04 /* CurrencyContainerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyContainerRepository.swift; sourceTree = "<group>"; };
-		F4DE3C1628BB36F8000F6D04 /* CurrencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyContainer.swift; sourceTree = "<group>"; };
+		F4DE3C0E28BB32F2000F6D04 /* ContainerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerManager.swift; sourceTree = "<group>"; };
+		F4DE3C1028BB3316000F6D04 /* ContainerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerRepository.swift; sourceTree = "<group>"; };
+		F4DE3C1628BB36F8000F6D04 /* Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Container.swift; sourceTree = "<group>"; };
 		F4DE3C1928BB586A000F6D04 /* CDContainer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDContainer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F4DE3C1A28BB586A000F6D04 /* CDContainer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDContainer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F4DE3C2F28BBA91E000F6D04 /* CurrencyConverter.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CurrencyConverter.xcdatamodel; sourceTree = "<group>"; };
@@ -337,7 +337,7 @@
 			children = (
 				F4E0363828BE1F1300BD64ED /* Group.swift */,
 				F49AB43328BA3F3A00868776 /* Currency.swift */,
-				F4DE3C1628BB36F8000F6D04 /* CurrencyContainer.swift */,
+				F4DE3C1628BB36F8000F6D04 /* Container.swift */,
 				F4056032288946DA007CD5AA /* ExchangeRate.swift */,
 				F49AB41728B9FCA100868776 /* MonoBankExchangeRate.swift */,
 				F4056030288941F0007CD5AA /* PrivatBankExchangeRate.swift */,
@@ -597,7 +597,7 @@
 			isa = PBXGroup;
 			children = (
 				F49AB43528BA417B00868776 /* CurrencyManager.swift */,
-				F4DE3C0E28BB32F2000F6D04 /* CurrencyContainerManager.swift */,
+				F4DE3C0E28BB32F2000F6D04 /* ContainerManager.swift */,
 				F47F0BCF28C0E7360029E224 /* ExchangeRateManager.swift */,
 				F4E0363C28BE20EC00BD64ED /* GroupManager.swift */,
 				F49AB41F28BA17A400868776 /* LastUpdateDateManager.swift */,
@@ -609,7 +609,7 @@
 			isa = PBXGroup;
 			children = (
 				F49AB43128BA3C5A00868776 /* CurrencyRepository.swift */,
-				F4DE3C1028BB3316000F6D04 /* CurrencyContainerRepository.swift */,
+				F4DE3C1028BB3316000F6D04 /* ContainerRepository.swift */,
 				F47F0BCD28C0E1DD0029E224 /* ExchangeRateRepository.swift */,
 				F4E0363A28BE1FBD00BD64ED /* GroupRepository.swift */,
 				F49AB41D28BA0B2C00868776 /* LastUpdateDateRepository.swift */,
@@ -950,7 +950,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F49AB42D28BA3A4400868776 /* CDCurrency+CoreDataClass.swift in Sources */,
-				F4DE3C0F28BB32F2000F6D04 /* CurrencyContainerManager.swift in Sources */,
+				F4DE3C0F28BB32F2000F6D04 /* ContainerManager.swift in Sources */,
 				F47F0BCE28C0E1DD0029E224 /* ExchangeRateRepository.swift in Sources */,
 				F4E0363928BE1F1300BD64ED /* Group.swift in Sources */,
 				F4A2F88E28870F53007948A9 /* ConverterView.swift in Sources */,
@@ -966,7 +966,7 @@
 				F45E044228AB5F7F00902C73 /* ConverterModel.swift in Sources */,
 				F47F0BCC28C0DE4D0029E224 /* Bulletin.swift in Sources */,
 				F49AB41E28BA0B2C00868776 /* LastUpdateDateRepository.swift in Sources */,
-				F4DE3C1128BB3316000F6D04 /* CurrencyContainerRepository.swift in Sources */,
+				F4DE3C1128BB3316000F6D04 /* ContainerRepository.swift in Sources */,
 				F47F0BC928C0DC880029E224 /* CDBulletin+CoreDataClass.swift in Sources */,
 				F4056045288984CE007CD5AA /* Dispatcher.swift in Sources */,
 				F4DCC2F828B4B50C00DC4D09 /* TitleConstants.swift in Sources */,
@@ -1035,7 +1035,7 @@
 				F4AA6103288E5A5200E191E6 /* CurrencyCell.swift in Sources */,
 				F4DCC2F428AD10A100DC4D09 /* DoubleFormatExtension.swift in Sources */,
 				F47F0BD028C0E7360029E224 /* ExchangeRateManager.swift in Sources */,
-				F4DE3C1728BB36F8000F6D04 /* CurrencyContainer.swift in Sources */,
+				F4DE3C1728BB36F8000F6D04 /* Container.swift in Sources */,
 				F49AB42E28BA3A4400868776 /* CDCurrency+CoreDataProperties.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

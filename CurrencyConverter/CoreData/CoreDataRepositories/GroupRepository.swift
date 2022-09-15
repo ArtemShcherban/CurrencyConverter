@@ -24,10 +24,13 @@ struct GroupDataRepository: GroupRepository {
     }
     
     func create(group: Group) {
-        let cdGroup = CDGroup(context: coreDataStack.managedContext)
-        cdGroup.name = group.name
-        cdGroup.key = group.key
-        cdGroup.visible = group.visible
+        coreDataStack.backgroundContext.performAndWait {
+            let cdGroup = CDGroup(context: coreDataStack.backgroundContext)
+            cdGroup.name = group.name
+            cdGroup.key = group.key
+            cdGroup.visible = group.visible
+            coreDataStack.saveBackgroundContext()
+        }
         coreDataStack.saveContext()
     }
     
@@ -45,15 +48,28 @@ struct GroupDataRepository: GroupRepository {
     
     private func getGroups(from fetchRequest: NSFetchRequest<CDGroup>) -> [Group]? {
         var groups: [Group] = []
-        do {
-            let cdGroups = try coreDataStack.managedContext.fetch(fetchRequest)
-            cdGroups.forEach { groups.append($0.convertToGroup()) }
-            return groups
-        } catch let nserror as NSError {
-            debugPrint(nserror)
+        coreDataStack.backgroundContext.performAndWait {
+            do {
+                let cdGroups = try coreDataStack.backgroundContext.fetch(fetchRequest)
+                cdGroups.forEach { groups.append($0.convertToGroup()) }
+            } catch let nserror as NSError {
+                debugPrint(nserror)
+            }
         }
-        return nil
+        return groups
     }
+    
+//    private func getGroups(from fetchRequest: NSFetchRequest<CDGroup>) -> [Group]? {
+//        var groups: [Group] = []
+//        do {
+//            let cdGroups = try coreDataStack.managedContext.fetch(fetchRequest)
+//            cdGroups.forEach { groups.append($0.convertToGroup()) }
+//            return groups
+//        } catch let nserror as NSError {
+//            debugPrint(nserror)
+//        }
+//        return nil
+//    }
     
     private func createFetchRequest(predicate: [NSPredicate]) -> NSFetchRequest<CDGroup> {
         let fetchRequest: NSFetchRequest<CDGroup> = CDGroup.fetchRequest()

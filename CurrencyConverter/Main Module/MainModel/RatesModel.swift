@@ -20,7 +20,7 @@ final class RatesModel {
     private lazy var exchangeRateModel = ExchangeRateModel.shared
     
     private let currencyManager = CurrencyManager()
-    private let currencyContainerManager = CurrencyContainerManager()
+    private let containerManager = ContainerManager()
     
     private lazy var containerName = String() {
         didSet {
@@ -36,7 +36,7 @@ final class RatesModel {
     
     func fillDataSource() {
         guard
-            var currencies = currencyContainerManager.getCurrencyFromContainer(name: containerName),
+            var currencies = containerManager.getFromContainer(with: containerName),
             !currencies.isEmpty else {
             ratesDataSource.selectedCurrencies = []
             return }
@@ -56,19 +56,19 @@ final class RatesModel {
     }
     
     func add(currency: Currency) {
-        currencyContainerManager.updateContainer(containerName, with: currency)
+        containerManager.updateContainer(with: containerName, andWith: currency)
     }
     
     func replaceCurrency(at row: Int, with currency: Currency) {
-        currencyContainerManager.replaceCurrency(in: containerName, at: row, with: currency)
+        containerManager.replaceInContainer(with: containerName, at: row, with: currency)
     }
     
     func removeCell(at indexPath: IndexPath) {
         var currency = ratesDataSource.selectedCurrencies[indexPath.row]
         currency.buy = 0.0
         currency.sell = 0.0
-        currencyManager.updateCurrencyRate(currency)
-        currencyContainerManager.deleteCurrency(currency, from: containerName)
+        currencyManager.updateCurrencyRate(for: currency)
+        containerManager.removeFromContainer(with: containerName, currency: currency)
         fillDataSource()
     }
 

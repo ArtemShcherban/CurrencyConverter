@@ -1,5 +1,5 @@
 //
-//  CurrencyContainer.swift
+//  Container.swift
 //  CurrencyConverter
 //
 //  Created by Artem Shcherban on 28.08.2022.
@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct CurrencyContainer {
+struct Container {
     var currencies: [Currency]
 }

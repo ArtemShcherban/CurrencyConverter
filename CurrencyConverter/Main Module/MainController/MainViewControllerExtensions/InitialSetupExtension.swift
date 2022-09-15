@@ -16,15 +16,26 @@ extension MainViewController {
         return InitialModel()
     }
     
-    func initialSetup() {
-        initialModel.insertCurrencies()
-        initialModel.insertGroups()
-        initialModel.createCurrencyContainers()
+    func initialSetup(complition: @escaping () -> Void) {
+        initialModel.insertCurrencies {
+            print("initialSetup ---- \(Thread.current)")
+                self.initialModel.insertGroups()
+                self.initialModel.createContainers()
+                print("---------1--------")
+                complition()
+            print("---------2--------")
+        }
+        print("---------3--------")
     }
+    
+//    func initialSetup() {
+//        initialModel.insertCurrencies()
+//        initialModel.insertGroups()
+//        initialModel.createCurrencyContainers()
+//    }
     
     func executeOnFirstStartup() {
         if isFirstTimeLaunched {
-            self.initialModel.updateContainersWithDefaultCurrencies()
             self.mainAsyncQueue?.dispatchAfter(
                 deadline: .now() + .seconds(2)) {
                     self.mainView.guidelinesMessage()

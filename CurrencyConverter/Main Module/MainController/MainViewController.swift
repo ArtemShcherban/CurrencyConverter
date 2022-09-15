@@ -24,9 +24,12 @@ class MainViewController: UIViewController {
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         debugPrint(path[0])
         mainAsyncQueue = AsyncQueue.main
-        initialSetup()
+        initialSetup {
+            self.mainAsyncQueue?.dispatch {
+                self.updateCurrentTableView()
+            }
+        }
         setDelegates()
-        fillDataSource()
         setupHideKeyboardTapCesture()
         updateAddButton()
         executeOnFirstStartup()
@@ -64,7 +67,6 @@ class MainViewController: UIViewController {
                 self.mainView.updateMessage(error: error)
             }
         case .success(let exchangeRates):
-            print("MainViewController \(Thread.current)")
             self.exchangeRateModel.updateBulletin(for: date, bankData: exchangeRates)
             self.dateModel.renew(updateDate: date)
             self.mainAsyncQueue?.dispatch {

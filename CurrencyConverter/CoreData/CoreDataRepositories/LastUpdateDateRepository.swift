@@ -29,9 +29,11 @@ struct LastUpdateDateDataRepository: LastUpdateDateRepository {
     }
     
     func update(with lastUpdateDate: Date) {
-        guard let cdLastUpdateDate = getCDLastUpdateDate() else { return }
-        cdLastUpdateDate.date = lastUpdateDate
-        coreDataStack.saveContext()
+        coreDataStack.managedContext.perform {
+            guard let cdLastUpdateDate = getCDLastUpdateDate() else { return }
+            cdLastUpdateDate.date = lastUpdateDate
+            coreDataStack.saveContext()
+        }
     }
     
     private func getCDLastUpdateDate() -> CDLastUpdateDate? {

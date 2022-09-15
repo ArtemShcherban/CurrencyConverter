@@ -11,40 +11,36 @@ import CoreData
 protocol CurrencyRepository {
     func getCount() -> Int
     func create(currency: Currency)
-    func getSpecified(by numbers: [Int16]) -> [Currency]?
     func get(byCurrency number: Int16) -> Currency?
     func get(byCurrency code: String) -> Currency?
     func getAllExcept(currencies: [Currency]) -> [Currency]?
-    func updateCurrencyRate(currency: Currency)
-    func updateCurrencyGroup(byCurrency numbers: [Int16], with groupKey: Int16)
+    func updateRate(for currency: Currency)
+    func setGroupKey(forCurrency number: Int16, with key: Int16)
 }
 
 struct CurrencyDataRepository: CurrencyRepository {
     private let coreDataStack = CoreDataStack.shared
     
-    func getCount() -> Int {
-        let currencyCount = coreDataStack.fetchManagedObjectCount(managedObject: CDCurrency.self)
-        return currencyCount
-    }
-    
     func create(currency: Currency) {
-        let cdCurrency = CDCurrency(context: coreDataStack.managedContext)
-        cdCurrency.currency = currency.currency
-        cdCurrency.number = currency.number
-        cdCurrency.sell = currency.sell
-        cdCurrency.buy = currency.buy
-        cdCurrency.code = currency.code
-        cdCurrency.country = currency.country
-        cdCurrency.currencyPlural = currency.currencyPlural
-        cdCurrency.groupKey = currency.groupKey
-        cdCurrency.container = currency.container
+        coreDataStack.backgroundContext.performAndWait {
+            let cdCurrency = CDCurrency(context: coreDataStack.backgroundContext)
+            cdCurrency.currency = currency.currency
+            cdCurrency.number = currency.number
+            cdCurrency.sell = currency.sell
+            cdCurrency.buy = currency.buy
+            cdCurrency.code = currency.code
+            cdCurrency.country = currency.country
+            cdCurrency.currencyPlural = currency.currencyPlural
+            cdCurrency.groupKey = currency.groupKey
+            cdCurrency.container = currency.container
+            coreDataStack.saveBackgroundContext()
+        }
         coreDataStack.saveContext()
     }
     
-    func getSpecified(by numbers: [Int16]) -> [Currency]? {
-        let predicates = compaundPredicate(including: true, currencyNumbers: numbers)
-        let fetchRequest = createFetchRequest(compaundPredicates: predicates)
-        return getCurrencies(from: fetchRequest)
+    func getCount() -> Int {
+        let currencyCount = coreDataStack.fetchManagedObjectCount(managedObject: CDCurrency.self)
+        return currencyCount
     }
     
     func get(byCurrency number: Int16) -> Currency? {
@@ -70,8 +66,10 @@ struct CurrencyDataRepository: CurrencyRepository {
         return getCurrencies(from: fetchRequest)
     }
     
-    func updateCurrencyRate(currency: Currency) {
-        guard let cdCurrency = getCDCurrencies(by: [currency.number])?.first else {
+    func updateRate(for currency: Currency) {
+        guard
+            let cdCurrencyID = getCDCurrencyID(for: currency.number),
+            let cdCurrency = coreDataStack.managedContext.object(with: cdCurrencyID) as? CDCurrency else {
             print("Failed to update \(currency)")
             return
         }
@@ -80,25 +78,37 @@ struct CurrencyDataRepository: CurrencyRepository {
         coreDataStack.saveContext()
     }
     
-    func updateCurrencyGroup(byCurrency numbers: [Int16], with groupKey: Int16) {
-        guard let cdCurrencies = getCDCurrencies(by: numbers) else {
-            print("Failed to update currencies with groupKey \(groupKey)")
+    func setGroupKey(forCurrency number: Int16, with key: Int16) {
+        coreDataStack.backgroundContext.perform {
+        guard
+            let cdCurrencyID = getCDCurrencyID(for: number),
+            let cdCurrency = coreDataStack.backgroundContext.object(with: cdCurrencyID) as? CDCurrency else {
+            print("Failed to update currencies with group's key: \(key)")
             return
         }
-        cdCurrencies.forEach { $0.groupKey = groupKey }
+            cdCurrency.groupKey = key
+            coreDataStack.saveBackgroundContext()
+        }
         coreDataStack.saveContext()
     }
     
-    private func getCDCurrencies(by numbers: [Int16]) -> [CDCurrency]? {
-        let predicate = compaundPredicate(including: true, currencyNumbers: numbers)
-        let fetchRequest = createFetchRequest(compaundPredicates: predicate)
-        do {
-            let cdCurrency = try coreDataStack.managedContext.fetch(fetchRequest)
-            return cdCurrency
-        } catch let nserror as NSError {
-            debugPrint(nserror)
+    private func getCDCurrencyID(for currencyNumber: Int16) -> NSManagedObjectID? {
+        let predicate = NSPredicate(format: "%K == %D", #keyPath(CDCurrency.number), currencyNumber)
+        let fetchRequest: NSFetchRequest<CDCurrency> = CDCurrency.fetchRequest()
+        fetchRequest.predicate = predicate
+        var objectID: NSManagedObjectID?
+        coreDataStack.managedContext.performAndWait {
+            do {
+                guard let cdCurrency = try coreDataStack.managedContext.fetch(fetchRequest).first
+                else {
+                    return
+                }
+                objectID = cdCurrency.objectID
+            } catch let nserror as NSError {
+                debugPrint(nserror)
+            }
         }
-        return nil
+        return objectID
     }
     
     private func compaundPredicate(including: Bool, currencyNumbers: [Int16]) -> NSCompoundPredicate {
@@ -127,13 +137,14 @@ struct CurrencyDataRepository: CurrencyRepository {
     
     private func getCurrencies(from fetchRequest: NSFetchRequest<CDCurrency>) -> [Currency]? {
         var currencies: [Currency] = []
-        do {
-            let cdCurrencies = try coreDataStack.managedContext.fetch(fetchRequest)
-            cdCurrencies.forEach { currencies.append($0.convertToCurrency()) }
-            return currencies
-        } catch let nserror as NSError {
-            debugPrint(nserror)
+        coreDataStack.backgroundContext.performAndWait {
+            do {
+                let cdCurrencies = try coreDataStack.backgroundContext.fetch(fetchRequest)
+                cdCurrencies.forEach { currencies.append($0.convertToCurrency()) }
+            } catch let nserror as NSError {
+                debugPrint(nserror)
+            }
         }
-        return nil
+        return currencies
     }
 }
