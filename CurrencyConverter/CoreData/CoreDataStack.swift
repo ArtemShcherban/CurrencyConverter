@@ -23,6 +23,7 @@ class CoreDataStack {
     lazy var backgroundContext: NSManagedObjectContext = {
         let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         context.parent = managedContext
+        context.automaticallyMergesChangesFromParent = true
         return context
     }()
     
@@ -48,34 +49,6 @@ class CoreDataStack {
         return resultCount
     }
     
-//    func fetchManagedObject<T: NSManagedObject>(managedObject: T.Type) -> [T]? {
-//        var results: [T]?
-//        print("CoreDataStack fetchManagedObject ------ \(Thread.current) #1")
-//        do {
-//            let result = try managedContext.fetch(managedObject.fetchRequest()) as? [T]
-//            let backResult = try backgroundContext.fetch(managedObject.fetchRequest()) as? [T]
-//            results = result
-//            //                    return result
-//        } catch let nserror as NSError {
-//            debugPrint(nserror)
-//        }
-//        let fetchRequest = managedObject.fetchRequest()
-//        let asyncFetch = NSAsynchronousFetchRequest(fetchRequest: fetchRequest) { [weak self] result in
-//            guard let result = result.finalResult else { return }
-//            guard let array = result as? [T] else { return }
-//            results = array
-//            print("CoreDataStack fetchManagedObject ------ \(Thread.current) #1")
-//        }
-//
-//        do {
-//            let backgroundContext = storeContainer.newBackgroundContext()
-//            try backgroundContext.execute(asyncFetch)
-//        } catch let nserror as NSError {
-//            debugPrint(nserror)
-//        }
-//        return results
-//    }
-    
     func fetchManagedObject<T: NSManagedObject>(managedObject: T.Type) -> [T]? {
         var result: [T]?
         managedContext.performAndWait {
@@ -88,21 +61,12 @@ class CoreDataStack {
         return result
     }
     
-//    func save(_ backgroundContext: NSManagedObjectContext) {
-//        guard backgroundContext.hasChanges else { return }
-//        
-//        do {
-//            try backgroundContext.save()
-//        } catch let error as NSError {
-//            print("Unresolved error \(error), \(error.userInfo)")
-//        }
-//    }
-    
-    func saveBackgroundContext() {
+    func synchronizeContexts() {
         guard backgroundContext.hasChanges else { return }
         
         do {
             try backgroundContext.save()
+            saveContext()
         } catch let error as NSError {
             print("Unresolved error \(error), \(error.userInfo)")
         }

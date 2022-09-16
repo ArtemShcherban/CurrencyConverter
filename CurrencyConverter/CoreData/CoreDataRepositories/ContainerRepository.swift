@@ -30,9 +30,8 @@ struct ContainerDataRepository: ContainerRepository {
         coreDataStack.backgroundContext.performAndWait {
             _ = CDRateContainer(context: coreDataStack.backgroundContext)
             _ = CDConverterContainer(context: coreDataStack.backgroundContext)
-            coreDataStack.saveBackgroundContext()
+            coreDataStack.synchronizeContexts()
         }
-        coreDataStack.saveContext()
     }
     
     func getFrom(container: String) -> [Currency]? {
@@ -59,9 +58,8 @@ struct ContainerDataRepository: ContainerRepository {
                     return
                 }
             cdContainer.addToCurrencies(cdCurrency)
-            coreDataStack.saveBackgroundContext()
+            coreDataStack.synchronizeContexts()
         }
-        coreDataStack.saveContext()
     }
     
     func update(container: String, with currency: Currency) {

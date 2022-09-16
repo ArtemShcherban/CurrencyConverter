@@ -29,9 +29,8 @@ struct GroupDataRepository: GroupRepository {
             cdGroup.name = group.name
             cdGroup.key = group.key
             cdGroup.visible = group.visible
-            coreDataStack.saveBackgroundContext()
+            coreDataStack.synchronizeContexts()
         }
-        coreDataStack.saveContext()
     }
     
     func get(by keys: [Int16]) -> [Group]? {
@@ -58,18 +57,6 @@ struct GroupDataRepository: GroupRepository {
         }
         return groups
     }
-    
-//    private func getGroups(from fetchRequest: NSFetchRequest<CDGroup>) -> [Group]? {
-//        var groups: [Group] = []
-//        do {
-//            let cdGroups = try coreDataStack.managedContext.fetch(fetchRequest)
-//            cdGroups.forEach { groups.append($0.convertToGroup()) }
-//            return groups
-//        } catch let nserror as NSError {
-//            debugPrint(nserror)
-//        }
-//        return nil
-//    }
     
     private func createFetchRequest(predicate: [NSPredicate]) -> NSFetchRequest<CDGroup> {
         let fetchRequest: NSFetchRequest<CDGroup> = CDGroup.fetchRequest()

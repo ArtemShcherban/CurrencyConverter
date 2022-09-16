@@ -50,7 +50,7 @@ final class ExchangeRateModel {
             return currency
         }
         guard
-            let exchangeRate = exchangeRateManager.fetchExchangeRate(for: currency, on: selectedDate) else {
+            let exchangeRate = exchangeRateManager.getExchangeRate(for: currency, on: selectedDate) else {
             return currency
         }
         currency.buy = exchangeRate.buy
@@ -60,6 +60,6 @@ final class ExchangeRateModel {
     }
     
     func removeOldExchangeRates() {
-        exchangeRateManager.deleteExchangeRates(before: Date().oneYearAgo)
+        exchangeRateManager.deleteBulletin(before: Date().oneYearAgo)
     }
 }

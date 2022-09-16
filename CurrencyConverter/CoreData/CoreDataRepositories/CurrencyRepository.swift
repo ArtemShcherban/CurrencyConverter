@@ -33,9 +33,8 @@ struct CurrencyDataRepository: CurrencyRepository {
             cdCurrency.currencyPlural = currency.currencyPlural
             cdCurrency.groupKey = currency.groupKey
             cdCurrency.container = currency.container
-            coreDataStack.saveBackgroundContext()
+            coreDataStack.synchronizeContexts()
         }
-        coreDataStack.saveContext()
     }
     
     func getCount() -> Int {
@@ -87,9 +86,8 @@ struct CurrencyDataRepository: CurrencyRepository {
             return
         }
             cdCurrency.groupKey = key
-            coreDataStack.saveBackgroundContext()
+            coreDataStack.synchronizeContexts()
         }
-        coreDataStack.saveContext()
     }
     
     private func getCDCurrencyID(for currencyNumber: Int16) -> NSManagedObjectID? {
