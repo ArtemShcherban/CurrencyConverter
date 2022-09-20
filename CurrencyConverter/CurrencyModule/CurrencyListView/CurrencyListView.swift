@@ -106,3 +106,15 @@ class CurrencyListView: UIView {
         titleView.contentConfiguration = content
     }
 }
+
+//extension UITableView {
+//    func registerUINibWith(nib name: UITableViewCell.Type) {
+//        let nibName = String(describing: name)
+//        register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: nibName)
+//    }
+//
+//    func registerCellClassWith(name: UITableViewCell.Type) {
+//        let className = String(describing: name)
+//        register(name, forCellReuseIdentifier: className)
+//    }
+//}

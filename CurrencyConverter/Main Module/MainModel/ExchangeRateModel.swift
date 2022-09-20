@@ -16,6 +16,21 @@ final class ExchangeRateModel {
     
     lazy var selectedDate = Date().startOfDay
     
+    func convertToExchangeRates<T>(bankRates: [T]) -> [ExchangeRate] {
+        var exchangeRates: [ExchangeRate] = []
+        if let privatExchangeRates = bankRates as? [PrivatBankExchangeRate] {
+            privatExchangeRates.forEach {
+                exchangeRates.append( $0.convertToExchangeRate())
+            }
+        }
+        if let monoExchangeRates = bankRates as? [MonoBankExchangeRate] {
+            monoExchangeRates.forEach {
+                exchangeRates.append( $0.convertToExchangeRate())
+            }
+        }
+        return exchangeRates
+    }
+    
     func isBulletinInDatabase(for date: Date) -> Bool {
         return exchangeRateManager.checkBulletinInDatabase(for: date.startOfDay)
     }

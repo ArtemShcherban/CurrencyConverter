@@ -6,14 +6,15 @@
 //
 
 import UIKit
+import Combine
 import CoreData
 
 class MainViewController: UIViewController {
     @IBOutlet weak var mainView: MainView!
     
-    lazy var urlModel = URLModel()
     lazy var dateModel = DateModel()
     lazy var networkService = NetworkService()
+    private var cancellable: AnyCancellable?
     lazy var exchangeRateModel = ExchangeRateModel.shared
     lazy var ratesDataSource = RatesDataSource.shared
     
@@ -35,7 +36,7 @@ class MainViewController: UIViewController {
         executeOnFirstStartup()
         exchangeRateModel.removeOldExchangeRates()
         mainView.lastUpdateDate = dateModel.lastUpdateDate()
-        getExchangeRates()
+        getDatafromBank()
     }
     
     private func setDelegates() {
@@ -48,25 +49,24 @@ class MainViewController: UIViewController {
         ratesModel.fillDataSource()
     }
     
-    func getExchangeRates(for date: Date = Date()) {
+    func getDatafromBank(for date: Date = Date()) {
         guard dateModel.checkTimeInterval(to: date) else { return }
-        let monoURL = urlModel.createMonoURL()
-        let privatURL = urlModel.createPrivatURL(with: date.forURL)
-        networkService.performQuery(with: monoURL) { result in
+        networkService.loadData(for: .monoBank) { result in
             self.handleResult(result, date)
-            self.networkService.performQuery(with: privatURL) { result in
+            self.networkService.loadData(for: .privatBank(with: date)) { result in
                 self.handleResult(result, date)
             }
         }
     }
     
-    private func handleResult(_ result: Result<[ExchangeRate], NetworkServiceError>, _ date: Date) {
+    private func handleResult<BankRate>(_ result: Result<[BankRate], NetworkServiceError>, _ date: Date) {
         switch result {
         case .failure(let error):
             self.mainAsyncQueue?.dispatch {
                 self.mainView.updateMessage(error: error)
             }
-        case .success(let exchangeRates):
+        case .success(let rates):
+            let exchangeRates = exchangeRateModel.convertToExchangeRates(bankRates: rates)
             self.exchangeRateModel.updateBulletin(for: date, bankData: exchangeRates)
             self.dateModel.renew(updateDate: date)
             self.mainAsyncQueue?.dispatch {

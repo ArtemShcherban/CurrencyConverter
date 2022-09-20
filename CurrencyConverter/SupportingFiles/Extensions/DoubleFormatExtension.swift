@@ -16,6 +16,5 @@ extension Double {
         formater.roundingMode = .halfUp
         formater.minimumFractionDigits = minimumFractionDigits
         return formater.string(for: self) ?? ""
-//        return formater.string(from: NSNumber(value: self)) ?? String(0.00)
     }
 }
