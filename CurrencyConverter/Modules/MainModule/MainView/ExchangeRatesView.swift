@@ -53,7 +53,7 @@ final class ExchangeRatesView: CentralView {
     }
     
     private func  configureContentView() {
-        Bundle.main.loadNibNamed("ExchangeRatesView", owner: self, options: nil)
+        Bundle.main.loadNibNamed(AppConstants.exchangeRatesView, owner: self, options: nil)
         contentView.layer.cornerRadius = 10
         contentView.fixInView(self)
     }
@@ -65,14 +65,12 @@ final class ExchangeRatesView: CentralView {
     }
     
     private func configureTableView() {
-        tableView.dataSource = RatesDataSource.shared
+        tableView.dataSource = MainDataSource.shared
         tableView.tag = 0
         tableView.registerUINibWith(nib: RateCell.self)
-//        tableView.register(
-//            UINib(nibName: RateCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: RateCell.reuseIdentifier)
     }
     
-    @objc func delegatePickerAction(sender: UIDatePicker) {
+    @objc private func delegatePickerAction(sender: UIDatePicker) {
         dateTextField.text = sender.date.dMMMyyy
         currentDate = sender.date.startOfDay
     }

@@ -12,16 +12,15 @@ protocol MessageModelDelegate: MFMessageComposeViewControllerDelegate {
     func message(controller: MFMessageComposeViewController)
 }
 
-class MessageModel {
-    static let shared = MessageModel()
-    private lazy var ratesDataSource = RatesDataSource.shared
+final class MessageModel {
+    private lazy var mainDataSource = MainDataSource.shared
     private lazy var converterModel = ConverterModel.shared
     
     func createMessage() -> String {
-        let currencies = ratesDataSource.selectedCurrencies
+        let currencies = mainDataSource.selectedCurrencies
         let amount = converterModel.amount
         guard
-            let baseCurrency = ratesDataSource.baseCurrency,
+            let baseCurrency = mainDataSource.baseCurrency,
             !currencies.isEmpty else {
             return String()
         }

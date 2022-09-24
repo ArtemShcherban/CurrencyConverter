@@ -9,7 +9,7 @@ import UIKit
 
 extension MainViewController: CentralViewDelegate {
     var messageModel: MessageModel {
-        return MessageModel.shared
+        return MessageModel()
     }
     
     func swipe() {
@@ -48,7 +48,6 @@ extension MainViewController: CentralViewDelegate {
             return
         }
         if exchangeRateModel.isBulletinInDatabase(for: date) {
-            print("Update from Database")
             self.updateCurrentTableView()
         } else {
             self.getDatafromBank(for: date)

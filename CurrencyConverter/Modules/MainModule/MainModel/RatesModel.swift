@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreData
 
 protocol RatesModelDelegate: AnyObject {
     func updateCurrentTableView()
@@ -14,14 +13,11 @@ protocol RatesModelDelegate: AnyObject {
 
 final class RatesModel {
     static let shared = RatesModel()
- 
-    private lazy var ratesDataSource = RatesDataSource.shared
-    private lazy var currencyListModel = CurrencyListModel.shared
-    private lazy var exchangeRateModel = ExchangeRateModel.shared
-    
     private let currencyManager = CurrencyManager()
     private let containerManager = ContainerManager()
-    
+    private lazy var mainDataSource = MainDataSource.shared
+    private lazy var currencyListModel = CurrencyListModel.shared
+    private lazy var exchangeRateModel = ExchangeRateModel.shared
     private lazy var containerName = String() {
         didSet {
             currencyListModel.containerName = containerName
@@ -38,15 +34,15 @@ final class RatesModel {
         guard
             var currencies = containerManager.getFromContainer(with: containerName),
             !currencies.isEmpty else {
-            ratesDataSource.selectedCurrencies = []
+            mainDataSource.selectedCurrencies = []
             return }
         
         setExchangeRateFor(currencies: &currencies)
         
         if containerName == ContainerConstants.Name.converter {
-            ratesDataSource.baseCurrency = currencies.removeFirst()
+            mainDataSource.baseCurrency = currencies.removeFirst()
         }
-        ratesDataSource.selectedCurrencies = currencies
+        mainDataSource.selectedCurrencies = currencies
     }
         
     private func setExchangeRateFor(currencies: inout [Currency]) {
@@ -64,7 +60,7 @@ final class RatesModel {
     }
     
     func removeCell(at indexPath: IndexPath) {
-        var currency = ratesDataSource.selectedCurrencies[indexPath.row]
+        var currency = mainDataSource.selectedCurrencies[indexPath.row]
         currency.buy = 0.0
         currency.sell = 0.0
         currencyManager.updateCurrencyRate(for: currency)
@@ -75,13 +71,13 @@ final class RatesModel {
     func isMaxNumberOfRows() -> Bool {
         switch containerName {
         case ContainerConstants.Name.rate:
-            if ratesDataSource.selectedCurrencies.count <= 2 {
+            if mainDataSource.selectedCurrencies.count <= 2 {
                 return true
             } else {
                 return false
             }
         case ContainerConstants.Name.converter:
-            if ratesDataSource.selectedCurrencies.count <= 1 {
+            if mainDataSource.selectedCurrencies.count <= 1 {
                 return true
             } else {
                 return false

@@ -9,11 +9,9 @@ import UIKit
 
 class ConverterModel {
     static let shared = ConverterModel()
-    
-    private lazy var ratesDataSource = RatesDataSource.shared
-    
     lazy var isSellAction = true
     lazy var amount: Double = 0.0
+    private lazy var mainDataSource = MainDataSource.shared
     
     func transform(_ text: String?) -> String {
         guard let text = text, !text.isEmpty else {
@@ -35,7 +33,7 @@ class ConverterModel {
         return formatted(noSpacesText)
     }
     
-    func formatted(_ text: String) -> String {
+    private func formatted(_ text: String) -> String {
         let amountAsString = amount.decimalFormat(0)
         if text.last == "." {
             return "\(amountAsString)."
@@ -52,7 +50,7 @@ class ConverterModel {
     }
     
     func doCalculation(for currency: Currency) -> Double {
-        guard let baseCurrency = ratesDataSource.baseCurrency else { return 0.00 }
+        guard let baseCurrency = mainDataSource.baseCurrency else { return 0.00 }
         if isSellAction {
             return  currency.sell > 0 ? amount * baseCurrency.buy / currency.sell : 0.00
         } else {

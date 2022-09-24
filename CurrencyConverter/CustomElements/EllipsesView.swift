@@ -22,7 +22,7 @@ final class EllipsesView: UIView {
     }
     
     private func configureContentView() {
-        Bundle.main.loadNibNamed("EllipsesView", owner: self, options: nil)
+        Bundle.main.loadNibNamed(AppConstants.ellipsesView, owner: self, options: nil)
         contentView.fixInView(self)
     }
 }

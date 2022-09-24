@@ -12,4 +12,6 @@ enum TitleConstants {
     static let currencyConverter = "Currency Converter"
     static let searchResult = "Search result:"
     static let noCurrencyFound = "No currency found"
+    static let popular = "Popular"
+    static let bankName = "MonoBank&PrivatBank"
 }

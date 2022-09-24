@@ -6,7 +6,6 @@
 //
 
 import Foundation
-import CoreData
 
 final class DateModel {
     private let lastUpdateDateManager = LastUpdateDateManager()
@@ -32,9 +31,9 @@ final class DateModel {
     }
     
     func checkTimeInterval(to date: Date) -> Bool {
-        if date < Date().startOfDay { print("return true")
+        if date < Date().startOfDay {
             return true }
-        guard let lastUpdateDate = lastUpdateDateManager.fetchLastUdateDate() else { print("return true")
+        guard let lastUpdateDate = lastUpdateDateManager.fetchLastUdateDate() else {
             return true }
         let calendar = Calendar.current
         let components = calendar.dateComponents(in: .current, from: lastUpdateDate)
@@ -43,11 +42,9 @@ final class DateModel {
             let seconds = components.second {
             let timeInterval = -Int(lastUpdateDate.timeIntervalSinceNow)
             if timeInterval > 3600 - (minutes * 60 + seconds) {
-                print("return true")
                 return true
             }
         }
-        print("return false")
         return false
     }
     

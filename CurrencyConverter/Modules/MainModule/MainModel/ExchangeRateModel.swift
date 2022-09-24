@@ -10,10 +10,8 @@ import CoreData
 
 final class ExchangeRateModel {
     static let shared = ExchangeRateModel()
-    
     private let exchangeRateManager = ExchangeRateManager()
     private let currencyManager = CurrencyManager()
-    
     lazy var selectedDate = Date().startOfDay
     
     func convertToExchangeRates<T>(bankRates: [T]) -> [ExchangeRate] {
@@ -37,12 +35,10 @@ final class ExchangeRateModel {
     
     func updateBulletin(for date: Date, bankData: [ExchangeRate]) {
         if !exchangeRateManager.checkBulletinInDatabase(for: date.startOfDay) {
-            print(date.timeIntervalSinceReferenceDate)
             exchangeRateManager.createBulletin(Bulletin(
-                from: "\(date.yyyyMMdd) MonoBank&PrivatBank",
+                from: "\(date.yyyyMMdd) \(TitleConstants.bankName)",
                 date: date.startOfDay)
             )
-            print("Bulletin was create")
         }
         updateExchangeRates(of: date.startOfDay, with: bankData)
     }
@@ -51,7 +47,6 @@ final class ExchangeRateModel {
         bankData.forEach { exchangeRate in
             if exchangeRate.currencyNumber != 0 {
                 exchangeRateManager.saveExchangeRate(exchangeRate, date.startOfDay)
-                print(exchangeRate.currencyNumber)
             }
         }
     }

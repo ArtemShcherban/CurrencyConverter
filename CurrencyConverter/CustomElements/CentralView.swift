@@ -17,7 +17,7 @@ protocol CentralViewDelegate: AnyObject {
 
 class CentralView: UIView {
     weak var centralViewDelegate: CentralViewDelegate?
-        
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         configure()
@@ -34,14 +34,14 @@ class CentralView: UIView {
         createShadow()
     }
     
-    func createShadow() {
+    private func createShadow() {
         layer.shadowColor = UIColor.black.withAlphaComponent(0.7).cgColor
         layer.shadowOffset = CGSize(width: 0, height: 4)
         layer.shadowRadius = 4
         layer.shadowOpacity = 1
     }
     
-    func addSwipeGesture() {
+    private func addSwipeGesture() {
         let swipe = UISwipeGestureRecognizer()
         swipe.direction = .down
         swipe.addTarget(self, action: #selector(swipeDelegateAction))
@@ -79,7 +79,7 @@ class CentralView: UIView {
         ])
     }
     
-    @objc func swipeDelegateAction() {
+    @objc private func swipeDelegateAction() {
         centralViewDelegate?.swipe()
     }
 }

@@ -8,7 +8,7 @@
 import Foundation
 
 extension MainViewController: ConverterViewDelegate {
-    var converterModel: ConverterModel {
+    private var converterModel: ConverterModel {
         return  ConverterModel.shared
     }
     
@@ -17,7 +17,7 @@ extension MainViewController: ConverterViewDelegate {
         updateCurrentTableView()
     }
     
-    func buttonSelected() {
+    func sellBuyButtonTapped() {
         converterModel.isSellAction.toggle()
         updateCurrentTableView()
     }

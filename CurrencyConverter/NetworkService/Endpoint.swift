@@ -5,7 +5,6 @@
 //  Created by Artem Shcherban on 16.09.2022.
 //
 
-import Combine
 import Foundation
 
 struct Endpoint<Response: Decodable> {
@@ -28,7 +27,7 @@ struct Endpoint<Response: Decodable> {
             guard let date = date else { return nil }
             return urlModel.createPrivatURL(with: date.forURL)
         } else {
-            print("Error: Cannot recognize the response type" )
+            print(NetworkServiceError.cannotRecognizeType.rawValue)
             return nil
         }
     }

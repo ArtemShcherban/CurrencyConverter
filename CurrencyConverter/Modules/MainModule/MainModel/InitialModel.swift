@@ -13,14 +13,13 @@ final class InitialModel {
     private let containerManager = ContainerManager()
     
     func insertCurrencies(complition: @escaping () -> Void) {
-        print("Initial model insertCurrencies() --- \(Thread.current)")
         let currencyCount = currencyManager.getCurrencyCount()
         if currencyCount > 0 {
             complition()
             return
         }
         guard
-            let path = Bundle.main.path(forResource: "WorldCurrencies", ofType: "plist"),
+            let path = Bundle.main.path(forResource: AppConstants.worldCurrencies, ofType: AppConstants.plist),
             let dataArray = NSArray(contentsOfFile: path) else {
             return
         }
@@ -70,7 +69,7 @@ final class InitialModel {
     }
     
     private func createPopularGroup(currencyNumbers: [Int16]) {
-        let group = Group(visible: true, name: "Popular", key: Int16(0))
+        let group = Group(visible: true, name: TitleConstants.popular, key: Int16(0))
         groupManager.createGroup(group)
         currencyNumbers.forEach { currencyNumber in
             currencyManager.setGroupKeyForCurrency(with: currencyNumber, with: group.key)

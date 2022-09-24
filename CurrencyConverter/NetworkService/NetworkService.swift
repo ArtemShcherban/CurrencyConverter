@@ -40,7 +40,7 @@ final class NetworkService {
                 case .failure(let error):
                     completion(.failure(self.checkErrorCode(error)))
                 case .finished:
-                    print("Success")
+                    break
                 }
             }, receiveValue: { response in
                 guard let result = response else { return }

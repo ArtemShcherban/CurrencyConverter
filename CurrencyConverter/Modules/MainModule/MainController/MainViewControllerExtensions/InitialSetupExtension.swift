@@ -8,8 +8,8 @@
 import Foundation
 
 extension MainViewController {
-    var isFirstTimeLaunched: Bool {
-        !UserDefaults.standard.bool(forKey: "launchedBefore")
+    private var isFirstTimeLaunched: Bool {
+        !UserDefaults.standard.bool(forKey: AppConstants.launchedBefore)
     }
     
     private var initialModel: InitialModel {
@@ -18,21 +18,11 @@ extension MainViewController {
     
     func initialSetup(complition: @escaping () -> Void) {
         initialModel.insertCurrencies {
-            print("initialSetup ---- \(Thread.current)")
-                self.initialModel.insertGroups()
-                self.initialModel.createContainers()
-                print("---------1--------")
-                complition()
-            print("---------2--------")
+            self.initialModel.insertGroups()
+            self.initialModel.createContainers()
+            complition()
         }
-        print("---------3--------")
     }
-    
-//    func initialSetup() {
-//        initialModel.insertCurrencies()
-//        initialModel.insertGroups()
-//        initialModel.createCurrencyContainers()
-//    }
     
     func executeOnFirstStartup() {
         if isFirstTimeLaunched {
@@ -40,7 +30,7 @@ extension MainViewController {
                 deadline: .now() + .seconds(2)) {
                     self.mainView.guidelinesMessage()
             }
-            UserDefaults.standard.set(true, forKey: "launchedBefore")
+            UserDefaults.standard.set(true, forKey: AppConstants.launchedBefore)
             return
         }
         return

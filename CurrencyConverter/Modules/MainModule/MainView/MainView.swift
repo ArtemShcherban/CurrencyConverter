@@ -11,7 +11,17 @@ protocol MainViewDelegate: AnyObject {
     func switchViewButtonPressed()
 }
 
-class MainView: UIView {
+final class MainView: UIView {
+    lazy var isRatesView = true
+    lazy var converterView = ConverterView()
+    lazy var exchangeRatesView = ExchangeRatesView()
+    lazy var lastUpdateDate = String() {
+        didSet {
+            self.setupLastUpdateLabels()
+        }
+    }
+    let mainAsyncQueue = AsyncQueue.main
+    
     @IBOutlet private var contentView: UIView!
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
@@ -20,17 +30,6 @@ class MainView: UIView {
     @IBOutlet weak var helpButton: UIButton!
     @IBOutlet weak var switchViewButton: UIButton!
     
-    lazy var exchangeRatesView = ExchangeRatesView()
-    lazy var converterView = ConverterView()
-    
-    lazy var isRatesView = true
-    lazy var lastUpdateDate = String() {
-        didSet {
-            self.setupLastUpdateLabels()
-        }
-    }
-    
-    let mainAsyncQueue = AsyncQueue.main
     weak var delegate: MainViewDelegate?
     
     override init(frame: CGRect) {
@@ -49,8 +48,8 @@ class MainView: UIView {
         exchangeRatesView.setConstraints()
     }
     
-    func configure() {
-        Bundle.main.loadNibNamed("MainView", owner: self, options: nil)
+    private func configure() {
+        Bundle.main.loadNibNamed(AppConstants.mainView, owner: self, options: nil)
         contentView.fixInView(self)
     }
     
@@ -62,9 +61,9 @@ class MainView: UIView {
         converterView.delegate = delegate
     }
     
-    func configureSwitchViewButton() {
+    private func configureSwitchViewButton() {
         switchViewButton.layer.cornerRadius = 14
-        switchViewButton.layer.borderColor = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1).cgColor
+        switchViewButton.layer.borderColor = ColorConstants.lightBlue
         switchViewButton.layer.borderWidth = 1
     }
     
@@ -75,7 +74,7 @@ class MainView: UIView {
         }
     }
     
-    func startAnimation(completion: @escaping(() -> Void)) {
+    private func startAnimation(completion: @escaping(() -> Void)) {
         animateSwitchView {
             completion()
         }
@@ -106,12 +105,11 @@ class MainView: UIView {
         }
     }
     
-    func setupLastUpdateLabels() {
+    private func setupLastUpdateLabels() {
         self.lastUpdatedLabel.fadeTransition(0.5)
         self.updateDateLabel.fadeTransition(0.5)
         self.lastUpdatedLabel.text = "Last Updated"
         self.updateDateLabel.text = lastUpdateDate
-        print("setupLastUpdateLabels()")
     }
     
     private func workItem(index: Int) -> DispatchWorkItem {
@@ -135,16 +133,6 @@ class MainView: UIView {
         }
     }
     
-    func updateMessage(error: NetworkServiceError?) {
-        let message: String
-        if let error = error {
-            message = error.rawValue
-        } else {
-            message = MessageConstants.ratesUpdated
-        }
-        animateUpdate(message: message)
-    }
-    
     func nextUpdateMessage(_ hour: Int?) {
         let message: String
         if let hour = hour {
@@ -156,7 +144,7 @@ class MainView: UIView {
         animateUpdate(message: message)
     }
     
-    func animateUpdate(message: String) {
+    private func animateUpdate(message: String) {
         lastUpdatedLabel.fadeTransition(0.5)
         updateDateLabel.fadeTransition(0.5)
         lastUpdatedLabel.text = message
@@ -165,13 +153,12 @@ class MainView: UIView {
         DispatchQueue.main.asyncAfter(deadline: .now() + delayInSeconds) { [weak self] in
             self?.setupLastUpdateLabels()
         }
-        print("animateUpdate(message: String)")
     }
     
     private func buttonTitleAnimation() {
         switchViewButton.fadeTransition(1.0)
         switchViewButton.titleLabel?.text = ""
-        let title = isRatesView ? "Exchange Rate" : "Currency Converter"
+        let title = isRatesView ? TitleConstants.exchangeRates : TitleConstants.currencyConverter
         switchViewButton.setTitle(title, for: .normal)
     }
     

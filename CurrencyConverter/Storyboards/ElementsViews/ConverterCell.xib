@@ -68,8 +68,8 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="wkc-IS-1av"/>
             <connections>
+                <outlet property="amountLabel" destination="F0a-Bj-OkE" id="a63-vC-vTM"/>
                 <outlet property="currencyButton" destination="zNd-b0-llc" id="efZ-lz-tma"/>
-                <outlet property="totalAmountLabel" destination="F0a-Bj-OkE" id="a63-vC-vTM"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="79.352678571428569"/>
         </tableViewCell>

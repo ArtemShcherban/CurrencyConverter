@@ -9,5 +9,4 @@ import Foundation
 
 enum CoreDataError: String, Error {
     case unresolved = "Unresolved error"
-    case failToUpdate = "klnknk"
 }

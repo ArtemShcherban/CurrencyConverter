@@ -7,11 +7,11 @@
 
 import UIKit
 
-class AddButton: UIButton {
+final class AddButton: UIButton {
     private var compactConstraints: [NSLayoutConstraint] = []
     private var regularConstraints: [NSLayoutConstraint] = []
     private var sharedConstraints: [NSLayoutConstraint] = []
-
+    
     func setupConstraints() {
         self.translatesAutoresizingMaskIntoConstraints = false
         guard let superview = self.superview else { return }
@@ -29,12 +29,12 @@ class AddButton: UIButton {
             self.centerYAnchor.constraint(equalTo: superview.bottomAnchor, constant: -30)
         ])
     }
-
-    func layoutTrait(traitCollection: UITraitCollection) {
+    
+    private func layoutTrait(traitCollection: UITraitCollection) {
         if !sharedConstraints[0].isActive {
             NSLayoutConstraint.activate(sharedConstraints)
         }
-
+        
         if (traitCollection.horizontalSizeClass == .compact || traitCollection.horizontalSizeClass == .regular) &&
             traitCollection.verticalSizeClass == .regular {
             if !regularConstraints.isEmpty && regularConstraints[0].isActive {
@@ -48,12 +48,12 @@ class AddButton: UIButton {
             NSLayoutConstraint.activate(regularConstraints)
         }
     }
-
+    
     func activateConstraints() {
         NSLayoutConstraint.activate(sharedConstraints)
         layoutTrait(traitCollection: UIScreen.main.traitCollection)
     }
-
+    
     override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         layoutTrait(traitCollection: traitCollection)

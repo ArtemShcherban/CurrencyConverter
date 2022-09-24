@@ -6,25 +6,25 @@
 //
 
 import UIKit
-protocol ConverterViewDelegate: AnyObject { ///////////////////// RENAME
+protocol ConverterViewDelegate: AnyObject {
     func valueChanged(in textField: inout AdjustableTextField)
-    func buttonSelected()
+    func sellBuyButtonTapped()
 }
 
 @IBDesignable
 final class ConverterView: CentralView {
+    private lazy var mainDataSource = MainDataSource.shared
+    
     @IBOutlet var contentView: UIView!
     @IBOutlet weak var sellButton: UIButton!
     @IBOutlet weak var buyButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var addButton: AddButton!
     @IBOutlet weak var baseCurrencyButton: UIButton!
-    @IBOutlet weak var textField: AdjustableTextField!
+    @IBOutlet weak var inputAmountTextField: AdjustableTextField!
     @IBOutlet weak var shareRatesButton: UIButton!
     
     weak var delegate: ConverterViewDelegate?
-    
-    private lazy var ratesDataSource = RatesDataSource.shared
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -47,35 +47,32 @@ final class ConverterView: CentralView {
     }
     
     private func configureContentView() {
-        Bundle.main.loadNibNamed("ConverterView", owner: self, options: nil)
+        Bundle.main.loadNibNamed(AppConstants.converterView, owner: self, options: nil)
         contentView.layer.cornerRadius = 10
         contentView.fixInView(self)
     }
     
     func configureBaseCarrencyButton() {
-        guard let currency = ratesDataSource.baseCurrency else { return } // ??remove to MainViewController?? 🥸
+        guard let currency = mainDataSource.baseCurrency else { return }
         baseCurrencyButton.setTitle(currency.code, for: .normal)
     }
     
-    func configureInputAmountField() {
-        textField.delegate = self
-        textField.addTarget(self, action: #selector(valueChangedInTextField), for: .editingChanged)
+    private func configureInputAmountField() {
+        inputAmountTextField.delegate = self
+        inputAmountTextField.addTarget(self, action: #selector(valueChangedInTextField), for: .editingChanged)
     }
     
     private func configureTableView() {
-        tableView.dataSource = ratesDataSource
+        tableView.dataSource = mainDataSource
         tableView.tag = 1
         tableView.registerUINibWith(nib: ConverterCell.self)
-//        tableView.register(
-//            UINib(nibName: ConverterCell.reuseIdentifier, bundle: nil),
-//            forCellReuseIdentifier: ConverterCell.reuseIdentifier)
     }
     
     private func configure() {
         transform = CGAffineTransform(scaleX: 0.001, y: 1)
     }
     
-    private func updateButtonAppearence(_ selectedButton: UIButton) {
+    private func updateButtonsAppearence(_ selectedButton: UIButton) {
         guard
             let deselectedButton = selectedButton == sellButton ? buyButton : sellButton else {
             return
@@ -89,13 +86,13 @@ final class ConverterView: CentralView {
         deselectedButton.backgroundColor = .white
     }
     
-    @IBAction func buttonPressed(_ sender: UIButton) {
-        updateButtonAppearence(sender)
-        delegate?.buttonSelected()
+    @IBAction func actionTypeButtonChanged(_ sender: UIButton) {
+        updateButtonsAppearence(sender)
+        delegate?.sellBuyButtonTapped()
     }
     
-    @objc func valueChangedInTextField() {
-        delegate?.valueChanged(in: &textField)
+    @objc private func valueChangedInTextField() {
+        delegate?.valueChanged(in: &inputAmountTextField)
     }
     
     @IBAction func baseCurrencyPressed(_ sender: UIButton) {

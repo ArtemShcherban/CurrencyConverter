@@ -7,14 +7,14 @@
 
 import UIKit
 
-class RateCell: UITableViewCell {
+final class RateCell: UITableViewCell {
     static let reuseIdentifier = String(describing: RateCell.self)
     
     @IBOutlet private weak var currencyButton: UIButton!
     @IBOutlet private weak var buyLabel: RateTextLabel!
     @IBOutlet private weak var sellLabel: RateTextLabel!
     
-    var row: Int?
+    private var row: Int?
     weak var delegate: CentralViewDelegate?
     
     func configureAt(row: Int, with currency: Currency) {

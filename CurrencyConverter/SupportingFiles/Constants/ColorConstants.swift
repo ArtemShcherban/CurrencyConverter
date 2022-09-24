@@ -9,4 +9,5 @@ import UIKit
 
 enum ColorConstants {
     static let darkBlue = UIColor(red: 0.0, green: 0.191, blue: 0.4, alpha: 1.0)
+    static let lightBlue = UIColor(red: 0, green: 0.478, blue: 1, alpha: 1).cgColor
 }

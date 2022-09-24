@@ -18,4 +18,5 @@ enum NetworkServiceError: String, Error {
     case couldNotConnect = "Unfortunately, we could not connect to the server."
     case sslConectError = "An SSL error has occurred and a secure connection to the server cannot be made."
     case cannotParseJSON = "Error: cannot parse JSON"
+    case cannotRecognizeType = "Error: Cannot recognize the response type"
 }

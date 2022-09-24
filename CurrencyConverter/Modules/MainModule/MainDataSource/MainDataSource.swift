@@ -1,5 +1,5 @@
 //
-//  RatesDataSource.swift
+//  MainDataSource.swift
 //  CurrencyConverter
 //
 //  Created by Artem Shcherban on 06.08.2022.
@@ -7,14 +7,13 @@
 
 import UIKit
 
-class RatesDataSource: NSObject, UITableViewDataSource {
-    static let shared = RatesDataSource()
-    
-    weak var cellDelegate: MainViewController?
-    
+class MainDataSource: NSObject, UITableViewDataSource {
+    static let shared = MainDataSource()
     var baseCurrency: Currency?
     lazy var selectedCurrencies: [Currency] = []
     private lazy var ratesModel = RatesModel.shared
+    
+    weak var cellDelegate: MainViewController?
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         selectedCurrencies.count
