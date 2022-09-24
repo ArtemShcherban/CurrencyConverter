@@ -67,8 +67,9 @@ final class ExchangeRatesView: CentralView {
     private func configureTableView() {
         tableView.dataSource = RatesDataSource.shared
         tableView.tag = 0
-        tableView.register(
-            UINib(nibName: RateCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: RateCell.reuseIdentifier)
+        tableView.registerUINibWith(nib: RateCell.self)
+//        tableView.register(
+//            UINib(nibName: RateCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: RateCell.reuseIdentifier)
     }
     
     @objc func delegatePickerAction(sender: UIDatePicker) {

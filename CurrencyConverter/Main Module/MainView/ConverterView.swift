@@ -65,9 +65,10 @@ final class ConverterView: CentralView {
     private func configureTableView() {
         tableView.dataSource = ratesDataSource
         tableView.tag = 1
-        tableView.register(
-            UINib(nibName: ConverterCell.reuseIdentifier, bundle: nil),
-            forCellReuseIdentifier: ConverterCell.reuseIdentifier)
+        tableView.registerUINibWith(nib: ConverterCell.self)
+//        tableView.register(
+//            UINib(nibName: ConverterCell.reuseIdentifier, bundle: nil),
+//            forCellReuseIdentifier: ConverterCell.reuseIdentifier)
     }
     
     private func configure() {

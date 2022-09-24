@@ -45,8 +45,7 @@ class RatesDataSource: NSObject, UITableViewDataSource {
     }
     
     private func rateCell(for tableView: UITableView, at indexPath: IndexPath, with currency: Currency) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: RateCell.reuseIdentifier, for: indexPath) as? RateCell else {
+        guard let cell = tableView.cellWith(identifier: RateCell.self, for: indexPath) else {
             return UITableViewCell()
         }
         cell.delegate = cellDelegate
@@ -55,9 +54,8 @@ class RatesDataSource: NSObject, UITableViewDataSource {
     }
     
     private func converterCell(for tableView: UITableView, at indexPath: IndexPath, with currency: Currency) -> UITableViewCell {
-    guard let cell = tableView.dequeueReusableCell(
-        withIdentifier: ConverterCell.reuseIdentifier, for: indexPath) as? ConverterCell else {
-        return UITableViewCell()
+        guard let cell = tableView.cellWith(identifier: ConverterCell.self, for: indexPath) else {
+            return UITableViewCell()
         }
         cell.delegate = cellDelegate
         let amount = ConverterModel.shared.doCalculation(for: currency)

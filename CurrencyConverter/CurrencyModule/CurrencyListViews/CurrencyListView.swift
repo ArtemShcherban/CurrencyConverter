@@ -23,7 +23,6 @@ final class CurrencyListView: UIView {
     weak var delegate: CurrencyListViewDelegate?
     
     func createView() {
-        addAccessibilityId()
         configureTableView()
         createTableViewShadow()
         searchBar.delegate = searchBarDelegate
@@ -51,11 +50,7 @@ final class CurrencyListView: UIView {
     private func configureTableView() {
         tableView.delegate = tableViewDelegate
         tableView.dataSource = dataSource
-        tableView.register(CurrencyCell.self, forCellReuseIdentifier: CurrencyCell.reuseIdentifier)
-    }
-    
-    private func addAccessibilityId() {
-        tableView.accessibilityIdentifier = "currency"
+        tableView.registerCellClassWith(name: CurrencyCell.self)
     }
     
     private func createTableViewShadow() {
@@ -104,15 +99,3 @@ final class CurrencyListView: UIView {
         titleView.contentConfiguration = content
     }
 }
-
-//extension UITableView {
-//    func registerUINibWith(nib name: UITableViewCell.Type) {
-//        let nibName = String(describing: name)
-//        register(UINib(nibName: nibName, bundle: nil), forCellReuseIdentifier: nibName)
-//    }
-//
-//    func registerCellClassWith(name: UITableViewCell.Type) {
-//        let className = String(describing: name)
-//        register(name, forCellReuseIdentifier: className)
-//    }
-//}

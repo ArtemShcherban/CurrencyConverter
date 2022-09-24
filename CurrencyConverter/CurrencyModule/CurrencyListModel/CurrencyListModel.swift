@@ -14,11 +14,11 @@ protocol CurrencyListModelDelegate: AnyObject {
 final class CurrencyListModel {
     static let shared = CurrencyListModel()
     
-    private lazy var currencyDataSource = CurrencyListDataSource.shared
+    lazy var containerName = String()
     private let groupManager = GroupManager()
     private let currencyManager = CurrencyManager()
     private let containerManager = ContainerManager()
-    lazy var containerName = String()
+    private lazy var currencyDataSource = CurrencyListDataSource.shared
     
     weak var delegate: CurrencyListModelDelegate?
     

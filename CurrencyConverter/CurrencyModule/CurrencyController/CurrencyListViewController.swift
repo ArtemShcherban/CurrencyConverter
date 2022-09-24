@@ -14,7 +14,7 @@ final class CurrencyListViewController: UIViewController, CurrencyListViewDelega
     private lazy var ratesModel = RatesModel.shared
     var editingRow: Int?
     
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: CurrencyListTableView!
     @IBOutlet var currensyListView: CurrencyListView!
     
     weak var delegate: RatesModelDelegate?
@@ -50,23 +50,23 @@ extension CurrencyListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        switch tableView.accessibilityIdentifier {
-        case "filtered":
-            currensyListView.setHeaderForFiltered(view: view, section: section)
-        default:
+        guard
+            let tableView = tableView as? CurrencyListTableView,
+            tableView.isFiltered else {
             currensyListView.setGroupTitle(view: view, section: section)
+            return
         }
+        currensyListView.setHeaderForFiltered(view: view, section: section)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         var currency: Currency
-        switch tableView.accessibilityIdentifier {
-        case "currency":
-            currency = currencyListModel.selectedCurrency(at: indexPath)
-        case "filtered":
+        if
+            let tableView = tableView as? CurrencyListTableView,
+            tableView.isFiltered {
             currency = currencyListModel.selectedFilteredCurrency(at: indexPath)
-        default:
-            return
+        } else {
+            currency = currencyListModel.selectedCurrency(at: indexPath)
         }
         
         if let editingRow = editingRow {
@@ -84,10 +84,10 @@ extension CurrencyListViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchBar.text != String() {
             currencyListModel.filterCurrency(text: searchBar.text ?? String())
-            currensyListView.tableView.accessibilityIdentifier = "filtered"
+            tableView.isFiltered = true
         } else {
             currencyListModel.filterCurrency(text: String())
-            currensyListView.tableView.accessibilityIdentifier = "currency"
+            tableView.isFiltered = false
         }
         currensyListView.tableView.reloadData()
     }
@@ -101,7 +101,7 @@ extension CurrencyListViewController: UISearchBarDelegate {
         searchBar.text = nil
         searchBar.endEditing(true)
         searchBar.setShowsCancelButton(false, animated: true)
-        currensyListView.tableView.accessibilityIdentifier = "currency"
+        tableView.isFiltered = false
         currensyListView.tableView.reloadData()
     }
     

@@ -15,42 +15,39 @@ final class CurrencyListDataSource: NSObject, UITableViewDataSource {
     lazy var groups: [Group] = []
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if tableView.accessibilityIdentifier == "currency" {
+        guard
+            let tableView = tableView as? CurrencyListTableView,
+            tableView.isFiltered else {
             return groups.count
         }
         return 1
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        String()
-//        if tableView.accessibilityIdentifier == "currency" {
-//            return groups[section].name
-//        } else if tableView.accessibilityIdentifier == "filtered" {
-//            return filteredCurrency.isEmpty ? "No items found🥸🥸" : "Search result🇺🇦🇺🇦"
-//        }
-//        return nil
+        return String()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if tableView.accessibilityIdentifier == "currency" {
+        guard
+            let tableView = tableView as? CurrencyListTableView,
+            tableView.isFiltered else {
             return currencyList.filter { $0.groupKey == groups[section].key }.count
-        } else if tableView.accessibilityIdentifier == "filtered" {
-            return filteredCurrency.count
         }
-        return 0
+        return filteredCurrency.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: CurrencyCell.reuseIdentifier, for: indexPath) as? CurrencyCell else {
+        guard let cell = tableView.cellWith(identifier: CurrencyCell.self, for: indexPath) else {
             return UITableViewCell()
         }
-        
-        if tableView.accessibilityIdentifier == "currency" {
+       
+        guard
+            let tableView = tableView as? CurrencyListTableView,
+            tableView.isFiltered else {
             cell.configure(with: indexPath)
-        } else if tableView.accessibilityIdentifier == "filtered" {
-            cell.configureWith(indexPath: indexPath)
+            return cell
         }
+        cell.configureWith(indexPath: indexPath)
         return cell
     }
 }

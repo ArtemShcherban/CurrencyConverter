@@ -9,7 +9,6 @@ import UIKit
 
 final class CurrencyCell: UITableViewCell {
     static let reuseIdentifier = String(describing: CurrencyCell.self)
-    
     private let currencyDataSource = CurrencyListDataSource.shared
     
     /// Сonfigures the cell with complete data
@@ -22,7 +21,7 @@ final class CurrencyCell: UITableViewCell {
         content.attributedText = createTitle(currency.code, currency.currency)
         contentConfiguration = content
     }
-
+    
     /// Configures the cell with filtered data
     func configureWith(indexPath: IndexPath) {
         var content = defaultContentConfiguration()
