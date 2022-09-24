@@ -11,15 +11,13 @@ protocol CurrencyListModelDelegate: AnyObject {
     func currencyListTableViewReloadData()
 }
 
-class CurrencyListModel {
+final class CurrencyListModel {
     static let shared = CurrencyListModel()
     
     private lazy var currencyDataSource = CurrencyListDataSource.shared
-    
     private let groupManager = GroupManager()
     private let currencyManager = CurrencyManager()
     private let containerManager = ContainerManager()
-    
     lazy var containerName = String()
     
     weak var delegate: CurrencyListModelDelegate?
@@ -34,7 +32,7 @@ class CurrencyListModel {
         currencyDataSource.groups = fillDataSourceGroups()
     }
     
-    func fillDataSourceGroups() -> [Group] {
+    private func fillDataSourceGroups() -> [Group] {
         let currencies = currencyDataSource.currencyList
         var keys: Set<Int16> = []
         currencies.forEach { currency in
@@ -72,8 +70,8 @@ class CurrencyListModel {
         return  currencies[indexPath.row]
     }
     
-        func selectedFilteredCurrency(at indexPath: IndexPath) -> Currency {
-            let currency = currencyDataSource.filteredCurrency[indexPath.row]
-            return currency
-        }
+    func selectedFilteredCurrency(at indexPath: IndexPath) -> Currency {
+        let currency = currencyDataSource.filteredCurrency[indexPath.row]
+        return currency
+    }
 }

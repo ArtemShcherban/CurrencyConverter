@@ -7,9 +7,8 @@
 
 import UIKit
 
-class CurrencyListDataSource: NSObject, UITableViewDataSource {
+final class CurrencyListDataSource: NSObject, UITableViewDataSource {
     static let shared = CurrencyListDataSource()
-    static let sharedTwo = CurrencyListDataSource()
     
     lazy var currencyList: [Currency] = []
     lazy var filteredCurrency: [Currency] = []
@@ -23,12 +22,13 @@ class CurrencyListDataSource: NSObject, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if tableView.accessibilityIdentifier == "currency" {
-            return groups[section].name
-        } else if tableView.accessibilityIdentifier == "filtered" {
-            return filteredCurrency.isEmpty ? "No items found" : "Search result"
-        }
-        return nil
+        String()
+//        if tableView.accessibilityIdentifier == "currency" {
+//            return groups[section].name
+//        } else if tableView.accessibilityIdentifier == "filtered" {
+//            return filteredCurrency.isEmpty ? "No items found🥸🥸" : "Search result🇺🇦🇺🇦"
+//        }
+//        return nil
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

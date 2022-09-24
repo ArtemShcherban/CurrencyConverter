@@ -33,16 +33,10 @@ final class CurrencyCell: UITableViewCell {
     
     private func createTitle(_ code: String, _ currency: String) -> NSMutableAttributedString {
         let attridutedString = NSMutableAttributedString(string: code, attributes: [
-            NSAttributedString.Key.font:
-                UIFont(
-                    name: "Lato-SemiBold",
-                    size: 17) ?? UIFont()
+            NSAttributedString.Key.font: FontConstants.latoSemiBold
         ])
         let attributedCurrencyName = NSAttributedString(string: " - \(currency)", attributes: [
-            NSAttributedString.Key.font:
-                UIFont(
-                    name: "Lato-Regular",
-                    size: 17) ?? UIFont()
+            NSAttributedString.Key.font: FontConstants.latoRegular
         ])
         attridutedString.append(attributedCurrencyName)
         return attridutedString

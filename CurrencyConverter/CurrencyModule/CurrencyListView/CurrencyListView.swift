@@ -12,11 +12,11 @@ protocol CurrencyListViewDelegate: AnyObject {
 }
 
 @IBDesignable
-class CurrencyListView: UIView {
+final class CurrencyListView: UIView {
+    lazy var dataSource = CurrencyListDataSource.shared
+    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
-    
-    lazy var dataSource = CurrencyListDataSource.shared
     
     weak var tableViewDelegate: UITableViewDelegate?
     weak var searchBarDelegate: UISearchBarDelegate?
@@ -36,10 +36,7 @@ class CurrencyListView: UIView {
         let title = NSAttributedString(
             string: "Converter",
             attributes: [
-                NSAttributedString.Key.font:
-                    UIFont(
-                        name: "SFProText-Regular",
-                        size: 17) ?? UIFont()
+                NSAttributedString.Key.font: FontConstants.sfProTextRegular
             ])
         backButton.setAttributedTitle(title, for: .normal)
         backButton.setTitleColor(backButton.tintColor, for: .normal)
@@ -47,21 +44,21 @@ class CurrencyListView: UIView {
         return backButton
     }
     
-    @objc func backButtonDelegateAction() {
+    @objc private func backButtonDelegateAction() {
         delegate?.backButtonPressed()
     }
     
-    func configureTableView() {
+    private func configureTableView() {
         tableView.delegate = tableViewDelegate
         tableView.dataSource = dataSource
         tableView.register(CurrencyCell.self, forCellReuseIdentifier: CurrencyCell.reuseIdentifier)
     }
     
-    func addAccessibilityId() {
+    private func addAccessibilityId() {
         tableView.accessibilityIdentifier = "currency"
     }
     
-    func createTableViewShadow() {
+    private func createTableViewShadow() {
         tableView.layer.masksToBounds = false
         tableView.layer.shadowColor = UIColor.black.withAlphaComponent(0.15).cgColor
         tableView.layer.shadowOffset = CGSize(width: 0, height: 4)
@@ -81,8 +78,8 @@ class CurrencyListView: UIView {
             string: groupName,
             attributes: [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
-                NSAttributedString.Key.font: UIFont(name: "Lato-SemiBold", size: 17) ?? UIFont(),
-                NSAttributedString.Key.foregroundColor: UIColor(red: 0.0, green: 0.191, blue: 0.4, alpha: 1.0)
+                NSAttributedString.Key.font: FontConstants.latoSemiBold,
+                NSAttributedString.Key.foregroundColor: ColorConstants.darkBlue
             ])
         content.attributedText = attributedString
         titleView.contentConfiguration = content
@@ -92,15 +89,16 @@ class CurrencyListView: UIView {
         guard let titleView = view as? UITableViewHeaderFooterView else { return }
         
         var content = titleView.defaultContentConfiguration()
-        let groupName = !dataSource.filteredCurrency.isEmpty ? "Search result:" : "No currency found"
+        let groupName = !dataSource.filteredCurrency.isEmpty ?
+        TitleConstants.searchResult : TitleConstants.noCurrencyFound
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 0.8
         let attributedString = NSAttributedString(
             string: groupName,
             attributes: [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
-                NSAttributedString.Key.font: UIFont(name: "Lato-SemiBold", size: 17) ?? UIFont(),
-                NSAttributedString.Key.foregroundColor: UIColor(red: 0.0, green: 0.191, blue: 0.4, alpha: 1.0)
+                NSAttributedString.Key.font: FontConstants.latoSemiBold,
+                NSAttributedString.Key.foregroundColor: ColorConstants.darkBlue
             ])
         content.attributedText = attributedString
         titleView.contentConfiguration = content

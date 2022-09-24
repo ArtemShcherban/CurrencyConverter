@@ -6,40 +6,35 @@
 //
 
 import UIKit
-import CoreData
 
-class CurrencyListViewController: UIViewController, CurrencyListViewDelegate {
+final class CurrencyListViewController: UIViewController, CurrencyListViewDelegate {
     static let reuseIdentifier = String(describing: CurrencyListViewController.self)
+    private lazy var dataSource = CurrencyListDataSource.shared
+    private lazy var currencyListModel = CurrencyListModel.shared
+    private lazy var ratesModel = RatesModel.shared
+    var editingRow: Int?
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var currensyListView: CurrencyListView!
     
     weak var delegate: RatesModelDelegate?
-    var editingRow: Int?
-    
-    private lazy var dataSource = CurrencyListDataSource.shared
-    private lazy var coreDataStack = CoreDataStack.shared
-    private lazy var currencyListModel = CurrencyListModel.shared
-    private lazy var ratesModel = RatesModel.shared
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
         currensyListView.createView()
         currencyListModel.fillCurrencyDataSource()
         addBackButton()
-        
         setupHideKeyboardTapCesture()
     }
     
-    func setDelegates() {
+    private func setDelegates() {
         currensyListView.tableViewDelegate = self
         currensyListView.searchBarDelegate = self
-        //        currensyListView.searchResultsDelegate = self
         currensyListView.delegate = self
     }
     
-    func addBackButton() {
+    private func addBackButton() {
         let backButton = currensyListView.createBackButton()
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     }
