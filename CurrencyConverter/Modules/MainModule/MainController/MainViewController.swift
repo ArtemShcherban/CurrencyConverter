@@ -19,7 +19,7 @@ final class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
-        debugPrint(path[0])
+        print(path[0])
         mainAsyncQueue = AsyncQueue.main
         initialSetup {
             self.mainAsyncQueue?.dispatch {
