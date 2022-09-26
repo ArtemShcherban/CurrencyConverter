@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad12_9rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -32,22 +33,35 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8qA-YV-Vjj" customClass="EllipsesView" customModule="CurrencyConverter" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="1024" height="1366"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VIy-eP-QTM" userLabel="Additional View">
+                            <rect key="frame" x="194" y="569" width="2" height="275"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="2" id="M3y-x9-0il"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="mainViewWightBgDynamic"/>
+                    <constraints>
+                        <constraint firstItem="VIy-eP-QTM" firstAttribute="centerX" secondItem="8qA-YV-Vjj" secondAttribute="centerX" id="DAi-mc-Uww"/>
+                        <constraint firstAttribute="bottom" secondItem="VIy-eP-QTM" secondAttribute="bottom" priority="750" id="zNl-re-Wc5"/>
+                    </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exchange Rates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dv8-Jb-bSj">
-                    <rect key="frame" x="48" y="75" width="876" height="29"/>
+                    <rect key="frame" x="16" y="96" width="274" height="29"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <fontDescription key="fontDescription" name="Lato-ExtraBold" family="Lato" pointSize="24"/>
                     <color key="textColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                     <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="HfX-LT-SVC" userLabel="Container View">
-                    <rect key="frame" x="48" y="119" width="928" height="398"/>
+                    <rect key="frame" x="16" y="171" width="358" height="398"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="398" id="G5L-In-CLn"/>
@@ -82,13 +96,13 @@
                     </variation>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Updated" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="c17-56-3Nc" userLabel="Last updated">
-                    <rect key="frame" x="48" y="525" width="70.5" height="14.5"/>
+                    <rect key="frame" x="16" y="577" width="70.333333333333329" height="14.666666666666629"/>
                     <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  " lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AN4-q2-FsM" userLabel="Update date">
-                    <rect key="frame" x="48" y="541.5" width="123" height="14.5"/>
+                    <rect key="frame" x="16" y="593.66666666666663" width="123" height="14.666666666666629"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="123" id="Arl-Ki-ftx"/>
@@ -98,7 +112,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jfy-HQ-mO5" userLabel="Switch View Button">
-                    <rect key="frame" x="340.5" y="707" width="343" height="56"/>
+                    <rect key="frame" x="16" y="678.66666666666663" width="358" height="56"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="343" id="cMD-dQ-n8T"/>
                         <constraint firstAttribute="height" constant="56" id="eut-7c-A7Q"/>
@@ -136,7 +150,8 @@
                 <constraint firstItem="8qA-YV-Vjj" firstAttribute="trailing" secondItem="Jfy-HQ-mO5" secondAttribute="trailing" constant="50" id="Fuo-fC-k2V"/>
                 <constraint firstItem="HfX-LT-SVC" firstAttribute="height" secondItem="8qA-YV-Vjj" secondAttribute="height" multiplier="0.471564" id="HbT-uh-jwa"/>
                 <constraint firstItem="HfX-LT-SVC" firstAttribute="top" secondItem="dv8-Jb-bSj" secondAttribute="bottom" constant="6" id="Isr-Qa-6wO"/>
-                <constraint firstItem="Jfy-HQ-mO5" firstAttribute="top" secondItem="HfX-LT-SVC" secondAttribute="bottom" constant="190" id="MCe-bm-my1"/>
+                <constraint firstItem="Jfy-HQ-mO5" firstAttribute="centerY" secondItem="VIy-eP-QTM" secondAttribute="centerY" id="LjP-lF-Yhb"/>
+                <constraint firstItem="VIy-eP-QTM" firstAttribute="top" secondItem="HfX-LT-SVC" secondAttribute="bottom" id="SMu-9l-gmI"/>
                 <constraint firstItem="8qA-YV-Vjj" firstAttribute="trailing" secondItem="HfX-LT-SVC" secondAttribute="trailing" constant="16" id="SiE-9y-rEM"/>
                 <constraint firstItem="AN4-q2-FsM" firstAttribute="bottom" secondItem="c17-56-3Nc" secondAttribute="bottom" id="TUY-qA-eVH"/>
                 <constraint firstItem="AN4-q2-FsM" firstAttribute="top" secondItem="c17-56-3Nc" secondAttribute="bottom" constant="2" id="VKT-zl-sgF"/>
@@ -156,7 +171,6 @@
                 <constraint firstItem="c17-56-3Nc" firstAttribute="top" secondItem="HfX-LT-SVC" secondAttribute="bottom" constant="8" id="rjb-LQ-Afw"/>
                 <constraint firstItem="Jfy-HQ-mO5" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="16" id="uKd-GO-h1I"/>
                 <constraint firstItem="dv8-Jb-bSj" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="96" id="vpl-KV-exx"/>
-                <constraint firstItem="Jfy-HQ-mO5" firstAttribute="top" secondItem="HfX-LT-SVC" secondAttribute="bottom" constant="101" id="yAK-x9-aKL"/>
                 <constraint firstAttribute="trailing" secondItem="Jfy-HQ-mO5" secondAttribute="trailing" constant="16" id="zHN-Yj-wnB"/>
             </constraints>
             <variation key="default">
@@ -181,11 +195,10 @@
                     <exclude reference="hAR-fN-CYE"/>
                     <exclude reference="mBO-jm-kET"/>
                     <exclude reference="8Ii-Wx-nel"/>
-                    <exclude reference="MCe-bm-my1"/>
+                    <exclude reference="LjP-lF-Yhb"/>
                     <exclude reference="hLp-r8-PjA"/>
                     <exclude reference="kV9-n1-hmK"/>
                     <exclude reference="uKd-GO-h1I"/>
-                    <exclude reference="yAK-x9-aKL"/>
                     <exclude reference="zHN-Yj-wnB"/>
                 </mask>
             </variation>
@@ -223,8 +236,8 @@
                     <include reference="bwh-B7-BUW"/>
                     <include reference="VKT-zl-sgF"/>
                     <include reference="mBO-jm-kET"/>
+                    <include reference="LjP-lF-Yhb"/>
                     <include reference="uKd-GO-h1I"/>
-                    <include reference="yAK-x9-aKL"/>
                     <include reference="zHN-Yj-wnB"/>
                 </mask>
             </variation>
@@ -236,14 +249,17 @@
                     <include reference="dKU-mi-A6z"/>
                     <include reference="VKT-zl-sgF"/>
                     <include reference="mBO-jm-kET"/>
-                    <include reference="MCe-bm-my1"/>
+                    <include reference="LjP-lF-Yhb"/>
                     <include reference="kV9-n1-hmK"/>
                 </mask>
             </variation>
-            <point key="canvasLocation" x="335" y="97"/>
+            <point key="canvasLocation" x="318" y="-243"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="mainViewWightBgDynamic">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

@@ -27,7 +27,6 @@
 		F4129DB028C7504500905320 /* MainViewDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4129DAF28C7504500905320 /* MainViewDelegateExtension.swift */; };
 		F4129DB228C750DF00905320 /* CentralViewDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4129DB128C750DF00905320 /* CentralViewDelegateExtension.swift */; };
 		F4129DB428C7531B00905320 /* ConverterViewDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4129DB328C7531B00905320 /* ConverterViewDelegateExtension.swift */; };
-		F4129DB928C8E42300905320 /* AddButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4129DB828C8E42300905320 /* AddButton.swift */; };
 		F42CD259288FE8320010FA7D /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F42CD258288FE8320010FA7D /* SFProText-Regular.ttf */; };
 		F435D1BD2887E5EB00B27418 /* AdjustableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F435D1BC2887E5EB00B27418 /* AdjustableTextField.swift */; };
 		F4429C6B289FB63400070620 /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4429C6A289FB63400070620 /* DateModel.swift */; };
@@ -166,7 +165,6 @@
 		F4129DAF28C7504500905320 /* MainViewDelegateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewDelegateExtension.swift; sourceTree = "<group>"; };
 		F4129DB128C750DF00905320 /* CentralViewDelegateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralViewDelegateExtension.swift; sourceTree = "<group>"; };
 		F4129DB328C7531B00905320 /* ConverterViewDelegateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterViewDelegateExtension.swift; sourceTree = "<group>"; };
-		F4129DB828C8E42300905320 /* AddButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddButton.swift; sourceTree = "<group>"; };
 		F42CD258288FE8320010FA7D /* SFProText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.ttf"; sourceTree = "<group>"; };
 		F435D1BC2887E5EB00B27418 /* AdjustableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustableTextField.swift; sourceTree = "<group>"; };
 		F4429C6A289FB63400070620 /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
@@ -556,13 +554,12 @@
 			isa = PBXGroup;
 			children = (
 				F435D1BC2887E5EB00B27418 /* AdjustableTextField.swift */,
-				F4532CEA2884056400A05344 /* EllipseView.swift */,
-				F4A2F89A2887C728007948A9 /* EllipsesView.swift */,
-				F405604C288D1017007CD5AA /* RateTextLabel.swift */,
 				F4AA60E2288D32D500E191E6 /* CentralView.swift */,
-				F4AA60EA288D4BCE00E191E6 /* RateCell.swift */,
 				F45E043F28AA671E00902C73 /* ConverterCell.swift */,
-				F4129DB828C8E42300905320 /* AddButton.swift */,
+				F4A2F89A2887C728007948A9 /* EllipsesView.swift */,
+				F4532CEA2884056400A05344 /* EllipseView.swift */,
+				F4AA60EA288D4BCE00E191E6 /* RateCell.swift */,
+				F405604C288D1017007CD5AA /* RateTextLabel.swift */,
 			);
 			path = CustomElements;
 			sourceTree = "<group>";
@@ -999,7 +996,6 @@
 				F45B040328C7149400221721 /* InitialSetupExtension.swift in Sources */,
 				F49AB41828B9FCA100868776 /* MonoBankExchangeRate.swift in Sources */,
 				F4AA60FD288D89E000E191E6 /* CurrencyListModel.swift in Sources */,
-				F4129DB928C8E42300905320 /* AddButton.swift in Sources */,
 				F4DB319E28CDBEEF0010E900 /* CurrencyListTableView.swift in Sources */,
 				F4E0363B28BE1FBD00BD64ED /* GroupRepository.swift in Sources */,
 				F45E042D28A4FA7400902C73 /* CDRateContainer+CoreDataClass.swift in Sources */,

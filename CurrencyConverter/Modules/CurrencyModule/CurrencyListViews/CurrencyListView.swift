@@ -28,12 +28,12 @@ final class CurrencyListView: UIView {
         searchBar.delegate = searchBarDelegate
     }
     
-    func createBackButton() -> UIButton {
+    func createBackButton(with title: String) -> UIButton {
         let backButton = UIButton(type: .system)
         backButton.setImage(UIImage(systemName: "chevron.backward"), for: .normal)
         backButton.imageView?.contentMode = .scaleToFill
         let title = NSAttributedString(
-            string: "Converter",
+            string: title,
             attributes: [
                 NSAttributedString.Key.font: FontConstants.sfProTextRegular
             ])
@@ -74,7 +74,7 @@ final class CurrencyListView: UIView {
             attributes: [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
                 NSAttributedString.Key.font: FontConstants.latoSemiBold,
-                NSAttributedString.Key.foregroundColor: ColorConstants.darkBlue
+                NSAttributedString.Key.foregroundColor: ColorConstants.darkBlueDynamic
             ])
         content.attributedText = attributedString
         titleView.contentConfiguration = content
@@ -93,7 +93,7 @@ final class CurrencyListView: UIView {
             attributes: [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
                 NSAttributedString.Key.font: FontConstants.latoSemiBold,
-                NSAttributedString.Key.foregroundColor: ColorConstants.darkBlue
+                NSAttributedString.Key.foregroundColor: ColorConstants.darkBlueDynamic
             ])
         content.attributedText = attributedString
         titleView.contentConfiguration = content

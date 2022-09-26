@@ -9,7 +9,7 @@ import Foundation
 
 enum ContainerConstants {
     enum Name {
-        static let rate = "rate"
-        static let converter = "converter"
+        static let rate = "ExRates"
+        static let converter = "Converter"
     }
 }
