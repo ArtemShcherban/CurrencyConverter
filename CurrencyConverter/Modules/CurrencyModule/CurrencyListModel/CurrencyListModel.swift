@@ -1,15 +1,11 @@
 //
-//  CurrencyModel.swift
+//  CurrencyListModel.swift
 //  CurrencyConverter
 //
 //  Created by Artem Shcherban on 24.07.2022.
 //
 
 import Foundation
-
-protocol CurrencyListModelDelegate: AnyObject {
-    func currencyListTableViewReloadData()
-}
 
 final class CurrencyListModel {
     static let shared = CurrencyListModel()
@@ -20,11 +16,9 @@ final class CurrencyListModel {
     private let containerManager = ContainerManager()
     private lazy var currencyDataSource = CurrencyListDataSource.shared
     
-    weak var delegate: CurrencyListModelDelegate?
-    
     func fillCurrencyDataSource() {
         guard
-            let exceptCurrencies = containerManager.getFromContainer(with: containerName),
+            let exceptCurrencies = containerManager.currencies(from: containerName),
             let currencies = currencyManager.getCurrencyExcept(currencies: exceptCurrencies) else {
             return
         }
@@ -34,7 +28,7 @@ final class CurrencyListModel {
     
     private func fillDataSourceGroups() -> [Group] {
         let currencies = currencyDataSource.currencyList
-        var keys: Set<Int16> = []
+        var keys: Set<Int> = []
         currencies.forEach { currency in
             keys.update(with: currency.groupKey)
         }
@@ -44,7 +38,10 @@ final class CurrencyListModel {
     }
     
     func filterCurrency(text: String) {
-        if !text.isEmpty {
+        guard !text.isEmpty else {
+            currencyDataSource.filteredCurrency = []
+            return
+        }
             let whitespaceCharacterSet = CharacterSet.whitespaces
             let text = text.trimmingCharacters(in: whitespaceCharacterSet).lowercased()
 
@@ -58,9 +55,6 @@ final class CurrencyListModel {
             } else {
                 currencyDataSource.filteredCurrency = []
             }
-        } else {
-            currencyDataSource.filteredCurrency = []
-        }
     }
     
     func selectedCurrency(at indexPath: IndexPath) -> Currency {

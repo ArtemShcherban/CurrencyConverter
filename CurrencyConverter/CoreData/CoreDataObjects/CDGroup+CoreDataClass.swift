@@ -15,7 +15,7 @@ public class CDGroup: NSManagedObject {
         let group = Group(
             visible: self.visible,
             name: self.name,
-            key: self.key)
+            key: Int(self.key))
         return group
     }
 }

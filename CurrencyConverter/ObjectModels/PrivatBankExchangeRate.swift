@@ -3,7 +3,7 @@ import Foundation
 struct PrivatBankExchangeRate: Decodable {
     let buyRate: Double
     let sellRate: Double
-    let currencyNumber: Int16
+    let currencyNumber: Int
     
     enum CodingKeys: String, CodingKey {
         case baseCurrency
@@ -31,7 +31,7 @@ struct PrivatBankExchangeRate: Decodable {
         }
         self.currencyNumber = getCurrencyNumber(by: code) ?? 0
         
-        func getCurrencyNumber(by code: String) -> Int16? {
+        func getCurrencyNumber(by code: String) -> Int? {
             let currencyManager = CurrencyManager()
             let baseCurrency = currencyManager.getCurrency(by: code)?.number
             return baseCurrency

@@ -32,7 +32,7 @@ final class RatesModel {
     
     func fillDataSource() {
         guard
-            var currencies = containerManager.getFromContainer(with: containerName),
+            var currencies = containerManager.currencies(from: containerName),
             !currencies.isEmpty else {
             mainDataSource.selectedCurrencies = []
             return }
@@ -71,17 +71,9 @@ final class RatesModel {
     func isMaxNumberOfRows() -> Bool {
         switch containerName {
         case ContainerConstants.Name.rate:
-            if mainDataSource.selectedCurrencies.count <= 2 {
-                return true
-            } else {
-                return false
-            }
+            return mainDataSource.selectedCurrencies.count <= 2
         case ContainerConstants.Name.converter:
-            if mainDataSource.selectedCurrencies.count <= 1 {
-                return true
-            } else {
-                return false
-            }
+            return mainDataSource.selectedCurrencies.count <= 1
         default:
             return true
         }

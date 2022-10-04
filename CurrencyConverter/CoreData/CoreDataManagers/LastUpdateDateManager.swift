@@ -14,8 +14,8 @@ struct LastUpdateDateManager {
         lastUpdateDateDataRepository.create(lastUpdateDate: lastUpdateDate)
     }
     
-    func fetchLastUdateDate() -> Date? {
-        lastUpdateDateDataRepository.get()
+    var lastUpdateDate: Date? {
+        lastUpdateDateDataRepository.date
     }
     
     func updateLastUpdateDate(with date: Date) {

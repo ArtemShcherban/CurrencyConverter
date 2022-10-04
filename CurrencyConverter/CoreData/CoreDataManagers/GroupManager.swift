@@ -11,14 +11,14 @@ struct GroupManager {
     private let groupDataRepository = GroupDataRepository()
     
     func fetchGroupCount() -> Int {
-        groupDataRepository.getCount()
+        groupDataRepository.getCount
     }
     
     func createGroup(_ group: Group) {
         groupDataRepository.create(group: group)
     }
     
-    func fetchGroups(by keys: [Int16]) -> [Group]? {
+    func fetchGroups(by keys: [Int]) -> [Group]? {
         groupDataRepository.get(by: keys)
     }
     

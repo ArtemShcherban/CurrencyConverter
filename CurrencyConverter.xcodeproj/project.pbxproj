@@ -82,8 +82,8 @@
 		F4A2F89228871BF7007948A9 /* Lato-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4A2F89128871BF7007948A9 /* Lato-Regular.ttf */; };
 		F4A2F89428871DD4007948A9 /* Lato-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F4A2F89328871DD4007948A9 /* Lato-SemiBold.ttf */; };
 		F4A2F8962887C4D7007948A9 /* UIViewFixInExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2F8952887C4D7007948A9 /* UIViewFixInExtension.swift */; };
-		F4A2F8992887C57E007948A9 /* EllipsesView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4A2F8982887C57E007948A9 /* EllipsesView.xib */; };
-		F4A2F89B2887C728007948A9 /* EllipsesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2F89A2887C728007948A9 /* EllipsesView.swift */; };
+		F4A2F8992887C57E007948A9 /* HeaderBackgroundView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4A2F8982887C57E007948A9 /* HeaderBackgroundView.xib */; };
+		F4A2F89B2887C728007948A9 /* HeaderBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A2F89A2887C728007948A9 /* HeaderBackgroundView.swift */; };
 		F4A6202E28912909009E3FB8 /* CurrencyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A6202D28912909009E3FB8 /* CurrencyListViewController.swift */; };
 		F4AA60E3288D32D500E191E6 /* CentralView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AA60E2288D32D500E191E6 /* CentralView.swift */; };
 		F4AA60EC288D4BCE00E191E6 /* RateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4AA60EA288D4BCE00E191E6 /* RateCell.swift */; };
@@ -118,6 +118,8 @@
 		F4E0363D28BE20EC00BD64ED /* GroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E0363C28BE20EC00BD64ED /* GroupManager.swift */; };
 		F4ED8B7F28993211006DF9AE /* DefaultConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED8B7E28993211006DF9AE /* DefaultConstants.swift */; };
 		F4ED8BE4289B99B6006DF9AE /* CurrencyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED8BE3289B99B6006DF9AE /* CurrencyListView.swift */; };
+		F4FE3F4B28EC44BA00177CF5 /* RateBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE3F4A28EC44BA00177CF5 /* RateBackgroundView.swift */; };
+		F4FE3F4D28EC464D00177CF5 /* Predictable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE3F4C28EC464D00177CF5 /* Predictable.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,8 +226,8 @@
 		F4A2F89128871BF7007948A9 /* Lato-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Regular.ttf"; sourceTree = "<group>"; };
 		F4A2F89328871DD4007948A9 /* Lato-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-SemiBold.ttf"; sourceTree = "<group>"; };
 		F4A2F8952887C4D7007948A9 /* UIViewFixInExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewFixInExtension.swift; sourceTree = "<group>"; };
-		F4A2F8982887C57E007948A9 /* EllipsesView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EllipsesView.xib; sourceTree = "<group>"; };
-		F4A2F89A2887C728007948A9 /* EllipsesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EllipsesView.swift; sourceTree = "<group>"; };
+		F4A2F8982887C57E007948A9 /* HeaderBackgroundView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HeaderBackgroundView.xib; sourceTree = "<group>"; };
+		F4A2F89A2887C728007948A9 /* HeaderBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderBackgroundView.swift; sourceTree = "<group>"; };
 		F4A6202D28912909009E3FB8 /* CurrencyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListViewController.swift; sourceTree = "<group>"; };
 		F4AA60E2288D32D500E191E6 /* CentralView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralView.swift; sourceTree = "<group>"; };
 		F4AA60EA288D4BCE00E191E6 /* RateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateCell.swift; sourceTree = "<group>"; };
@@ -260,6 +262,8 @@
 		F4E0363C28BE20EC00BD64ED /* GroupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupManager.swift; sourceTree = "<group>"; };
 		F4ED8B7E28993211006DF9AE /* DefaultConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultConstants.swift; sourceTree = "<group>"; };
 		F4ED8BE3289B99B6006DF9AE /* CurrencyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListView.swift; sourceTree = "<group>"; };
+		F4FE3F4A28EC44BA00177CF5 /* RateBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateBackgroundView.swift; sourceTree = "<group>"; };
+		F4FE3F4C28EC464D00177CF5 /* Predictable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predictable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -416,7 +420,7 @@
 		F405604228897BC7007CD5AA /* ElementsViews */ = {
 			isa = PBXGroup;
 			children = (
-				F4A2F8982887C57E007948A9 /* EllipsesView.xib */,
+				F4A2F8982887C57E007948A9 /* HeaderBackgroundView.xib */,
 				F4A2F88F288710B1007948A9 /* ConverterView.xib */,
 				F4D35F0A28BF80C0001FE74A /* ExchangeRatesView.xib */,
 				F4AA60EB288D4BCE00E191E6 /* RateCell.xib */,
@@ -530,6 +534,7 @@
 				F4056043288984B0007CD5AA /* Dispatcher */,
 				F405603428894C78007CD5AA /* Errors */,
 				F4A2F8972887C4DE007948A9 /* Extensions */,
+				F4FE3F4E28EC465500177CF5 /* Protocols */,
 				F405603628894E79007CD5AA /* Resources */,
 				F4532CC62883E93400A05344 /* Info.plist */,
 			);
@@ -553,10 +558,11 @@
 				F435D1BC2887E5EB00B27418 /* AdjustableTextField.swift */,
 				F4AA60E2288D32D500E191E6 /* CentralView.swift */,
 				F45E043F28AA671E00902C73 /* ConverterCell.swift */,
-				F4A2F89A2887C728007948A9 /* EllipsesView.swift */,
+				F4A2F89A2887C728007948A9 /* HeaderBackgroundView.swift */,
 				F4532CEA2884056400A05344 /* EllipseView.swift */,
 				F4AA60EA288D4BCE00E191E6 /* RateCell.swift */,
 				F405604C288D1017007CD5AA /* RateTextLabel.swift */,
+				F4FE3F4A28EC44BA00177CF5 /* RateBackgroundView.swift */,
 			);
 			path = CustomElements;
 			sourceTree = "<group>";
@@ -723,6 +729,14 @@
 			path = Modules;
 			sourceTree = "<group>";
 		};
+		F4FE3F4E28EC465500177CF5 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				F4FE3F4C28EC464D00177CF5 /* Predictable.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -840,7 +854,7 @@
 				F4532CC22883E93400A05344 /* Assets.xcassets in Resources */,
 				F4DCC34128B624C300DC4D09 /* WorldCurrencies.plist in Resources */,
 				F42CD259288FE8320010FA7D /* SFProText-Regular.ttf in Resources */,
-				F4A2F8992887C57E007948A9 /* EllipsesView.xib in Resources */,
+				F4A2F8992887C57E007948A9 /* HeaderBackgroundView.xib in Resources */,
 				F4532CC02883E93300A05344 /* Main.storyboard in Resources */,
 				F4D35F0B28BF80C0001FE74A /* ExchangeRatesView.xib in Resources */,
 				F4A2F89428871DD4007948A9 /* Lato-SemiBold.ttf in Resources */,
@@ -966,9 +980,11 @@
 				F4DE3C1C28BB586A000F6D04 /* CDContainer+CoreDataProperties.swift in Sources */,
 				F4A6202E28912909009E3FB8 /* CurrencyListViewController.swift in Sources */,
 				F4DFF94428DF0CFB00F5A44E /* ColorConstants.swift in Sources */,
+				F4FE3F4D28EC464D00177CF5 /* Predictable.swift in Sources */,
 				F405603E28896967007CD5AA /* MainViewController.swift in Sources */,
 				F45B040528C74A6C00221721 /* RatesModelDelegateExtension.swift in Sources */,
 				F4AA60E3288D32D500E191E6 /* CentralView.swift in Sources */,
+				F4FE3F4B28EC44BA00177CF5 /* RateBackgroundView.swift in Sources */,
 				F45E044228AB5F7F00902C73 /* ConverterModel.swift in Sources */,
 				F47F0BCC28C0DE4D0029E224 /* Bulletin.swift in Sources */,
 				F49AB41E28BA0B2C00868776 /* LastUpdateDateRepository.swift in Sources */,
@@ -976,7 +992,7 @@
 				F47F0BC928C0DC880029E224 /* CDBulletin+CoreDataClass.swift in Sources */,
 				F4056045288984CE007CD5AA /* Dispatcher.swift in Sources */,
 				F4DCC2F828B4B50C00DC4D09 /* TitleConstants.swift in Sources */,
-				F4A2F89B2887C728007948A9 /* EllipsesView.swift in Sources */,
+				F4A2F89B2887C728007948A9 /* HeaderBackgroundView.swift in Sources */,
 				F49AB42028BA17A400868776 /* LastUpdateDateManager.swift in Sources */,
 				F4ED8BE4289B99B6006DF9AE /* CurrencyListView.swift in Sources */,
 				F45137BE289D280C00B2190D /* CurrencyListDataSource.swift in Sources */,

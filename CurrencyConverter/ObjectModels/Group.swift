@@ -10,9 +10,9 @@ import Foundation
 struct Group {
     var visible: Bool
     var name: String
-    var key: Int16
+    var key: Int
     
-    init(visible: Bool, name: String, key: Int16) {
+    init(visible: Bool, name: String, key: Int) {
         self.visible = visible
         self.name = name
         self.key = key

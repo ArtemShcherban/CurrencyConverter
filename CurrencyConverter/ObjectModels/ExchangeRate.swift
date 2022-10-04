@@ -3,7 +3,7 @@ import Foundation
 struct ExchangeRate: Codable {
     let buy: Double
     let sell: Double
-    let currencyNumber: Int16
+    let currencyNumber: Int
     
     init(from monoBankExchangeRate: MonoBankExchangeRate) {
         self.buy = monoBankExchangeRate.buyRate
@@ -17,7 +17,7 @@ struct ExchangeRate: Codable {
         self.currencyNumber = privatBankExchangeRate.currencyNumber
     }
     
-    init(buy: Double, sell: Double, currencyNumber: Int16) {
+    init(buy: Double, sell: Double, currencyNumber: Int) {
         self.buy = buy
         self.sell = sell
         self.currencyNumber = currencyNumber

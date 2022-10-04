@@ -16,7 +16,7 @@ final class MessageModel {
     private lazy var mainDataSource = MainDataSource.shared
     private lazy var converterModel = ConverterModel.shared
     
-    func createMessage() -> String {
+    func createMessage(with date: String) -> String {
         let currencies = mainDataSource.selectedCurrencies
         let amount = converterModel.amount
         guard
@@ -28,7 +28,9 @@ final class MessageModel {
         var message = String()
         if converterModel.isSellAction {
             message = """
-            For \(amount.decimalFormattedString()) \(baseCurrencyName)
+            At the exchange rate as of
+            \(date),
+            for \(amount.decimalFormattedString()) \(baseCurrencyName)
             you can buy\n
             """
         } else {
@@ -41,7 +43,7 @@ final class MessageModel {
         for (index, currency) in currencies.enumerated() {
             let sum = converterModel.doCalculation(for: currency)
             let sumString = sum.decimalFormattedString()
-            let currencyName = (sum <= 2) ? currency.currency : currency.currencyPlural
+            let currencyName = sum <= 2 ? currency.currency : currency.currencyPlural
             if index != currencies.count - 1 {
                 let subString = "\(sumString) \(currencyName) or\n"
                 message += subString

@@ -15,7 +15,7 @@ protocol ConverterViewDelegate: AnyObject {
 final class ConverterView: CentralView {
     private lazy var mainDataSource = MainDataSource.shared
     
-    @IBOutlet var contentView: UIView!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var sellButton: UIButton!
     @IBOutlet weak var buyButton: UIButton!
     @IBOutlet weak var tableView: UITableView!
@@ -31,7 +31,7 @@ final class ConverterView: CentralView {
         configureContentView()
         configureInputAmountField()
         configureTableView()
-        configure()
+        transform = CGAffineTransform(scaleX: 0.001, y: 1)
     }
     
     required init?(coder: NSCoder) {
@@ -39,7 +39,7 @@ final class ConverterView: CentralView {
         configureContentView()
         configureInputAmountField()
         configureTableView()
-        configure()
+        transform = CGAffineTransform(scaleX: 0.001, y: 1)
     }
     
     private func configureContentView() {
@@ -62,10 +62,6 @@ final class ConverterView: CentralView {
         tableView.dataSource = mainDataSource
         tableView.tag = 1
         tableView.registerUINibWith(nib: ConverterCell.self)
-    }
-    
-    private func configure() {
-        transform = CGAffineTransform(scaleX: 0.001, y: 1)
     }
     
     private func updateButtonsAppearence(_ selectedButton: UIButton) {
@@ -100,7 +96,7 @@ final class ConverterView: CentralView {
     }
     
     @IBAction func shareRatesButtonPressed(_ sender: UIButton) {
-        centralViewDelegate?.shareRatesPressed(sender: sender)
+        centralViewDelegate?.shareRates(sender: sender)
     }
 }
 

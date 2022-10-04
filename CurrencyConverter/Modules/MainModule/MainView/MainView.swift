@@ -8,7 +8,7 @@
 import UIKit
 
 protocol MainViewDelegate: AnyObject {
-    func switchViewButtonPressed()
+    func switchViewButtonTapped()
 }
 
 final class MainView: UIView {
@@ -22,13 +22,13 @@ final class MainView: UIView {
     }
     let mainAsyncQueue = AsyncQueue.main
     
-    @IBOutlet private var contentView: UIView!
     @IBOutlet weak var containerView: UIView!
-    @IBOutlet weak var titleLabel: UILabel!
-    @IBOutlet weak var lastUpdatedLabel: UILabel!
-    @IBOutlet weak var updateDateLabel: UILabel!
-    @IBOutlet weak var helpButton: UIButton!
-    @IBOutlet weak var switchViewButton: UIButton!
+    @IBOutlet private weak var contentView: UIView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var lastUpdatedLabel: UILabel!
+    @IBOutlet private weak var updateDateLabel: UILabel!
+    @IBOutlet private weak var helpButton: UIButton!
+    @IBOutlet private weak var switchViewButton: UIButton!
     
     weak var delegate: MainViewDelegate?
     
@@ -162,10 +162,12 @@ final class MainView: UIView {
         switchViewButton.setTitle(title, for: .normal)
     }
     
-    @IBAction func screenButtonPressed(_ sender: Any) {
+    @IBAction func screenButtonPressed(_ sender: UIButton) {
+        sender.isEnabled = false
         self.buttonTitleAnimation()
         startAnimation {
-            self.delegate?.switchViewButtonPressed()
+            self.delegate?.switchViewButtonTapped()
+            sender.isEnabled = true
         }
     }
 }

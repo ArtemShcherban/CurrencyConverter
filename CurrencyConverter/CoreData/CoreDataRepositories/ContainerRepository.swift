@@ -9,7 +9,7 @@ import Foundation
 import CoreData
 
 protocol ContainerRepository {
-    func getCount() -> Int
+    var getCount: Int { get }
     func create()
     func getFrom(container: String) -> [Currency]?
     func fillIn(container: String, with currency: Currency)
@@ -21,7 +21,7 @@ protocol ContainerRepository {
 struct ContainerDataRepository: ContainerRepository {
     private let coreDataStack = CoreDataStack.shared
     
-    func getCount() -> Int {
+    var getCount: Int {
         let containerCount = coreDataStack.fetchManagedObjectCount(managedObject: CDContainer.self)
         return containerCount
     }
@@ -53,7 +53,7 @@ struct ContainerDataRepository: ContainerRepository {
             guard
                 let containerObjectID = getCDContainerID(for: container),
                 let cdContainer = coreDataStack.backgroundContext.object(with: containerObjectID) as? CDContainer,
-                let currencyObjectID = getCDCurrencyID(by: currency.number),
+                let currencyObjectID = getCDCurrencyID(by: Int16(currency.number)),
                 let cdCurrency = coreDataStack.backgroundContext.object(with: currencyObjectID) as? CDCurrency else {
                     return
                 }
@@ -66,7 +66,7 @@ struct ContainerDataRepository: ContainerRepository {
         guard
             let cdContainerID = getCDContainerID(for: container),
             let cdContainer = coreDataStack.managedContext.object(with: cdContainerID) as? CDContainer,
-            let cdCurrencyID = getCDCurrencyID(by: currency.number),
+            let cdCurrencyID = getCDCurrencyID(by: Int16(currency.number)),
             let cdCurrency = coreDataStack.managedContext.object(with: cdCurrencyID) as? CDCurrency else {
             print("Failed to update with currency: \(currency)")
             return
@@ -77,7 +77,7 @@ struct ContainerDataRepository: ContainerRepository {
     
     func replaceIn(container: String, at row: Int, with currency: Currency) {
         guard
-            let cdCurrencyID = getCDCurrencyID(by: currency.number),
+            let cdCurrencyID = getCDCurrencyID(by: Int16(currency.number)),
             let cdCurrency = coreDataStack.managedContext.object(with: cdCurrencyID) as? CDCurrency,
             let cdContainerID = getCDContainerID(for: container),
             let cdContainer = coreDataStack.managedContext.object(with: cdContainerID) as? CDContainer else {
@@ -92,7 +92,7 @@ struct ContainerDataRepository: ContainerRepository {
         guard
             let cdContainerID = getCDContainerID(for: container),
             let cdContainer = coreDataStack.managedContext.object(with: cdContainerID) as? CDContainer,
-            let cdCurrencyID = getCDCurrencyID(by: currency.number),
+            let cdCurrencyID = getCDCurrencyID(by: Int16(currency.number)),
             let cdCurrency = coreDataStack.managedContext.object(with: cdCurrencyID) as? CDCurrency else {
             print("Failed to remove currency: \(currency)")
             return

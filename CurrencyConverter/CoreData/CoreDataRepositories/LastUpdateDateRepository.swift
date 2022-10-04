@@ -10,7 +10,7 @@ import CoreData
 
 protocol LastUpdateDateRepository {
     func create(lastUpdateDate: Date)
-    func get() -> Date?
+    var date: Date? { get }
     func update(with lastUpdateDate: Date)
 }
 
@@ -23,7 +23,7 @@ struct LastUpdateDateDataRepository: LastUpdateDateRepository {
         coreDataStack.saveContext()
     }
     
-    func get() -> Date? {
+    var date: Date? {
         guard let cdLastUpdateDate = getCDLastUpdateDate() else { return nil }
         return cdLastUpdateDate.date
     }

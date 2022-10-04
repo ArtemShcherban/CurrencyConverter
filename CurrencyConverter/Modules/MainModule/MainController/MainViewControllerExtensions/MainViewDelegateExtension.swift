@@ -8,7 +8,7 @@
 import Foundation
 
 extension MainViewController: MainViewDelegate {
-    func switchViewButtonPressed() {
+    func switchViewButtonTapped() {
         updateCurrentTableView()
     }
 }

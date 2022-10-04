@@ -42,7 +42,7 @@ struct ExchangeRateDataRepository: ExchangeRateRepository {
     func getExchangeRate(for currency: Currency, on date: Date) -> ExchangeRate? {
         guard
             let cdBulletinID = getCDBulletinID(for: date),
-            let cdExchangeRateID = getCDExchangeRateID(for: currency.number, and: cdBulletinID),
+            let cdExchangeRateID = getCDExchangeRateID(for: Int16(currency.number), and: cdBulletinID),
             let cdExchangeRate = coreDataStack.managedContext.object(with: cdExchangeRateID) as? CDExchangeRate
         else { return nil }
         
@@ -52,7 +52,7 @@ struct ExchangeRateDataRepository: ExchangeRateRepository {
     func handleSaving(exchangeRate: ExchangeRate, on date: Date) {
         coreDataStack.backgroundContext.performAndWait {
             guard let cdBulletinID = getCDBulletinID(for: date) else { return }
-            guard let cdExchangeRateID = getCDExchangeRateID(for: exchangeRate.currencyNumber, and: cdBulletinID)
+            guard let cdExchangeRateID = getCDExchangeRateID(for: Int16(exchangeRate.currencyNumber), and: cdBulletinID)
             else {
                 createCD(exchangeRate: exchangeRate, in: cdBulletinID)
                 return
@@ -83,7 +83,7 @@ struct ExchangeRateDataRepository: ExchangeRateRepository {
         let cdExchangeRate = CDExchangeRate(context: coreDataStack.backgroundContext)
         cdExchangeRate.buy = exchangeRate.buy
         cdExchangeRate.sell = exchangeRate.sell
-        cdExchangeRate.currencyNumber = exchangeRate.currencyNumber
+        cdExchangeRate.currencyNumber = Int16(exchangeRate.currencyNumber)
         cdExchangeRate.bulletin = cdBulletin
         coreDataStack.synchronizeContexts()
     }

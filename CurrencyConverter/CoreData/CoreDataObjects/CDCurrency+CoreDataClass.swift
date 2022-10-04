@@ -16,9 +16,9 @@ public class CDCurrency: NSManagedObject {
             buy: self.buy,
             sell: self.sell,
             code: self.code,
-            number: self.number,
+            number: Int(self.number),
             country: self.country,
-            groupKey: self.groupKey,
+            groupKey: Int(self.groupKey),
             currency: self.currency,
             container: self.container,
             currencyPlural: self.currencyPlural)

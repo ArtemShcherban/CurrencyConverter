@@ -9,16 +9,16 @@ import Foundation
 import CoreData
 
 protocol GroupRepository {
-    func getCount() -> Int
+    var getCount: Int { get }
     func create(group: Group)
-    func get(by keys: [Int16]) -> [Group]?
+    func get(by keys: [Int]) -> [Group]?
     func get(by names: [String]) -> [Group]?
 }
 
 struct GroupDataRepository: GroupRepository {
     private let coreDataStack = CoreDataStack.shared
    
-    func getCount() -> Int {
+    var getCount: Int {
         let groupCount = coreDataStack.fetchManagedObjectCount(managedObject: CDGroup.self)
         return groupCount
     }
@@ -27,13 +27,13 @@ struct GroupDataRepository: GroupRepository {
         coreDataStack.backgroundContext.performAndWait {
             let cdGroup = CDGroup(context: coreDataStack.backgroundContext)
             cdGroup.name = group.name
-            cdGroup.key = group.key
+            cdGroup.key = Int16(group.key)
             cdGroup.visible = group.visible
             coreDataStack.synchronizeContexts()
         }
     }
     
-    func get(by keys: [Int16]) -> [Group]? {
+    func get(by keys: [Int]) -> [Group]? {
         let predicates = createPredicate(predict: keys)
         let fetchRequest = createFetchRequest(predicate: predicates)
         return getGroups(from: fetchRequest)
@@ -69,7 +69,7 @@ struct GroupDataRepository: GroupRepository {
     
     private func createPredicate<T: Predictable>(predict: [T]) -> [NSPredicate] {
         var predicates: [NSPredicate] = []
-        if let predict = predict as? [Int16] {
+        if let predict = predict as? [Int] {
             predict.forEach { groupKey in
                 let predicate = NSPredicate(format: "%K == %D", #keyPath(CDGroup.key), groupKey)
                 predicates.append(predicate)
@@ -83,7 +83,3 @@ struct GroupDataRepository: GroupRepository {
         return predicates
     }
 }
-
-protocol Predictable {}
-extension Int16: Predictable {}
-extension String: Predictable {}

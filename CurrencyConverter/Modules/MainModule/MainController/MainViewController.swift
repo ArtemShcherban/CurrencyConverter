@@ -13,6 +13,7 @@ final class MainViewController: UIViewController {
     lazy var networkService = NetworkService()
     lazy var exchangeRateModel = ExchangeRateModel.shared
     lazy var mainDataSource = MainDataSource.shared
+    lazy var messageModel = MessageModel()
    
     @IBOutlet weak var mainView: MainView!
     

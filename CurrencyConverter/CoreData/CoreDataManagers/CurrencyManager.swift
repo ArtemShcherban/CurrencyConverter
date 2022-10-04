@@ -11,7 +11,7 @@ struct CurrencyManager {
     private let currencyDateRepositrory = CurrencyDataRepository()
     
     func getCurrencyCount() -> Int {
-        currencyDateRepositrory.getCount()
+        currencyDateRepositrory.getCount
     }
     
     func createCurrency(_ currency: Currency) {
@@ -26,7 +26,7 @@ struct CurrencyManager {
         currencyDateRepositrory.get(byCurrency: code)
     }
     
-    func getCurrency(by number: Int16) -> Currency? {
+    func getCurrency(by number: Int) -> Currency? {
         currencyDateRepositrory.get(byCurrency: number)
     }
     
@@ -34,7 +34,7 @@ struct CurrencyManager {
         currencyDateRepositrory.updateRate(for: currency)
     }
     
-    func setGroupKeyForCurrency(with number: Int16, with groupKey: Int16) {
+    func setGroupKeyForCurrency(with number: Int, with groupKey: Int) {
         currencyDateRepositrory.setGroupKey(forCurrency: number, with: groupKey)
     }
 }

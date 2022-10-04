@@ -8,7 +8,7 @@
 import Foundation
 
 enum DefaultConstants {
-    static let popularCurrencyCodes: [Int16] = [980, 840, 978]
-    static let currenciesCodes: [Int16] = [840, 978, 985]
-    static let baseCurrencyCode: Int16 = 980
+    static let popularCurrencyCodes: [Int] = [980, 840, 978]
+    static let currenciesCodes: [Int] = [840, 978, 985]
+    static let baseCurrencyCode: Int = 980
 }

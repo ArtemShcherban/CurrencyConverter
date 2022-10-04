@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class CoreDataStack {
+final class CoreDataStack {
     static let shared = CoreDataStack(modelName: "CurrencyConverter")
     private let modelName: String
     
@@ -84,7 +84,7 @@ class CoreDataStack {
         }
     }
     
-    func deleteFromCoreData(entityName: String) {
+    func erase(entityName: String) {
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         let deleteFetch = NSBatchDeleteRequest(fetchRequest: fetch)
         
@@ -95,11 +95,11 @@ class CoreDataStack {
         }
     }
     
-    func deleteAllEntities() {
+    func eraseAll() {
         let entities = storeContainer.managedObjectModel.entities
         for entity in entities {
             guard let name = entity.name else { return }
-            deleteFromCoreData(entityName: name)
+            erase(entityName: name)
         }
     }
 }

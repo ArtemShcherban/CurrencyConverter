@@ -12,7 +12,7 @@ final class DateModel {
     
     func lastUpdateDate() -> String {
         guard
-            let lastUpdateDate = lastUpdateDateManager.fetchLastUdateDate() else {
+            let lastUpdateDate = lastUpdateDateManager.lastUpdateDate else {
             let defaultDate = Date(timeIntervalSince1970: 197208000) // "1 Apr 1976 12:00:00"
             lastUpdateDateManager.createLastUpdateDate(defaultDate)
             
@@ -33,7 +33,7 @@ final class DateModel {
     func checkTimeInterval(to date: Date) -> Bool {
         if date < Date().startOfDay {
             return true }
-        guard let lastUpdateDate = lastUpdateDateManager.fetchLastUdateDate() else {
+        guard let lastUpdateDate = lastUpdateDateManager.lastUpdateDate else {
             return true }
         let calendar = Calendar.current
         let components = calendar.dateComponents(in: .current, from: lastUpdateDate)

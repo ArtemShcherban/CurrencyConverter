@@ -10,16 +10,16 @@ import Foundation
 struct ContainerManager {
     private let containerDataRepository = ContainerDataRepository()
     
-    func getContainerCount() -> Int {
-        containerDataRepository.getCount()
+    var countOfContainers: Int {
+        containerDataRepository.getCount
     }
     
     func createContainers() {
         containerDataRepository.create()
     }
     
-    func getFromContainer(with name: String) -> [Currency]? {
-        containerDataRepository.getFrom(container: name)
+    func currencies(from containerName: String) -> [Currency]? {
+        containerDataRepository.getFrom(container: containerName)
     }
     
     func fillInContainer(with name: String, andWith currency: Currency) {

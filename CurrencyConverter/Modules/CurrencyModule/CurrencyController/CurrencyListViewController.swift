@@ -9,13 +9,12 @@ import UIKit
 
 final class CurrencyListViewController: UIViewController, CurrencyListViewDelegate {
     static let reuseIdentifier = String(describing: CurrencyListViewController.self)
-    private lazy var dataSource = CurrencyListDataSource.shared
     private lazy var currencyListModel = CurrencyListModel.shared
     private lazy var ratesModel = RatesModel.shared
     var editingRow: Int?
     
     @IBOutlet weak var tableView: CurrencyListTableView!
-    @IBOutlet var currensyListView: CurrencyListView!
+    @IBOutlet weak var currensyListView: CurrencyListView!
     
     weak var delegate: RatesModelDelegate?
 
@@ -39,7 +38,7 @@ final class CurrencyListViewController: UIViewController, CurrencyListViewDelega
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     }
     
-    func backButtonPressed() {
+    func backButtonTapped() {
         dismiss(animated: true)
     }
 }

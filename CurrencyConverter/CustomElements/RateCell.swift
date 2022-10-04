@@ -24,7 +24,7 @@ final class RateCell: UITableViewCell {
         sellLabel.text = String(format: "%.3f", currency.sell)
     }
     
-    @IBAction func delegateAction(_ sender: UIButton) {
+    @IBAction func currencyTapped() {
         guard let row = row else { return }
         delegate?.changeCurrency(at: row)
     }

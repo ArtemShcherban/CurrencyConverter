@@ -1,5 +1,5 @@
 //
-//  EllipssesView.swift
+//  HeaderBackgroundView.swift
 //  CurrencyConverter
 //
 //  Created by Artem Shcherban on 20.07.2022.
@@ -8,7 +8,7 @@
 import UIKit
 
 @IBDesignable
-final class EllipsesView: UIView {
+final class HeaderBackgroundView: UIView {
     @IBOutlet var contentView: UIView!
     
     override init(frame: CGRect) {
@@ -22,7 +22,7 @@ final class EllipsesView: UIView {
     }
     
     private func configureContentView() {
-        Bundle.main.loadNibNamed("EllipsesView", owner: self, options: nil)
+        Bundle.main.loadNibNamed("HeaderBackgroundView", owner: self, options: nil)
         contentView.embedded(in: self)
     }
 }

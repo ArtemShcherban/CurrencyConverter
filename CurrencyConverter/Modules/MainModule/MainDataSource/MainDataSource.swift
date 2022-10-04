@@ -7,7 +7,7 @@
 
 import UIKit
 
-class MainDataSource: NSObject, UITableViewDataSource {
+final class MainDataSource: NSObject, UITableViewDataSource {
     static let shared = MainDataSource()
     var baseCurrency: Currency?
     lazy var selectedCurrencies: [Currency] = []

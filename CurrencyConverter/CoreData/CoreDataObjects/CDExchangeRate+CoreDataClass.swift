@@ -15,7 +15,7 @@ public class CDExchangeRate: NSManagedObject {
         let exchangeRate = ExchangeRate(
             buy: self.buy,
             sell: self.sell,
-            currencyNumber: self.currencyNumber)
+            currencyNumber: Int(self.currencyNumber))
         return exchangeRate
     }
 }

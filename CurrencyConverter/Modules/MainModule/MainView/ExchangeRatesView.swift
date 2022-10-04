@@ -12,7 +12,7 @@ protocol ExchangeRatesViewDelegate: AnyObject {
 }
 
 final class ExchangeRatesView: CentralView {
-    @IBOutlet var contentView: UIView!
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var dateTextField: AdjustableTextField!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var helpButton: UIButton!

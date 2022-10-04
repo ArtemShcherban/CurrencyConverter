@@ -12,7 +12,7 @@ protocol CentralViewDelegate: AnyObject {
     func addButtonPressed()
     func changeCurrency(at row: Int)
     func dateWasChanged(new date: Date)
-    func shareRatesPressed(sender: UIButton)
+    func shareRates(sender: UIButton)
 }
 
 class CentralView: UIView {

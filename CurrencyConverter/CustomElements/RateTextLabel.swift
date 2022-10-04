@@ -9,7 +9,7 @@ import UIKit
 
 @IBDesignable
 final class RateTextLabel: UILabel {
-    private lazy var insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    private lazy var insets: UIEdgeInsets = .zero
     
     @IBInspectable var borderColor: UIColor? {
         didSet {
@@ -47,16 +47,6 @@ final class RateTextLabel: UILabel {
             if tailInset {
                 insets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 5)
             }
-        }
-    }
-}
-
-@IBDesignable
-final class RateBackgroundView: UIView {
-    @IBInspectable var cornerRadius: CGFloat = 0.0 {
-        didSet {
-            layer.cornerRadius = cornerRadius
-            clipsToBounds = true
         }
     }
 }

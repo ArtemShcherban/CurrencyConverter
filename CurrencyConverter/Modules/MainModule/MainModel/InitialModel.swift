@@ -61,15 +61,16 @@ final class InitialModel {
                 let group = Group(
                     visible: true,
                     name: groupName,
-                    key: groupKey)
+                    key: Int(groupKey)
+                )
                 groupManager.createGroup(group)
                 currencyManager.setGroupKeyForCurrency(with: currency.number, with: group.key)
             }
         }
     }
     
-    private func createPopularGroup(currencyNumbers: [Int16]) {
-        let group = Group(visible: true, name: TitleConstants.popular, key: Int16(0))
+    private func createPopularGroup(currencyNumbers: [Int]) {
+        let group = Group(visible: true, name: TitleConstants.popular, key: 0)
         groupManager.createGroup(group)
         currencyNumbers.forEach { currencyNumber in
             currencyManager.setGroupKeyForCurrency(with: currencyNumber, with: group.key)
@@ -77,8 +78,8 @@ final class InitialModel {
     }
     
     func createContainers() {
-        let сontainerCount = containerManager.getContainerCount()
-        if сontainerCount > 0 {
+        let countOfContainers = containerManager.countOfContainers
+        if countOfContainers > 0 {
             return
         }
         containerManager.createContainers()

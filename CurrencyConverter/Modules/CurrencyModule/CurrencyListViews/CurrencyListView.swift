@@ -8,7 +8,7 @@
 import UIKit
 
 protocol CurrencyListViewDelegate: AnyObject {
-    func backButtonPressed()
+    func backButtonTapped()
 }
 
 @IBDesignable
@@ -44,7 +44,7 @@ final class CurrencyListView: UIView {
     }
     
     @objc private func backButtonDelegateAction() {
-        delegate?.backButtonPressed()
+        delegate?.backButtonTapped()
     }
     
     private func configureTableView() {

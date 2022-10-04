@@ -10,7 +10,7 @@ import Foundation
 struct MonoBankExchangeRate: Decodable {
     let buyRate: Double
     let sellRate: Double
-    let currencyNumber: Int16
+    let currencyNumber: Int
     
     enum CodingKeys: String, CodingKey {
         case rateBuy
@@ -25,7 +25,7 @@ struct MonoBankExchangeRate: Decodable {
         let buy = try values.decodeIfPresent(Double.self, forKey: .rateBuy) ?? 0.0
         let sell = try values.decodeIfPresent(Double.self, forKey: .rateSell) ?? 0.0
         let crossRate = try values.decodeIfPresent(Double.self, forKey: .rateCross) ?? 0.0
-        let baseCurrencyNumber = try values.decode(Int16.self, forKey: .currencyCodeB)
+        let baseCurrencyNumber = try values.decode(Int.self, forKey: .currencyCodeB)
         if buy == 0 || sell == 0 {
             self.buyRate = crossRate - crossRate * 0.05
             self.sellRate = crossRate + crossRate * 0.05
@@ -34,7 +34,7 @@ struct MonoBankExchangeRate: Decodable {
             self.sellRate = sell
         }
         if baseCurrencyNumber == 980 {
-            self.currencyNumber = try values.decode(Int16.self, forKey: .currencyCodeA)
+            self.currencyNumber = try values.decode(Int.self, forKey: .currencyCodeA)
         } else {
             self.currencyNumber = 0
         }
