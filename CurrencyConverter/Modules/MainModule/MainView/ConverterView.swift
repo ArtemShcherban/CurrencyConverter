@@ -43,9 +43,9 @@ final class ConverterView: CentralView {
     }
     
     private func configureContentView() {
-        Bundle.main.loadNibNamed(AppConstants.converterView, owner: self, options: nil)
+        Bundle.main.loadNibNamed("ConverterView", owner: self, options: nil)
         contentView.layer.cornerRadius = 10
-        contentView.fixInView(self)
+        contentView.embedded(in: self)
     }
     
     func configureBaseCarrencyButton() {

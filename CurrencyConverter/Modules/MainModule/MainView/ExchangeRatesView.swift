@@ -49,9 +49,9 @@ final class ExchangeRatesView: CentralView {
     }
     
     private func  configureContentView() {
-        Bundle.main.loadNibNamed(AppConstants.exchangeRatesView, owner: self, options: nil)
+        Bundle.main.loadNibNamed("ExchangeRatesView", owner: self, options: nil)
         contentView.layer.cornerRadius = 10
-        contentView.fixInView(self)
+        contentView.embedded(in: self)
     }
     
     private func configureTextFild() {

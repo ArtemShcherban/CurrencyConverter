@@ -10,7 +10,8 @@ import Foundation
 enum NetworkServiceError: String, Error {
     case cannotCreateURL = "Error: Cannot create URL"
     case cannotCreateRequest = "Error: Cannot create URLRequest"
-    case errorCallingGET = "Network access error, please check your wi-fi connection or network coverage and try again"
+    case connectivityError =
+        "Network access error, please check your wi-fi connection or network coverage and try again"
     case didNotRecieveData = "Error: did not receive data"
     case httpRequestFailed = "Request failed, please try again."
     case badNetworkQuality =

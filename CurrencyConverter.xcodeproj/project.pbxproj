@@ -73,7 +73,6 @@
 		F49AB43628BA417B00868776 /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49AB43528BA417B00868776 /* CurrencyManager.swift */; };
 		F4A09AA6289BBF3E009D138E /* CDExchangeRate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A09AA4289BBF3E009D138E /* CDExchangeRate+CoreDataClass.swift */; };
 		F4A09AA7289BBF3E009D138E /* CDExchangeRate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A09AA5289BBF3E009D138E /* CDExchangeRate+CoreDataProperties.swift */; };
-		F4A09AAD289BD338009D138E /* CoreDataError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A09AAC289BD338009D138E /* CoreDataError.swift */; };
 		F4A09AC8289D210C009D138E /* CDGroup+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A09AC4289D210C009D138E /* CDGroup+CoreDataClass.swift */; };
 		F4A09AC9289D210C009D138E /* CDGroup+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A09AC5289D210C009D138E /* CDGroup+CoreDataProperties.swift */; };
 		F4A09ACD289D21B5009D138E /* InitialModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A09ACC289D21B5009D138E /* InitialModel.swift */; };
@@ -216,7 +215,6 @@
 		F49AB43528BA417B00868776 /* CurrencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
 		F4A09AA4289BBF3E009D138E /* CDExchangeRate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDExchangeRate+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F4A09AA5289BBF3E009D138E /* CDExchangeRate+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDExchangeRate+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		F4A09AAC289BD338009D138E /* CoreDataError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataError.swift; sourceTree = "<group>"; };
 		F4A09AC4289D210C009D138E /* CDGroup+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDGroup+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F4A09AC5289D210C009D138E /* CDGroup+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDGroup+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F4A09ACC289D21B5009D138E /* InitialModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InitialModel.swift; sourceTree = "<group>"; };
@@ -360,7 +358,6 @@
 		F405603428894C78007CD5AA /* Errors */ = {
 			isa = PBXGroup;
 			children = (
-				F4A09AAC289BD338009D138E /* CoreDataError.swift */,
 				F405602B2889202D007CD5AA /* NetworkServiceError.swift */,
 			);
 			path = Errors;
@@ -966,7 +963,6 @@
 				F4429C6B289FB63400070620 /* DateModel.swift in Sources */,
 				F4ED8B7F28993211006DF9AE /* DefaultConstants.swift in Sources */,
 				F4129DB028C7504500905320 /* MainViewDelegateExtension.swift in Sources */,
-				F4A09AAD289BD338009D138E /* CoreDataError.swift in Sources */,
 				F4DE3C1C28BB586A000F6D04 /* CDContainer+CoreDataProperties.swift in Sources */,
 				F4A6202E28912909009E3FB8 /* CurrencyListViewController.swift in Sources */,
 				F4DFF94428DF0CFB00F5A44E /* ColorConstants.swift in Sources */,

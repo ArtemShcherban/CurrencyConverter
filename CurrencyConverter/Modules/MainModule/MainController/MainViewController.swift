@@ -25,7 +25,7 @@ final class MainViewController: UIViewController {
             }
         }
         setDelegates()
-        setupHideKeyboardTapCesture()
+        setupHideKeyboardTapGesture()
         updateAddButton()
         executeOnFirstStartup()
         exchangeRateModel.removeOldExchangeRates()
@@ -79,7 +79,7 @@ final class MainViewController: UIViewController {
     }
     
     func openCurrencyViewController(for editingRow: Int? = nil) {
-        let storyboard = UIStoryboard(name: AppConstants.main, bundle: nil)
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let viewController = storyboard.instantiateViewController(
             withIdentifier: CurrencyListViewController.reuseIdentifier) as? CurrencyListViewController else { return }
         viewController.modalPresentationStyle = .fullScreen

@@ -8,15 +8,15 @@
 import UIKit
 
 extension UIView {
-    func fixInView(_ container: UIView) {
+    func embedded(in view: UIView) {
         self.translatesAutoresizingMaskIntoConstraints = false
-        self.frame = container.frame
-        container.addSubview(self)
+        self.frame = view.frame
+        view.addSubview(self)
         NSLayoutConstraint.activate([
-            self.leadingAnchor.constraint(equalTo: container.leadingAnchor),
-            self.trailingAnchor.constraint(equalTo: container.trailingAnchor),
-            self.topAnchor.constraint(equalTo: container.topAnchor),
-            self.bottomAnchor.constraint(equalTo: container.bottomAnchor)
+            self.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            self.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            self.topAnchor.constraint(equalTo: view.topAnchor),
+            self.bottomAnchor.constraint(equalTo: view.bottomAnchor)
         ])
     }
 }

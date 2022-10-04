@@ -1,6 +1,6 @@
 import Foundation
 
-struct  PrivatBankExchangeRate: Decodable {
+struct PrivatBankExchangeRate: Decodable {
     let buyRate: Double
     let sellRate: Double
     let currencyNumber: Int16

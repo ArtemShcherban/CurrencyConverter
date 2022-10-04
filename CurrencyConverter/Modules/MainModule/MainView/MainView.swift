@@ -49,8 +49,8 @@ final class MainView: UIView {
     }
     
     private func configure() {
-        Bundle.main.loadNibNamed(AppConstants.mainView, owner: self, options: nil)
-        contentView.fixInView(self)
+        Bundle.main.loadNibNamed("MainView", owner: self, options: nil)
+        contentView.embedded(in: self)
     }
     
     func setDelegates(delegate: MainViewController) {
@@ -79,9 +79,9 @@ final class MainView: UIView {
             completion()
         }
         titleTransition(
-            label: titleLabel,
+            titleLabel,
             title: isRatesView ? TitleConstants.exchangeRates : TitleConstants.currencyConverter,
-            direction: isRatesView ? AnimationDirection.back : AnimationDirection.forward)
+            direction: isRatesView ? AnimationDirection.backward : AnimationDirection.forward)
     }
     
     func updateTableView() {

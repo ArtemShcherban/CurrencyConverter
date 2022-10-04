@@ -57,7 +57,7 @@ final class NetworkService {
         case -1200:
             return NetworkServiceError.sslConectError
         default:
-            return NetworkServiceError.errorCallingGET
+            return NetworkServiceError.connectivityError
         }
     }
 }

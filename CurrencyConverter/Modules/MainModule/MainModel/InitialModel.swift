@@ -19,7 +19,7 @@ final class InitialModel {
             return
         }
         guard
-            let path = Bundle.main.path(forResource: AppConstants.worldCurrencies, ofType: AppConstants.plist),
+            let path = Bundle.main.path(forResource: "WorldCurrencies", ofType: "plist"),
             let dataArray = NSArray(contentsOfFile: path) else {
             return
         }
@@ -40,13 +40,13 @@ final class InitialModel {
         if groupCount > 0 { return }
         
         var popularCurrencies: [Currency] = []
-        DefaultConstants.popularCurrencies.forEach {
+        DefaultConstants.popularCurrencyCodes.forEach {
             if let currency = currencyManager.getCurrency(by: $0) {
                 popularCurrencies.append(currency)
             }
         }
         
-        createPopularGroup(currencyNumbers: DefaultConstants.popularCurrencies)
+        createPopularGroup(currencyNumbers: DefaultConstants.popularCurrencyCodes)
         
         var groupKey: Int16 = 0
         guard let currencies = currencyManager.getCurrencyExcept(currencies: popularCurrencies) else { return }
@@ -92,7 +92,7 @@ final class InitialModel {
     
     private func updateRatesContainer() {
         let containerName = ContainerConstants.Name.rate
-        let currencyNumbers = DefaultConstants.currencies.sorted()
+        let currencyNumbers = DefaultConstants.currenciesCodes.sorted()
         currencyNumbers.forEach { currencyNumber in
             guard let currency = currencyManager.getCurrency(by: currencyNumber) else { return }
             containerManager.fillInContainer(with: containerName, andWith: currency)
@@ -101,8 +101,8 @@ final class InitialModel {
     
     private func updateConverterContainer() {
         let containerName = ContainerConstants.Name.converter
-        let currencyNumbers = DefaultConstants.currencies
-        guard let currency = currencyManager.getCurrency(by: DefaultConstants.baseCurrency) else {
+        let currencyNumbers = DefaultConstants.currenciesCodes
+        guard let currency = currencyManager.getCurrency(by: DefaultConstants.baseCurrencyCode) else {
             return
         }
         containerManager.fillInContainer(with: containerName, andWith: currency)

@@ -28,19 +28,19 @@ final class MessageModel {
         var message = String()
         if converterModel.isSellAction {
             message = """
-            For \(amount.decimalFormat()) \(baseCurrencyName)
+            For \(amount.decimalFormattedString()) \(baseCurrencyName)
             you can buy\n
             """
         } else {
             message = """
-            To buy \(amount.decimalFormat()) \(baseCurrencyName)
+            To buy \(amount.decimalFormattedString()) \(baseCurrencyName)
             you need\n
             """
         }
         
         for (index, currency) in currencies.enumerated() {
             let sum = converterModel.doCalculation(for: currency)
-            let sumString = sum.decimalFormat()
+            let sumString = sum.decimalFormattedString()
             let currencyName = (sum <= 2) ? currency.currency : currency.currencyPlural
             if index != currencies.count - 1 {
                 let subString = "\(sumString) \(currencyName) or\n"

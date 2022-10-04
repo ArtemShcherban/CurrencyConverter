@@ -19,7 +19,7 @@ final class ConverterCell: UITableViewCell {
     func configureAt(row: Int, with currency: Currency, and amount: Double) {
         self.row = row + 1
         currencyButton.setTitle(currency.code, for: .normal)
-        amountLabel.text = amount.decimalFormat()
+        amountLabel.text = amount.decimalFormattedString()
     }
     
     @IBAction func delegateAction(_ sender: UIButton) {

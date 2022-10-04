@@ -8,7 +8,7 @@
 import Foundation
 
 extension Double {
-    func decimalFormat(_ minimumFractionDigits: Int = 2) -> String {
+    func decimalFormattedString(_ minimumFractionDigits: Int = 2) -> String {
         let formater = NumberFormatter()
         formater.numberStyle = .decimal
         formater.groupingSeparator = " "

@@ -25,7 +25,7 @@ final class CurrencyListViewController: UIViewController, CurrencyListViewDelega
         currensyListView.createView()
         currencyListModel.fillCurrencyDataSource()
         addBackButton()
-        setupHideKeyboardTapCesture()
+        setupHideKeyboardTapGesture()
     }
     
     private func setDelegates() {

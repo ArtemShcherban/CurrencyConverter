@@ -34,7 +34,7 @@ class ConverterModel {
     }
     
     private func formatted(_ text: String) -> String {
-        let amountAsString = amount.decimalFormat(0)
+        let amountAsString = amount.decimalFormattedString(0)
         if text.last == "." {
             return "\(amountAsString)."
         } else if text.suffix(2) == ".0" {

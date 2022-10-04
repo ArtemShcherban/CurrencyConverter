@@ -10,10 +10,10 @@ import UIKit
 extension MainView {
     enum AnimationDirection: Int {
         case forward = 1
-        case back = -1
+        case backward = -1
     }
     
-    func animateSwitchView(completion: @escaping(() -> Void) ) {
+    func animateSwitchView(completion: @escaping () -> Void) {
         let visibleWindow = isRatesView ? exchangeRatesView : converterView
         let hiddenWindow = isRatesView ? converterView : exchangeRatesView
         isRatesView.toggle()
@@ -31,7 +31,7 @@ extension MainView {
             })
     }
     
-    func titleTransition(label: UILabel, title: String, direction: AnimationDirection) {
+    func titleTransition(_ label: UILabel, title: String, direction: AnimationDirection) {
         let tempLabel = UILabel(frame: label.frame)
         tempLabel.text = title
         tempLabel.textAlignment = label.textAlignment
