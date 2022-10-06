@@ -10,7 +10,7 @@ import CoreData
 
 final class ExchangeRateModel {
     static let shared = ExchangeRateModel()
-    private let exchangeRateManager = ExchangeRateManager()
+    private let exchangeRateRepository = ExchangeRateDataRepository()
     private let currencyRepository = CurrencyDataRepository()
     lazy var selectedDate = Date().startOfDay
     
@@ -30,15 +30,14 @@ final class ExchangeRateModel {
     }
     
     func isBulletinInDatabase(for date: Date) -> Bool {
-        return exchangeRateManager.checkBulletinInDatabase(for: date.startOfDay)
+        return exchangeRateRepository.checkBulletin(for: date.startOfDay)
     }
     
     func updateBulletin(for date: Date, bankData: [ExchangeRate]) {
-        if !exchangeRateManager.checkBulletinInDatabase(for: date.startOfDay) {
-            exchangeRateManager.createBulletin(Bulletin(
+        if !isBulletinInDatabase(for: date.startOfDay) {
+            exchangeRateRepository.create(bulletin: Bulletin(
                 from: "\(date.yyyyMMdd) \(TitleConstants.bankName)",
-                date: date.startOfDay)
-            )
+                date: date.startOfDay))
         }
         updateExchangeRates(of: date.startOfDay, with: bankData)
     }
@@ -46,7 +45,7 @@ final class ExchangeRateModel {
     private func updateExchangeRates(of date: Date, with bankData: [ExchangeRate]) {
         bankData.forEach { exchangeRate in
             if exchangeRate.currencyNumber != 0 {
-                exchangeRateManager.saveExchangeRate(exchangeRate, date.startOfDay)
+                exchangeRateRepository.handleSaving(exchangeRate: exchangeRate, on: date.startOfDay)
             }
         }
     }
@@ -60,7 +59,7 @@ final class ExchangeRateModel {
             return currency
         }
         guard
-            let exchangeRate = exchangeRateManager.getExchangeRate(for: currency, on: selectedDate) else {
+            let exchangeRate = exchangeRateRepository.exchangeRate(for: currency, on: selectedDate) else {
             return currency
         }
         currency.buy = exchangeRate.buy
@@ -70,6 +69,6 @@ final class ExchangeRateModel {
     }
     
     func removeOldExchangeRates() {
-        exchangeRateManager.deleteBulletin(before: Date().oneYearAgo)
+        exchangeRateRepository.deleteBulletin(before: Date().oneYearAgo)
     }
 }

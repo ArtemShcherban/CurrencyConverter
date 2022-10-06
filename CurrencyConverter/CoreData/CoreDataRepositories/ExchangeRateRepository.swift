@@ -11,7 +11,7 @@ import CoreData
 protocol ExchangeRateRepository {
     func create(bulletin: Bulletin)
     func checkBulletin(for date: Date) -> Bool
-    func getExchangeRate(for currency: Currency, on date: Date) -> ExchangeRate?
+    func exchangeRate(for currency: Currency, on date: Date) -> ExchangeRate?
     func handleSaving(exchangeRate: ExchangeRate, on date: Date)
     func deleteBulletin(before date: Date)
 }
@@ -39,7 +39,7 @@ struct ExchangeRateDataRepository: ExchangeRateRepository {
         return bulletinExists
     }
     
-    func getExchangeRate(for currency: Currency, on date: Date) -> ExchangeRate? {
+    func exchangeRate(for currency: Currency, on date: Date) -> ExchangeRate? {
         guard
             let cdBulletinID = getCDBulletinID(for: date),
             let cdExchangeRateID = getCDExchangeRateID(for: Int16(currency.number), and: cdBulletinID),
