@@ -11,7 +11,7 @@ final class CurrencyListModel {
     static let shared = CurrencyListModel()
     
     lazy var containerName = String()
-    private let groupManager = GroupManager()
+    private let groupRepository = GroupDataRepository()
     private let currencyRepository = CurrencyDataRepository()
     private let containerRepository = ContainerDataRepository()
     private(set) lazy var currencyDataSource = CurrencyListDataSource()
@@ -33,7 +33,7 @@ final class CurrencyListModel {
             keys.update(with: currency.groupKey)
         }
         let groupKeys = Array(keys)
-        guard let groups = groupManager.fetchGroups(by: groupKeys) else { return [] }
+        guard let groups = groupRepository.group(by: groupKeys) else { return [] }
         return groups
     }
     

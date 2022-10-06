@@ -112,7 +112,6 @@
 		F4DFF94C28DF3E3200F5A44E /* AppConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DFF94B28DF3E3200F5A44E /* AppConstants.swift */; };
 		F4E0363928BE1F1300BD64ED /* Group.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E0363828BE1F1300BD64ED /* Group.swift */; };
 		F4E0363B28BE1FBD00BD64ED /* GroupRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E0363A28BE1FBD00BD64ED /* GroupRepository.swift */; };
-		F4E0363D28BE20EC00BD64ED /* GroupManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4E0363C28BE20EC00BD64ED /* GroupManager.swift */; };
 		F4ED8B7F28993211006DF9AE /* DefaultConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED8B7E28993211006DF9AE /* DefaultConstants.swift */; };
 		F4ED8BE4289B99B6006DF9AE /* CurrencyListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4ED8BE3289B99B6006DF9AE /* CurrencyListView.swift */; };
 		F4FE3F4B28EC44BA00177CF5 /* RateBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE3F4A28EC44BA00177CF5 /* RateBackgroundView.swift */; };
@@ -253,7 +252,6 @@
 		F4DFF94B28DF3E3200F5A44E /* AppConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstants.swift; sourceTree = "<group>"; };
 		F4E0363828BE1F1300BD64ED /* Group.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Group.swift; sourceTree = "<group>"; };
 		F4E0363A28BE1FBD00BD64ED /* GroupRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupRepository.swift; sourceTree = "<group>"; };
-		F4E0363C28BE20EC00BD64ED /* GroupManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupManager.swift; sourceTree = "<group>"; };
 		F4ED8B7E28993211006DF9AE /* DefaultConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultConstants.swift; sourceTree = "<group>"; };
 		F4ED8BE3289B99B6006DF9AE /* CurrencyListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListView.swift; sourceTree = "<group>"; };
 		F4FE3F4A28EC44BA00177CF5 /* RateBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RateBackgroundView.swift; sourceTree = "<group>"; };
@@ -599,7 +597,6 @@
 		F49AB41128B9E37E00868776 /* CoreDataManagers */ = {
 			isa = PBXGroup;
 			children = (
-				F4E0363C28BE20EC00BD64ED /* GroupManager.swift */,
 				F49AB41F28BA17A400868776 /* LastUpdateDateManager.swift */,
 			);
 			path = CoreDataManagers;
@@ -991,7 +988,6 @@
 				F45E044028AA671E00902C73 /* ConverterCell.swift in Sources */,
 				F49AB43428BA3F3A00868776 /* Currency.swift in Sources */,
 				F4DCC2F628B4B41200DC4D09 /* MainViewAnimationExtension.swift in Sources */,
-				F4E0363D28BE20EC00BD64ED /* GroupManager.swift in Sources */,
 				F4DFF94A28DF2E1F00F5A44E /* UITableViewExtension.swift in Sources */,
 				F4056025288919AF007CD5AA /* URLModel.swift in Sources */,
 				F454366B28D4680F003B0B62 /* Endpoint.swift in Sources */,

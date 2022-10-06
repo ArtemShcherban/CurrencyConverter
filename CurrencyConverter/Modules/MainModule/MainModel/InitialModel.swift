@@ -8,7 +8,7 @@
 import Foundation
 
 final class InitialModel {
-    private let groupManager = GroupManager()
+    private let groupRepository = GroupDataRepository()
     private let currencyRepository = CurrencyDataRepository()
     private let containerRepository = ContainerDataRepository()
     
@@ -36,8 +36,8 @@ final class InitialModel {
     }
     
     func insertGroups() {
-        let groupCount = groupManager.fetchGroupCount()
-        if groupCount > 0 { return }
+        let countOfGroups = groupRepository.countOfGroups
+        if countOfGroups > 0 { return }
         
         var popularCurrencies: [Currency] = []
         DefaultConstants.popularCurrencyNumbers.forEach { number in
@@ -53,7 +53,7 @@ final class InitialModel {
         for currency in currencies {
             let groupName = String(currency.code.first ?? " ")
             if
-                let groups = groupManager.fetchGroup(by: [groupName]),
+                let groups = groupRepository.group(by: [groupName]),
                 let group = groups.first {
                 currencyRepository.setGroupKeyForCurrency(with: currency.number, with: group.key)
             } else {
@@ -63,7 +63,7 @@ final class InitialModel {
                     name: groupName,
                     key: Int(groupKey)
                 )
-                groupManager.createGroup(group)
+                groupRepository.create(group)
                 currencyRepository.setGroupKeyForCurrency(with: currency.number, with: group.key)
             }
         }
@@ -71,7 +71,7 @@ final class InitialModel {
     
     private func createPopularGroup(currencyNumbers: [Int]) {
         let group = Group(visible: true, name: TitleConstants.popular, key: 0)
-        groupManager.createGroup(group)
+        groupRepository.create(group)
         currencyNumbers.forEach { currencyNumber in
             currencyRepository.setGroupKeyForCurrency(with: currencyNumber, with: group.key)
         }

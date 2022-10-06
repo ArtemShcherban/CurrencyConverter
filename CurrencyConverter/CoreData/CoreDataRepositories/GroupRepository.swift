@@ -9,21 +9,21 @@ import Foundation
 import CoreData
 
 protocol GroupRepository {
-    var getCount: Int { get }
-    func create(group: Group)
-    func get(by keys: [Int]) -> [Group]?
-    func get(by names: [String]) -> [Group]?
+    var countOfGroups: Int { get }
+    func create(_ group: Group)
+    func group(by keys: [Int]) -> [Group]?
+    func group(by names: [String]) -> [Group]?
 }
 
 struct GroupDataRepository: GroupRepository {
     private let coreDataStack = CoreDataStack.shared
    
-    var getCount: Int {
+    var countOfGroups: Int {
         let groupCount = coreDataStack.fetchManagedObjectCount(managedObject: CDGroup.self)
         return groupCount
     }
     
-    func create(group: Group) {
+    func create(_ group: Group) {
         coreDataStack.backgroundContext.performAndWait {
             let cdGroup = CDGroup(context: coreDataStack.backgroundContext)
             cdGroup.name = group.name
@@ -33,19 +33,19 @@ struct GroupDataRepository: GroupRepository {
         }
     }
     
-    func get(by keys: [Int]) -> [Group]? {
+    func group(by keys: [Int]) -> [Group]? {
         let predicates = createPredicate(predict: keys)
         let fetchRequest = createFetchRequest(predicate: predicates)
-        return getGroups(from: fetchRequest)
+        return groups(from: fetchRequest)
     }
     
-    func get(by names: [String]) -> [Group]? {
+    func group(by names: [String]) -> [Group]? {
         let predicates = createPredicate(predict: names)
         let fetchRequest = createFetchRequest(predicate: predicates)
-        return getGroups(from: fetchRequest)
+        return groups(from: fetchRequest)
     }
     
-    private func getGroups(from fetchRequest: NSFetchRequest<CDGroup>) -> [Group]? {
+    private func groups(from fetchRequest: NSFetchRequest<CDGroup>) -> [Group]? {
         var groups: [Group] = []
         coreDataStack.backgroundContext.performAndWait {
             do {
