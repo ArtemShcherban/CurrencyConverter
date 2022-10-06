@@ -13,13 +13,13 @@ protocol CurrencyListViewDelegate: AnyObject {
 
 @IBDesignable
 final class CurrencyListView: UIView {
-    lazy var dataSource = CurrencyListDataSource.shared
-    
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!
     
     weak var tableViewDelegate: UITableViewDelegate?
+    weak var tableViewDataSource: UITableViewDataSource?
     weak var searchBarDelegate: UISearchBarDelegate?
+    
     weak var delegate: CurrencyListViewDelegate?
     
     func createView() {
@@ -49,7 +49,7 @@ final class CurrencyListView: UIView {
     
     private func configureTableView() {
         tableView.delegate = tableViewDelegate
-        tableView.dataSource = dataSource
+        tableView.dataSource = tableViewDataSource
         tableView.registerCellClassWith(name: CurrencyCell.self)
     }
     
@@ -61,35 +61,13 @@ final class CurrencyListView: UIView {
         tableView.layer.shadowOpacity = 1
     }
     
-    func setGroupTitle(view: UIView, section: Int) {
+    func setGroupTitle(forHeader view: UIView, title: String) {
         guard let titleView = view as? UITableViewHeaderFooterView else { return }
-        
         var content = titleView.defaultContentConfiguration()
-        let groupName = dataSource.groups
-            .filter { $0.visible == true }[section].name
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 0.8
         let attributedString = NSAttributedString(
-            string: groupName,
-            attributes: [
-                NSAttributedString.Key.paragraphStyle: paragraphStyle,
-                NSAttributedString.Key.font: FontConstants.latoSemiBold,
-                NSAttributedString.Key.foregroundColor: ColorConstants.darkBlueDynamic
-            ])
-        content.attributedText = attributedString
-        titleView.contentConfiguration = content
-    }
-    
-    func setHeaderForFiltered(view: UIView, section: Int) {
-        guard let titleView = view as? UITableViewHeaderFooterView else { return }
-        
-        var content = titleView.defaultContentConfiguration()
-        let groupName = !dataSource.filteredCurrency.isEmpty ?
-        TitleConstants.searchResult : TitleConstants.noCurrencyFound
-        let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 0.8
-        let attributedString = NSAttributedString(
-            string: groupName,
+            string: title,
             attributes: [
                 NSAttributedString.Key.paragraphStyle: paragraphStyle,
                 NSAttributedString.Key.font: FontConstants.latoSemiBold,

@@ -22,8 +22,8 @@ struct ContainerDataRepository: ContainerRepository {
     private let coreDataStack = CoreDataStack.shared
     
     var getCount: Int {
-        let containerCount = coreDataStack.fetchManagedObjectCount(managedObject: CDContainer.self)
-        return containerCount
+        let count = coreDataStack.fetchManagedObjectCount(managedObject: CDContainer.self)
+        return count
     }
     
     func create() {

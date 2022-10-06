@@ -14,7 +14,7 @@ final class CurrencyListModel {
     private let groupManager = GroupManager()
     private let currencyManager = CurrencyManager()
     private let containerManager = ContainerManager()
-    private lazy var currencyDataSource = CurrencyListDataSource.shared
+    private(set) lazy var currencyDataSource = CurrencyListDataSource()
     
     func fillCurrencyDataSource() {
         guard
@@ -67,5 +67,16 @@ final class CurrencyListModel {
     func selectedFilteredCurrency(at indexPath: IndexPath) -> Currency {
         let currency = currencyDataSource.filteredCurrency[indexPath.row]
         return currency
+    }
+    
+    func groupTitle(for section: Int, in tableView: CurrencyListTableView) -> String {
+        if tableView.isFiltered {
+            let title = !currencyDataSource.filteredCurrency.isEmpty ?
+            TitleConstants.searchResult : TitleConstants.noCurrencyFound
+            return title
+        }
+        let title = currencyDataSource.groups
+            .filter { $0.visible == true }[section].name
+        return title
     }
 }

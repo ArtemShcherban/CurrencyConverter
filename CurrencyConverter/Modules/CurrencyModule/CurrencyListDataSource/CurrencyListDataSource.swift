@@ -8,8 +8,6 @@
 import UIKit
 
 final class CurrencyListDataSource: NSObject, UITableViewDataSource {
-    static let shared = CurrencyListDataSource()
-    
     lazy var currencyList: [Currency] = []
     lazy var filteredCurrency: [Currency] = []
     lazy var groups: [Group] = []
@@ -40,14 +38,23 @@ final class CurrencyListDataSource: NSObject, UITableViewDataSource {
         guard let cell = tableView.cellWith(identifier: CurrencyCell.self, for: indexPath) else {
             return UITableViewCell()
         }
-       
         guard
-            let tableView = tableView as? CurrencyListTableView,
-            tableView.isFiltered else {
-            cell.configure(with: indexPath)
-            return cell
-        }
-        cell.configureWith(indexPath: indexPath)
+            let tableView = tableView as? CurrencyListTableView else {
+                return cell
+            }
+        let currency = currency(for: tableView, and: indexPath)
+        cell.configure(with: currency)
         return cell
+    }
+    
+    private func currency(for tableView: CurrencyListTableView, and indexPath: IndexPath) -> Currency {
+        if tableView.isFiltered {
+            return filteredCurrency[indexPath.row]
+        }
+        let currency = currencyList
+            .filter { $0.groupKey == groups
+            .filter { $0.visible == true }[indexPath.section].key
+            }[indexPath.row]
+        return currency
     }
 }

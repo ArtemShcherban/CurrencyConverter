@@ -31,6 +31,7 @@ final class CurrencyListViewController: UIViewController, CurrencyListViewDelega
         currensyListView.tableViewDelegate = self
         currensyListView.searchBarDelegate = self
         currensyListView.delegate = self
+        currensyListView.tableViewDataSource = currencyListModel.currencyDataSource
     }
     
     private func addBackButton() {
@@ -50,12 +51,11 @@ extension CurrencyListViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard
-            let tableView = tableView as? CurrencyListTableView,
-            tableView.isFiltered else {
-            currensyListView.setGroupTitle(view: view, section: section)
+            let tableView = tableView as? CurrencyListTableView else {
             return
-        }
-        currensyListView.setHeaderForFiltered(view: view, section: section)
+            }
+            let title = currencyListModel.groupTitle(for: section, in: tableView)
+            currensyListView.setGroupTitle(forHeader: view, title: title)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
