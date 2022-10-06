@@ -70,7 +70,6 @@
 		F49AB42E28BA3A4400868776 /* CDCurrency+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49AB42A28BA3A4400868776 /* CDCurrency+CoreDataProperties.swift */; };
 		F49AB43228BA3C5A00868776 /* CurrencyRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49AB43128BA3C5A00868776 /* CurrencyRepository.swift */; };
 		F49AB43428BA3F3A00868776 /* Currency.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49AB43328BA3F3A00868776 /* Currency.swift */; };
-		F49AB43628BA417B00868776 /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F49AB43528BA417B00868776 /* CurrencyManager.swift */; };
 		F4A09AA6289BBF3E009D138E /* CDExchangeRate+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A09AA4289BBF3E009D138E /* CDExchangeRate+CoreDataClass.swift */; };
 		F4A09AA7289BBF3E009D138E /* CDExchangeRate+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A09AA5289BBF3E009D138E /* CDExchangeRate+CoreDataProperties.swift */; };
 		F4A09AC8289D210C009D138E /* CDGroup+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A09AC4289D210C009D138E /* CDGroup+CoreDataClass.swift */; };
@@ -213,7 +212,6 @@
 		F49AB42A28BA3A4400868776 /* CDCurrency+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDCurrency+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F49AB43128BA3C5A00868776 /* CurrencyRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyRepository.swift; sourceTree = "<group>"; };
 		F49AB43328BA3F3A00868776 /* Currency.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Currency.swift; sourceTree = "<group>"; };
-		F49AB43528BA417B00868776 /* CurrencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
 		F4A09AA4289BBF3E009D138E /* CDExchangeRate+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDExchangeRate+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F4A09AA5289BBF3E009D138E /* CDExchangeRate+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDExchangeRate+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		F4A09AC4289D210C009D138E /* CDGroup+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDGroup+CoreDataClass.swift"; sourceTree = "<group>"; };
@@ -603,7 +601,6 @@
 		F49AB41128B9E37E00868776 /* CoreDataManagers */ = {
 			isa = PBXGroup;
 			children = (
-				F49AB43528BA417B00868776 /* CurrencyManager.swift */,
 				F47F0BCF28C0E7360029E224 /* ExchangeRateManager.swift */,
 				F4E0363C28BE20EC00BD64ED /* GroupManager.swift */,
 				F49AB41F28BA17A400868776 /* LastUpdateDateManager.swift */,
@@ -1049,7 +1046,6 @@
 				F4DE3C3028BBA91E000F6D04 /* CurrencyConverter.xcdatamodeld in Sources */,
 				F45B03FA28C32E6700221721 /* UIViewAnimationExtension.swift in Sources */,
 				F4129DB228C750DF00905320 /* CentralViewDelegateExtension.swift in Sources */,
-				F49AB43628BA417B00868776 /* CurrencyManager.swift in Sources */,
 				F47F0BC128C0C0480029E224 /* PrivatBankData.swift in Sources */,
 				F45137C0289E326A00B2190D /* MainDataSource.swift in Sources */,
 				F47F0BCA28C0DC880029E224 /* CDBulletin+CoreDataProperties.swift in Sources */,

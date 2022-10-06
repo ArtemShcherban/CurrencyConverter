@@ -9,13 +9,13 @@ import Foundation
 import CoreData
 
 protocol CurrencyRepository {
-    var getCount: Int { get }
+    var countOfCurrencies: Int { get }
     func create(currency: Currency)
-    func get(byCurrency number: Int) -> Currency?
-    func get(byCurrency code: String) -> Currency?
-    func getAllExcept(currencies: [Currency]) -> [Currency]?
-    func updateRate(for currency: Currency)
-    func setGroupKey(forCurrency number: Int, with key: Int)
+    func currency(by number: Int) -> Currency?
+    func currency(by code: String) -> Currency?
+    func allCurrencies(except currencies: [Currency]) -> [Currency]?
+    func updateCurrencyRate(for currency: Currency)
+    func setGroupKeyForCurrency(with number: Int, with key: Int)
 }
 
 struct CurrencyDataRepository: CurrencyRepository {
@@ -37,19 +37,19 @@ struct CurrencyDataRepository: CurrencyRepository {
         }
     }
     
-    var getCount: Int {
+    var countOfCurrencies: Int {
         let currencyCount = coreDataStack.fetchManagedObjectCount(managedObject: CDCurrency.self)
         return currencyCount
     }
     
-    func get(byCurrency number: Int) -> Currency? {
+    func currency(by number: Int) -> Currency? {
         let predicates = compaundPredicate(including: true, currencyNumbers: [number])
         let fetchRequest = createFetchRequest(compaundPredicates: predicates)
         guard let currency = getCurrencies(from: fetchRequest)?.first else { return nil }
         return currency
     }
     
-    func get(byCurrency code: String) -> Currency? {
+    func currency(by code: String) -> Currency? {
         let predicate = NSPredicate(format: "%K == %@", #keyPath(CDCurrency.code), code)
         let fetchRequest: NSFetchRequest<CDCurrency> = CDCurrency.fetchRequest()
         fetchRequest.predicate = predicate
@@ -57,7 +57,7 @@ struct CurrencyDataRepository: CurrencyRepository {
         return currency
     }
     
-    func getAllExcept(currencies: [Currency]) -> [Currency]? {
+    func allCurrencies(except currencies: [Currency]) -> [Currency]? {
         var currencyNumbers: [Int] = []
         currencies.forEach { currencyNumbers.append($0.number) }
         let predicates = compaundPredicate(including: false, currencyNumbers: currencyNumbers)
@@ -65,7 +65,7 @@ struct CurrencyDataRepository: CurrencyRepository {
         return getCurrencies(from: fetchRequest)
     }
     
-    func updateRate(for currency: Currency) {
+    func updateCurrencyRate(for currency: Currency) {
         guard
             let cdCurrencyID = getCDCurrencyID(for: Int16(currency.number)),
             let cdCurrency = coreDataStack.managedContext.object(with: cdCurrencyID) as? CDCurrency else {
@@ -77,7 +77,7 @@ struct CurrencyDataRepository: CurrencyRepository {
         coreDataStack.saveContext()
     }
     
-    func setGroupKey(forCurrency number: Int, with key: Int) {
+    func setGroupKeyForCurrency(with number: Int, with key: Int) {
         coreDataStack.backgroundContext.perform {
         guard
             let cdCurrencyID = getCDCurrencyID(for: Int16(number)),

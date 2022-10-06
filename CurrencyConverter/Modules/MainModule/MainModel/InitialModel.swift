@@ -9,13 +9,12 @@ import Foundation
 
 final class InitialModel {
     private let groupManager = GroupManager()
-    private let currencyManager = CurrencyManager()
+    private let currencyRepository = CurrencyDataRepository()
     private let containerRepository = ContainerDataRepository()
-//    private let containerManager = ContainerManager()
     
     func insertCurrencies(complition: @escaping () -> Void) {
-        let currencyCount = currencyManager.getCurrencyCount()
-        if currencyCount > 0 {
+        let countOfCurrencies = currencyRepository.countOfCurrencies
+        if countOfCurrencies > 0 {
             complition()
             return
         }
@@ -29,7 +28,7 @@ final class InitialModel {
             for dictionary in dataArray {
                 if let dictionary = dictionary as? [String: Any] {
                     let currency = Currency(from: dictionary)
-                    self.currencyManager.createCurrency(currency)
+                    self.currencyRepository.create(currency: currency)
                 }
             }
             complition()
@@ -41,22 +40,22 @@ final class InitialModel {
         if groupCount > 0 { return }
         
         var popularCurrencies: [Currency] = []
-        DefaultConstants.popularCurrencyCodes.forEach {
-            if let currency = currencyManager.getCurrency(by: $0) {
+        DefaultConstants.popularCurrencyNumbers.forEach { number in
+            if let currency = currencyRepository.currency(by: number) {
                 popularCurrencies.append(currency)
             }
         }
         
-        createPopularGroup(currencyNumbers: DefaultConstants.popularCurrencyCodes)
+        createPopularGroup(currencyNumbers: DefaultConstants.popularCurrencyNumbers)
         
         var groupKey: Int16 = 0
-        guard let currencies = currencyManager.getCurrencyExcept(currencies: popularCurrencies) else { return }
+        guard let currencies = currencyRepository.allCurrencies(except: popularCurrencies) else { return }
         for currency in currencies {
             let groupName = String(currency.code.first ?? " ")
             if
                 let groups = groupManager.fetchGroup(by: [groupName]),
                 let group = groups.first {
-                currencyManager.setGroupKeyForCurrency(with: currency.number, with: group.key)
+                currencyRepository.setGroupKeyForCurrency(with: currency.number, with: group.key)
             } else {
                 groupKey += 1
                 let group = Group(
@@ -65,7 +64,7 @@ final class InitialModel {
                     key: Int(groupKey)
                 )
                 groupManager.createGroup(group)
-                currencyManager.setGroupKeyForCurrency(with: currency.number, with: group.key)
+                currencyRepository.setGroupKeyForCurrency(with: currency.number, with: group.key)
             }
         }
     }
@@ -74,7 +73,7 @@ final class InitialModel {
         let group = Group(visible: true, name: TitleConstants.popular, key: 0)
         groupManager.createGroup(group)
         currencyNumbers.forEach { currencyNumber in
-            currencyManager.setGroupKeyForCurrency(with: currencyNumber, with: group.key)
+            currencyRepository.setGroupKeyForCurrency(with: currencyNumber, with: group.key)
         }
     }
     
@@ -94,22 +93,22 @@ final class InitialModel {
     
     private func updateRatesContainer() {
         let containerName = ContainerConstants.Name.rate
-        let currencyNumbers = DefaultConstants.currenciesCodes.sorted()
+        let currencyNumbers = DefaultConstants.currenciesNumbers.sorted()
         currencyNumbers.forEach { currencyNumber in
-            guard let currency = currencyManager.getCurrency(by: currencyNumber) else { return }
+            guard let currency = currencyRepository.currency(by: currencyNumber) else { return }
             containerRepository.fillIn(container: containerName, with: currency)
         }
     }
     
     private func updateConverterContainer() {
         let containerName = ContainerConstants.Name.converter
-        let currencyNumbers = DefaultConstants.currenciesCodes
-        guard let currency = currencyManager.getCurrency(by: DefaultConstants.baseCurrencyCode) else {
+        let currencyNumbers = DefaultConstants.currenciesNumbers
+        guard let currency = currencyRepository.currency(by: DefaultConstants.baseCurrencyNumber) else {
             return
         }
         containerRepository.fillIn(container: containerName, with: currency)
         for currencyNumber in currencyNumbers.sorted() where currencyNumber != 985 {
-            guard let currency = currencyManager.getCurrency(by: currencyNumber) else { return }
+            guard let currency = currencyRepository.currency(by: currencyNumber) else { return }
             containerRepository.fillIn(container: containerName, with: currency)
         }
     }

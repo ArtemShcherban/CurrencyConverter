@@ -13,7 +13,7 @@ protocol RatesModelDelegate: AnyObject {
 
 final class RatesModel {
     static let shared = RatesModel()
-    private let currencyManager = CurrencyManager()
+    private let currencyRepository = CurrencyDataRepository()
     private let containerRepository = ContainerDataRepository()
     private lazy var mainDataSource = MainDataSource.shared
     private lazy var currencyListModel = CurrencyListModel.shared
@@ -63,7 +63,7 @@ final class RatesModel {
         var currency = mainDataSource.selectedCurrencies[indexPath.row]
         currency.buy = 0.0
         currency.sell = 0.0
-        currencyManager.updateCurrencyRate(for: currency)
+        currencyRepository.updateCurrencyRate(for: currency)
         containerRepository.removeFrom(container: containerName, currency: currency)
         fillDataSource()
     }

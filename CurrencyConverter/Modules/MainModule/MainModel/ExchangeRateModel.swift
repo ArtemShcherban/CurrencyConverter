@@ -11,7 +11,7 @@ import CoreData
 final class ExchangeRateModel {
     static let shared = ExchangeRateModel()
     private let exchangeRateManager = ExchangeRateManager()
-    private let currencyManager = CurrencyManager()
+    private let currencyRepository = CurrencyDataRepository()
     lazy var selectedDate = Date().startOfDay
     
     func convertToExchangeRates<T>(bankRates: [T]) -> [ExchangeRate] {
@@ -56,7 +56,7 @@ final class ExchangeRateModel {
         guard currency.code != "UAH" else {
             currency.buy = 1.0
             currency.sell = 1.0
-            currencyManager.updateCurrencyRate(for: currency)
+            currencyRepository.updateCurrencyRate(for: currency)
             return currency
         }
         guard
@@ -65,7 +65,7 @@ final class ExchangeRateModel {
         }
         currency.buy = exchangeRate.buy
         currency.sell = exchangeRate.sell
-        currencyManager.updateCurrencyRate(for: currency)
+        currencyRepository.updateCurrencyRate(for: currency)
         return currency
     }
     
