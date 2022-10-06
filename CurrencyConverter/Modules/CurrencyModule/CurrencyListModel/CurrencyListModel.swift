@@ -13,12 +13,12 @@ final class CurrencyListModel {
     lazy var containerName = String()
     private let groupManager = GroupManager()
     private let currencyManager = CurrencyManager()
-    private let containerManager = ContainerManager()
+    private let containerRepository = ContainerDataRepository()
     private(set) lazy var currencyDataSource = CurrencyListDataSource()
     
     func fillCurrencyDataSource() {
         guard
-            let exceptCurrencies = containerManager.currencies(from: containerName),
+            let exceptCurrencies = containerRepository.currencies(from: containerName),
             let currencies = currencyManager.getCurrencyExcept(currencies: exceptCurrencies) else {
             return
         }

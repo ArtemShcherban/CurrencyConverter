@@ -103,7 +103,6 @@
 		F4DCC2F828B4B50C00DC4D09 /* TitleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC2F728B4B50C00DC4D09 /* TitleConstants.swift */; };
 		F4DCC33D28B4E98400DC4D09 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC33C28B4E98400DC4D09 /* MessageModel.swift */; };
 		F4DCC34128B624C300DC4D09 /* WorldCurrencies.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4DCC34028B624C300DC4D09 /* WorldCurrencies.plist */; };
-		F4DE3C0F28BB32F2000F6D04 /* ContainerManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE3C0E28BB32F2000F6D04 /* ContainerManager.swift */; };
 		F4DE3C1128BB3316000F6D04 /* ContainerRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE3C1028BB3316000F6D04 /* ContainerRepository.swift */; };
 		F4DE3C1B28BB586A000F6D04 /* CDContainer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE3C1928BB586A000F6D04 /* CDContainer+CoreDataClass.swift */; };
 		F4DE3C1C28BB586A000F6D04 /* CDContainer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DE3C1A28BB586A000F6D04 /* CDContainer+CoreDataProperties.swift */; };
@@ -247,7 +246,6 @@
 		F4DCC2F728B4B50C00DC4D09 /* TitleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleConstants.swift; sourceTree = "<group>"; };
 		F4DCC33C28B4E98400DC4D09 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		F4DCC34028B624C300DC4D09 /* WorldCurrencies.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WorldCurrencies.plist; sourceTree = "<group>"; };
-		F4DE3C0E28BB32F2000F6D04 /* ContainerManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerManager.swift; sourceTree = "<group>"; };
 		F4DE3C1028BB3316000F6D04 /* ContainerRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerRepository.swift; sourceTree = "<group>"; };
 		F4DE3C1928BB586A000F6D04 /* CDContainer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDContainer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F4DE3C1A28BB586A000F6D04 /* CDContainer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDContainer+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -605,7 +603,6 @@
 		F49AB41128B9E37E00868776 /* CoreDataManagers */ = {
 			isa = PBXGroup;
 			children = (
-				F4DE3C0E28BB32F2000F6D04 /* ContainerManager.swift */,
 				F49AB43528BA417B00868776 /* CurrencyManager.swift */,
 				F47F0BCF28C0E7360029E224 /* ExchangeRateManager.swift */,
 				F4E0363C28BE20EC00BD64ED /* GroupManager.swift */,
@@ -970,7 +967,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				F49AB42D28BA3A4400868776 /* CDCurrency+CoreDataClass.swift in Sources */,
-				F4DE3C0F28BB32F2000F6D04 /* ContainerManager.swift in Sources */,
 				F47F0BCE28C0E1DD0029E224 /* ExchangeRateRepository.swift in Sources */,
 				F4E0363928BE1F1300BD64ED /* Group.swift in Sources */,
 				F4A2F88E28870F53007948A9 /* ConverterView.swift in Sources */,

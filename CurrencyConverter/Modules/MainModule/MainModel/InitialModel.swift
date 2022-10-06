@@ -10,7 +10,8 @@ import Foundation
 final class InitialModel {
     private let groupManager = GroupManager()
     private let currencyManager = CurrencyManager()
-    private let containerManager = ContainerManager()
+    private let containerRepository = ContainerDataRepository()
+//    private let containerManager = ContainerManager()
     
     func insertCurrencies(complition: @escaping () -> Void) {
         let currencyCount = currencyManager.getCurrencyCount()
@@ -78,11 +79,11 @@ final class InitialModel {
     }
     
     func createContainers() {
-        let countOfContainers = containerManager.countOfContainers
+        let countOfContainers = containerRepository.countOfContainers
         if countOfContainers > 0 {
             return
         }
-        containerManager.createContainers()
+        containerRepository.createContainers()
         updateContainersWithDefaultCurrencies()
     }
     
@@ -96,7 +97,7 @@ final class InitialModel {
         let currencyNumbers = DefaultConstants.currenciesCodes.sorted()
         currencyNumbers.forEach { currencyNumber in
             guard let currency = currencyManager.getCurrency(by: currencyNumber) else { return }
-            containerManager.fillInContainer(with: containerName, andWith: currency)
+            containerRepository.fillIn(container: containerName, with: currency)
         }
     }
     
@@ -106,10 +107,10 @@ final class InitialModel {
         guard let currency = currencyManager.getCurrency(by: DefaultConstants.baseCurrencyCode) else {
             return
         }
-        containerManager.fillInContainer(with: containerName, andWith: currency)
+        containerRepository.fillIn(container: containerName, with: currency)
         for currencyNumber in currencyNumbers.sorted() where currencyNumber != 985 {
             guard let currency = currencyManager.getCurrency(by: currencyNumber) else { return }
-            containerManager.fillInContainer(with: containerName, andWith: currency)
+            containerRepository.fillIn(container: containerName, with: currency)
         }
     }
 }

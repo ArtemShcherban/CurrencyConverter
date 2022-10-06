@@ -14,7 +14,7 @@ protocol RatesModelDelegate: AnyObject {
 final class RatesModel {
     static let shared = RatesModel()
     private let currencyManager = CurrencyManager()
-    private let containerManager = ContainerManager()
+    private let containerRepository = ContainerDataRepository()
     private lazy var mainDataSource = MainDataSource.shared
     private lazy var currencyListModel = CurrencyListModel.shared
     private lazy var exchangeRateModel = ExchangeRateModel.shared
@@ -32,7 +32,7 @@ final class RatesModel {
     
     func fillDataSource() {
         guard
-            var currencies = containerManager.currencies(from: containerName),
+            var currencies = containerRepository.currencies(from: containerName),
             !currencies.isEmpty else {
             mainDataSource.selectedCurrencies = []
             return }
@@ -52,11 +52,11 @@ final class RatesModel {
     }
     
     func add(currency: Currency) {
-        containerManager.updateContainer(with: containerName, andWith: currency)
+        containerRepository.update(container: containerName, with: currency)
     }
     
     func replaceCurrency(at row: Int, with currency: Currency) {
-        containerManager.replaceInContainer(with: containerName, at: row, with: currency)
+        containerRepository.replaceIn(container: containerName, at: row, with: currency)
     }
     
     func removeCell(at indexPath: IndexPath) {
@@ -64,7 +64,7 @@ final class RatesModel {
         currency.buy = 0.0
         currency.sell = 0.0
         currencyManager.updateCurrencyRate(for: currency)
-        containerManager.removeFromContainer(with: containerName, currency: currency)
+        containerRepository.removeFrom(container: containerName, currency: currency)
         fillDataSource()
     }
 

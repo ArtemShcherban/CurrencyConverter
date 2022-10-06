@@ -9,9 +9,9 @@ import Foundation
 import CoreData
 
 protocol ContainerRepository {
-    var getCount: Int { get }
-    func create()
-    func getFrom(container: String) -> [Currency]?
+    var countOfContainers: Int { get }
+    func createContainers()
+    func currencies(from container: String) -> [Currency]?
     func fillIn(container: String, with currency: Currency)
     func update(container: String, with currency: Currency)
     func replaceIn(container: String, at row: Int, with currency: Currency)
@@ -21,12 +21,12 @@ protocol ContainerRepository {
 struct ContainerDataRepository: ContainerRepository {
     private let coreDataStack = CoreDataStack.shared
     
-    var getCount: Int {
+    var countOfContainers: Int {
         let count = coreDataStack.fetchManagedObjectCount(managedObject: CDContainer.self)
         return count
     }
     
-    func create() {
+    func createContainers() {
         coreDataStack.backgroundContext.performAndWait {
             _ = CDRateContainer(context: coreDataStack.backgroundContext)
             _ = CDConverterContainer(context: coreDataStack.backgroundContext)
@@ -34,7 +34,7 @@ struct ContainerDataRepository: ContainerRepository {
         }
     }
     
-    func getFrom(container: String) -> [Currency]? {
+    func currencies(from container: String) -> [Currency]? {
         var currencies: [Currency] = []
         guard
             let objectID = getCDContainerID(for: container),
