@@ -15,7 +15,7 @@ protocol LastUpdateDateRepository {
 }
 
 struct LastUpdateDateDataRepository: LastUpdateDateRepository {
-    let coreDataStack = CoreDataStack.shared
+    private let coreDataStack = CoreDataStack.shared
     
     func create(lastUpdateDate: Date) {
         let cdLastUpdateDate = CDLastUpdateDate(context: coreDataStack.managedContext)

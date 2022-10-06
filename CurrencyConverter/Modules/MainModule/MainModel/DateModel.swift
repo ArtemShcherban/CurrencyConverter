@@ -8,13 +8,13 @@
 import Foundation
 
 final class DateModel {
-    private let lastUpdateDateManager = LastUpdateDateManager()
+    private let lastUpdateDateRepository = LastUpdateDateDataRepository()
     
     func lastUpdateDate() -> String {
         guard
-            let lastUpdateDate = lastUpdateDateManager.lastUpdateDate else {
+            let lastUpdateDate = lastUpdateDateRepository.date else {
             let defaultDate = Date(timeIntervalSince1970: 197208000) // "1 Apr 1976 12:00:00"
-            lastUpdateDateManager.createLastUpdateDate(defaultDate)
+            lastUpdateDateRepository.create(lastUpdateDate: defaultDate)
             
             return defaultDate.dMMMyyyyHHmm
         }
@@ -23,7 +23,7 @@ final class DateModel {
     
     func renew(updateDate: Date) {
         if updateDate < Date().startOfDay { return }
-        lastUpdateDateManager.updateLastUpdateDate(with: updateDate)
+        lastUpdateDateRepository.update(with: updateDate)
     }
     
     func checkPickerDate(_ date: Date) -> Bool {
@@ -33,7 +33,7 @@ final class DateModel {
     func checkTimeInterval(to date: Date) -> Bool {
         if date < Date().startOfDay {
             return true }
-        guard let lastUpdateDate = lastUpdateDateManager.lastUpdateDate else {
+        guard let lastUpdateDate = lastUpdateDateRepository.date else {
             return true }
         let calendar = Calendar.current
         let components = calendar.dateComponents(in: .current, from: lastUpdateDate)
