@@ -32,7 +32,7 @@ struct PrivatBankExchangeRate: Decodable {
         self.currencyNumber = getCurrencyNumber(by: code) ?? 0
         
         func getCurrencyNumber(by code: String) -> Int? {
-            let currencyRepository = CurrencyDataRepository()
+            let currencyRepository = CurrencyRepository()
             let baseCurrency = currencyRepository.currency(by: code)?.number
             return baseCurrency
         }

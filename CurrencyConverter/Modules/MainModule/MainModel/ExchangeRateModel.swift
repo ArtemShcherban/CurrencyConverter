@@ -10,8 +10,8 @@ import CoreData
 
 final class ExchangeRateModel {
     static let shared = ExchangeRateModel()
-    private let exchangeRateRepository = ExchangeRateDataRepository()
-    private let currencyRepository = CurrencyDataRepository()
+    private let exchangeRateRepository = ExchangeRateRepository()
+    private let currencyRepository = CurrencyRepository()
     lazy var selectedDate = Date().startOfDay
     
     func convertToExchangeRates<T>(bankRates: [T]) -> [ExchangeRate] {

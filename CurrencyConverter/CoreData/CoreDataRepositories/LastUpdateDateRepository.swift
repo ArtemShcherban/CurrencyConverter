@@ -8,13 +8,13 @@
 import Foundation
 import CoreData
 
-protocol LastUpdateDateRepository {
+protocol LastUpdateDateDataRepository {
     func create(lastUpdateDate: Date)
     var date: Date? { get }
     func update(with lastUpdateDate: Date)
 }
 
-struct LastUpdateDateDataRepository: LastUpdateDateRepository {
+class LastUpdateDateRepository: LastUpdateDateDataRepository {
     private let coreDataStack = CoreDataStack.shared
     
     func create(lastUpdateDate: Date) {
@@ -30,9 +30,9 @@ struct LastUpdateDateDataRepository: LastUpdateDateRepository {
     
     func update(with lastUpdateDate: Date) {
         coreDataStack.managedContext.perform {
-            guard let cdLastUpdateDate = getCDLastUpdateDate() else { return }
+            guard let cdLastUpdateDate = self.getCDLastUpdateDate() else { return }
             cdLastUpdateDate.date = lastUpdateDate
-            coreDataStack.saveContext()
+            self.coreDataStack.saveContext()
         }
     }
     

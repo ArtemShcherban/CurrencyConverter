@@ -8,9 +8,9 @@
 import Foundation
 
 final class InitialModel {
-    private let groupRepository = GroupDataRepository()
-    private let currencyRepository = CurrencyDataRepository()
-    private let containerRepository = ContainerDataRepository()
+    private let groupRepository = GroupRepository()
+    private let currencyRepository = CurrencyRepository()
+    private let containerRepository = ContainerRepository()
     
     func insertCurrencies(complition: @escaping () -> Void) {
         let countOfCurrencies = currencyRepository.countOfCurrencies

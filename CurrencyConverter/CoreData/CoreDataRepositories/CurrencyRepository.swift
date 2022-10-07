@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-protocol CurrencyRepository {
+protocol CurrencyDataRepository {
     var countOfCurrencies: Int { get }
     func create(currency: Currency)
     func currency(by number: Int) -> Currency?
@@ -18,7 +18,7 @@ protocol CurrencyRepository {
     func setGroupKeyForCurrency(with number: Int, with key: Int)
 }
 
-struct CurrencyDataRepository: CurrencyRepository {
+class CurrencyRepository: CurrencyDataRepository {
     private let coreDataStack = CoreDataStack.shared
     
     func create(currency: Currency) {
@@ -80,13 +80,13 @@ struct CurrencyDataRepository: CurrencyRepository {
     func setGroupKeyForCurrency(with number: Int, with key: Int) {
         coreDataStack.backgroundContext.perform {
         guard
-            let cdCurrencyID = getCDCurrencyID(for: Int16(number)),
-            let cdCurrency = coreDataStack.backgroundContext.object(with: cdCurrencyID) as? CDCurrency else {
+            let cdCurrencyID = self.getCDCurrencyID(for: Int16(number)),
+            let cdCurrency = self.coreDataStack.backgroundContext.object(with: cdCurrencyID) as? CDCurrency else {
             print("Failed to update currencies with group's key: \(key)")
             return
         }
             cdCurrency.groupKey = Int16(key)
-            coreDataStack.synchronizeContexts()
+            self.coreDataStack.synchronizeContexts()
         }
     }
     

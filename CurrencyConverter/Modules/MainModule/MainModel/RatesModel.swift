@@ -13,8 +13,8 @@ protocol RatesModelDelegate: AnyObject {
 
 final class RatesModel {
     static let shared = RatesModel()
-    private let currencyRepository = CurrencyDataRepository()
-    private let containerRepository = ContainerDataRepository()
+    private let currencyRepository = CurrencyRepository()
+    private let containerRepository = ContainerRepository()
     private lazy var mainDataSource = MainDataSource.shared
     private lazy var currencyListModel = CurrencyListModel.shared
     private lazy var exchangeRateModel = ExchangeRateModel.shared

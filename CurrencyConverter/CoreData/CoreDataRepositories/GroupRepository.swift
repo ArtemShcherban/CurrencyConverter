@@ -8,14 +8,14 @@
 import Foundation
 import CoreData
 
-protocol GroupRepository {
+protocol GroupDataRepository {
     var countOfGroups: Int { get }
     func create(_ group: Group)
     func group(by keys: [Int]) -> [Group]?
     func group(by names: [String]) -> [Group]?
 }
 
-struct GroupDataRepository: GroupRepository {
+class GroupRepository: GroupDataRepository {
     private let coreDataStack = CoreDataStack.shared
    
     var countOfGroups: Int {

@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-protocol ContainerRepository {
+protocol ContainerDataRepository {
     var countOfContainers: Int { get }
     func createContainers()
     func currencies(from container: String) -> [Currency]?
@@ -18,7 +18,7 @@ protocol ContainerRepository {
     func removeFrom(container: String, currency: Currency)
 }
 
-struct ContainerDataRepository: ContainerRepository {
+class ContainerRepository: ContainerDataRepository {
     private let coreDataStack = CoreDataStack.shared
     
     var countOfContainers: Int {

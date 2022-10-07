@@ -11,9 +11,9 @@ final class CurrencyListModel {
     static let shared = CurrencyListModel()
     
     lazy var containerName = String()
-    private let groupRepository = GroupDataRepository()
-    private let currencyRepository = CurrencyDataRepository()
-    private let containerRepository = ContainerDataRepository()
+    private let groupRepository = GroupRepository()
+    private let currencyRepository = CurrencyRepository()
+    private let containerRepository = ContainerRepository()
     private(set) lazy var currencyDataSource = CurrencyListDataSource()
     
     func fillCurrencyDataSource() {

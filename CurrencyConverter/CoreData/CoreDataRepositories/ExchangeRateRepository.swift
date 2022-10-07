@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-protocol ExchangeRateRepository {
+protocol ExchangeRateDataRepository {
     func create(bulletin: Bulletin)
     func checkBulletin(for date: Date) -> Bool
     func exchangeRate(for currency: Currency, on date: Date) -> ExchangeRate?
@@ -16,7 +16,7 @@ protocol ExchangeRateRepository {
     func deleteBulletin(before date: Date)
 }
 
-struct ExchangeRateDataRepository: ExchangeRateRepository {
+class ExchangeRateRepository: ExchangeRateDataRepository {
     private let coreDataStack = CoreDataStack.shared
     
     func create(bulletin: Bulletin) {
@@ -66,14 +66,14 @@ struct ExchangeRateDataRepository: ExchangeRateRepository {
         let fetchRequest = fetchRequest(with: predicate)
         coreDataStack.backgroundContext.perform {
             do {
-                let cdBulletins = try coreDataStack.backgroundContext.fetch(fetchRequest)
+                let cdBulletins = try self.coreDataStack.backgroundContext.fetch(fetchRequest)
                 cdBulletins.forEach { cdBulletin in
-                    coreDataStack.backgroundContext.delete(cdBulletin)
+                    self.coreDataStack.backgroundContext.delete(cdBulletin)
                 }
             } catch let nserror as NSError {
                 debugPrint(nserror)
             }
-            coreDataStack.synchronizeContexts()
+            self.coreDataStack.synchronizeContexts()
         }
     }
     
