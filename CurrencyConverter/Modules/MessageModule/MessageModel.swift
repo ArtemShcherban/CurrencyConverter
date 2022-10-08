@@ -8,28 +8,25 @@
 import Foundation
 import MessageUI
 
-protocol MessageModelDelegate: MFMessageComposeViewControllerDelegate {
-    func message(controller: MFMessageComposeViewController)
-}
-
 final class MessageModel {
-    private lazy var converterModel = ConverterModel.shared
-    
     weak var delegate: MainViewController?
     
     func createMessage(with date: String) -> String {
-        guard let currencies = delegate?.selectedCurrencies else {
+        guard let delegate = delegate else {
             return String()
         }
-        let amount = converterModel.amount
+        
+        let currencies = delegate.selectedCurrencies
+        let amount = delegate.converterModel.amount
+        
         guard
-            let baseCurrency = delegate?.baseCurrency,
+            let baseCurrency = delegate.baseCurrency,
             !currencies.isEmpty else {
             return String()
         }
         let baseCurrencyName = amount <= 2 ? baseCurrency.currency : baseCurrency.currencyPlural
         var message = String()
-        if converterModel.isSellAction {
+        if delegate.converterModel.isSellAction {
             message = """
             At the exchange rate as of
             \(date),
@@ -38,13 +35,15 @@ final class MessageModel {
             """
         } else {
             message = """
+            At the exchange rate as of
+            \(date),
             To buy \(amount.decimalFormattedString()) \(baseCurrencyName)
             you need\n
             """
         }
         
         for (index, currency) in currencies.enumerated() {
-            let sum = converterModel.doCalculation(for: currency)
+            let sum = delegate.converterModel.doCalculation(for: currency)
             let sumString = sum.decimalFormattedString()
             let currencyName = sum <= 2 ? currency.currency : currency.currencyPlural
             if index != currencies.count - 1 {

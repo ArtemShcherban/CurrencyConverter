@@ -9,19 +9,19 @@ import UIKit
 
 final class CurrencyListViewController: UIViewController, CurrencyListViewDelegate {
     static let reuseIdentifier = String(describing: CurrencyListViewController.self)
-    
-    lazy var currencyListModel = CurrencyListModel.shared
-    lazy var ratesModel = RatesModel.shared
+   
+    lazy var currencyListModel = CurrencyListModel()
     lazy var currencyList: [Currency] = []
     lazy var filteredCurrency: [Currency] = []
     lazy var groups: [Group] = []
     var editingRow: Int?
+    var ratesModel: RatesModel?
     
     @IBOutlet weak var tableView: CurrencyListTableView!
     @IBOutlet weak var currensyListView: CurrencyListView!
     
     weak var delegate: RatesModelDelegate?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()

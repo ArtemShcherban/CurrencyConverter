@@ -8,22 +8,16 @@
 import Foundation
 
 protocol RatesModelDelegate: AnyObject {
+    var exchangeRateModel: ExchangeRateModel { get }
     var baseCurrency: Currency? { get set }
     var selectedCurrencies: [Currency] { get set }
     func updateCurrentTableView()
 }
 
 final class RatesModel {
-    static let shared = RatesModel()
     private let currencyRepository = CurrencyRepository()
     private let containerRepository = ContainerRepository()
-    private lazy var currencyListModel = CurrencyListModel.shared
-    private lazy var exchangeRateModel = ExchangeRateModel.shared
-    private lazy var containerName = String() {
-        didSet {
-            currencyListModel.containerName = containerName
-        }
-    }
+    private(set) lazy var containerName = String()
         
     weak var delegate: RatesModelDelegate?
     
@@ -45,10 +39,12 @@ final class RatesModel {
         }
         delegate?.selectedCurrencies = currencies
     }
-        
+    
     private func setExchangeRateFor(currencies: inout [Currency]) {
-        currencies = currencies.map { currency in
-            exchangeRateModel.setExchangeRate(for: currency)
+        if let delegate = delegate {
+            currencies = currencies.map { currency in
+                return delegate.exchangeRateModel.setExchangeRate(for: currency)
+            }
         }
     }
     

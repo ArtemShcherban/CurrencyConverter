@@ -9,7 +9,6 @@ import Foundation
 import CoreData
 
 final class ExchangeRateModel {
-    static let shared = ExchangeRateModel()
     private let exchangeRateRepository = ExchangeRateRepository()
     private let currencyRepository = CurrencyRepository()
     lazy var selectedDate = Date().startOfDay

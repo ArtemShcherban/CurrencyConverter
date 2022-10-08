@@ -10,9 +10,7 @@ import Foundation
 protocol CurrencyListModelDelegate: AnyObject { }
 
 final class CurrencyListModel {
-    static let shared = CurrencyListModel()
-    
-    lazy var containerName = String()
+    lazy var containerName = delegate?.ratesModel?.containerName ?? String()
     private let groupRepository = GroupRepository()
     private let currencyRepository = CurrencyRepository()
     private let containerRepository = ContainerRepository()

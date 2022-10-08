@@ -13,9 +13,9 @@ final class MainViewController: UIViewController {
     lazy var selectedCurrencies: [Currency] = []
     lazy var dateModel = DateModel()
     lazy var networkService = NetworkService()
-    lazy var exchangeRateModel = ExchangeRateModel.shared
-    lazy var ratesModel = RatesModel.shared
-    lazy var converterModel = ConverterModel.shared
+    lazy var exchangeRateModel = ExchangeRateModel()
+    lazy var ratesModel = RatesModel()
+    lazy var converterModel = ConverterModel()
     lazy var messageModel = MessageModel()
 
     @IBOutlet weak var mainView: MainView!
@@ -88,6 +88,7 @@ final class MainViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let viewController = storyboard.instantiateViewController(
             withIdentifier: CurrencyListViewController.reuseIdentifier) as? CurrencyListViewController else { return }
+        viewController.ratesModel = ratesModel
         viewController.modalPresentationStyle = .fullScreen
         viewController.delegate = self
         viewController.editingRow = editingRow

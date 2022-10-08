@@ -8,7 +8,6 @@
 import UIKit
 
 final class ConverterModel {
-    static let shared = ConverterModel()
     lazy var isSellAction = true
     lazy var amount: Double = 0.0
     
