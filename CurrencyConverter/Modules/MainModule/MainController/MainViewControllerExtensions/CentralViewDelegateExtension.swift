@@ -11,7 +11,7 @@ extension MainViewController: CentralViewDelegate {
     func swipe() {
         mainView.startSwipeAnimation {
             guard self.checkUpdateTime(date: Date()) else { return }
-            self.getDatafromBank()
+            self.updateData()
         }
     }
     
@@ -46,7 +46,7 @@ extension MainViewController: CentralViewDelegate {
         if exchangeRateModel.isBulletinInDatabase(for: date) {
             self.updateCurrentTableView()
         } else {
-            self.getDatafromBank(for: date)
+            self.updateData(for: date)
         }
     }
 }

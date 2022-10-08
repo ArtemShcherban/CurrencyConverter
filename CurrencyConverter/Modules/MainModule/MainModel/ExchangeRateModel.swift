@@ -11,9 +11,39 @@ import CoreData
 final class ExchangeRateModel {
     private let exchangeRateRepository = ExchangeRateRepository(CoreDataStack.shared)
     private let currencyRepository = CurrencyRepository(CoreDataStack.shared)
+    private let networkService = NetworkService()
     lazy var selectedDate = Date().startOfDay
     
-    func convertToExchangeRates<T>(bankRates: [T]) -> [ExchangeRate] {
+    func exchangeRates(for date: Date, completion: @escaping (Result<Date, NetworkServiceError> ) -> Void) {
+        networkService.loadData(for: .monoBank) { result in
+            self.handleResult(result, date) {
+                completion($0)
+            }
+            self.networkService.loadData(for: .privatBank(with: date)) { result in
+                self.handleResult(result, date) {
+                    completion($0)
+                }
+            }
+        }
+    }
+    
+    private func handleResult<BankRate>(
+        _ result: Result<[BankRate], NetworkServiceError>,
+        _ date: Date,
+        completion: @escaping (Result<Date, NetworkServiceError> ) -> Void
+    ) {
+        switch result {
+        case .failure(let error):
+            debugPrint(error)
+            completion(.failure(error))
+        case .success(let rates):
+            let exchangeRates = convertToExchangeRates(bankRates: rates)
+            updateBulletin(for: date, bankData: exchangeRates)
+            completion(.success(date))
+        }
+    }
+    
+    private func convertToExchangeRates<T>(bankRates: [T]) -> [ExchangeRate] {
         var exchangeRates: [ExchangeRate] = []
         if let privatExchangeRates = bankRates as? [PrivatBankExchangeRate] {
             privatExchangeRates.forEach {

@@ -12,7 +12,6 @@ final class MainViewController: UIViewController {
     var baseCurrency: Currency?
     lazy var selectedCurrencies: [Currency] = []
     lazy var dateModel = DateModel()
-    lazy var networkService = NetworkService()
     lazy var exchangeRateModel = ExchangeRateModel()
     lazy var ratesModel = RatesModel()
     lazy var converterModel = ConverterModel()
@@ -34,7 +33,7 @@ final class MainViewController: UIViewController {
         executeOnFirstStartup()
         exchangeRateModel.removeOldExchangeRates()
         mainView.lastUpdateDate = dateModel.lastUpdateDate()
-        getDatafromBank()
+        updateData()
     }
     
     private func setDelegates() {
@@ -49,27 +48,18 @@ final class MainViewController: UIViewController {
         ratesModel.fillDataSource()
     }
     
-    func getDatafromBank(for date: Date = Date()) {
+    func updateData(for date: Date = Date()) {
         guard dateModel.checkTimeInterval(to: date) else { return }
-        networkService.loadData(for: .monoBank) { result in
-            self.handleResult(result, date)
-            self.networkService.loadData(for: .privatBank(with: date)) { result in
-                self.handleResult(result, date)
-            }
-        }
-    }
-    
-    private func handleResult<BankRate>(_ result: Result<[BankRate], NetworkServiceError>, _ date: Date) {
-        switch result {
-        case .failure(let error):
-            debugPrint(error)
-        case .success(let rates):
-            let exchangeRates = exchangeRateModel.convertToExchangeRates(bankRates: rates)
-            self.exchangeRateModel.updateBulletin(for: date, bankData: exchangeRates)
-            self.dateModel.renew(updateDate: date)
-            self.mainAsyncQueue?.dispatch {
-                self.updateCurrentTableView()
-                self.mainView.lastUpdateDate = self.dateModel.lastUpdateDate()
+        exchangeRateModel.exchangeRates(for: date) { result in
+            switch result {
+            case .success(date):
+                self.dateModel.renew(updateDate: date)
+                self.mainAsyncQueue?.dispatch {
+                    self.updateCurrentTableView()
+                    self.mainView.lastUpdateDate = self.dateModel.lastUpdateDate()
+                }
+            default:
+                return
             }
         }
     }
