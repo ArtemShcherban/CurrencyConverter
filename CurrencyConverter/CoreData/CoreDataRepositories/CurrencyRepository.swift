@@ -18,9 +18,7 @@ protocol CurrencyDataRepository {
     func setGroupKeyForCurrency(with number: Int, with key: Int)
 }
 
-class CurrencyRepository: CurrencyDataRepository {
-    private let coreDataStack = CoreDataStack.shared
-    
+class CurrencyRepository: Repository, CurrencyDataRepository {
     func create(currency: Currency) {
         coreDataStack.backgroundContext.performAndWait {
             let cdCurrency = CDCurrency(context: coreDataStack.backgroundContext)

@@ -8,7 +8,7 @@
 import Foundation
 
 final class DateModel {
-    private let lastUpdateDateRepository = LastUpdateDateRepository()
+    private let lastUpdateDateRepository = LastUpdateDateRepository(CoreDataStack.shared)
     
     func lastUpdateDate() -> String {
         guard

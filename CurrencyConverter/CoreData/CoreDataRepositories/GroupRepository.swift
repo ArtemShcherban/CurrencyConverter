@@ -15,9 +15,7 @@ protocol GroupDataRepository {
     func group(by names: [String]) -> [Group]?
 }
 
-class GroupRepository: GroupDataRepository {
-    private let coreDataStack = CoreDataStack.shared
-   
+class GroupRepository: Repository, GroupDataRepository {
     var countOfGroups: Int {
         let groupCount = coreDataStack.fetchManagedObjectCount(managedObject: CDGroup.self)
         return groupCount

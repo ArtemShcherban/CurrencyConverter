@@ -116,6 +116,7 @@
 		F4FE3F5028F04A4600177CF5 /* CurrencyListViewController + TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE3F4F28F04A4600177CF5 /* CurrencyListViewController + TableViewDataSource.swift */; };
 		F4FE3F5228F05DED00177CF5 /* CurrencyListViewController + TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE3F5128F05DED00177CF5 /* CurrencyListViewController + TableViewDelegate.swift */; };
 		F4FE3F5428F14D4300177CF5 /* MainViewController + TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE3F5328F14D4300177CF5 /* MainViewController + TableViewDataSource.swift */; };
+		F4FE3F5628F1824A00177CF5 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE3F5528F1824A00177CF5 /* Repository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -256,6 +257,7 @@
 		F4FE3F4F28F04A4600177CF5 /* CurrencyListViewController + TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrencyListViewController + TableViewDataSource.swift"; sourceTree = "<group>"; };
 		F4FE3F5128F05DED00177CF5 /* CurrencyListViewController + TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrencyListViewController + TableViewDelegate.swift"; sourceTree = "<group>"; };
 		F4FE3F5328F14D4300177CF5 /* MainViewController + TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController + TableViewDataSource.swift"; sourceTree = "<group>"; };
+		F4FE3F5528F1824A00177CF5 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -601,6 +603,7 @@
 				F47F0BCD28C0E1DD0029E224 /* ExchangeRateRepository.swift */,
 				F4E0363A28BE1FBD00BD64ED /* GroupRepository.swift */,
 				F49AB41D28BA0B2C00868776 /* LastUpdateDateRepository.swift */,
+				F4FE3F5528F1824A00177CF5 /* Repository.swift */,
 			);
 			path = CoreDataRepositories;
 			sourceTree = "<group>";
@@ -1003,6 +1006,7 @@
 				F405602A28891CBE007CD5AA /* NetworkService.swift in Sources */,
 				F4D35F0D28BF8438001FE74A /* ExchangeRatesView.swift in Sources */,
 				F4DFF94C28DF3E3200F5A44E /* AppConstants.swift in Sources */,
+				F4FE3F5628F1824A00177CF5 /* Repository.swift in Sources */,
 				F405602C2889202D007CD5AA /* NetworkServiceError.swift in Sources */,
 				F405603C288966EF007CD5AA /* MainView.swift in Sources */,
 				F4056031288941F0007CD5AA /* PrivatBankExchangeRate.swift in Sources */,

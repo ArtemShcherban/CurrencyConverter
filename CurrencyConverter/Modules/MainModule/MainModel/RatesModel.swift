@@ -15,8 +15,8 @@ protocol RatesModelDelegate: AnyObject {
 }
 
 final class RatesModel {
-    private let currencyRepository = CurrencyRepository()
-    private let containerRepository = ContainerRepository()
+    private let currencyRepository = CurrencyRepository(CoreDataStack.shared)
+    private let containerRepository = ContainerRepository(CoreDataStack.shared)
     private(set) lazy var containerName = String()
         
     weak var delegate: RatesModelDelegate?

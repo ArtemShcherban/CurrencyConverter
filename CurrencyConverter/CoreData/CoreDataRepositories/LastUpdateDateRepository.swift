@@ -14,9 +14,7 @@ protocol LastUpdateDateDataRepository {
     func update(with lastUpdateDate: Date)
 }
 
-class LastUpdateDateRepository: LastUpdateDateDataRepository {
-    private let coreDataStack = CoreDataStack.shared
-    
+class LastUpdateDateRepository: Repository, LastUpdateDateDataRepository {
     func create(lastUpdateDate: Date) {
         let cdLastUpdateDate = CDLastUpdateDate(context: coreDataStack.managedContext)
         cdLastUpdateDate.date = lastUpdateDate

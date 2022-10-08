@@ -18,9 +18,7 @@ protocol ContainerDataRepository {
     func removeFrom(container: String, currency: Currency)
 }
 
-class ContainerRepository: ContainerDataRepository {
-    private let coreDataStack = CoreDataStack.shared
-    
+class ContainerRepository: Repository, ContainerDataRepository {
     var countOfContainers: Int {
         let count = coreDataStack.fetchManagedObjectCount(managedObject: CDContainer.self)
         return count

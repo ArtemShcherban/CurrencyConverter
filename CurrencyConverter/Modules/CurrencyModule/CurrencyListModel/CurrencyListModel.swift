@@ -11,9 +11,9 @@ protocol CurrencyListModelDelegate: AnyObject { }
 
 final class CurrencyListModel {
     lazy var containerName = delegate?.ratesModel?.containerName ?? String()
-    private let groupRepository = GroupRepository()
-    private let currencyRepository = CurrencyRepository()
-    private let containerRepository = ContainerRepository()
+    private let groupRepository = GroupRepository(CoreDataStack.shared)
+    private let currencyRepository = CurrencyRepository(CoreDataStack.shared)
+    private let containerRepository = ContainerRepository(CoreDataStack.shared)
     
     weak var delegate: CurrencyListViewController?
     
