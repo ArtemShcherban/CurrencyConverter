@@ -9,8 +9,12 @@ import UIKit
 
 final class CurrencyListViewController: UIViewController, CurrencyListViewDelegate {
     static let reuseIdentifier = String(describing: CurrencyListViewController.self)
-    private lazy var currencyListModel = CurrencyListModel.shared
-    private lazy var ratesModel = RatesModel.shared
+    
+    lazy var currencyListModel = CurrencyListModel.shared
+    lazy var ratesModel = RatesModel.shared
+    lazy var currencyList: [Currency] = []
+    lazy var filteredCurrency: [Currency] = []
+    lazy var groups: [Group] = []
     var editingRow: Int?
     
     @IBOutlet weak var tableView: CurrencyListTableView!
@@ -28,10 +32,11 @@ final class CurrencyListViewController: UIViewController, CurrencyListViewDelega
     }
     
     private func setDelegates() {
+        currencyListModel.delegate = self
         currensyListView.tableViewDelegate = self
+        currensyListView.tableViewDataSource = self
         currensyListView.searchBarDelegate = self
         currensyListView.delegate = self
-        currensyListView.tableViewDataSource = currencyListModel.currencyDataSource
     }
     
     private func addBackButton() {
@@ -41,41 +46,6 @@ final class CurrencyListViewController: UIViewController, CurrencyListViewDelega
     
     func backButtonTapped() {
         dismiss(animated: true)
-    }
-}
-
-extension CurrencyListViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        32.0
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard
-            let tableView = tableView as? CurrencyListTableView else {
-            return
-            }
-            let title = currencyListModel.groupTitle(for: section, in: tableView)
-            currensyListView.setGroupTitle(forHeader: view, title: title)
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        var currency: Currency
-        if
-            let tableView = tableView as? CurrencyListTableView,
-            tableView.isFiltered {
-            currency = currencyListModel.selectedFilteredCurrency(at: indexPath)
-        } else {
-            currency = currencyListModel.selectedCurrency(at: indexPath)
-        }
-        
-        if let editingRow = editingRow {
-            ratesModel.replaceCurrency(at: editingRow, with: currency)
-        } else {
-            ratesModel.add(currency: currency)
-        }
-        
-        delegate?.updateCurrentTableView()
-        self.dismiss(animated: true)
     }
 }
 

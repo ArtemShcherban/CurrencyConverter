@@ -8,10 +8,6 @@
 import Foundation
 
 extension MainViewController: RatesModelDelegate {
-    var ratesModel: RatesModel {
-        return RatesModel.shared
-    }
-    
     func updateCurrentTableView() {
         fillDataSource()
         mainView.updateTableView()

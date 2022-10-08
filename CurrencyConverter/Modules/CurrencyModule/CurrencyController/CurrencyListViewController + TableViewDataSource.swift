@@ -1,17 +1,13 @@
 //
-//  CurrencyListDataSource.swift
+//  CurrencyListViewController + TableViewDataSource.swift
 //  CurrencyConverter
 //
-//  Created by Artem Shcherban on 05.08.2022.
+//  Created by Artem Shcherban on 07.10.2022.
 //
 
 import UIKit
 
-final class CurrencyListDataSource: NSObject, UITableViewDataSource {
-    lazy var currencyList: [Currency] = []
-    lazy var filteredCurrency: [Currency] = []
-    lazy var groups: [Group] = []
-    
+extension CurrencyListViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         guard
             let tableView = tableView as? CurrencyListTableView,

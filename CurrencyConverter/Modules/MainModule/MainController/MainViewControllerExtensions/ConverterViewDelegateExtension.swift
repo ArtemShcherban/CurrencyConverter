@@ -8,10 +8,6 @@
 import Foundation
 
 extension MainViewController: ConverterViewDelegate {
-    private var converterModel: ConverterModel {
-        return  ConverterModel.shared
-    }
-    
     func valueChanged(in textField: inout AdjustableTextField) {
         textField.text = converterModel.transform(textField.text)
         updateCurrentTableView()
