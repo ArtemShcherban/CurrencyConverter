@@ -32,7 +32,7 @@ final class RatesModel {
             delegate?.selectedCurrencies = []
             return }
         
-        setExchangeRateFor(currencies: &currencies)
+        currencies = setExchangeRateFor(currencies: currencies)
         
         if containerName == ContainerConstants.Name.converter {
             delegate?.baseCurrency = currencies.removeFirst()
@@ -40,12 +40,14 @@ final class RatesModel {
         delegate?.selectedCurrencies = currencies
     }
     
-    private func setExchangeRateFor(currencies: inout [Currency]) {
+    private func setExchangeRateFor(currencies: [Currency]) -> [Currency] {
+        var currencies = currencies
         if let delegate = delegate {
             currencies = currencies.map { currency in
                 return delegate.exchangeRateModel.setExchangeRate(for: currency)
             }
         }
+        return currencies
     }
     
     func add(currency: Currency) {

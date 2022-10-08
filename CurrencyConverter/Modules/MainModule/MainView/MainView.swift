@@ -126,13 +126,20 @@ final class MainView: UIView {
     }
     
     func guidelinesMessage() {
-        mainAsyncQueue.dispatchAfter(deadline: .now(), work: workItem(index: 0))
-        mainAsyncQueue.dispatchAfter(deadline: .now() + .seconds(3), work: workItem(index: 1))
-        mainAsyncQueue.dispatchAfter(deadline: .now() + .seconds(6), work: workItem(index: 2))
-        mainAsyncQueue.dispatchAfter(deadline: .now() + .seconds(9), work: workItem(index: 3))
-        mainAsyncQueue.dispatchAfter(deadline: .now() + .seconds(12)) {
-            self.setupLastUpdateLabels()
+        let guidelines: [String] = MessageConstants.guidelines
+        var index = 0
+        let timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { timer in
+            self.lastUpdatedLabel.fadeTransition(0.5)
+            self.updateDateLabel.fadeTransition(0.5)
+            self.updateDateLabel.text = String()
+            self.lastUpdatedLabel.text = guidelines[index]
+            index += 1
+            if index == guidelines.count {
+                timer.invalidate()
+                self.setupLastUpdateLabels()
+            }
         }
+        timer.fire()
     }
     
     func nextUpdateMessage(_ hour: Int?) {
