@@ -7,14 +7,13 @@
 
 import UIKit
 protocol ConverterViewDelegate: AnyObject {
+    var baseCurrency: Currency? { get }
     func valueChanged(in textField: inout AdjustableTextField)
     func sellBuyButtonTapped()
 }
 
 @IBDesignable
 final class ConverterView: CentralView {
-    private lazy var mainDataSource = MainDataSource.shared
-    
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var sellButton: UIButton!
     @IBOutlet weak var buyButton: UIButton!
@@ -49,7 +48,7 @@ final class ConverterView: CentralView {
     }
     
     func configureBaseCarrencyButton() {
-        guard let currency = mainDataSource.baseCurrency else { return }
+        guard let currency = delegate?.baseCurrency else { return }
         baseCurrencyButton.setTitle(currency.code, for: .normal)
     }
     
@@ -59,7 +58,6 @@ final class ConverterView: CentralView {
     }
     
     private func configureTableView() {
-        tableView.dataSource = mainDataSource
         tableView.tag = 1
         tableView.registerUINibWith(nib: ConverterCell.self)
     }

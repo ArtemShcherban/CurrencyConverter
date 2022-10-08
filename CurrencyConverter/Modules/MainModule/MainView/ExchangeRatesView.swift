@@ -19,7 +19,6 @@ final class ExchangeRatesView: CentralView {
     @IBOutlet weak var addButton: UIButton!
     
     lazy var currentDate = Date().startOfDay
-    
     lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker()
         datePicker.date = Date()
@@ -61,7 +60,6 @@ final class ExchangeRatesView: CentralView {
     }
     
     private func configureTableView() {
-        tableView.dataSource = MainDataSource.shared
         tableView.tag = 0
         tableView.registerUINibWith(nib: RateCell.self)
     }

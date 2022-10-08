@@ -30,7 +30,6 @@
 		F42CD259288FE8320010FA7D /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F42CD258288FE8320010FA7D /* SFProText-Regular.ttf */; };
 		F435D1BD2887E5EB00B27418 /* AdjustableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F435D1BC2887E5EB00B27418 /* AdjustableTextField.swift */; };
 		F4429C6B289FB63400070620 /* DateModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4429C6A289FB63400070620 /* DateModel.swift */; };
-		F45137C0289E326A00B2190D /* MainDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45137BF289E326A00B2190D /* MainDataSource.swift */; };
 		F45137C2289E372200B2190D /* RatesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45137C1289E372200B2190D /* RatesModel.swift */; };
 		F4532CB92883E93300A05344 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4532CB82883E93300A05344 /* AppDelegate.swift */; };
 		F4532CBB2883E93300A05344 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4532CBA2883E93300A05344 /* SceneDelegate.swift */; };
@@ -116,6 +115,7 @@
 		F4FE3F4D28EC464D00177CF5 /* Predictable.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE3F4C28EC464D00177CF5 /* Predictable.swift */; };
 		F4FE3F5028F04A4600177CF5 /* CurrencyListViewController + TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE3F4F28F04A4600177CF5 /* CurrencyListViewController + TableViewDataSource.swift */; };
 		F4FE3F5228F05DED00177CF5 /* CurrencyListViewController + TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE3F5128F05DED00177CF5 /* CurrencyListViewController + TableViewDelegate.swift */; };
+		F4FE3F5428F14D4300177CF5 /* MainViewController + TableViewDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4FE3F5328F14D4300177CF5 /* MainViewController + TableViewDataSource.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -166,7 +166,6 @@
 		F435D1BC2887E5EB00B27418 /* AdjustableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustableTextField.swift; sourceTree = "<group>"; };
 		F4429C6A289FB63400070620 /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
 		F44B72F128BF962200E06D54 /* Lato-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Lato-Bold.ttf"; sourceTree = "<group>"; };
-		F45137BF289E326A00B2190D /* MainDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainDataSource.swift; sourceTree = "<group>"; };
 		F45137C1289E372200B2190D /* RatesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RatesModel.swift; sourceTree = "<group>"; };
 		F4532CB52883E93300A05344 /* CurrencyConverter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CurrencyConverter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F4532CB82883E93300A05344 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -256,6 +255,7 @@
 		F4FE3F4C28EC464D00177CF5 /* Predictable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Predictable.swift; sourceTree = "<group>"; };
 		F4FE3F4F28F04A4600177CF5 /* CurrencyListViewController + TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrencyListViewController + TableViewDataSource.swift"; sourceTree = "<group>"; };
 		F4FE3F5128F05DED00177CF5 /* CurrencyListViewController + TableViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CurrencyListViewController + TableViewDelegate.swift"; sourceTree = "<group>"; };
+		F4FE3F5328F14D4300177CF5 /* MainViewController + TableViewDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MainViewController + TableViewDataSource.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,6 +383,7 @@
 			children = (
 				F45B040128C7121E00221721 /* MainViewControllerExtensions */,
 				F405603D28896967007CD5AA /* MainViewController.swift */,
+				F4FE3F5328F14D4300177CF5 /* MainViewController + TableViewDataSource.swift */,
 			);
 			path = MainController;
 			sourceTree = "<group>";
@@ -460,7 +461,6 @@
 				F405604128897AEB007CD5AA /* MainModel */,
 				F405604028897ACC007CD5AA /* MainView */,
 				F405603F28897AAF007CD5AA /* MainController */,
-				F4AA60F0288D5BDE00E191E6 /* MainDataSource */,
 			);
 			path = MainModule;
 			sourceTree = "<group>";
@@ -627,14 +627,6 @@
 				F45B03F828C32E4100221721 /* UIViewExtensions */,
 			);
 			path = Extensions;
-			sourceTree = "<group>";
-		};
-		F4AA60F0288D5BDE00E191E6 /* MainDataSource */ = {
-			isa = PBXGroup;
-			children = (
-				F45137BF289E326A00B2190D /* MainDataSource.swift */,
-			);
-			path = MainDataSource;
 			sourceTree = "<group>";
 		};
 		F4AA6101288E5A0900E191E6 /* CurrencyController */ = {
@@ -956,6 +948,7 @@
 				F45B040528C74A6C00221721 /* RatesModelDelegateExtension.swift in Sources */,
 				F4AA60E3288D32D500E191E6 /* CentralView.swift in Sources */,
 				F4FE3F4B28EC44BA00177CF5 /* RateBackgroundView.swift in Sources */,
+				F4FE3F5428F14D4300177CF5 /* MainViewController + TableViewDataSource.swift in Sources */,
 				F45E044228AB5F7F00902C73 /* ConverterModel.swift in Sources */,
 				F47F0BCC28C0DE4D0029E224 /* Bulletin.swift in Sources */,
 				F49AB41E28BA0B2C00868776 /* LastUpdateDateRepository.swift in Sources */,
@@ -1024,7 +1017,6 @@
 				F45B03FA28C32E6700221721 /* UIViewAnimationExtension.swift in Sources */,
 				F4129DB228C750DF00905320 /* CentralViewDelegateExtension.swift in Sources */,
 				F47F0BC128C0C0480029E224 /* PrivatBankData.swift in Sources */,
-				F45137C0289E326A00B2190D /* MainDataSource.swift in Sources */,
 				F47F0BCA28C0DC880029E224 /* CDBulletin+CoreDataProperties.swift in Sources */,
 				F4AA6103288E5A5200E191E6 /* CurrencyCell.swift in Sources */,
 				F4DCC2F428AD10A100DC4D09 /* DoubleFormatExtension.swift in Sources */,

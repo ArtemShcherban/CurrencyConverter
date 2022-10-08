@@ -1,20 +1,13 @@
 //
-//  MainDataSource.swift
+//  MainViewController + TableViewDataSource.swift
 //  CurrencyConverter
 //
-//  Created by Artem Shcherban on 06.08.2022.
+//  Created by Artem Shcherban on 08.10.2022.
 //
 
 import UIKit
 
-final class MainDataSource: NSObject, UITableViewDataSource {
-    static let shared = MainDataSource()
-    var baseCurrency: Currency?
-    lazy var selectedCurrencies: [Currency] = []
-    private lazy var ratesModel = RatesModel.shared
-    
-    weak var cellDelegate: MainViewController?
-    
+extension MainViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         selectedCurrencies.count
     }
@@ -39,7 +32,7 @@ final class MainDataSource: NSObject, UITableViewDataSource {
         guard editingStyle == .delete else { return }
         ratesModel.removeCell(at: indexPath)
         tableView.deleteRows(at: [indexPath], with: .automatic)
-        cellDelegate?.updateAddButton()
+        self.updateAddButton()
         tableView.reloadData()
     }
     
@@ -47,8 +40,10 @@ final class MainDataSource: NSObject, UITableViewDataSource {
         guard let cell = tableView.cellWith(identifier: RateCell.self, for: indexPath) else {
             return UITableViewCell()
         }
-        cell.delegate = cellDelegate
-        cell.configureAt(row: indexPath.row, with: currency)
+        cell.currencyAction = {
+            self.openCurrencyViewController(for: indexPath.row)
+        }
+        cell.configureAt(with: currency)
         return cell
     }
     
@@ -56,9 +51,11 @@ final class MainDataSource: NSObject, UITableViewDataSource {
         guard let cell = tableView.cellWith(identifier: ConverterCell.self, for: indexPath) else {
             return UITableViewCell()
         }
-        cell.delegate = cellDelegate
+        cell.currencyAction = {
+            self.openCurrencyViewController(for: indexPath.row + 1)
+        }
         let amount = ConverterModel.shared.doCalculation(for: currency)
-        cell.configureAt(row: indexPath.row, with: currency, and: amount)
+        cell.configureAt(with: currency, and: amount)
         return cell
     }
 }

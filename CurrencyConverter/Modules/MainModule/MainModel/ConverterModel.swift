@@ -11,7 +11,8 @@ final class ConverterModel {
     static let shared = ConverterModel()
     lazy var isSellAction = true
     lazy var amount: Double = 0.0
-    private lazy var mainDataSource = MainDataSource.shared
+    
+    weak var delegate: MainViewController?
     
     func transform(_ text: String?) -> String {
         guard let text = text, !text.isEmpty else {
@@ -50,7 +51,7 @@ final class ConverterModel {
     }
     
     func doCalculation(for currency: Currency) -> Double {
-        guard let baseCurrency = mainDataSource.baseCurrency else { return 0.00 }
+        guard let baseCurrency = delegate?.baseCurrency else { return 0.00 }
         if isSellAction {
             return  currency.sell > 0 ? amount * baseCurrency.buy / currency.sell : 0.00
         } else {

@@ -9,14 +9,15 @@ import UIKit
 
 final class MainViewController: UIViewController {
     var mainAsyncQueue: Dispatching?
+    var baseCurrency: Currency?
+    lazy var selectedCurrencies: [Currency] = []
     lazy var dateModel = DateModel()
     lazy var networkService = NetworkService()
     lazy var exchangeRateModel = ExchangeRateModel.shared
-    lazy var mainDataSource = MainDataSource.shared
     lazy var ratesModel = RatesModel.shared
     lazy var converterModel = ConverterModel.shared
     lazy var messageModel = MessageModel()
-   
+
     @IBOutlet weak var mainView: MainView!
     
     override func viewDidLoad() {
@@ -37,7 +38,9 @@ final class MainViewController: UIViewController {
     }
     
     private func setDelegates() {
-        mainDataSource.cellDelegate = self
+        ratesModel.delegate = self
+        converterModel.delegate = self
+        messageModel.delegate = self
         mainView.setDelegates(delegate: self)
     }
     

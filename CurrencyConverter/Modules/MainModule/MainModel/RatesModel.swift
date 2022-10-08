@@ -8,6 +8,8 @@
 import Foundation
 
 protocol RatesModelDelegate: AnyObject {
+    var baseCurrency: Currency? { get set }
+    var selectedCurrencies: [Currency] { get set }
     func updateCurrentTableView()
 }
 
@@ -15,7 +17,6 @@ final class RatesModel {
     static let shared = RatesModel()
     private let currencyRepository = CurrencyRepository()
     private let containerRepository = ContainerRepository()
-    private lazy var mainDataSource = MainDataSource.shared
     private lazy var currencyListModel = CurrencyListModel.shared
     private lazy var exchangeRateModel = ExchangeRateModel.shared
     private lazy var containerName = String() {
@@ -34,15 +35,15 @@ final class RatesModel {
         guard
             var currencies = containerRepository.currencies(from: containerName),
             !currencies.isEmpty else {
-            mainDataSource.selectedCurrencies = []
+            delegate?.selectedCurrencies = []
             return }
         
         setExchangeRateFor(currencies: &currencies)
         
         if containerName == ContainerConstants.Name.converter {
-            mainDataSource.baseCurrency = currencies.removeFirst()
+            delegate?.baseCurrency = currencies.removeFirst()
         }
-        mainDataSource.selectedCurrencies = currencies
+        delegate?.selectedCurrencies = currencies
     }
         
     private func setExchangeRateFor(currencies: inout [Currency]) {
@@ -60,20 +61,23 @@ final class RatesModel {
     }
     
     func removeCell(at indexPath: IndexPath) {
-        var currency = mainDataSource.selectedCurrencies[indexPath.row]
+        guard var currency = delegate?.selectedCurrencies[indexPath.row] else { return }
         currency.buy = 0.0
         currency.sell = 0.0
         currencyRepository.updateCurrencyRate(for: currency)
         containerRepository.removeFrom(container: containerName, currency: currency)
         fillDataSource()
     }
-
+    
     func isMaxNumberOfRows() -> Bool {
+        guard let delegate = delegate else {
+            return true
+        }
         switch containerName {
         case ContainerConstants.Name.rate:
-            return mainDataSource.selectedCurrencies.count <= 2
+            return delegate.selectedCurrencies.count <= 2
         case ContainerConstants.Name.converter:
-            return mainDataSource.selectedCurrencies.count <= 1
+            return delegate.selectedCurrencies.count <= 1
         default:
             return true
         }

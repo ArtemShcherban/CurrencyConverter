@@ -57,8 +57,10 @@ final class MainView: UIView {
         self.delegate = delegate
         exchangeRatesView.centralViewDelegate = delegate
         exchangeRatesView.delegate = delegate
+        exchangeRatesView.tableView.dataSource = delegate
         converterView.centralViewDelegate = delegate
         converterView.delegate = delegate
+        converterView.tableView.dataSource = delegate
     }
     
     private func configureSwitchViewButton() {

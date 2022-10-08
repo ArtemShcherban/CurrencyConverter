@@ -13,14 +13,17 @@ protocol MessageModelDelegate: MFMessageComposeViewControllerDelegate {
 }
 
 final class MessageModel {
-    private lazy var mainDataSource = MainDataSource.shared
     private lazy var converterModel = ConverterModel.shared
     
+    weak var delegate: MainViewController?
+    
     func createMessage(with date: String) -> String {
-        let currencies = mainDataSource.selectedCurrencies
+        guard let currencies = delegate?.selectedCurrencies else {
+            return String()
+        }
         let amount = converterModel.amount
         guard
-            let baseCurrency = mainDataSource.baseCurrency,
+            let baseCurrency = delegate?.baseCurrency,
             !currencies.isEmpty else {
             return String()
         }
