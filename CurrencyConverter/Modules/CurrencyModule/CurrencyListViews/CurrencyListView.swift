@@ -11,7 +11,6 @@ protocol CurrencyListViewDelegate: AnyObject {
     func backButtonTapped()
 }
 
-@IBDesignable
 final class CurrencyListView: UIView {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchBar: UISearchBar!

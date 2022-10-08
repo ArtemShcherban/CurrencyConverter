@@ -17,14 +17,14 @@ extension MainView {
         let visibleWindow = isRatesView ? exchangeRatesView : converterView
         let hiddenWindow = isRatesView ? converterView : exchangeRatesView
         isRatesView.toggle()
-        UIView.animate(withDuration: 0.75, animations: {
+        UIView.animate(withDuration: 0.2, animations: {
             visibleWindow.transform = CGAffineTransform(scaleX: 0.001, y: 1)}, completion: { _ in
                 self.containerView.addSubview(hiddenWindow)
                 hiddenWindow.setConstraints()
                 visibleWindow.isHidden = true
                 visibleWindow.removeFromSuperview()
                 completion()
-                UIView.animate(withDuration: 0.75) {
+                UIView.animate(withDuration: 0.2) {
                     hiddenWindow.isHidden = false
                     hiddenWindow.transform = CGAffineTransform(scaleX: 1, y: 1)
                 }

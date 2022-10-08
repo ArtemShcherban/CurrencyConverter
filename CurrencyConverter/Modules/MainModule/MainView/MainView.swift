@@ -27,7 +27,6 @@ final class MainView: UIView {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var lastUpdatedLabel: UILabel!
     @IBOutlet private weak var updateDateLabel: UILabel!
-    @IBOutlet private weak var helpButton: UIButton!
     @IBOutlet private weak var switchViewButton: UIButton!
     
     weak var delegate: MainViewDelegate?
