@@ -8,7 +8,8 @@
 import UIKit
 
 protocol ExchangeRatesViewDelegate: AnyObject {
-    func helpButtonPressed()
+    func helpButtonPressed(completion: @escaping () -> Void)
+//    func helpButtonPressed()
 }
 
 final class ExchangeRatesView: CentralView {
@@ -73,8 +74,11 @@ final class ExchangeRatesView: CentralView {
         centralViewDelegate?.addButtonPressed()
     }
     
-    @IBAction func helpButtonPressed(_ sender: Any) {
-        delegate?.helpButtonPressed()
+    @IBAction func helpButtonPressed() {
+        helpButton.isEnabled = false
+        delegate?.helpButtonPressed {
+            self.helpButton.isEnabled = true
+        }
     }
 }
 

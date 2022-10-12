@@ -8,7 +8,9 @@
 import Foundation
 
 extension MainViewController: ExchangeRatesViewDelegate {
-    func helpButtonPressed() {
-        mainView.guidelinesMessage()
+    func helpButtonPressed(completion: @escaping () -> Void) {
+        guidelinesMessage {
+            completion()
+        }
     }
 }

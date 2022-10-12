@@ -9,7 +9,7 @@ import UIKit
 
 extension MainViewController: CentralViewDelegate {
     func swipe() {
-        mainView.startSwipeAnimation {
+        startSwipeAnimation {
             guard self.checkUpdateTime(date: Date()) else { return }
             self.updateData()
         }
@@ -20,7 +20,7 @@ extension MainViewController: CentralViewDelegate {
     }
     
     func updateAddButton() {
-        mainView.setAddButtonStatus(ratesModel.isMaxNumberOfRows())
+        setAddButtonStatus(ratesModel.isMaxNumberOfRows())
     }
     
     func changeCurrency(at row: Int) {
@@ -28,7 +28,7 @@ extension MainViewController: CentralViewDelegate {
         }
     
     func shareRates(sender: UIButton) {
-        let text = messageModel.createMessage(with: mainView.lastUpdateDate)
+        let text = messageModel.createMessage(with: lastUpdateDate)
         let textToShare = [text]
         let activityController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = self.view

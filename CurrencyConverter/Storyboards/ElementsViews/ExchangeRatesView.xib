@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="all" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="ipad11_0rounded" orientation="landscape" layout="splitview1_3" appearance="dark"/>
+    <device id="ipad11_0rounded" orientation="landscape" layout="splitview1_3" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
@@ -140,7 +140,7 @@
                     <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                     <state key="normal" image="questionmark.circle" catalog="system"/>
                     <connections>
-                        <action selector="helpButtonPressed:" destination="-1" eventType="touchUpInside" id="zpz-wx-FUH"/>
+                        <action selector="helpButtonPressed" destination="-1" eventType="touchUpInside" id="YAe-ga-Vh0"/>
                     </connections>
                 </button>
             </subviews>

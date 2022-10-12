@@ -28,7 +28,7 @@ extension MainViewController {
         if isFirstTimeLaunched {
             self.mainAsyncQueue?.dispatchAfter(
                 deadline: .now() + .seconds(2)) {
-                    self.mainView.guidelinesMessage()
+                    self.exchangeRatesView.helpButtonPressed()
             }
             UserDefaults.standard.set(true, forKey: AppConstants.launchedBefore)
             return

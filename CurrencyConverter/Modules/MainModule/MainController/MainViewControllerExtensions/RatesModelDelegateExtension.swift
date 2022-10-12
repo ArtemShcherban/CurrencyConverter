@@ -10,7 +10,7 @@ import Foundation
 extension MainViewController: RatesModelDelegate {
     func updateCurrentTableView() {
         fillDataSource()
-        mainView.updateTableView()
+        updateTableView()
         updateAddButton()
     }
 }

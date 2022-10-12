@@ -16,8 +16,6 @@
 		F405602C2889202D007CD5AA /* NetworkServiceError.swift in Sources */ = {isa = PBXBuildFile; fileRef = F405602B2889202D007CD5AA /* NetworkServiceError.swift */; };
 		F4056031288941F0007CD5AA /* PrivatBankExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4056030288941F0007CD5AA /* PrivatBankExchangeRate.swift */; };
 		F4056033288946DA007CD5AA /* ExchangeRate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4056032288946DA007CD5AA /* ExchangeRate.swift */; };
-		F405603A288966B5007CD5AA /* MainView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F4056039288966B5007CD5AA /* MainView.xib */; };
-		F405603C288966EF007CD5AA /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F405603B288966EF007CD5AA /* MainView.swift */; };
 		F405603E28896967007CD5AA /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F405603D28896967007CD5AA /* MainViewController.swift */; };
 		F4056045288984CE007CD5AA /* Dispatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4056044288984CE007CD5AA /* Dispatcher.swift */; };
 		F40560472889887B007CD5AA /* AsyncQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40560462889887B007CD5AA /* AsyncQueue.swift */; };
@@ -91,7 +89,7 @@
 		F4DB319A28CB70820010E900 /* ExchangeRatesViewDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DB319928CB70820010E900 /* ExchangeRatesViewDelegateExtension.swift */; };
 		F4DB319E28CDBEEF0010E900 /* CurrencyListTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DB319D28CDBEEF0010E900 /* CurrencyListTableView.swift */; };
 		F4DCC2F428AD10A100DC4D09 /* DoubleFormatExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC2F328AD10A100DC4D09 /* DoubleFormatExtension.swift */; };
-		F4DCC2F628B4B41200DC4D09 /* MainViewAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC2F528B4B41200DC4D09 /* MainViewAnimationExtension.swift */; };
+		F4DCC2F628B4B41200DC4D09 /* MainViewControllerAnimationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC2F528B4B41200DC4D09 /* MainViewControllerAnimationExtension.swift */; };
 		F4DCC2F828B4B50C00DC4D09 /* TitleConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC2F728B4B50C00DC4D09 /* TitleConstants.swift */; };
 		F4DCC33D28B4E98400DC4D09 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4DCC33C28B4E98400DC4D09 /* MessageModel.swift */; };
 		F4DCC34128B624C300DC4D09 /* WorldCurrencies.plist in Resources */ = {isa = PBXBuildFile; fileRef = F4DCC34028B624C300DC4D09 /* WorldCurrencies.plist */; };
@@ -146,8 +144,6 @@
 		F405602B2889202D007CD5AA /* NetworkServiceError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkServiceError.swift; sourceTree = "<group>"; };
 		F4056030288941F0007CD5AA /* PrivatBankExchangeRate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivatBankExchangeRate.swift; sourceTree = "<group>"; };
 		F4056032288946DA007CD5AA /* ExchangeRate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExchangeRate.swift; sourceTree = "<group>"; };
-		F4056039288966B5007CD5AA /* MainView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MainView.xib; sourceTree = "<group>"; };
-		F405603B288966EF007CD5AA /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		F405603D28896967007CD5AA /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F4056044288984CE007CD5AA /* Dispatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dispatcher.swift; sourceTree = "<group>"; };
 		F40560462889887B007CD5AA /* AsyncQueue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncQueue.swift; sourceTree = "<group>"; };
@@ -226,7 +222,7 @@
 		F4DB319928CB70820010E900 /* ExchangeRatesViewDelegateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRatesViewDelegateExtension.swift; sourceTree = "<group>"; };
 		F4DB319D28CDBEEF0010E900 /* CurrencyListTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListTableView.swift; sourceTree = "<group>"; };
 		F4DCC2F328AD10A100DC4D09 /* DoubleFormatExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleFormatExtension.swift; sourceTree = "<group>"; };
-		F4DCC2F528B4B41200DC4D09 /* MainViewAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewAnimationExtension.swift; sourceTree = "<group>"; };
+		F4DCC2F528B4B41200DC4D09 /* MainViewControllerAnimationExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewControllerAnimationExtension.swift; sourceTree = "<group>"; };
 		F4DCC2F728B4B50C00DC4D09 /* TitleConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleConstants.swift; sourceTree = "<group>"; };
 		F4DCC33C28B4E98400DC4D09 /* MessageModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		F4DCC34028B624C300DC4D09 /* WorldCurrencies.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = WorldCurrencies.plist; sourceTree = "<group>"; };
@@ -378,14 +374,13 @@
 			path = MainController;
 			sourceTree = "<group>";
 		};
-		F405604028897ACC007CD5AA /* MainView */ = {
+		F405604028897ACC007CD5AA /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				F405603B288966EF007CD5AA /* MainView.swift */,
 				F4A2F88D28870F53007948A9 /* ConverterView.swift */,
 				F4D35F0C28BF8438001FE74A /* ExchangeRatesView.swift */,
 			);
-			path = MainView;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		F405604128897AEB007CD5AA /* MainModel */ = {
@@ -445,7 +440,7 @@
 			isa = PBXGroup;
 			children = (
 				F405604128897AEB007CD5AA /* MainModel */,
-				F405604028897ACC007CD5AA /* MainView */,
+				F405604028897ACC007CD5AA /* Views */,
 				F405603F28897AAF007CD5AA /* MainController */,
 			);
 			path = MainModule;
@@ -525,7 +520,6 @@
 				F405604228897BC7007CD5AA /* ElementsViews */,
 				F4532CC32883E93400A05344 /* LaunchScreen.storyboard */,
 				F4532CBE2883E93300A05344 /* Main.storyboard */,
-				F4056039288966B5007CD5AA /* MainView.xib */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -548,7 +542,7 @@
 		F45B03F828C32E4100221721 /* UIViewExtensions */ = {
 			isa = PBXGroup;
 			children = (
-				F4DCC2F528B4B41200DC4D09 /* MainViewAnimationExtension.swift */,
+				F4DCC2F528B4B41200DC4D09 /* MainViewControllerAnimationExtension.swift */,
 				F45B03F928C32E6700221721 /* UIViewAnimationExtension.swift */,
 				F4A2F8952887C4D7007948A9 /* UIViewFixInExtension.swift */,
 			);
@@ -807,7 +801,6 @@
 				F4532CC02883E93300A05344 /* Main.storyboard in Resources */,
 				F4D35F0B28BF80C0001FE74A /* ExchangeRatesView.xib in Resources */,
 				F4A2F89428871DD4007948A9 /* Lato-SemiBold.ttf in Resources */,
-				F405603A288966B5007CD5AA /* MainView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -945,7 +938,7 @@
 				F47F0BD228C0E9240029E224 /* DateExtensions.swift in Sources */,
 				F45E044028AA671E00902C73 /* ConverterCell.swift in Sources */,
 				F49AB43428BA3F3A00868776 /* Currency.swift in Sources */,
-				F4DCC2F628B4B41200DC4D09 /* MainViewAnimationExtension.swift in Sources */,
+				F4DCC2F628B4B41200DC4D09 /* MainViewControllerAnimationExtension.swift in Sources */,
 				F4DFF94A28DF2E1F00F5A44E /* UITableViewExtension.swift in Sources */,
 				F4056025288919AF007CD5AA /* URLModel.swift in Sources */,
 				F454366B28D4680F003B0B62 /* Endpoint.swift in Sources */,
@@ -985,7 +978,6 @@
 				F465FD3B28F6BAAB008A3D5F /* CDContainer+CoreDataClass.swift in Sources */,
 				F4FE3F5628F1824A00177CF5 /* Repository.swift in Sources */,
 				F405602C2889202D007CD5AA /* NetworkServiceError.swift in Sources */,
-				F405603C288966EF007CD5AA /* MainView.swift in Sources */,
 				F4056031288941F0007CD5AA /* PrivatBankExchangeRate.swift in Sources */,
 				F49AB41C28BA0A6600868776 /* CDLastUpdateDate+CoreDataProperties.swift in Sources */,
 				F4532CEB2884056400A05344 /* EllipseView.swift in Sources */,

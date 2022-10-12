@@ -1,5 +1,5 @@
 //
-//  MainViewAnimationExtension.swift
+//  MainViewControllerAnimationExtension.swift
 //  CurrencyConverter
 //
 //  Created by Artem Shcherban on 23.08.2022.
@@ -7,10 +7,52 @@
 
 import UIKit
 
-extension MainView {
+extension MainViewController {
     enum AnimationDirection: Int {
         case forward = 1
         case backward = -1
+    }
+    
+    func startSwipeAnimation(comlition: @escaping () -> Void) {
+        let centralView = isRatesView ? exchangeRatesView : converterView
+        centralView.swipeAnimation(labelOne: lastUpdatedLabel, labelTwo: updateDateLabel) {
+            comlition()
+        }
+    }
+    
+    func titleAnimation(for switchViewButton: UIButton) {
+        switchViewButton.fadeTransition(1.0)
+        switchViewButton.titleLabel?.text = ""
+        let title = isRatesView ? TitleConstants.exchangeRates : TitleConstants.currencyConverter
+        switchViewButton.setTitle(title, for: .normal)
+    }
+    
+    func startAnimationForView(and titleLabel: UILabel, completion: @escaping(() -> Void)) {
+        animateSwitchView {
+            completion()
+        }
+        titleTransition(
+            titleLabel,
+            title: isRatesView ? TitleConstants.exchangeRates : TitleConstants.currencyConverter,
+            direction: isRatesView ? AnimationDirection.backward : AnimationDirection.forward)
+    }
+    
+    func animateUpdate(message: String) {
+        lastUpdatedLabel.fadeTransition(0.5)
+        updateDateLabel.fadeTransition(0.5)
+        lastUpdatedLabel.text = message
+        updateDateLabel.text = String()
+        let delayInSeconds = 5.0
+        DispatchQueue.main.asyncAfter(deadline: .now() + delayInSeconds) { [weak self] in
+            self?.setupLastUpdateLabels()
+        }
+    }
+    
+    func setupLastUpdateLabels() {
+        self.lastUpdatedLabel.fadeTransition(0.5)
+        self.updateDateLabel.fadeTransition(0.5)
+        self.lastUpdatedLabel.text = "Last Updated"
+        self.updateDateLabel.text = lastUpdateDate
     }
     
     func animateSwitchView(completion: @escaping () -> Void) {

@@ -7,7 +7,7 @@
 
 import Foundation
 
-extension MainViewController: MainViewDelegate {
+extension MainViewController {
     func switchViewButtonTapped() {
         updateCurrentTableView()
     }
