@@ -11,10 +11,11 @@ struct ExchangeRate: Codable {
         self.currencyNumber = monoBankExchangeRate.currencyNumber
     }
     
-    init(from privatBankExchangeRate: PrivatBankExchangeRate) {
+    init(from privatBankExchangeRate: PrivatBankExchangeRate, and currencyList: [Currency]) {
         self.buy = privatBankExchangeRate.buyRate
         self.sell = privatBankExchangeRate.sellRate
-        self.currencyNumber = privatBankExchangeRate.currencyNumber
+        let currencyCode = privatBankExchangeRate.currencyCode
+        self.currencyNumber = currencyList.first { $0.code == currencyCode }?.number ?? 0
     }
     
     init(buy: Double, sell: Double, currencyNumber: Int) {

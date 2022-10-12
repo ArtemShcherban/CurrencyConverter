@@ -45,7 +45,7 @@ extension MainView {
         label.superview?.addSubview(tempLabel)
         
         UIView.animate(
-            withDuration: 0.75,
+            withDuration: 0.4,
             delay: 0.0,
             options: .curveEaseOut,
             animations: {

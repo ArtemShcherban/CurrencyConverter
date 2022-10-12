@@ -38,7 +38,7 @@ extension CurrencyListViewController: UITableViewDelegate {
             ratesModel?.add(currency: currency)
         }
         
-        delegate?.updateCurrentTableView()
+        ratesModelDelegate?.updateCurrentTableView()
         self.dismiss(animated: true)
     }
 }

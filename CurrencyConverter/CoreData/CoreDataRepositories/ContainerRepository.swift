@@ -11,7 +11,7 @@ import CoreData
 protocol ContainerDataRepository {
     var countOfContainers: Int { get }
     func createContainers()
-    func currencies(from container: String) -> [Currency]?
+    func currencyCodes(from container: String) -> [String]?
     func fillIn(container: String, with currency: Currency)
     func update(container: String, with currency: Currency)
     func replaceIn(container: String, at row: Int, with currency: Currency)
@@ -26,36 +26,31 @@ class ContainerRepository: Repository, ContainerDataRepository {
     
     func createContainers() {
         coreDataStack.backgroundContext.performAndWait {
-            _ = CDRateContainer(context: coreDataStack.backgroundContext)
-            _ = CDConverterContainer(context: coreDataStack.backgroundContext)
+            let rateContainer = CDRateContainer(context: coreDataStack.backgroundContext)
+            rateContainer.currencyCodes = []
+            let converterContainer = CDConverterContainer(context: coreDataStack.backgroundContext)
+            converterContainer.currencyCodes = []
             coreDataStack.synchronizeContexts()
         }
     }
     
-    func currencies(from container: String) -> [Currency]? {
-        var currencies: [Currency] = []
+    func currencyCodes(from container: String) -> [String]? {
         guard
             let objectID = getCDContainerID(for: container),
-            let cdContainer = coreDataStack.managedContext.object(with: objectID) as? CDContainer,
-            let cdCurrencies = cdContainer.currencies?.array as? [CDCurrency]  else {
+            let cdContainer = coreDataStack.managedContext.object(with: objectID) as? CDContainer else {
             return nil
         }
-        cdCurrencies.forEach { cdCurrency in
-            currencies.append(cdCurrency.convertToCurrency())
-        }
-        return currencies
+        return cdContainer.currencyCodes
     }
     
     func fillIn(container: String, with currency: Currency) {
         coreDataStack.backgroundContext.performAndWait {
             guard
                 let containerObjectID = getCDContainerID(for: container),
-                let cdContainer = coreDataStack.backgroundContext.object(with: containerObjectID) as? CDContainer,
-                let currencyObjectID = getCDCurrencyID(by: Int16(currency.number)),
-                let cdCurrency = coreDataStack.backgroundContext.object(with: currencyObjectID) as? CDCurrency else {
-                    return
-                }
-            cdContainer.addToCurrencies(cdCurrency)
+                let cdContainer = coreDataStack.backgroundContext.object(with: containerObjectID) as? CDContainer else {
+                return
+            }
+            cdContainer.currencyCodes.append(currency.code)
             coreDataStack.synchronizeContexts()
         }
     }
@@ -63,39 +58,36 @@ class ContainerRepository: Repository, ContainerDataRepository {
     func update(container: String, with currency: Currency) {
         guard
             let cdContainerID = getCDContainerID(for: container),
-            let cdContainer = coreDataStack.managedContext.object(with: cdContainerID) as? CDContainer,
-            let cdCurrencyID = getCDCurrencyID(by: Int16(currency.number)),
-            let cdCurrency = coreDataStack.managedContext.object(with: cdCurrencyID) as? CDCurrency else {
+            let cdContainer = coreDataStack.managedContext.object(with: cdContainerID) as? CDContainer else {
             print("Failed to update with currency: \(currency)")
             return
         }
-        cdContainer.addToCurrencies(cdCurrency)
+        cdContainer.currencyCodes.append(currency.code)
         coreDataStack.saveContext()
     }
     
     func replaceIn(container: String, at row: Int, with currency: Currency) {
         guard
-            let cdCurrencyID = getCDCurrencyID(by: Int16(currency.number)),
-            let cdCurrency = coreDataStack.managedContext.object(with: cdCurrencyID) as? CDCurrency,
             let cdContainerID = getCDContainerID(for: container),
             let cdContainer = coreDataStack.managedContext.object(with: cdContainerID) as? CDContainer else {
             print("Failed to replace with new currency: \(currency)")
-        return
+            return
         }
-        cdContainer.replaceCurrencies(at: row, with: cdCurrency)
+        cdContainer.currencyCodes.remove(at: row)
+        cdContainer.currencyCodes.insert(currency.code, at: row)
         coreDataStack.saveContext()
     }
     
     func removeFrom(container: String, currency: Currency) {
         guard
             let cdContainerID = getCDContainerID(for: container),
-            let cdContainer = coreDataStack.managedContext.object(with: cdContainerID) as? CDContainer,
-            let cdCurrencyID = getCDCurrencyID(by: Int16(currency.number)),
-            let cdCurrency = coreDataStack.managedContext.object(with: cdCurrencyID) as? CDCurrency else {
+            let cdContainer = coreDataStack.managedContext.object(with: cdContainerID) as? CDContainer else {
             print("Failed to remove currency: \(currency)")
             return
         }
-        cdContainer.removeFromCurrencies(cdCurrency)
+        cdContainer.currencyCodes = cdContainer.currencyCodes.filter { code in
+            code != currency.code
+        }
         coreDataStack.saveContext()
     }
     
@@ -114,26 +106,6 @@ class ContainerRepository: Repository, ContainerDataRepository {
             }
         default:
             return objectID
-        }
-        return objectID
-    }
-    
-    private func getCDCurrencyID(by number: Int16) -> NSManagedObjectID? {
-        let fetchRequest: NSFetchRequest<CDCurrency> = CDCurrency.fetchRequest()
-        let predicate = NSPredicate(format: "%K == %D", #keyPath(CDCurrency.number), number)
-        fetchRequest.predicate = predicate
-        var objectID: NSManagedObjectID?
-        coreDataStack.managedContext.performAndWait {
-            do {
-                guard
-                    let cdCurrency = try coreDataStack.managedContext.fetch(fetchRequest).first
-                else {
-                    return
-                }
-                objectID = cdCurrency.objectID
-            } catch let nserror as NSError {
-                debugPrint(nserror)
-            }
         }
         return objectID
     }

@@ -13,13 +13,13 @@ extension MainViewController {
     }
     
     private var initialModel: InitialModel {
-        return InitialModel()
+        let model = InitialModel()
+        model.delegate = self
+        return model
     }
     
     func initialSetup(complition: @escaping () -> Void) {
         initialModel.insertCurrencies {
-            self.initialModel.insertGroups()
-            self.initialModel.createContainers()
             complition()
         }
     }

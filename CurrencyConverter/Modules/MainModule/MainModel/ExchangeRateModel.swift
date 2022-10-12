@@ -9,10 +9,14 @@ import Foundation
 import CoreData
 
 final class ExchangeRateModel {
-    private let exchangeRateRepository = ExchangeRateRepository(CoreDataStack.shared)
-    private let currencyRepository = CurrencyRepository(CoreDataStack.shared)
-    private let networkService = NetworkService()
     lazy var selectedDate = Date().startOfDay
+    private let networkService = NetworkService()
+    private let exchangeRateRepository = ExchangeRateRepository(CoreDataStack.shared)
+    private var currencyList: [Currency]
+    
+    init(with currencyList: [Currency]) {
+        self.currencyList = currencyList
+    }
     
     func exchangeRates(for date: Date, completion: @escaping (Result<Date, NetworkServiceError> ) -> Void) {
         networkService.loadData(for: .monoBank) { result in
@@ -47,7 +51,7 @@ final class ExchangeRateModel {
         var exchangeRates: [ExchangeRate] = []
         if let privatExchangeRates = bankRates as? [PrivatBankExchangeRate] {
             privatExchangeRates.forEach {
-                exchangeRates.append( $0.convertToExchangeRate())
+                exchangeRates.append( $0.convertToExchangeRate(currencyList: currencyList))
             }
         }
         if let monoExchangeRates = bankRates as? [MonoBankExchangeRate] {
@@ -84,7 +88,6 @@ final class ExchangeRateModel {
         guard currency.code != "UAH" else {
             currency.buy = 1.0
             currency.sell = 1.0
-            currencyRepository.updateCurrencyRate(for: currency)
             return currency
         }
         guard
@@ -93,7 +96,6 @@ final class ExchangeRateModel {
         }
         currency.buy = exchangeRate.buy
         currency.sell = exchangeRate.sell
-        currencyRepository.updateCurrencyRate(for: currency)
         return currency
     }
     

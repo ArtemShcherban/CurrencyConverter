@@ -25,7 +25,7 @@ extension CurrencyListViewController: UITableViewDataSource {
         guard
             let tableView = tableView as? CurrencyListTableView,
             tableView.isFiltered else {
-            return currencyList.filter { $0.groupKey == groups[section].key }.count
+            return currenciesInTableView.filter { $0.groupKey == groups[section].key }.count
         }
         return filteredCurrency.count
     }
@@ -47,7 +47,7 @@ extension CurrencyListViewController: UITableViewDataSource {
         if tableView.isFiltered {
             return filteredCurrency[indexPath.row]
         }
-        let currency = currencyList
+        let currency = currenciesInTableView
             .filter { $0.groupKey == groups
             .filter { $0.visible == true }[indexPath.section].key
             }[indexPath.row]

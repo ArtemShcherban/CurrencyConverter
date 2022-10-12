@@ -11,7 +11,7 @@ final class CurrencyListViewController: UIViewController, CurrencyListViewDelega
     static let reuseIdentifier = String(describing: CurrencyListViewController.self)
    
     lazy var currencyListModel = CurrencyListModel()
-    lazy var currencyList: [Currency] = []
+    lazy var currenciesInTableView: [Currency] = []
     lazy var filteredCurrency: [Currency] = []
     lazy var groups: [Group] = []
     var editingRow: Int?
@@ -20,13 +20,13 @@ final class CurrencyListViewController: UIViewController, CurrencyListViewDelega
     @IBOutlet weak var tableView: CurrencyListTableView!
     @IBOutlet weak var currensyListView: CurrencyListView!
     
-    weak var delegate: RatesModelDelegate?
+    weak var ratesModelDelegate: RatesModelDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setDelegates()
         currensyListView.createView()
-        currencyListModel.fillCurrencyDataSource()
+        currencyListModel.currenciesForTableView()
         addBackButton()
         setupHideKeyboardTapGesture()
     }

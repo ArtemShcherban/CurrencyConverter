@@ -3,7 +3,7 @@ import Foundation
 struct PrivatBankExchangeRate: Decodable {
     let buyRate: Double
     let sellRate: Double
-    let currencyNumber: Int
+    let currencyCode: String
     
     enum CodingKeys: String, CodingKey {
         case baseCurrency
@@ -16,7 +16,6 @@ struct PrivatBankExchangeRate: Decodable {
     
     init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
-        let code = try values.decodeIfPresent(String.self, forKey: .currency) ?? "OOO"
         let sellRateNB = try values.decode(Double.self, forKey: .saleRateNB)
         let buyRateNB = try values.decode(Double.self, forKey: .purchaseRateNB)
         if
@@ -29,17 +28,11 @@ struct PrivatBankExchangeRate: Decodable {
             self.sellRate = sellRateNB + sellRateNB * 0.05
             self.buyRate = buyRateNB
         }
-        self.currencyNumber = getCurrencyNumber(by: code) ?? 0
-        
-        func getCurrencyNumber(by code: String) -> Int? {
-            let currencyRepository = CurrencyRepository(CoreDataStack.shared)
-            let baseCurrency = currencyRepository.currency(by: code)?.number
-            return baseCurrency
-        }
+        self.currencyCode = try values.decodeIfPresent(String.self, forKey: .currency) ?? "OOO"
     }
     
-    func convertToExchangeRate() -> ExchangeRate {
-        let exchangeRate = ExchangeRate(from: self)
+    func convertToExchangeRate(currencyList: [Currency]) -> ExchangeRate {
+        let exchangeRate = ExchangeRate(from: self, and: currencyList)
         return exchangeRate
     }
 }

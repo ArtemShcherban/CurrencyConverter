@@ -11,31 +11,53 @@ protocol CurrencyListModelDelegate: AnyObject { }
 
 final class CurrencyListModel {
     lazy var containerName = delegate?.ratesModel?.containerName ?? String()
-    private let groupRepository = GroupRepository(CoreDataStack.shared)
-    private let currencyRepository = CurrencyRepository(CoreDataStack.shared)
-    private let containerRepository = ContainerRepository(CoreDataStack.shared)
+    private lazy var containerRepository = ContainerRepository(CoreDataStack.shared)
     
     weak var delegate: CurrencyListViewController?
     
-    func fillCurrencyDataSource() {
+    func currenciesForTableView() {
         guard
-            let presentCurrencies = containerRepository.currencies(from: containerName),
-            let currencies = currencyRepository.allCurrencies(except: presentCurrencies ) else {
+            let presentCurrencyCodes = containerRepository.currencyCodes(from: containerName),
+            let ratesModelDelegate = delegate?.ratesModelDelegate else {
             return
         }
-        delegate?.currencyList = currencies
-        delegate?.groups = fillDataSourceGroups()
+        var currencies = ratesModelDelegate.currenciesList
+        presentCurrencyCodes.forEach { code in
+            currencies.removeAll {
+                $0.code == code
+            }
+        }
+        var currenciesForTableView = currencies
+            .filter { $0.groupKey == 0 }
+            .sorted { $0.number < $1.number }
+        currenciesForTableView.append(contentsOf: currencies
+            .filter { $0.groupKey != 0 }
+            .sorted { $0.code < $1.code }
+        )
+        
+        delegate?.currenciesInTableView = currenciesForTableView
+        delegate?.groups = fillGroups()
     }
     
-    private func fillDataSourceGroups() -> [Group] {
-        let currencies = delegate?.currencyList
+    private func fillGroups() -> [Group] {
+        let currencies = delegate?.currenciesInTableView
         var keys: Set<Int> = []
         currencies?.forEach { currency in
             keys.update(with: currency.groupKey)
         }
-        let groupKeys = Array(keys)
-        guard let groups = groupRepository.group(by: groupKeys) else { return [] }
-        return groups
+        let groupKeys = Array(keys).sorted()
+        guard let ratesModelDelegate = delegate?.ratesModelDelegate else { return [] }
+        let groups = ratesModelDelegate.groups
+        var groupsForTableView: [Group] = []
+        groups.forEach { group in
+            let tempGroup = group
+            if groupKeys.contains(where: { key in
+                tempGroup.key == key
+            }) {
+                groupsForTableView.append(tempGroup)
+            }
+        }
+        return groupsForTableView
     }
     
     func filterCurrency(text: String) {
@@ -43,25 +65,25 @@ final class CurrencyListModel {
             delegate?.filteredCurrency = []
             return
         }
-            let whitespaceCharacterSet = CharacterSet.whitespaces
-            let text = text.trimmingCharacters(in: whitespaceCharacterSet).lowercased()
-
+        let whitespaceCharacterSet = CharacterSet.whitespaces
+        let text = text.trimmingCharacters(in: whitespaceCharacterSet).lowercased()
+        
         guard let delegate = delegate else { return }
-
-            let filtered = delegate.currencyList.filter {
-                $0.code.lowercased().contains(text) ||
-                $0.currency.lowercased().contains(text)
-            }
-            if !filtered.isEmpty {
-                delegate.filteredCurrency.removeAll()
-                delegate.filteredCurrency = filtered
-            } else {
-                delegate.filteredCurrency = []
-            }
+        
+        let filtered = delegate.currenciesInTableView.filter {
+            $0.code.lowercased().contains(text) ||
+            $0.currency.lowercased().contains(text)
+        }
+        if !filtered.isEmpty {
+            delegate.filteredCurrency.removeAll()
+            delegate.filteredCurrency = filtered
+        } else {
+            delegate.filteredCurrency = []
+        }
     }
     
     func selectedCurrency(at indexPath: IndexPath) -> Currency? {
-        let groupsCurrencies = delegate?.currencyList
+        let groupsCurrencies = delegate?.currenciesInTableView
         let groups = delegate?.groups
         let currencies = groupsCurrencies?.filter { $0.groupKey == groups?[indexPath.section].key }
         return  currencies?[indexPath.row]

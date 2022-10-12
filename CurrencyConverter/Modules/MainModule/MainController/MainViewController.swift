@@ -9,10 +9,12 @@ import UIKit
 
 final class MainViewController: UIViewController {
     var mainAsyncQueue: Dispatching?
+    var currenciesList: [Currency] = []
+    var groups: [Group] = []
     var baseCurrency: Currency?
     lazy var selectedCurrencies: [Currency] = []
     lazy var dateModel = DateModel()
-    lazy var exchangeRateModel = ExchangeRateModel()
+    lazy var exchangeRateModel = ExchangeRateModel(with: currenciesList)
     lazy var ratesModel = RatesModel()
     lazy var converterModel = ConverterModel()
     lazy var messageModel = MessageModel()
@@ -21,6 +23,8 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        print(path ?? "")
         mainAsyncQueue = AsyncQueue.main
         initialSetup {
             self.mainAsyncQueue?.dispatch {
@@ -45,7 +49,7 @@ final class MainViewController: UIViewController {
     
     func fillDataSource() {
         ratesModel.defineContainerName(value: mainView.isRatesView)
-        ratesModel.fillDataSource()
+        ratesModel.fillSelectedCurrencies()
     }
     
     func updateData(for date: Date = Date()) {
@@ -80,7 +84,7 @@ final class MainViewController: UIViewController {
             withIdentifier: CurrencyListViewController.reuseIdentifier) as? CurrencyListViewController else { return }
         viewController.ratesModel = ratesModel
         viewController.modalPresentationStyle = .fullScreen
-        viewController.delegate = self
+        viewController.ratesModelDelegate = self
         viewController.editingRow = editingRow
         
         let navigationController = UINavigationController(rootViewController: viewController)

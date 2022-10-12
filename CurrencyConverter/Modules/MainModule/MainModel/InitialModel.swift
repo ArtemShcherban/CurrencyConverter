@@ -8,73 +8,84 @@
 import Foundation
 
 final class InitialModel {
-    private let groupRepository = GroupRepository(CoreDataStack.shared)
-    private let currencyRepository = CurrencyRepository(CoreDataStack.shared)
     private let containerRepository = ContainerRepository(CoreDataStack.shared)
+    private lazy var currenciesList: [String: Currency] = [:] {
+        didSet {
+            delegate?.currenciesList = currenciesList.map { $0.value }
+        }
+    }
+    private lazy var groups: [Group] = [] {
+        didSet {
+            delegate?.groups = groups
+        }
+    }
+    
+    weak var delegate: MainViewController?
     
     func insertCurrencies(complition: @escaping () -> Void) {
-        let countOfCurrencies = currencyRepository.countOfCurrencies
-        if countOfCurrencies > 0 {
-            complition()
-            return
-        }
+        guard currenciesList.isEmpty else { return }
         guard
             let path = Bundle.main.path(forResource: "WorldCurrencies", ofType: "plist"),
             let dataArray = NSArray(contentsOfFile: path) else {
             return
         }
         
-        DispatchQueue.global().async {
-            for dictionary in dataArray {
-                if let dictionary = dictionary as? [String: Any] {
-                    let currency = Currency(from: dictionary)
-                    self.currencyRepository.create(currency: currency)
-                }
+        for dictionary in dataArray {
+            if let dictionary = dictionary as? [String: Any] {
+                let currency = Currency(from: dictionary)
+                self.currenciesList.updateValue(currency, forKey: currency.code)
             }
-            complition()
         }
+        self.insertGroups()
+        self.createContainers()
+        complition()
     }
     
     func insertGroups() {
-        let countOfGroups = groupRepository.countOfGroups
-        if countOfGroups > 0 { return }
-        
         var popularCurrencies: [Currency] = []
+        var otherCurrencies = currenciesList.map { $0.value }
+        
         DefaultConstants.popularCurrencyNumbers.forEach { number in
-            if let currency = currencyRepository.currency(by: number) {
+            if let currency = currenciesList.first(where: { element in
+                element.value.number == number
+            })?.value {
                 popularCurrencies.append(currency)
+                otherCurrencies = otherCurrencies.filter { $0.code != currency.code }
             }
         }
         
-        createPopularGroup(currencyNumbers: DefaultConstants.popularCurrencyNumbers)
+        createPopularGroup(from: popularCurrencies)
         
-        var groupKey: Int16 = 0
-        guard let currencies = currencyRepository.allCurrencies(except: popularCurrencies) else { return }
-        for currency in currencies {
+        var groupKey = 0
+        
+        for currency in otherCurrencies.sorted(by: { $0.code < $1.code }) {
             let groupName = String(currency.code.first ?? " ")
-            if
-                let groups = groupRepository.group(by: [groupName]),
-                let group = groups.first {
-                currencyRepository.setGroupKeyForCurrency(with: currency.number, with: group.key)
-            } else {
+            if !groups.contains(where: { $0.name == groupName }) {
                 groupKey += 1
                 let group = Group(
                     visible: true,
                     name: groupName,
                     key: Int(groupKey)
                 )
-                groupRepository.create(group)
-                currencyRepository.setGroupKeyForCurrency(with: currency.number, with: group.key)
+                groups.append(group)
             }
+            var currencyCopy = currency
+            currencyCopy.groupKey = groupKey
+            currenciesList.updateValue(currencyCopy, forKey: currencyCopy.code)
         }
     }
     
-    private func createPopularGroup(currencyNumbers: [Int]) {
+    private func createPopularGroup(from currencies: [Currency]) {
         let group = Group(visible: true, name: TitleConstants.popular, key: 0)
-        groupRepository.create(group)
-        currencyNumbers.forEach { currencyNumber in
-            currencyRepository.setGroupKeyForCurrency(with: currencyNumber, with: group.key)
+        currencies.forEach { popularCurrency in
+            if var currency = currenciesList.first(where: { element in
+                element.key == popularCurrency.code
+            })?.value {
+                currency.groupKey = group.key
+                currenciesList.updateValue(currency, forKey: currency.code)
+            }
         }
+        groups.append(group)
     }
     
     func createContainers() {
@@ -95,20 +106,27 @@ final class InitialModel {
         let containerName = ContainerConstants.Name.rate
         let currencyNumbers = DefaultConstants.currenciesNumbers.sorted()
         currencyNumbers.forEach { currencyNumber in
-            guard let currency = currencyRepository.currency(by: currencyNumber) else { return }
-            containerRepository.fillIn(container: containerName, with: currency)
+            if let currency = currenciesList.first(where: { $0.value.number == currencyNumber })?.value {
+                containerRepository.fillIn(container: containerName, with: currency)
+            }
         }
     }
     
     private func updateConverterContainer() {
         let containerName = ContainerConstants.Name.converter
         let currencyNumbers = DefaultConstants.currenciesNumbers
-        guard let currency = currencyRepository.currency(by: DefaultConstants.baseCurrencyNumber) else {
+        guard let currency = currenciesList.first(where: {
+            $0.value.number == DefaultConstants.baseCurrencyNumber })?.value
+        else {
             return
         }
         containerRepository.fillIn(container: containerName, with: currency)
         for currencyNumber in currencyNumbers.sorted() where currencyNumber != 985 {
-            guard let currency = currencyRepository.currency(by: currencyNumber) else { return }
+            guard let currency = currenciesList.first(where: {
+                $0.value.number == currencyNumber })?.value
+            else {
+                return
+            }
             containerRepository.fillIn(container: containerName, with: currency)
         }
     }

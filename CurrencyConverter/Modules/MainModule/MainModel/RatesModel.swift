@@ -8,6 +8,8 @@
 import Foundation
 
 protocol RatesModelDelegate: AnyObject {
+    var currenciesList: [Currency] { get }
+    var groups: [Group] { get }
     var exchangeRateModel: ExchangeRateModel { get }
     var baseCurrency: Currency? { get set }
     var selectedCurrencies: [Currency] { get set }
@@ -15,22 +17,29 @@ protocol RatesModelDelegate: AnyObject {
 }
 
 final class RatesModel {
-    private let currencyRepository = CurrencyRepository(CoreDataStack.shared)
     private let containerRepository = ContainerRepository(CoreDataStack.shared)
     private(set) lazy var containerName = String()
-        
+    
     weak var delegate: RatesModelDelegate?
     
     func defineContainerName(value: Bool) {
         containerName = value ? ContainerConstants.Name.rate : ContainerConstants.Name.converter
     }
     
-    func fillDataSource() {
+    func fillSelectedCurrencies() {
         guard
-            var currencies = containerRepository.currencies(from: containerName),
-            !currencies.isEmpty else {
+            let codes = containerRepository.currencyCodes(from: containerName),
+            !codes.isEmpty else {
             delegate?.selectedCurrencies = []
-            return }
+            return
+        }
+        var currencies: [Currency] = []
+        codes.forEach { code in
+            guard let currency = delegate?.currenciesList.first(where: { $0.code == code }) else {
+                return
+            }
+            currencies.append(currency)
+        }
         
         currencies = setExchangeRateFor(currencies: currencies)
         
@@ -59,12 +68,9 @@ final class RatesModel {
     }
     
     func removeCell(at indexPath: IndexPath) {
-        guard var currency = delegate?.selectedCurrencies[indexPath.row] else { return }
-        currency.buy = 0.0
-        currency.sell = 0.0
-        currencyRepository.updateCurrencyRate(for: currency)
+        guard let currency = delegate?.selectedCurrencies[indexPath.row] else { return }
         containerRepository.removeFrom(container: containerName, currency: currency)
-        fillDataSource()
+        fillSelectedCurrencies()
     }
     
     func isMaxNumberOfRows() -> Bool {
