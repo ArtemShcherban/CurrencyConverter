@@ -9,7 +9,6 @@ import UIKit
 
 protocol ExchangeRatesViewDelegate: AnyObject {
     func helpButtonPressed(completion: @escaping () -> Void)
-//    func helpButtonPressed()
 }
 
 final class ExchangeRatesView: CentralView {

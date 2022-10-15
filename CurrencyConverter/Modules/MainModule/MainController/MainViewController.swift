@@ -160,23 +160,6 @@ final class MainViewController: UIViewController {
         timer.fire()
     }
     
-//    func guidelinesMessage() {
-//        let guidelines: [String] = MessageConstants.guidelines
-//        var index = 0
-//        let timer = Timer.scheduledTimer(withTimeInterval: 3.0, repeats: true) { timer in
-//            self.lastUpdatedLabel.fadeTransition(0.5)
-//            self.updateDateLabel.fadeTransition(0.5)
-//            self.updateDateLabel.text = String()
-//            self.lastUpdatedLabel.text = guidelines[index]
-//            index += 1
-//            if index == guidelines.count {
-//                timer.invalidate()
-//                self.setupLastUpdateLabels()
-//            }
-//        }
-//        timer.fire()
-//    }
-    
     func setAddButtonStatus(_ isMaxNumberOfRows: Bool) {
         switch isRatesView {
         case true:

@@ -16,9 +16,9 @@ extension CurrencyListViewController: UITableViewDelegate {
         guard
             let tableView = tableView as? CurrencyListTableView else {
             return
-            }
-            let title = currencyListModel.groupTitle(for: section, in: tableView)
-            currensyListView.setGroupTitle(forHeader: view, title: title)
+        }
+        let title = currencyListModel.groupTitle(for: section, in: tableView)
+        currensyListView.setGroupTitle(forHeader: view, title: title)
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

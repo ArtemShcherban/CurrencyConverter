@@ -10,7 +10,7 @@ import UIKit
 final class RateCell: UITableViewCell {
     static let reuseIdentifier = String(describing: RateCell.self)
     
-    var currencyAction: (() -> Void)?
+    var currencySelectAction: (() -> Void)?
     
     @IBOutlet private weak var currencyButton: UIButton!
     @IBOutlet private weak var buyLabel: RateTextLabel!
@@ -23,7 +23,7 @@ final class RateCell: UITableViewCell {
     }
     
     @IBAction func currencyTapped() {
-        guard let currencyAction = currencyAction else {
+        guard let currencyAction = currencySelectAction else {
             return
         }
         currencyAction()

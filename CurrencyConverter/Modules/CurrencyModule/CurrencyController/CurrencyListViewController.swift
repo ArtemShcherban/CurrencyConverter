@@ -40,7 +40,8 @@ final class CurrencyListViewController: UIViewController, CurrencyListViewDelega
     }
     
     private func addBackButton() {
-        let backButton = currensyListView.createBackButton(with: currencyListModel.containerName)
+        guard let containerName = currencyListModel.containerName else { return }
+        let backButton = currensyListView.createBackButton(with: containerName)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     }
     

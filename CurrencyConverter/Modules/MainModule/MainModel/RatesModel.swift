@@ -33,10 +33,11 @@ final class RatesModel {
             delegate?.selectedCurrencies = []
             return
         }
+        
         var currencies: [Currency] = []
-        codes.forEach { code in
+        for code in codes {
             guard let currency = delegate?.currenciesList.first(where: { $0.code == code }) else {
-                return
+                continue
             }
             currencies.append(currency)
         }

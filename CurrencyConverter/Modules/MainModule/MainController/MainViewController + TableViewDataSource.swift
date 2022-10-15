@@ -40,7 +40,7 @@ extension MainViewController: UITableViewDataSource {
         guard let cell = tableView.cellWith(identifier: RateCell.self, for: indexPath) else {
             return UITableViewCell()
         }
-        cell.currencyAction = {
+        cell.currencySelectAction = {
             self.openCurrencyViewController(for: indexPath.row)
         }
         cell.configureAt(with: currency)

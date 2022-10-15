@@ -28,7 +28,7 @@ struct PrivatBankExchangeRate: Decodable {
             self.sellRate = sellRateNB + sellRateNB * 0.05
             self.buyRate = buyRateNB
         }
-        self.currencyCode = try values.decodeIfPresent(String.self, forKey: .currency) ?? "OOO"
+        self.currencyCode = try values.decodeIfPresent(String.self, forKey: .currency) ?? "No Code"
     }
     
     func convertToExchangeRate(currencyList: [Currency]) -> ExchangeRate {
