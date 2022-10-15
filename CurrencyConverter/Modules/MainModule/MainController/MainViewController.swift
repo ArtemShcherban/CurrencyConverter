@@ -13,11 +13,7 @@ final class MainViewController: UIViewController {
     lazy var groups: [Group] = []
     lazy var currenciesList: [Currency] = []
     lazy var selectedCurrencies: [Currency] = []
-    lazy var dateModel = DateModel()
-    lazy var ratesModel = RatesModel()
-    lazy var messageModel = MessageModel()
-    lazy var converterModel = ConverterModel()
-    lazy var exchangeRateModel = ExchangeRateModel(with: currenciesList)
+    lazy var mainModel = MainModel(initWith: currenciesList)
     lazy var isRatesView = true
     lazy var converterView = ConverterView()
     lazy var exchangeRatesView = ExchangeRatesView()
@@ -46,8 +42,8 @@ final class MainViewController: UIViewController {
         setupHideKeyboardTapGesture()
         updateAddButton()
         executeOnFirstStartup()
-        exchangeRateModel.removeOldExchangeRates()
-        lastUpdateDate = dateModel.lastUpdateDate()
+        mainModel.exchangeRate.removeOldExchangeRates()
+        lastUpdateDate = mainModel.date.lastUpdateDate()
         updateData()
     }
     
@@ -58,9 +54,9 @@ final class MainViewController: UIViewController {
     }
     
     private func setDelegates() {
-        ratesModel.delegate = self
-        converterModel.delegate = self
-        messageModel.delegate = self
+        mainModel.rates.delegate = self
+        mainModel.converter.delegate = self
+        mainModel.message.delegate = self
         exchangeRatesView.centralViewDelegate = self
         exchangeRatesView.delegate = self
         exchangeRatesView.tableView.dataSource = self
@@ -70,19 +66,19 @@ final class MainViewController: UIViewController {
     }
     
     func fillDataSource() {
-        ratesModel.defineContainerName(value: isRatesView)
-        ratesModel.fillSelectedCurrencies()
+        mainModel.rates.defineContainerName(value: isRatesView)
+        mainModel.rates.fillSelectedCurrencies()
     }
     
     func updateData(for date: Date = Date()) {
-        guard dateModel.checkTimeInterval(to: date) else { return }
-        exchangeRateModel.exchangeRates(for: date) { result in
+        guard mainModel.date.checkTimeInterval(to: date) else { return }
+        mainModel.exchangeRate.exchangeRates(for: date) { result in
             switch result {
             case .success(date):
-                self.dateModel.renew(updateDate: date)
+                self.mainModel.date.renew(updateDate: date)
                 self.mainAsyncQueue?.dispatch {
                     self.updateCurrentTableView()
-                    self.lastUpdateDate = self.dateModel.lastUpdateDate()
+                    self.lastUpdateDate = self.mainModel.date.lastUpdateDate()
                 }
             default:
                 return
@@ -91,10 +87,10 @@ final class MainViewController: UIViewController {
     }
     
     func checkUpdateTime(date: Date) -> Bool {
-        if dateModel.checkTimeInterval(to: date) {
+        if mainModel.date.checkTimeInterval(to: date) {
             return true
         } else {
-            let hour = dateModel.nextUpdateHour(from: date)
+            let hour = mainModel.date.nextUpdateHour(from: date)
             nextUpdateMessage(hour)
             return false
         }
@@ -116,7 +112,7 @@ final class MainViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let viewController = storyboard.instantiateViewController(
             withIdentifier: CurrencyListViewController.reuseIdentifier) as? CurrencyListViewController else { return }
-        viewController.ratesModel = ratesModel
+        viewController.ratesModel = mainModel.rates
         viewController.modalPresentationStyle = .fullScreen
         viewController.ratesModelDelegate = self
         viewController.editingRow = editingRow

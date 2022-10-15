@@ -52,6 +52,7 @@
 		F45E044228AB5F7F00902C73 /* ConverterModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F45E044128AB5F7F00902C73 /* ConverterModel.swift */; };
 		F465FD3B28F6BAAB008A3D5F /* CDContainer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465FD3928F6BAAB008A3D5F /* CDContainer+CoreDataClass.swift */; };
 		F465FD3C28F6BAAB008A3D5F /* CDContainer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465FD3A28F6BAAB008A3D5F /* CDContainer+CoreDataProperties.swift */; };
+		F465FD4028FA9022008A3D5F /* MainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F465FD3F28FA9022008A3D5F /* MainModel.swift */; };
 		F47F0BC128C0C0480029E224 /* PrivatBankData.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BBF28C0C0480029E224 /* PrivatBankData.swift */; };
 		F47F0BC928C0DC880029E224 /* CDBulletin+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BC728C0DC880029E224 /* CDBulletin+CoreDataClass.swift */; };
 		F47F0BCA28C0DC880029E224 /* CDBulletin+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47F0BC828C0DC880029E224 /* CDBulletin+CoreDataProperties.swift */; };
@@ -185,6 +186,7 @@
 		F45E044128AB5F7F00902C73 /* ConverterModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConverterModel.swift; sourceTree = "<group>"; };
 		F465FD3928F6BAAB008A3D5F /* CDContainer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDContainer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F465FD3A28F6BAAB008A3D5F /* CDContainer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDContainer+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		F465FD3F28FA9022008A3D5F /* MainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModel.swift; sourceTree = "<group>"; };
 		F47F0BBF28C0C0480029E224 /* PrivatBankData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivatBankData.swift; sourceTree = "<group>"; };
 		F47F0BC728C0DC880029E224 /* CDBulletin+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDBulletin+CoreDataClass.swift"; sourceTree = "<group>"; };
 		F47F0BC828C0DC880029E224 /* CDBulletin+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CDBulletin+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -386,6 +388,7 @@
 		F405604128897AEB007CD5AA /* MainModel */ = {
 			isa = PBXGroup;
 			children = (
+				F465FD3F28FA9022008A3D5F /* MainModel.swift */,
 				F4AA60F1288D62E200E191E6 /* ExchangeRateModel.swift */,
 				F4A09ACC289D21B5009D138E /* InitialModel.swift */,
 				F4429C6A289FB63400070620 /* DateModel.swift */,
@@ -986,6 +989,7 @@
 				F4A09AA6289BBF3E009D138E /* CDExchangeRate+CoreDataClass.swift in Sources */,
 				F4AA60EC288D4BCE00E191E6 /* RateCell.swift in Sources */,
 				F4DCC33D28B4E98400DC4D09 /* MessageModel.swift in Sources */,
+				F465FD4028FA9022008A3D5F /* MainModel.swift in Sources */,
 				F4DE3C3028BBA91E000F6D04 /* CurrencyConverter.xcdatamodeld in Sources */,
 				F45B03FA28C32E6700221721 /* UIViewAnimationExtension.swift in Sources */,
 				F4129DB228C750DF00905320 /* CentralViewDelegateExtension.swift in Sources */,

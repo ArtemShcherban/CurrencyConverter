@@ -9,12 +9,12 @@ import Foundation
 
 extension MainViewController: ConverterViewDelegate {
     func valueChanged(in textField: inout AdjustableTextField) {
-        textField.text = converterModel.transform(textField.text)
+        textField.text = mainModel.converter.transform(textField.text)
         updateCurrentTableView()
     }
     
     func sellBuyButtonTapped() {
-        converterModel.isSellAction.toggle()
+        mainModel.converter.isSellAction.toggle()
         updateCurrentTableView()
     }
 }

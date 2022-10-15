@@ -20,7 +20,7 @@ extension MainViewController: CentralViewDelegate {
     }
     
     func updateAddButton() {
-        setAddButtonStatus(ratesModel.isMaxNumberOfRows())
+        setAddButtonStatus(mainModel.rates.isMaxNumberOfRows())
     }
     
     func changeCurrency(at row: Int) {
@@ -28,7 +28,7 @@ extension MainViewController: CentralViewDelegate {
         }
     
     func shareRates(sender: UIButton) {
-        let text = messageModel.createMessage(with: lastUpdateDate)
+        let text = mainModel.message.createMessage(with: lastUpdateDate)
         let textToShare = [text]
         let activityController = UIActivityViewController(activityItems: textToShare, applicationActivities: nil)
         activityController.popoverPresentationController?.sourceView = self.view
@@ -38,12 +38,12 @@ extension MainViewController: CentralViewDelegate {
     }
     
     func dateWasChanged(new date: Date) {
-        exchangeRateModel.selectedDate = date.startOfDay
-        guard self.dateModel.checkPickerDate(date) else {
+        mainModel.exchangeRate.selectedDate = date.startOfDay
+        guard self.mainModel.date.checkPickerDate(date) else {
             self.updateCurrentTableView()
             return
         }
-        if exchangeRateModel.isBulletinInDatabase(for: date) {
+        if mainModel.exchangeRate.isBulletinInDatabase(for: date) {
             self.updateCurrentTableView()
         } else {
             self.updateData(for: date)
