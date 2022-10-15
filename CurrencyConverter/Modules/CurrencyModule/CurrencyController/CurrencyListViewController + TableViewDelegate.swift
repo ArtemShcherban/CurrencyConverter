@@ -33,9 +33,9 @@ extension CurrencyListViewController: UITableViewDelegate {
         
         guard let currency = optionalCurrency else { return }
         if let editingRow = editingRow {
-            ratesModel?.replaceCurrency(at: editingRow, with: currency)
+            ratesModel.replaceCurrency(at: editingRow, with: currency)
         } else {
-            ratesModel?.add(currency: currency)
+            ratesModel.add(currency: currency)
         }
         
         ratesModelDelegate?.updateCurrentTableView()

@@ -14,13 +14,23 @@ final class CurrencyListViewController: UIViewController, CurrencyListViewDelega
     lazy var currenciesInTableView: [Currency] = []
     lazy var filteredCurrency: [Currency] = []
     lazy var groups: [Group] = []
-    var editingRow: Int?
-    var ratesModel: RatesModel?
+    private(set) var editingRow: Int?
+    private(set) var ratesModel: RatesModel
     
     @IBOutlet weak var tableView: CurrencyListTableView!
     @IBOutlet weak var currensyListView: CurrencyListView!
     
     weak var ratesModelDelegate: RatesModelDelegate?
+    
+    init?(coder: NSCoder, ratesModel: RatesModel, editingRow: Int?) {
+        self.ratesModel = ratesModel
+        self.editingRow = editingRow
+        super.init(coder: coder)
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -110,12 +110,14 @@ final class MainViewController: UIViewController {
     
     func openCurrencyViewController(for editingRow: Int? = nil) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        guard let viewController = storyboard.instantiateViewController(
-            withIdentifier: CurrencyListViewController.reuseIdentifier) as? CurrencyListViewController else { return }
-        viewController.ratesModel = mainModel.rates
+        let viewController =
+        storyboard.instantiateViewController(
+            identifier: CurrencyListViewController.reuseIdentifier) { coder -> CurrencyListViewController? in
+            CurrencyListViewController(coder: coder, ratesModel: self.mainModel.rates, editingRow: editingRow)
+        }
+
         viewController.modalPresentationStyle = .fullScreen
         viewController.ratesModelDelegate = self
-        viewController.editingRow = editingRow
         
         let navigationController = UINavigationController(rootViewController: viewController)
         present(navigationController, animated: true)
