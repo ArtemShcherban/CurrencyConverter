@@ -9,16 +9,8 @@ import Foundation
 
 final class InitialModel {
     private let containerRepository = ContainerRepository(CoreDataStack.shared)
-    private lazy var currenciesList: [String: Currency] = [:] {
-        didSet {
-            delegate?.currenciesList = currenciesList.map { $0.value }
-        }
-    }
-    private lazy var groups: [Group] = [] {
-        didSet {
-            delegate?.groups = groups
-        }
-    }
+    private lazy var currenciesList: [String: Currency] = [:]
+    private lazy var groups: [Group] = []
     
     weak var delegate: MainViewController?
     
@@ -38,6 +30,8 @@ final class InitialModel {
         }
         self.insertGroups()
         self.createContainers()
+        delegate?.currenciesList = currenciesList.map { $0.value }
+        delegate?.groups = groups
         complition()
     }
     
