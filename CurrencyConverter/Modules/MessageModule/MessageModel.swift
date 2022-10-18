@@ -17,7 +17,7 @@ final class MessageModel {
         }
         
         let currencies = delegate.selectedCurrencies
-        let amount = delegate.mainModel.converter.amount
+        let amount = delegate.exchangeService.converterModel.amount
         
         guard
             let baseCurrency = delegate.baseCurrency,
@@ -26,7 +26,7 @@ final class MessageModel {
         }
         let baseCurrencyName = amount <= 2 ? baseCurrency.currency : baseCurrency.currencyPlural
         var message = String()
-        if delegate.mainModel.converter.isSellAction {
+        if delegate.exchangeService.converterModel.isSellAction {
             message = """
             At the exchange rate as of
             \(date),
@@ -43,7 +43,7 @@ final class MessageModel {
         }
         
         for (index, currency) in currencies.enumerated() {
-            let sum = delegate.mainModel.converter.doCalculation(for: currency)
+            let sum = delegate.exchangeService.converterModel.doCalculation(for: currency)
             let sumString = sum.decimalFormattedString()
             let currencyName = sum <= 2 ? currency.currency : currency.currencyPlural
             if index != currencies.count - 1 {

@@ -12,16 +12,10 @@ extension MainViewController {
         !UserDefaults.standard.bool(forKey: AppConstants.launchedBefore)
     }
     
-    private var initialModel: InitialModel {
-        let model = InitialModel()
-        model.delegate = self
-        return model
-    }
-    
     func initialSetup(complition: @escaping () -> Void) {
-        initialModel.insertCurrencies {
-            complition()
-        }
+        exchangeService.delegate = self
+        exchangeService.insertCurrencies()
+        complition()
     }
     
     func executeOnFirstStartup() {

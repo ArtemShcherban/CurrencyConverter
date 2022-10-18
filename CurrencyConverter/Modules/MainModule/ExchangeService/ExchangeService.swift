@@ -1,20 +1,36 @@
 //
-//  InitialModel.swift
+//  ExchangeService.swift
 //  CurrencyConverter
 //
-//  Created by Artem Shcherban on 05.08.2022.
+//  Created by Artem Shcherban on 18.10.2022.
 //
 
 import Foundation
 
-final class InitialModel {
+final class ExchangeService {
     private let containerRepository = ContainerRepository(CoreDataStack.shared)
-    private lazy var currenciesList: [String: Currency] = [:]
-    private lazy var groups: [Group] = []
+    lazy var currenciesList: [String: Currency] = [:]
+    lazy var groups: [Group] = []
+    lazy var dateModel = DateModel()
+    lazy var ratesModel = RatesModel()
+    lazy var messageModel = MessageModel()
+    lazy var converterModel = ConverterModel()
+    lazy var exchangeRateModel = ExchangeRateModel(with: [])
     
     weak var delegate: MainViewController?
     
-    func insertCurrencies(complition: @escaping () -> Void) {
+    init() {
+        createCurrencies {
+            self.exchangeRateModel = ExchangeRateModel(with: self.currenciesList.map { $0.value })
+        }
+    }
+    
+    func insertCurrencies() {
+        self.delegate?.currenciesList = self.currenciesList.map { $0.value }
+        self.delegate?.groups = self.groups
+    }
+    
+    private func createCurrencies(complition: @escaping () -> Void) {
         guard currenciesList.isEmpty else { return }
         guard
             let path = Bundle.main.path(forResource: "WorldCurrencies", ofType: "plist"),
@@ -28,14 +44,12 @@ final class InitialModel {
                 self.currenciesList.updateValue(currency, forKey: currency.code)
             }
         }
-        self.insertGroups()
+        self.createGroups()
         self.createContainers()
-        delegate?.currenciesList = currenciesList.map { $0.value }
-        delegate?.groups = groups
         complition()
     }
     
-    func insertGroups() {
+    private func createGroups() {
         var popularCurrencies: [Currency] = []
         var otherCurrencies = currenciesList.map { $0.value }
         
@@ -82,7 +96,7 @@ final class InitialModel {
         groups.append(group)
     }
     
-    func createContainers() {
+    private func createContainers() {
         let countOfContainers = containerRepository.countOfContainers
         if countOfContainers > 0 {
             return

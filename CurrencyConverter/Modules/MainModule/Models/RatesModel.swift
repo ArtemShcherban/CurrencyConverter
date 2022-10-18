@@ -10,7 +10,8 @@ import Foundation
 protocol RatesModelDelegate: AnyObject {
     var currenciesList: [Currency] { get }
     var groups: [Group] { get }
-    var mainModel: MainModel { get }
+    var exchangeService: ExchangeService { get }
+//    var mainModel: MainModel { get }
     var baseCurrency: Currency? { get set }
     var selectedCurrencies: [Currency] { get set }
     func updateCurrentTableView()
@@ -54,7 +55,7 @@ final class RatesModel {
         var currencies = currencies
         if let delegate = delegate {
             currencies = currencies.map { currency in
-                return delegate.mainModel.exchangeRate.setExchangeRate(for: currency)
+                return delegate.exchangeService.exchangeRateModel.setExchangeRate(for: currency)
             }
         }
         return currencies

@@ -30,7 +30,7 @@ extension MainViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
-        mainModel.rates.removeCell(at: indexPath)
+        exchangeService.ratesModel.removeCell(at: indexPath)
         tableView.deleteRows(at: [indexPath], with: .automatic)
         self.updateAddButton()
         tableView.reloadData()
@@ -54,7 +54,7 @@ extension MainViewController: UITableViewDataSource {
         cell.currencyAction = {
             self.openCurrencyViewController(for: indexPath.row + 1)
         }
-        let amount = mainModel.converter.doCalculation(for: currency)
+        let amount = exchangeService.converterModel.doCalculation(for: currency)
         cell.configureAt(with: currency, and: amount)
         return cell
     }
