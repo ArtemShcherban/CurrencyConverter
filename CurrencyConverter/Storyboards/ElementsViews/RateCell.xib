@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="all" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Lato-Regular.ttf">
+            <string>Lato-Regular</string>
+        </array>
+        <array key="Lato-SemiBold.ttf">
+            <string>Lato-SemiBold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="RateCell" customModule="CurrencyConverter" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="311" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="311" height="44"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A7Q-hq-mZ6">
+                        <rect key="frame" x="16" y="0.0" width="80" height="44"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="80" id="AWv-ho-fpW"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="14"/>
+                        <color key="tintColor" name="darkBlueDynamic"/>
+                        <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                        <state key="normal" title="USD" image="chevron.right" catalog="system">
+                            <color key="titleColor" name="darkBlueDynamic"/>
+                            <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
+                        </state>
+                        <connections>
+                            <action selector="currencyTapped" destination="KGk-i7-Jjw" eventType="touchUpInside" id="Ywu-Me-IGy"/>
+                        </connections>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bv5-rN-yuv" userLabel="Buy Background View" customClass="RateBackgroundView" customModule="CurrencyConverter" customModuleProvider="target">
+                        <rect key="frame" x="103" y="0.0" width="80" height="44"/>
+                        <color key="backgroundColor" name="borderColorDynamic"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="xQL-ff-qQJ"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="6"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9lD-x0-KM3" userLabel="Buy Rate Label" customClass="RateTextLabel" customModule="CurrencyConverter" customModuleProvider="target">
+                        <rect key="frame" x="104" y="1" width="78" height="42"/>
+                        <color key="backgroundColor" name="veryLightGrayDynamic"/>
+                        <fontDescription key="fontDescription" name="Lato-SemiBold" family="Lato" pointSize="14"/>
+                        <color key="textColor" name="darkBlueDynamic"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="tailInset" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="6"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mjF-IW-bFR" userLabel="Sell Background View" customClass="RateBackgroundView" customModule="CurrencyConverter" customModuleProvider="target">
+                        <rect key="frame" x="215" y="0.0" width="80" height="44"/>
+                        <color key="backgroundColor" name="borderColorDynamic"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="lessThanOrEqual" constant="80" id="GK3-E2-hPQ"/>
+                            <constraint firstAttribute="height" constant="44" id="gnh-b1-17M"/>
+                        </constraints>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="6"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="99.99" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VUG-b3-P4Q" userLabel="Sell Rate Label" customClass="RateTextLabel" customModule="CurrencyConverter" customModuleProvider="target">
+                        <rect key="frame" x="216" y="1" width="78" height="42"/>
+                        <color key="backgroundColor" name="veryLightGrayDynamic"/>
+                        <fontDescription key="fontDescription" name="Lato-SemiBold" family="Lato" pointSize="14"/>
+                        <color key="textColor" name="darkBlueDynamic"/>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="boolean" keyPath="tailInset" value="YES"/>
+                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                <real key="value" value="6"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" name="whiteBackgroundDynamic"/>
+                <constraints>
+                    <constraint firstItem="A7Q-hq-mZ6" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="5Ht-Ht-WzM"/>
+                    <constraint firstItem="Bv5-rN-yuv" firstAttribute="bottom" secondItem="9lD-x0-KM3" secondAttribute="bottom" constant="1" id="6uc-Rf-urD"/>
+                    <constraint firstItem="A7Q-hq-mZ6" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="JbD-pa-l0A"/>
+                    <constraint firstItem="Bv5-rN-yuv" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Lg7-7p-Qnk"/>
+                    <constraint firstItem="9lD-x0-KM3" firstAttribute="top" secondItem="Bv5-rN-yuv" secondAttribute="top" constant="1" id="NDx-dL-r9B"/>
+                    <constraint firstItem="VUG-b3-P4Q" firstAttribute="top" secondItem="Bv5-rN-yuv" secondAttribute="top" constant="1" id="RHv-dA-uRz"/>
+                    <constraint firstItem="mjF-IW-bFR" firstAttribute="trailing" secondItem="VUG-b3-P4Q" secondAttribute="trailing" constant="1" id="RgL-fb-aan"/>
+                    <constraint firstItem="Bv5-rN-yuv" firstAttribute="height" secondItem="mjF-IW-bFR" secondAttribute="height" id="SYv-6Z-cgt"/>
+                    <constraint firstItem="Bv5-rN-yuv" firstAttribute="bottom" secondItem="VUG-b3-P4Q" secondAttribute="bottom" constant="1" id="V71-ag-sIq"/>
+                    <constraint firstItem="9lD-x0-KM3" firstAttribute="leading" secondItem="Bv5-rN-yuv" secondAttribute="leading" constant="1" id="fEp-b3-W2k"/>
+                    <constraint firstAttribute="bottom" secondItem="A7Q-hq-mZ6" secondAttribute="bottom" id="htN-rN-jGc"/>
+                    <constraint firstAttribute="trailing" secondItem="mjF-IW-bFR" secondAttribute="trailing" constant="16" id="jMA-FT-IGl"/>
+                    <constraint firstItem="mjF-IW-bFR" firstAttribute="leading" secondItem="Bv5-rN-yuv" secondAttribute="trailing" constant="32" id="jh5-7B-8uM"/>
+                    <constraint firstItem="mjF-IW-bFR" firstAttribute="width" secondItem="Bv5-rN-yuv" secondAttribute="width" id="lF9-j4-um4"/>
+                    <constraint firstItem="mjF-IW-bFR" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="ldQ-vC-ihk"/>
+                    <constraint firstItem="Bv5-rN-yuv" firstAttribute="trailing" secondItem="9lD-x0-KM3" secondAttribute="trailing" constant="1" id="nbI-Cn-1bm"/>
+                    <constraint firstItem="VUG-b3-P4Q" firstAttribute="leading" secondItem="mjF-IW-bFR" secondAttribute="leading" constant="1" id="oti-Ir-fzX"/>
+                    <constraint firstItem="mjF-IW-bFR" firstAttribute="width" secondItem="H2p-sc-9uM" secondAttribute="width" multiplier="0.257235" priority="750" id="pTX-NC-xlz"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="buyLabel" destination="9lD-x0-KM3" id="hBk-o6-oPA"/>
+                <outlet property="currencyButton" destination="A7Q-hq-mZ6" id="AQh-kP-Kam"/>
+                <outlet property="sellLabel" destination="VUG-b3-P4Q" id="hE6-hq-2w4"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="81.696428571428569"/>
+        </tableViewCell>
+    </objects>
+    <designables>
+        <designable name="9lD-x0-KM3">
+            <size key="intrinsicContentSize" width="35.5" height="16.5"/>
+        </designable>
+        <designable name="VUG-b3-P4Q">
+            <size key="intrinsicContentSize" width="35.5" height="16.5"/>
+        </designable>
+    </designables>
+    <resources>
+        <image name="chevron.right" catalog="system" width="96" height="128"/>
+        <namedColor name="borderColorDynamic">
+            <color red="0.98039215686274506" green="0.96862745098039216" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="darkBlueDynamic">
+            <color red="0.0" green="0.19215686274509805" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="veryLightGrayDynamic">
+            <color red="0.98039215686274506" green="0.96862745098039216" blue="0.99215686274509807" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="whiteBackgroundDynamic">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

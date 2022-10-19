@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="all" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="EllipsesView" customModule="CurrencyConverter" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="iN0-l3-epB" id="AFd-DE-GsS"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" userLabel="ContentView">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kKy-wg-cCQ" userLabel="Big Ellipse View" customClass="EllipseView" customModule="CurrencyConverter" customModuleProvider="target">
+                    <rect key="frame" x="-45" y="-65" width="504" height="339"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="339" id="Z46-ls-Ihr"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                            <color key="value" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ick-Ny-He0" userLabel="Middle Ellipse View" customClass="EllipseView" customModule="CurrencyConverter" customModuleProvider="target">
+                    <rect key="frame" x="-89" y="-136" width="516" height="350"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="350" id="mOf-Ye-gOL"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                            <color key="value" red="0.1019607843" green="0.52941176469999995" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CCe-Ig-gqw" userLabel="Small Ellipse View" customClass="EllipseView" customModule="CurrencyConverter" customModuleProvider="target">
+                    <rect key="frame" x="-116" y="-136" width="516" height="350"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="350" id="xbl-Sg-B5c"/>
+                    </constraints>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="color" keyPath="fillColor">
+                            <color key="value" red="0.20000000000000001" green="0.58431372550000005" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </view>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" name="mainViewWhiteBgDynamic"/>
+            <constraints>
+                <constraint firstAttribute="top" secondItem="CCe-Ig-gqw" secondAttribute="top" constant="136" id="0e0-Wo-0pL"/>
+                <constraint firstAttribute="top" secondItem="kKy-wg-cCQ" secondAttribute="top" constant="65" id="5Hr-uS-sOc"/>
+                <constraint firstItem="kKy-wg-cCQ" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="92" id="H4B-zd-AeS"/>
+                <constraint firstItem="kKy-wg-cCQ" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="21" id="Jhd-lQ-z3C"/>
+                <constraint firstAttribute="trailing" secondItem="CCe-Ig-gqw" secondAttribute="trailing" constant="14" id="S1n-C5-Ww4"/>
+                <constraint firstAttribute="leading" secondItem="kKy-wg-cCQ" secondAttribute="leading" constant="45" id="SqK-jE-2P0"/>
+                <constraint firstItem="kKy-wg-cCQ" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="45" id="Vjx-4i-qjd"/>
+                <constraint firstItem="ick-Ny-He0" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="13" id="bmz-5Z-nRg"/>
+                <constraint firstItem="ick-Ny-He0" firstAttribute="trailing" secondItem="iN0-l3-epB" secondAttribute="trailing" constant="29" id="d6L-2x-fcU"/>
+                <constraint firstAttribute="leading" secondItem="ick-Ny-He0" secondAttribute="leading" constant="65" id="eI5-kn-D8d"/>
+                <constraint firstAttribute="leading" secondItem="ick-Ny-He0" secondAttribute="leading" constant="89" id="gXj-Ei-BEP"/>
+                <constraint firstAttribute="top" secondItem="ick-Ny-He0" secondAttribute="top" constant="136" id="oue-sq-qST"/>
+                <constraint firstAttribute="leading" secondItem="CCe-Ig-gqw" secondAttribute="leading" constant="116" id="pUR-r3-ITI"/>
+                <constraint firstAttribute="trailing" secondItem="CCe-Ig-gqw" secondAttribute="trailing" constant="23" id="sL0-WQ-ZMf"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="H4B-zd-AeS"/>
+                    <exclude reference="Jhd-lQ-z3C"/>
+                    <exclude reference="SqK-jE-2P0"/>
+                    <exclude reference="Vjx-4i-qjd"/>
+                    <exclude reference="bmz-5Z-nRg"/>
+                    <exclude reference="d6L-2x-fcU"/>
+                    <exclude reference="eI5-kn-D8d"/>
+                    <exclude reference="gXj-Ei-BEP"/>
+                    <exclude reference="S1n-C5-Ww4"/>
+                    <exclude reference="sL0-WQ-ZMf"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=compact">
+                <mask key="constraints">
+                    <include reference="H4B-zd-AeS"/>
+                    <include reference="Jhd-lQ-z3C"/>
+                    <include reference="d6L-2x-fcU"/>
+                    <include reference="eI5-kn-D8d"/>
+                    <include reference="sL0-WQ-ZMf"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=compact">
+                <mask key="constraints">
+                    <include reference="SqK-jE-2P0"/>
+                    <include reference="Vjx-4i-qjd"/>
+                    <include reference="bmz-5Z-nRg"/>
+                    <include reference="gXj-Ei-BEP"/>
+                    <include reference="S1n-C5-Ww4"/>
+                </mask>
+            </variation>
+            <variation key="heightClass=regular-widthClass=regular">
+                <mask key="constraints">
+                    <include reference="H4B-zd-AeS"/>
+                    <include reference="Jhd-lQ-z3C"/>
+                    <include reference="d6L-2x-fcU"/>
+                    <include reference="eI5-kn-D8d"/>
+                    <include reference="sL0-WQ-ZMf"/>
+                </mask>
+            </variation>
+            <point key="canvasLocation" x="138.46153846153845" y="83.886255924170612"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="mainViewWhiteBgDynamic">
+            <color red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
