@@ -43,7 +43,10 @@ final class MessageModel {
         }
         
         for (index, currency) in currencies.enumerated() {
-            let sum = delegate.exchangeService.converterModel.doCalculation(for: currency)
+            let sum = delegate.exchangeService.converterModel.doCalculation(
+                for: currency,
+                with: delegate.baseCurrency
+            )
             let sumString = sum.decimalFormattedString()
             let currencyName = sum <= 2 ? currency.currency : currency.currencyPlural
             if index != currencies.count - 1 {

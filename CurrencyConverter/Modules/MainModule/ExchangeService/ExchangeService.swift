@@ -6,22 +6,31 @@
 //
 
 import Foundation
+import CoreData
 
 final class ExchangeService {
-    private let containerRepository = ContainerRepository(CoreDataStack.shared)
-    lazy var currenciesList: [String: Currency] = [:]
-    lazy var groups: [Group] = []
-    lazy var dateModel = DateModel()
-    lazy var ratesModel = RatesModel()
-    lazy var messageModel = MessageModel()
-    lazy var converterModel = ConverterModel()
-    lazy var exchangeRateModel = ExchangeRateModel(with: [])
+    private let coreDataStack: CoreDataStack
+    private let containerRepository: ContainerRepository
+    private(set) lazy var currenciesList: [String: Currency] = [:]
+    private(set) lazy var groups: [Group] = []
+    private(set) lazy var dateModel = DateModel(coreDataStack)
+    private(set) lazy var ratesModel = RatesModel(coreDataStack)
+    private(set) lazy var messageModel = MessageModel()
+    private(set) lazy var converterModel = ConverterModel()
+    private(set) lazy var exchangeRateModel = ExchangeRateModel(with: [], coreDataStack: coreDataStack)
     
     weak var delegate: MainViewController?
     
-    init() {
+    init(_ coreDataStack: CoreDataStack = CoreDataStack.shared) {
+        self.coreDataStack = coreDataStack
+        self.containerRepository = ContainerRepository(
+            coreDataStack,
+            managedObjectContext: coreDataStack.managedContext)
         createCurrencies {
-            self.exchangeRateModel = ExchangeRateModel(with: self.currenciesList.map { $0.value })
+            self.exchangeRateModel = ExchangeRateModel(
+                with: self.currenciesList.map { $0.value },
+                coreDataStack: coreDataStack
+            )
         }
     }
     
@@ -77,7 +86,7 @@ final class ExchangeService {
                 )
                 groups.append(group)
             }
-            var currencyCopy = currency
+            let currencyCopy = currency
             currencyCopy.groupKey = groupKey
             currenciesList.updateValue(currencyCopy, forKey: currencyCopy.code)
         }
@@ -86,7 +95,7 @@ final class ExchangeService {
     private func createPopularGroup(from currencies: [Currency]) {
         let group = Group(visible: true, name: TitleConstants.popular, key: 0)
         currencies.forEach { popularCurrency in
-            if var currency = currenciesList.first(where: { element in
+            if let currency = currenciesList.first(where: { element in
                 element.key == popularCurrency.code
             })?.value {
                 currency.groupKey = group.key
@@ -115,7 +124,7 @@ final class ExchangeService {
         let currencyNumbers = DefaultConstants.currenciesNumbers.sorted()
         currencyNumbers.forEach { currencyNumber in
             if let currency = currenciesList.first(where: { $0.value.number == currencyNumber })?.value {
-                containerRepository.fillIn(container: containerName, with: currency)
+                containerRepository.update(container: containerName, with: currency)
             }
         }
     }
@@ -128,14 +137,14 @@ final class ExchangeService {
         else {
             return
         }
-        containerRepository.fillIn(container: containerName, with: currency)
+        containerRepository.update(container: containerName, with: currency)
         for currencyNumber in currencyNumbers.sorted() where currencyNumber != 985 {
             guard let currency = currenciesList.first(where: {
                 $0.value.number == currencyNumber })?.value
             else {
                 return
             }
-            containerRepository.fillIn(container: containerName, with: currency)
+            containerRepository.update(container: containerName, with: currency)
         }
     }
 }

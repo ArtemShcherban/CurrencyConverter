@@ -55,7 +55,6 @@ final class MainViewController: UIViewController {
     
     private func setDelegates() {
         exchangeService.ratesModel.delegate = self
-        exchangeService.converterModel.delegate = self
         exchangeService.messageModel.delegate = self
         exchangeRatesView.centralViewDelegate = self
         exchangeRatesView.delegate = self
@@ -119,7 +118,7 @@ final class MainViewController: UIViewController {
                 editingRow: editingRow
             )
         }
-
+        
         viewController.modalPresentationStyle = .fullScreen
         viewController.ratesModelDelegate = self
         

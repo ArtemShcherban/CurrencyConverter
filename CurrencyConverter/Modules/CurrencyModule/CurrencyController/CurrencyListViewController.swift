@@ -28,6 +28,12 @@ final class CurrencyListViewController: UIViewController, CurrencyListViewDelega
         super.init(coder: coder)
     }
     
+    init?(ratesModel: RatesModel, editingRow: Int?) {
+        self.ratesModel = ratesModel
+        self.editingRow = editingRow
+        super.init(nibName: nil, bundle: nil)
+    }
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }

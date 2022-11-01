@@ -11,9 +11,14 @@ protocol CurrencyListModelDelegate: AnyObject { }
 
 final class CurrencyListModel {
     lazy var containerName = delegate?.ratesModel.containerName
-    private lazy var containerRepository = ContainerRepository(CoreDataStack.shared)
-    
+    private(set) var containerRepository: ContainerRepository
+//    private lazy var containerRepository = ContainerRepository(CoreDataStack.shared)
+
     weak var delegate: CurrencyListViewController?
+    
+    init(_ coreDataStack: CoreDataStack = CoreDataStack.shared) {
+        self.containerRepository = ContainerRepository(coreDataStack)
+    }
     
     func currenciesForTableView() {
         guard

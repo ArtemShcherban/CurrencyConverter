@@ -11,17 +11,20 @@ protocol RatesModelDelegate: AnyObject {
     var currenciesList: [Currency] { get }
     var groups: [Group] { get }
     var exchangeService: ExchangeService { get }
-//    var mainModel: MainModel { get }
     var baseCurrency: Currency? { get set }
     var selectedCurrencies: [Currency] { get set }
     func updateCurrentTableView()
 }
 
 final class RatesModel {
-    private let containerRepository = ContainerRepository(CoreDataStack.shared)
+    private var containerRepository: ContainerRepository
     private(set) lazy var containerName = String()
     
     weak var delegate: RatesModelDelegate?
+    
+    init(_ coreDataStack: CoreDataStack) {
+        self.containerRepository = ContainerRepository(coreDataStack)
+    }
     
     func defineContainerName(value: Bool) {
         containerName = value ? ContainerConstants.Name.rate : ContainerConstants.Name.converter
@@ -75,7 +78,7 @@ final class RatesModel {
         fillSelectedCurrencies()
     }
     
-    func isMaxNumberOfRows() -> Bool {
+    func canAddRow() -> Bool {
         guard let delegate = delegate else {
             return true
         }
