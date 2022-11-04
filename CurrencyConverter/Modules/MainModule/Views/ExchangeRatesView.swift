@@ -38,6 +38,7 @@ final class ExchangeRatesView: CentralView {
         configureContentView()
         configureTextFild()
         configureTableView()
+        setAccessibilityIDs()
     }
     
     required init?(coder: NSCoder) {
@@ -45,6 +46,7 @@ final class ExchangeRatesView: CentralView {
         configureContentView()
         configureTextFild()
         configureTableView()
+        setAccessibilityIDs()
     }
     
     private func  configureContentView() {
@@ -62,6 +64,11 @@ final class ExchangeRatesView: CentralView {
     private func configureTableView() {
         tableView.tag = 0
         tableView.registerUINibWith(nib: RateCell.self)
+    }
+    
+    private func setAccessibilityIDs() {
+        tableView.accessibilityIdentifier = AccessibilityID.exRatesTableViewID
+        datePicker.accessibilityIdentifier = AccessibilityID.datePickerID
     }
     
     @objc private func delegatePickerAction(sender: UIDatePicker) {

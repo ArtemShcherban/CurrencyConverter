@@ -9,27 +9,42 @@ import Foundation
 import CoreData
 
 final class ExchangeService {
-    private let coreDataStack: CoreDataStack
-    private let containerRepository: ContainerRepository
+    static var coreDataStack = CoreDataStack.shared
+    let containerRepository: ContainerRepository
     private(set) lazy var currenciesList: [String: Currency] = [:]
     private(set) lazy var groups: [Group] = []
-    private(set) lazy var dateModel = DateModel(coreDataStack)
-    private(set) lazy var ratesModel = RatesModel(coreDataStack)
+    private(set) lazy var dateModel = DateModel(ExchangeService.coreDataStack)
+    private(set) lazy var ratesModel = RatesModel(ExchangeService.coreDataStack)
     private(set) lazy var messageModel = MessageModel()
     private(set) lazy var converterModel = ConverterModel()
-    private(set) lazy var exchangeRateModel = ExchangeRateModel(with: [], coreDataStack: coreDataStack)
+    private(set) lazy var exchangeRateModel = ExchangeRateModel(
+        with: [],
+        coreDataStack: ExchangeService.coreDataStack
+    )
     
     weak var delegate: MainViewController?
     
-    init(_ coreDataStack: CoreDataStack = CoreDataStack.shared) {
-        self.coreDataStack = coreDataStack
+    init() {
         self.containerRepository = ContainerRepository(
-            coreDataStack,
-            managedObjectContext: coreDataStack.managedContext)
+            ExchangeService.coreDataStack,
+            managedObjectContext: ExchangeService.coreDataStack.managedContext)
         createCurrencies {
             self.exchangeRateModel = ExchangeRateModel(
                 with: self.currenciesList.map { $0.value },
-                coreDataStack: coreDataStack
+                coreDataStack: ExchangeService.coreDataStack
+            )
+        }
+    }
+    
+    init(_ coreDataStack: CoreDataStack) {
+        ExchangeService.coreDataStack = coreDataStack
+        self.containerRepository = ContainerRepository(
+            ExchangeService.coreDataStack,
+            managedObjectContext: ExchangeService.coreDataStack.managedContext)
+        createCurrencies {
+            self.exchangeRateModel = ExchangeRateModel(
+                with: self.currenciesList.map { $0.value },
+                coreDataStack: ExchangeService.coreDataStack
             )
         }
     }
@@ -62,7 +77,7 @@ final class ExchangeService {
         var popularCurrencies: [Currency] = []
         var otherCurrencies = currenciesList.map { $0.value }
         
-        DefaultConstants.popularCurrencyNumbers.forEach { number in
+        DefaultCurrencies.popularCurrencyNumbers.forEach { number in
             if let currency = currenciesList.first(where: { element in
                 element.value.number == number
             })?.value {
@@ -120,8 +135,8 @@ final class ExchangeService {
     }
     
     private func updateRatesContainer() {
-        let containerName = ContainerConstants.Name.rate
-        let currencyNumbers = DefaultConstants.currenciesNumbers.sorted()
+        let containerName = ContainerName.exRates
+        let currencyNumbers = DefaultCurrencies.exRatesCurrenciesNumbers
         currencyNumbers.forEach { currencyNumber in
             if let currency = currenciesList.first(where: { $0.value.number == currencyNumber })?.value {
                 containerRepository.update(container: containerName, with: currency)
@@ -130,18 +145,12 @@ final class ExchangeService {
     }
     
     private func updateConverterContainer() {
-        let containerName = ContainerConstants.Name.converter
-        let currencyNumbers = DefaultConstants.currenciesNumbers
-        guard let currency = currenciesList.first(where: {
-            $0.value.number == DefaultConstants.baseCurrencyNumber })?.value
-        else {
-            return
-        }
-        containerRepository.update(container: containerName, with: currency)
-        for currencyNumber in currencyNumbers.sorted() where currencyNumber != 985 {
-            guard let currency = currenciesList.first(where: {
-                $0.value.number == currencyNumber })?.value
-            else {
+        let containerName = ContainerName.converter
+        let currencyNumbers = DefaultCurrencies.converterCurrenciesNumbers
+        
+        currencyNumbers.forEach { currencyNumber in
+            guard let currency = currenciesList.first(where: { $0.value.number == currencyNumber })?
+                .value else {
                 return
             }
             containerRepository.update(container: containerName, with: currency)

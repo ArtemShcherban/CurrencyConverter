@@ -10,13 +10,13 @@ import Combine
 import CoreData
 @testable import CurrencyConverter
 
-class ExchangeRateModelTests: XCTestCase {
+final class ExchangeRateModelTests: XCTestCase {
     private var networkService: NetworkService!
     private var mockURLSession: MockURLSession!
     private var exchangeService: ExchangeService!
     private var exchangeRateModel: ExchangeRateModel!
     private var oneYearAgo = DateConstants.oneYearAgo
-
+    
     override func setUpWithError() throws {
         try super.setUpWithError()
         let coreDataStack = TestCoreDataStack()
@@ -26,7 +26,7 @@ class ExchangeRateModelTests: XCTestCase {
         exchangeRateModel = exchangeService.exchangeRateModel
         exchangeRateModel.networkService = networkService
     }
-
+    
     override func tearDown() {
         networkService = nil
         mockURLSession = nil
@@ -34,10 +34,10 @@ class ExchangeRateModelTests: XCTestCase {
         exchangeRateModel = nil
         super.tearDown()
     }
-
+    
     func test_getExchangeRatesFromMonoBank() {
         mockURLSession.createTestData(for: .monoBank)
-        networkService.urlSession = mockURLSession.byDefault
+        NetworkService.urlSession = mockURLSession.byDefault
         let exRateRepo = exchangeRateModel.exchangeRateRepository
         let expectation = expectation(description: "Data from MonoBank received")
         var resultCount = 0
@@ -71,10 +71,10 @@ class ExchangeRateModelTests: XCTestCase {
         XCTAssertEqual(jpyExRate?.sell.decimalFormattedString(3), "0.266")
         XCTAssertEqual(jpyExRate?.currencyNumber, MockCurrency.japaneseYen.number)
     }
-
+    
     func test_getExchangeRatesFromPrivatBank() {
         mockURLSession.createTestData(for: .privatBank(with: oneYearAgo))
-        networkService.urlSession = mockURLSession.byDefault
+        NetworkService.urlSession = mockURLSession.byDefault
         let exRateRepo = exchangeRateModel.exchangeRateRepository
         let expectation = expectation(description: "Data from PrivatBank received")
         var resultCount = 0

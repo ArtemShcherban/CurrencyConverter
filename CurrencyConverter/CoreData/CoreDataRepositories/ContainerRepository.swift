@@ -82,12 +82,12 @@ class ContainerRepository: Repository, ContainerDataRepository {
         var objectID: NSManagedObjectID?
         
         switch containerName {
-        case ContainerConstants.Name.rate:
+        case ContainerName.exRates:
             if let result = coreDataStack.fetchManagedObject(managedObject: CDRateContainer.self) {
                 objectID = result.first?.objectID
             }
             
-        case ContainerConstants.Name.converter:
+        case ContainerName.converter:
             if let result = coreDataStack.fetchManagedObject(managedObject: CDConverterContainer.self) {
                 objectID = result.first?.objectID
             }

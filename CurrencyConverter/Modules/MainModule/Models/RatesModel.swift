@@ -27,7 +27,7 @@ final class RatesModel {
     }
     
     func defineContainerName(value: Bool) {
-        containerName = value ? ContainerConstants.Name.rate : ContainerConstants.Name.converter
+        containerName = value ? ContainerName.exRates : ContainerName.converter
     }
     
     func fillSelectedCurrencies() {
@@ -48,7 +48,7 @@ final class RatesModel {
         
         currencies = setExchangeRateFor(currencies: currencies)
         
-        if containerName == ContainerConstants.Name.converter {
+        if containerName == ContainerName.converter {
             delegate?.baseCurrency = currencies.removeFirst()
         }
         delegate?.selectedCurrencies = currencies
@@ -83,9 +83,9 @@ final class RatesModel {
             return true
         }
         switch containerName {
-        case ContainerConstants.Name.rate:
+        case ContainerName.exRates:
             return delegate.selectedCurrencies.count <= 2
-        case ContainerConstants.Name.converter:
+        case ContainerName.converter:
             return delegate.selectedCurrencies.count <= 1
         default:
             return true

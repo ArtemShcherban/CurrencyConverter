@@ -18,7 +18,6 @@ final class ConverterModelTests: XCTestCase {
         converterModel = ConverterModel()
         currency = MockCurrency.japaneseYen
         baseCurrency = MockCurrency.canadianDollar
-        
         converterModel.amount = 240.0
     }
     

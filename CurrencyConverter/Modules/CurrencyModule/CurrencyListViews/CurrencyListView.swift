@@ -50,6 +50,11 @@ final class CurrencyListView: UIView {
         tableView.delegate = tableViewDelegate
         tableView.dataSource = tableViewDataSource
         tableView.registerCellClassWith(name: CurrencyCell.self)
+        setTableViewAccessibilityID()
+    }
+    
+    private func setTableViewAccessibilityID() {
+        tableView.accessibilityIdentifier = AccessibilityID.currencyListTableViewID
     }
     
     private func createTableViewShadow() {

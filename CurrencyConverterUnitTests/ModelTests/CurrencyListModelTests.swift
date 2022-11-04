@@ -13,22 +13,19 @@ final class CurrencyListModelTests: XCTestCase {
     private var containerRepository: ContainerRepository!
     private var currencyListViewController: CurrencyListViewController!
     private var mainViewController: MainViewController!
-    private let exRateContainer = ContainerConstants.Name.rate
-    private let converterContainer = ContainerConstants.Name.converter
+    private let exRateContainer = ContainerName.exRates
+    private let converterContainer = ContainerName.converter
     
     override func setUp() {
         super.setUp()
-        let coreDataStack = TestCoreDataStack()
-        currencyListModel = CurrencyListModel(coreDataStack)
-        containerRepository = currencyListModel.containerRepository
-        
-        prepareMockMainViewController { controller in
+        setTestDefaultCurrenciesNumbers()
+        createMockMainViewController { controller in
+            self.mainViewController = controller
             let rateModel = controller.exchangeService.ratesModel
             self.currencyListViewController = CurrencyListViewController(ratesModel: rateModel, editingRow: nil)
-            self.mainViewController = controller
         }
-        containerRepository.createContainers()
-        updateContainers()
+        currencyListModel = CurrencyListModel(ExchangeService.coreDataStack)
+        containerRepository = currencyListModel.containerRepository
         setModelDelegates()
     }
     
@@ -137,10 +134,12 @@ final class CurrencyListModelTests: XCTestCase {
         containerName: String, file: StaticString = #file, line: UInt = #line
     ) {
         fillTableView(containerName: containerName)
-        
-        let usDollar = currencyListModel.selectedCurrency(at: IndexPath(row: 0, section: 0))
-        let omaniReal = currencyListModel.selectedCurrency(at: IndexPath(row: 0, section: 15))
-        let ukrainianHrivnia = currencyListModel.selectedCurrency(at: IndexPath(row: 2, section: 0))
+        guard
+            let usDollar = currencyListModel.selectedCurrency(at: IndexPath(row: 0, section: 0)),
+            let omaniReal = currencyListModel.selectedCurrency(at: IndexPath(row: 0, section: 15)),
+            let ukrainianHrivnia = currencyListModel.selectedCurrency(at: IndexPath(row: 2, section: 0)) else {
+            return
+        }
         
         XCTAssertEqual(usDollar, MockCurrency.usDollar)
         XCTAssertEqual(omaniReal, MockCurrency.omaniReal)
@@ -193,10 +192,5 @@ final class CurrencyListModelTests: XCTestCase {
     private func setModelDelegates() {
         currencyListModel.delegate = currencyListViewController
         currencyListModel.delegate?.ratesModelDelegate = mainViewController
-    }
-    
-    private func updateContainers() {
-        updateContainer(with: exRateContainer, in: containerRepository)
-        updateContainer(with: converterContainer, in: containerRepository)
     }
 }

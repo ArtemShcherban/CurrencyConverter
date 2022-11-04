@@ -10,10 +10,9 @@ import Foundation
 
 enum MockCurrency {
     static let currencies: [Currency] = [greatBritanPound, canadianDollar, japaneseYen]
-    static let currencyCodes: [String] = currencies
-        .map { $0.code }
-//        .sorted()
-    
+    static let currencyCodes: [String] = currencies.map { $0.code }
+    static let currencyNumbers: [Int] = currencies.map { $0.number }
+
     static let greatBritanPound = Currency(
         buy: 40.0,
         sell: 45.0,

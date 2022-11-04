@@ -33,6 +33,7 @@ final class ExchangeServiceTests: XCTestCase {
         XCTAssertEqual(exchangeService.groups.count, 27)
         XCTAssertEqual(exchangeService.groups[0].name, "Popular")
         XCTAssertEqual(exchangeService.groups[1].name, "A")
+        XCTAssertEqual(exchangeService.groups[15].name, "O")
         XCTAssertEqual(exchangeService.groups[26].name, "Z")
     }
 }

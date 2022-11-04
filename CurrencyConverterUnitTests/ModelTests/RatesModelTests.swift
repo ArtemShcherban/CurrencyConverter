@@ -16,13 +16,12 @@ final class RatesModelTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        let coreDataStack = TestCoreDataStack()
-        containerRepository = ContainerRepository(coreDataStack)
-        containerRepository.createContainers()
-        prepareMockMainViewController { controller in
+        setTestDefaultCurrenciesNumbers()
+        createMockMainViewController { controller in
             self.mainViewController = controller
         }
-        ratesModel = RatesModel(coreDataStack)
+        containerRepository = mainViewController.exchangeService.containerRepository
+        ratesModel = mainViewController.exchangeService.ratesModel
         ratesModel.delegate = mainViewController
     }
     
@@ -59,7 +58,7 @@ final class RatesModelTests: XCTestCase {
     }
     
     func test_addCurrency_toExRateContainer() {
-        updateContainer(true)
+        fillSelectedCurrencies(withValue: true)
         let initialCodes = MockCurrency.currencyCodes
         let expectedCodes = [
             MockCurrency.omaniReal.code, MockCurrency.ukrainianHryvnia.code, MockCurrency.usDollar.code
@@ -81,7 +80,7 @@ final class RatesModelTests: XCTestCase {
     }
     
     func test_addCurrency_toConverterContainer() {
-        updateContainer(false)
+        fillSelectedCurrencies(withValue: false)
         let initialCodes = MockCurrency.currencyCodes
         let expectedCodes = [
             MockCurrency.greatBritanPound.code, MockCurrency.omaniReal.code, MockCurrency.ukrainianHryvnia.code
@@ -102,17 +101,17 @@ final class RatesModelTests: XCTestCase {
     }
     
     private func runTest_defineContainerName(isRatesView: Bool) {
-        updateContainer(isRatesView)
+        fillSelectedCurrencies(withValue: isRatesView)
         
         guard isRatesView else {
-            XCTAssertEqual(ratesModel.containerName, ContainerConstants.Name.converter)
+            XCTAssertEqual(ratesModel.containerName, ContainerName.converter)
             return
         }
-        XCTAssertEqual(ratesModel.containerName, ContainerConstants.Name.rate)
+        XCTAssertEqual(ratesModel.containerName, ContainerName.exRates)
     }
     
     private func runTest_fillSelectedCurrencies(isRatesView: Bool, file: StaticString = #file, line: UInt = #line) {
-        updateContainer(isRatesView)
+        fillSelectedCurrencies(withValue: isRatesView)
         let expectedBaseCurrency = MockCurrency.greatBritanPound
         let exRateSelectedCurrencies = MockCurrency.currencies
         let converterSelectedCurrencies = [MockCurrency.canadianDollar, MockCurrency.japaneseYen]
@@ -136,7 +135,7 @@ final class RatesModelTests: XCTestCase {
     }
         
     private func runTest_replaceCurrency(isRatesView: Bool, file: StaticString = #file, line: UInt = #line) {
-        updateContainer(isRatesView)
+        fillSelectedCurrencies(withValue: isRatesView)
         let initialCodes = MockCurrency.currencyCodes
         let expectedCodes = [
             MockCurrency.omaniReal.code, MockCurrency.ukrainianHryvnia.code, MockCurrency.usDollar.code
@@ -157,7 +156,7 @@ final class RatesModelTests: XCTestCase {
     }
     
     private func runTest_removeCell(isRatesView: Bool, file: StaticString = #file, line: UInt = #line) {
-        updateContainer(isRatesView)
+        fillSelectedCurrencies(withValue: isRatesView)
         let exRateSelectedCodes = [MockCurrency.greatBritanPound.code, MockCurrency.japaneseYen.code]
         let converterSelectedCodes = [MockCurrency.greatBritanPound.code, MockCurrency.canadianDollar.code]
         
@@ -172,7 +171,7 @@ final class RatesModelTests: XCTestCase {
     }
     
     private func runTest_canAddRow(isRatesView: Bool, file: StaticString = #file, line: UInt = #line) {
-        updateContainer(isRatesView)
+        fillSelectedCurrencies(withValue: isRatesView)
         let exRatesMaxRow = 3
         let converterMaxRow = 2
 
@@ -191,9 +190,8 @@ final class RatesModelTests: XCTestCase {
         }
     }
     
-    private func updateContainer(_ isRatesView: Bool) {
+    private func fillSelectedCurrencies(withValue isRatesView: Bool) {
         ratesModel.defineContainerName(value: isRatesView)
-        updateContainer(with: ratesModel.containerName, in: containerRepository)
         ratesModel.fillSelectedCurrencies()
     }
 }

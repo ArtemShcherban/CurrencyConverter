@@ -10,10 +10,4 @@ import Foundation
 import CoreData
 
 public class CDBulletin: NSManagedObject {
-    func convertToBulletin() -> Bulletin {
-        let bulletin = Bulletin(
-            from: self.bank,
-            date: self.date)
-        return bulletin
-    }
 }

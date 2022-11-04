@@ -43,7 +43,7 @@ final class LastUpdateDateRepositoryTests: XCTestCase {
         
         _ = expectation
         
-        waitForExpectations(timeout: 1.0) { error in
+        waitForExpectations(timeout: 10.0) { error in
             XCTAssertNil(error, "Save did not occur")
         }
         XCTAssertEqual(dateRepository.date, DateConstants.today)

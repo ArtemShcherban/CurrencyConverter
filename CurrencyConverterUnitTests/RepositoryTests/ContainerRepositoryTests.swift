@@ -12,8 +12,8 @@ import CoreData
 final class ContainerRepositoryTests: XCTestCase {
     private var coreDataStack: CoreDataStack!
     private var containerRepository: ContainerRepository!
-    private let exRateContainer = ContainerConstants.Name.rate
-    private let converterContainer = ContainerConstants.Name.converter
+    private let exRateContainer = ContainerName.exRates
+    private let converterContainer = ContainerName.converter
     
     override func setUp() {
         super.setUp()

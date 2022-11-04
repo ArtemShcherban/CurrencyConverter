@@ -48,7 +48,7 @@ final class DateModelTests: XCTestCase {
         _ = expectation
         _ = dateModel.lastUpdateDate()
         dateModel.renew(updateDate: Date())
-        
+  
         waitForExpectations(timeout: 2.0) { error in
             XCTAssertNil(error, "Save did not occur")
         }

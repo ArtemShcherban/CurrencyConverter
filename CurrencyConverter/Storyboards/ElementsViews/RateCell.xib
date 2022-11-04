@@ -29,6 +29,7 @@
                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="A7Q-hq-mZ6">
                         <rect key="frame" x="16" y="0.0" width="80" height="44"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <accessibility key="accessibilityConfiguration" identifier="rateCellCurrencyButton"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="80" id="AWv-ho-fpW"/>
                         </constraints>
@@ -128,10 +129,10 @@
     </objects>
     <designables>
         <designable name="9lD-x0-KM3">
-            <size key="intrinsicContentSize" width="35.5" height="16.5"/>
+            <size key="intrinsicContentSize" width="36" height="17"/>
         </designable>
         <designable name="VUG-b3-P4Q">
-            <size key="intrinsicContentSize" width="35.5" height="16.5"/>
+            <size key="intrinsicContentSize" width="36" height="17"/>
         </designable>
     </designables>
     <resources>

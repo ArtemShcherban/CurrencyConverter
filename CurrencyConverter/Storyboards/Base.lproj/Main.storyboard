@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yyj-38-yN5">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="iOS.CocoaTouch" propertyAccessControl="all" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="yyj-38-yN5">
     <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -49,6 +49,7 @@
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Exchange Rates" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pzv-SF-kjo">
                                 <rect key="frame" x="16" y="96" width="274" height="29"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <accessibility key="accessibilityConfiguration" identifier="titleLabel"/>
                                 <fontDescription key="fontDescription" name="Lato-ExtraBold" family="Lato" pointSize="24"/>
                                 <color key="textColor" red="0.96862745100000003" green="0.97254901959999995" blue="0.98431372549999996" alpha="1" colorSpace="calibratedRGB"/>
                                 <color key="highlightedColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -90,6 +91,7 @@
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last Updated" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9MF-w0-ATC" userLabel="Last updated">
                                 <rect key="frame" x="16" y="577" width="70.333333333333329" height="14.666666666666629"/>
+                                <accessibility key="accessibilityConfiguration" identifier="lastUpdatedLabel"/>
                                 <fontDescription key="fontDescription" name="Lato-Regular" family="Lato" pointSize="12"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -106,8 +108,9 @@
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ue7-fd-cLQ" userLabel="Switch View Button">
                                 <rect key="frame" x="16" y="678.66666666666663" width="358" height="56"/>
+                                <accessibility key="accessibilityConfiguration" identifier="switchViewButton"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="343" id="83Z-1h-zkv"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="343" id="83Z-1h-zkv"/>
                                     <constraint firstAttribute="height" constant="56" id="Izn-nd-JED"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="Lato-Bold" family="Lato" pointSize="18"/>
@@ -131,6 +134,7 @@
                         <viewLayoutGuide key="safeArea" id="2oz-eJ-v0O"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="oOb-zU-tgu" secondAttribute="trailing" id="1lO-Bx-YfP"/>
                             <constraint firstItem="oOb-zU-tgu" firstAttribute="leading" secondItem="9MF-w0-ATC" secondAttribute="trailing" constant="4" id="A78-4y-fK9"/>
                             <constraint firstItem="ue7-fd-cLQ" firstAttribute="centerY" secondItem="oXy-pq-yQz" secondAttribute="centerY" id="Aht-Fu-fXW"/>
                             <constraint firstAttribute="trailing" secondItem="QLy-PH-2gS" secondAttribute="trailing" id="BIL-Kg-PA9"/>
@@ -150,6 +154,7 @@
                             <constraint firstItem="2gZ-QR-ekh" firstAttribute="height" secondItem="QLy-PH-2gS" secondAttribute="height" multiplier="0.471564" id="TKj-vv-S01"/>
                             <constraint firstItem="2gZ-QR-ekh" firstAttribute="leading" secondItem="QLy-PH-2gS" secondAttribute="leading" constant="16" id="Y49-lr-VIZ"/>
                             <constraint firstItem="2gZ-QR-ekh" firstAttribute="bottom" secondItem="ue7-fd-cLQ" secondAttribute="bottom" id="Ymb-RP-0hB"/>
+                            <constraint firstItem="2oz-eJ-v0O" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="9MF-w0-ATC" secondAttribute="trailing" symbolic="YES" id="aRu-mS-xyW"/>
                             <constraint firstAttribute="trailing" secondItem="2gZ-QR-ekh" secondAttribute="trailing" constant="48" id="aWw-p2-WYW"/>
                             <constraint firstItem="2gZ-QR-ekh" firstAttribute="top" secondItem="kyh-eb-aUG" secondAttribute="top" constant="50" id="gnW-fb-Uff"/>
                             <constraint firstAttribute="trailing" secondItem="ue7-fd-cLQ" secondAttribute="trailing" constant="16" id="hLE-hw-o0Q"/>

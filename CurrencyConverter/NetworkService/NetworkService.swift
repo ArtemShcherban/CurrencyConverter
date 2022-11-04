@@ -9,25 +9,21 @@ import UIKit
 import Combine
 
 final class NetworkService {
-    private var urlModel = URLModel()
-    private var cancellable: AnyCancellable?
-    
-    lazy var urlSession: URLSession = {
+    static var urlSession: URLSession = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForResource = 10.0
         configuration.timeoutIntervalForRequest = 30.0
         let urlSession = URLSession(configuration: configuration)
         return urlSession
     }()
+    private var urlModel = URLModel()
+    private var cancellable: AnyCancellable?
     
     func loadData<Response>(
         for endpoint: Endpoint<Response>,
         completion: @escaping (Result<Response, NetworkServiceError>) -> Void
     ) {
-        //        urlSession.getDataWithDataTask(for: endpoint) { result in
-        //            completion(result)
-        //        }
-        let publisher = urlSession.publisher(for: endpoint)
+        let publisher = NetworkService.urlSession.publisher(for: endpoint)
         createSubscription(for: publisher) { result in
             completion(result)
         }
@@ -64,48 +60,6 @@ final class NetworkService {
         }
     }
 }
-
-// extension URLSession {
-//    func getDataWithDataTask<Response>(
-//        for endpoint: Endpoint<Response>,
-//        decoder: JSONDecoder = .init(),
-//        completion: @escaping (Result<Response, NetworkServiceError>) -> Void
-//    ) {
-//        guard let request = endpoint.makeRequest() else {
-//            print("CANNOT CREATE REQUEST")
-//            completion(.failure(NetworkServiceError.cannotCreateRequest))
-//            return
-//        }
-//
-//        dataTask(with: request) { data, response, error in
-//            guard error == nil else {
-//                completion(.failure(NetworkServiceError.connectivityError))
-//                return
-//            }
-//
-//            guard let response = response as? HTTPURLResponse, (200..<299) ~= response.statusCode else {
-//                completion(.failure(NetworkServiceError.httpRequestFailed))
-//                return
-//            }
-//
-//            guard let data = data, !data.isEmpty else {
-//                completion(.failure(NetworkServiceError.didNotRecieveData))
-//                return
-//            }
-//
-//            guard let tempResult = try? decoder.decode(NetworkResponse<Response>.self, from: data) else {
-//                completion(.failure(NetworkServiceError.cannotParseJSON))
-//                return
-//            }
-//            guard let webResult = tempResult.result else {
-//                completion(.failure(NetworkServiceError.sslConectError))
-//                return
-//            }
-//            completion(.success(webResult))
-//        }
-//        .resume()
-//    }
-// }
 
 private extension URLSession {
     func publisher<Response>(
