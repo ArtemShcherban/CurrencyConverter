@@ -11,6 +11,7 @@ import XCTest
 final class ConverterViewTests: XCTestCase {
     private var converterView: ConverterView!
     private var mainViewController: MainViewController!
+    
     override func setUp() {
         super.setUp()
         createMockMainViewController { controller in

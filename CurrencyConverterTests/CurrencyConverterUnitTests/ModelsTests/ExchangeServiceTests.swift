@@ -13,7 +13,7 @@ final class ExchangeServiceTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        let coreDataStack = TestCoreDataStack()
+        let coreDataStack = MockCoreDataStack()
         exchangeService = ExchangeService(coreDataStack)
     }
 

@@ -8,7 +8,9 @@
 import Foundation
 
 final class MockURLProtocol: URLProtocol {
+    // swiftlint:disable large_tuple
     static var mockURLs: [URL?: (data: Data?, response: HTTPURLResponse?, error: Error?)] = [:]
+    // swiftlint:enable large_tuple
     
     override class func canInit(with request: URLRequest) -> Bool {
         return true

@@ -21,6 +21,7 @@ final class CurrencyConverterUITests: XCTestCase {
     override func setUp() {
         super.setUp()
         app = XCUIApplication()
+        
         app.launchArguments.append("IS_RUNNING_UITEST")
         app.launch()
         continueAfterFailure = false

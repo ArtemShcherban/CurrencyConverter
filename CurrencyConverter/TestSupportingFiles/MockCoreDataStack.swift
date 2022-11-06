@@ -1,5 +1,5 @@
 //
-//  TestCoreDataStack.swift
+//  MockCoreDataStack.swift
 //  CurrencyConverterTests
 //
 //  Created by Artem Shcherban on 19.10.2022.
@@ -7,9 +7,8 @@
 
 import Foundation
 import CoreData
-@testable import CurrencyConverter
 
-class TestCoreDataStack: CoreDataStack {
+class MockCoreDataStack: CoreDataStack {
     override init() {
         super.init()
         

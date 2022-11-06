@@ -19,7 +19,7 @@ final class ExchangeRateModelTests: XCTestCase {
     
     override func setUpWithError() throws {
         try super.setUpWithError()
-        let coreDataStack = TestCoreDataStack()
+        let coreDataStack = MockCoreDataStack()
         networkService = NetworkService()
         mockURLSession = MockURLSession()
         exchangeService = ExchangeService(coreDataStack)

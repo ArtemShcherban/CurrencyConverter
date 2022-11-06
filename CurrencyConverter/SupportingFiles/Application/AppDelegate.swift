@@ -12,7 +12,7 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         if CommandLine.arguments.contains("IS_RUNNING_UITEST") {
-            ExchangeService.coreDataStack = TestCoreDataStack()
+            ExchangeService.coreDataStack = MockCoreDataStack()
             let mockUrlSession = MockURLSession()
             mockUrlSession.createTestData(for: .privatBank(with: Date()))
             NetworkService.urlSession = mockUrlSession.byDefault

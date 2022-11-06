@@ -36,17 +36,9 @@ final class ExchangeService {
         }
     }
     
-    init(_ coreDataStack: CoreDataStack) {
+    convenience init(_ coreDataStack: MockCoreDataStack) {
         ExchangeService.coreDataStack = coreDataStack
-        self.containerRepository = ContainerRepository(
-            ExchangeService.coreDataStack,
-            managedObjectContext: ExchangeService.coreDataStack.managedContext)
-        createCurrencies {
-            self.exchangeRateModel = ExchangeRateModel(
-                with: self.currenciesList.map { $0.value },
-                coreDataStack: ExchangeService.coreDataStack
-            )
-        }
+        self.init()
     }
     
     func insertCurrencies() {

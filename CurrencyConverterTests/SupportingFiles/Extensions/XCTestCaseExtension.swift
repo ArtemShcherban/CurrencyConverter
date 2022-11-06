@@ -10,7 +10,7 @@ import XCTest
 
 extension XCTestCase {
     func createMockMainViewController(completion: @escaping (MainViewController) -> Void) {
-        let coreDataStack = TestCoreDataStack()
+        let coreDataStack = MockCoreDataStack()
         let mainViewController = MainViewController()
         mainViewController.exchangeService = ExchangeService(coreDataStack)
         mainViewController.exchangeService.delegate = mainViewController

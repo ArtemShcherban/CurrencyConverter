@@ -10,14 +10,14 @@ import CoreData
 @testable import CurrencyConverter
 
 final class DateModelTests: XCTestCase {
-    private var coreDataStack: TestCoreDataStack!
+    private var coreDataStack: MockCoreDataStack!
     private var dateModel: DateModel!
     private var currentDate: Date!
     private var lastUpdateDate: Date!
     
     override func setUp() {
         super.setUp()
-        coreDataStack = TestCoreDataStack()
+        coreDataStack = MockCoreDataStack()
         dateModel = DateModel(coreDataStack)
         currentDate = Date()
         lastUpdateDate = Date().startOfDay + 300

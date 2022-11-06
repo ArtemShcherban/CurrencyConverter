@@ -17,7 +17,7 @@ final class ContainerRepositoryTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        coreDataStack = TestCoreDataStack()
+        coreDataStack = MockCoreDataStack()
         containerRepository = ContainerRepository(coreDataStack)
         
         containerRepository.createContainers()

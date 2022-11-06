@@ -6,7 +6,6 @@
 //
 
 import Foundation
-@testable import CurrencyConverter
 
 final class MockURLSession {
     private var data: Data?

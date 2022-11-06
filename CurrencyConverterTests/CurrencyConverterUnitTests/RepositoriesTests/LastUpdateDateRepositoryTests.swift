@@ -15,7 +15,7 @@ final class LastUpdateDateRepositoryTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        coreDataStack = TestCoreDataStack()
+        coreDataStack = MockCoreDataStack()
         dateRepository = LastUpdateDateRepository(coreDataStack)
         dateRepository.create(lastUpdateDate: DateConstants.yesterday)
     }
