@@ -491,13 +491,13 @@
 			path = CoreDataObjects;
 			sourceTree = "<group>";
 		};
-		F4281771291F834400C2AD4E /* TestExchangeRates */ = {
+		F4281771291F834400C2AD4E /* ExchangeRates */ = {
 			isa = PBXGroup;
 			children = (
 				F428176D291F832E00C2AD4E /* monoBankTest.txt */,
 				F428176E291F832E00C2AD4E /* privatBankTest.txt */,
 			);
-			path = TestExchangeRates;
+			path = ExchangeRates;
 			sourceTree = "<group>";
 		};
 		F45137C5289EAFC000B2190D /* MainModule */ = {
@@ -648,6 +648,7 @@
 		F48D3B0228FFE50D00ED1ABB /* SupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				F4281771291F834400C2AD4E /* ExchangeRates */,
 				F409D3DA29066A4A00694129 /* Constants */,
 				F496E31D29153282009FEE01 /* Extensions */,
 				F4904139290172E200AD2B47 /* MockObjects */,
@@ -675,7 +676,6 @@
 		F496E31C2915326B009FEE01 /* TestSupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
-				F4281771291F834400C2AD4E /* TestExchangeRates */,
 				F48D3B0328FFE52800ED1ABB /* MockCoreDataStack.swift */,
 				F409D3DD29066FC600694129 /* MockURLProtocol.swift */,
 				F409D3D82906696B00694129 /* MockURLSession.swift */,
