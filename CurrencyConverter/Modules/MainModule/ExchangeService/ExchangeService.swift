@@ -28,6 +28,7 @@ final class ExchangeService {
         self.containerRepository = ContainerRepository(
             ExchangeService.coreDataStack,
             managedObjectContext: ExchangeService.coreDataStack.managedContext)
+//        self.containerRepository = ContainerRepository(ExchangeService.coreDataStack)
         createCurrencies {
             self.exchangeRateModel = ExchangeRateModel(
                 with: self.currenciesList.map { $0.value },

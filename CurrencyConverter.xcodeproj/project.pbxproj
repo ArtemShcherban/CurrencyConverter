@@ -22,8 +22,6 @@
 		F4056049288988CE007CD5AA /* SyncQueue.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4056048288988CE007CD5AA /* SyncQueue.swift */; };
 		F405604D288D1017007CD5AA /* RateTextLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F405604C288D1017007CD5AA /* RateTextLabel.swift */; };
 		F409D3E12906741500694129 /* ExchangeRateModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F409D3E02906741500694129 /* ExchangeRateModelTests.swift */; };
-		F409D3E329067B5100694129 /* monoBankTest.txt in Resources */ = {isa = PBXBuildFile; fileRef = F409D3E229067B5100694129 /* monoBankTest.txt */; };
-		F409D443290D318A00694129 /* privatBankTest.txt in Resources */ = {isa = PBXBuildFile; fileRef = F409D442290D318A00694129 /* privatBankTest.txt */; };
 		F4129DAE28C74F6900905320 /* HideKeyboardExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4129DAD28C74F6900905320 /* HideKeyboardExtension.swift */; };
 		F4129DB028C7504500905320 /* MainViewDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4129DAF28C7504500905320 /* MainViewDelegateExtension.swift */; };
 		F4129DB228C750DF00905320 /* CentralViewDelegateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4129DB128C750DF00905320 /* CentralViewDelegateExtension.swift */; };
@@ -36,6 +34,8 @@
 		F4260867290EBB1D00BC1FFA /* MessageConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4260866290EBB1D00BC1FFA /* MessageConstants.swift */; };
 		F4260869290FA98200BC1FFA /* CurrencyListModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4260868290FA98200BC1FFA /* CurrencyListModelTests.swift */; };
 		F426086B2910258400BC1FFA /* XCTestCaseExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F426086A2910258400BC1FFA /* XCTestCaseExtension.swift */; };
+		F428176F291F832E00C2AD4E /* monoBankTest.txt in Resources */ = {isa = PBXBuildFile; fileRef = F428176D291F832E00C2AD4E /* monoBankTest.txt */; };
+		F4281770291F832E00C2AD4E /* privatBankTest.txt in Resources */ = {isa = PBXBuildFile; fileRef = F428176E291F832E00C2AD4E /* privatBankTest.txt */; };
 		F42CD259288FE8320010FA7D /* SFProText-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = F42CD258288FE8320010FA7D /* SFProText-Regular.ttf */; };
 		F435D1BD2887E5EB00B27418 /* AdjustableTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F435D1BC2887E5EB00B27418 /* AdjustableTextField.swift */; };
 		F43CC140291161B2000EE4B9 /* MockURLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = F409D3D82906696B00694129 /* MockURLSession.swift */; };
@@ -176,8 +176,6 @@
 		F409D3D82906696B00694129 /* MockURLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLSession.swift; sourceTree = "<group>"; };
 		F409D3DD29066FC600694129 /* MockURLProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockURLProtocol.swift; sourceTree = "<group>"; };
 		F409D3E02906741500694129 /* ExchangeRateModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExchangeRateModelTests.swift; sourceTree = "<group>"; };
-		F409D3E229067B5100694129 /* monoBankTest.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = monoBankTest.txt; path = ../../../../../monoBankTest.txt; sourceTree = "<group>"; };
-		F409D442290D318A00694129 /* privatBankTest.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = privatBankTest.txt; path = ../../../../../privatBankTest.txt; sourceTree = "<group>"; };
 		F4129DAD28C74F6900905320 /* HideKeyboardExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HideKeyboardExtension.swift; sourceTree = "<group>"; };
 		F4129DAF28C7504500905320 /* MainViewDelegateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewDelegateExtension.swift; sourceTree = "<group>"; };
 		F4129DB128C750DF00905320 /* CentralViewDelegateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CentralViewDelegateExtension.swift; sourceTree = "<group>"; };
@@ -189,6 +187,8 @@
 		F4260866290EBB1D00BC1FFA /* MessageConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageConstants.swift; sourceTree = "<group>"; };
 		F4260868290FA98200BC1FFA /* CurrencyListModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyListModelTests.swift; sourceTree = "<group>"; };
 		F426086A2910258400BC1FFA /* XCTestCaseExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = XCTestCaseExtension.swift; sourceTree = "<group>"; };
+		F428176D291F832E00C2AD4E /* monoBankTest.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = monoBankTest.txt; sourceTree = "<group>"; };
+		F428176E291F832E00C2AD4E /* privatBankTest.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = privatBankTest.txt; sourceTree = "<group>"; };
 		F42CD258288FE8320010FA7D /* SFProText-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SFProText-Regular.ttf"; sourceTree = "<group>"; };
 		F435D1BC2887E5EB00B27418 /* AdjustableTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdjustableTextField.swift; sourceTree = "<group>"; };
 		F4429C6A289FB63400070620 /* DateModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateModel.swift; sourceTree = "<group>"; };
@@ -403,8 +403,6 @@
 		F405603628894E79007CD5AA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				F409D442290D318A00694129 /* privatBankTest.txt */,
-				F409D3E229067B5100694129 /* monoBankTest.txt */,
 				F4A2F88A28870A11007948A9 /* Fonts */,
 				F4DCC34028B624C300DC4D09 /* WorldCurrencies.plist */,
 				F4532CC12883E93400A05344 /* Assets.xcassets */,
@@ -491,6 +489,15 @@
 				F45E042828A4FA7400902C73 /* CDRateContainer+CoreDataProperties.swift */,
 			);
 			path = CoreDataObjects;
+			sourceTree = "<group>";
+		};
+		F4281771291F834400C2AD4E /* TestExchangeRates */ = {
+			isa = PBXGroup;
+			children = (
+				F428176D291F832E00C2AD4E /* monoBankTest.txt */,
+				F428176E291F832E00C2AD4E /* privatBankTest.txt */,
+			);
+			path = TestExchangeRates;
 			sourceTree = "<group>";
 		};
 		F45137C5289EAFC000B2190D /* MainModule */ = {
@@ -668,6 +675,7 @@
 		F496E31C2915326B009FEE01 /* TestSupportingFiles */ = {
 			isa = PBXGroup;
 			children = (
+				F4281771291F834400C2AD4E /* TestExchangeRates */,
 				F48D3B0328FFE52800ED1ABB /* MockCoreDataStack.swift */,
 				F409D3DD29066FC600694129 /* MockURLProtocol.swift */,
 				F409D3D82906696B00694129 /* MockURLSession.swift */,
@@ -947,10 +955,9 @@
 				F45E043E28AA639700902C73 /* ConverterCell.xib in Resources */,
 				F4A2F88C28870A28007948A9 /* Lato-ExtraBold.ttf in Resources */,
 				F4AA60ED288D4BCE00E191E6 /* RateCell.xib in Resources */,
-				F409D443290D318A00694129 /* privatBankTest.txt in Resources */,
+				F4281770291F832E00C2AD4E /* privatBankTest.txt in Resources */,
 				F4A2F89228871BF7007948A9 /* Lato-Regular.ttf in Resources */,
 				F4A2F890288710B1007948A9 /* ConverterView.xib in Resources */,
-				F409D3E329067B5100694129 /* monoBankTest.txt in Resources */,
 				F4532CC52883E93400A05344 /* LaunchScreen.storyboard in Resources */,
 				F4532CC22883E93400A05344 /* Assets.xcassets in Resources */,
 				F4DCC34128B624C300DC4D09 /* WorldCurrencies.plist in Resources */,
@@ -959,6 +966,7 @@
 				F4532CC02883E93300A05344 /* Main.storyboard in Resources */,
 				F4D35F0B28BF80C0001FE74A /* ExchangeRatesView.xib in Resources */,
 				F4A2F89428871DD4007948A9 /* Lato-SemiBold.ttf in Resources */,
+				F428176F291F832E00C2AD4E /* monoBankTest.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@ target 'CurrencyConverter' do
   # Pods for CurrencyConverter
   pod 'SwiftLint'
 
-  target 'CurrencyConverterTests' do
+  target 'CurrencyConverterUnitTests' do
     inherit! :search_paths
     # Pods for testing
   end

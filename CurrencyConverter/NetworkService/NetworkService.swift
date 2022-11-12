@@ -29,7 +29,7 @@ final class NetworkService {
         }
     }
     
-    func createSubscription<Response>(
+    private func createSubscription<Response>(
         for publisher: AnyPublisher<Response?, Error>,
         completion: @escaping (Result<Response, NetworkServiceError>) -> Void
     ) {
@@ -47,7 +47,7 @@ final class NetworkService {
             })
     }
     
-    func checkErrorCode(_ error: Error) -> NetworkServiceError {
+    private func checkErrorCode(_ error: Error) -> NetworkServiceError {
         switch error._code {
         case -1001:
             return NetworkServiceError.badNetworkQuality
