@@ -8,19 +8,30 @@
 import Foundation
 import CoreData
 
-class MockCoreDataStack: CoreDataStack {
-    override init() {
-        super.init()
-        
-        let container = NSPersistentContainer(name: CoreDataStack.modelName, managedObjectModel: CoreDataStack.model)
-        container.persistentStoreDescriptions[0].url =
-        URL(fileURLWithPath: "/dev/null")
-
+final class MockCoreDataStack {
+    static func create() -> CoreDataStack {
+        let mockCoreData = MockCoreDataStack()
+        return mockCoreData.stack
+    }
+    
+    private lazy var stack: CoreDataStack = {
+        let coreDataStack = CoreDataStack()
+        let container = createContainer()
+        coreDataStack.storeContainer = container
+        return coreDataStack
+    }()
+    
+    private func createContainer() -> NSPersistentContainer {
+        let container = NSPersistentContainer(
+            name: CoreDataStack.modelName,
+            managedObjectModel: CoreDataStack.model
+        )
+        container.persistentStoreDescriptions[0].url = URL(fileURLWithPath: "/dev/null")
         container.loadPersistentStores { _, error in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
         }
-        self.storeContainer = container
+        return container
     }
 }

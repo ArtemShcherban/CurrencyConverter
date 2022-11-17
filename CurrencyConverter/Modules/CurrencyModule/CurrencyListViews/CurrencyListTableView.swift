@@ -7,6 +7,6 @@
 
 import UIKit
 
-class CurrencyListTableView: UITableView {
+final class CurrencyListTableView: UITableView {
     var isFiltered = false
 }

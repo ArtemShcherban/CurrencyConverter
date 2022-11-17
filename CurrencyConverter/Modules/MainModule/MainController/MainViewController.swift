@@ -31,6 +31,8 @@ final class MainViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+        print(path)
         mainAsyncQueue = AsyncQueue.main
         initialSetup {
             self.mainAsyncQueue?.dispatch {
@@ -70,7 +72,7 @@ final class MainViewController: UIViewController {
     }
     
     func updateData(for date: Date = Date()) {
-        guard exchangeService.dateModel.checkTimeInterval(to: date) else { return }
+        guard exchangeService.dateModel.checkTimeInterval(for: date) else { return }
         exchangeService.exchangeRateModel.exchangeRates(for: date) { result in
             switch result {
             case .success(date):
@@ -86,7 +88,7 @@ final class MainViewController: UIViewController {
     }
     
     func checkUpdateTime(date: Date) -> Bool {
-        if exchangeService.dateModel.checkTimeInterval(to: date) {
+        if exchangeService.dateModel.checkTimeInterval(for: date) {
             return true
         } else {
             let hour = exchangeService.dateModel.nextUpdateHour(from: date)
@@ -112,11 +114,11 @@ final class MainViewController: UIViewController {
         let viewController =
         storyboard.instantiateViewController(
             identifier: CurrencyListViewController.reuseIdentifier) { coder -> CurrencyListViewController? in
-            CurrencyListViewController(
-                coder: coder,
-                ratesModel: self.exchangeService.ratesModel,
-                editingRow: editingRow
-            )
+                CurrencyListViewController(
+                    coder: coder,
+                    ratesModel: self.exchangeService.ratesModel,
+                    editingRow: editingRow
+                )
         }
         
         viewController.modalPresentationStyle = .fullScreen

@@ -16,7 +16,7 @@ final class ExchangeRateModel {
     
     init(with currencyList: [Currency], coreDataStack: CoreDataStack) {
         self.currencyList = currencyList
-        self.exchangeRateRepository = ExchangeRateRepository(coreDataStack)
+        self.exchangeRateRepository = ExchangeRateRepository(coreDataStack: coreDataStack)
     }
     
     func exchangeRates(for date: Date, completion: @escaping (Result<Date, NetworkServiceError> ) -> Void) {
@@ -85,7 +85,7 @@ final class ExchangeRateModel {
     }
     
     func setExchangeRate(for currency: Currency) -> Currency {
-        let currency = currency
+        var currency = currency
         guard currency.code != "UAH" else {
             currency.buy = 1.0
             currency.sell = 1.0

@@ -23,8 +23,8 @@ final class ExchangeRateRepositoryTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        let coreDataStack = MockCoreDataStack()
-        exRateRepository = ExchangeRateRepository(coreDataStack)
+        exRateRepository = ExchangeRateRepository(
+            coreDataStack: MockCoreDataStack.create())
         dates = [today, yesterday, twoDaysAgo]
         createBulletins(for: dates)
         exRates = createExRates(for: dates)
@@ -55,21 +55,6 @@ final class ExchangeRateRepositoryTests: XCTestCase {
     }
     
     func test_handleSaving_WithUpdateExRate() {
-        guard
-            exRates[0] == exRateRepository.exchangeRate(for: greatBritanPound, on: twoDaysAgo),
-            exRates[1] == exRateRepository.exchangeRate(for: canadianDollar, on: twoDaysAgo),
-            exRates[2] == exRateRepository.exchangeRate(for: japaneseYen, on: twoDaysAgo),
-            exRates[3] == exRateRepository.exchangeRate(for: greatBritanPound, on: yesterday),
-            exRates[4] == exRateRepository.exchangeRate(for: canadianDollar, on: yesterday),
-            exRates[5] == exRateRepository.exchangeRate(for: japaneseYen, on: yesterday),
-            exRates[6] == exRateRepository.exchangeRate(for: greatBritanPound, on: today),
-            exRates[7] == exRateRepository.exchangeRate(for: canadianDollar, on: today),
-            exRates[8] == exRateRepository.exchangeRate(for: japaneseYen, on: today)
-        else {
-            XCTFail("Exchange Rates Should Be The Same")
-            return
-        }
-        
         exRates = createExRates(for: dates, multiplier: 1.1)
         
         XCTAssertEqual(exRateRepository.exchangeRate(for: greatBritanPound, on: twoDaysAgo), exRates[0])
@@ -85,11 +70,11 @@ final class ExchangeRateRepositoryTests: XCTestCase {
     
     func testDeleteBulletin() {
         // swiftlint:disable identifier_name
-        let date21_10_22 = Date(timeIntervalSince1970: 1666303200)
-        let date19_10_22 = Date(timeIntervalSince1970: 1666130400)
-        let date18_10_22 = Date(timeIntervalSince1970: 1666044000)
-        let date17_10_22 = Date(timeIntervalSince1970: 1665957600)
-        let date15_10_22 = Date(timeIntervalSince1970: 1665784800)
+        let date21_10_22 = DateConstants.date21_10_22
+        let date19_10_22 = DateConstants.date19_10_22
+        let date18_10_22 = DateConstants.date18_10_22
+        let date17_10_22 = DateConstants.date17_10_22
+        let date15_10_22 = DateConstants.date15_10_22
         // swiftlint:enable identifier_name
         
         let additionalDates = [date15_10_22, date17_10_22, date18_10_22, date19_10_22, date21_10_22]

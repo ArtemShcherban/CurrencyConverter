@@ -9,25 +9,16 @@ import XCTest
 @testable import CurrencyConverter
 
 extension XCTestCase {
-    func createMockMainViewController(completion: @escaping (MainViewController) -> Void) {
-        let coreDataStack = MockCoreDataStack()
+    func createMockMainViewController() -> MainViewController {
+        ExchangeService.coreDataStack = MockCoreDataStack.create()
         let mainViewController = MainViewController()
-        mainViewController.exchangeService = ExchangeService(coreDataStack)
         mainViewController.exchangeService.delegate = mainViewController
         mainViewController.exchangeService.insertCurrencies()
-        completion(mainViewController)
+        return mainViewController
     }
     
     func setTestDefaultCurrenciesNumbers() {
         DefaultCurrencies.exRatesCurrenciesNumbers = MockCurrency.currencyNumbers
         DefaultCurrencies.converterCurrenciesNumbers = MockCurrency.currencyNumbers
-    }
-    
-    func updateContainer(with containerName: String, in repository: ContainerRepository) {
-        let currencies = MockCurrency.currencies
-        
-        currencies.forEach {
-            repository.update(container: containerName, with: $0)
-        }
     }
 }

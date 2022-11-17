@@ -53,9 +53,7 @@ final class CurrencyListView: UIView {
         setTableViewAccessibilityID()
     }
     
-    private func setTableViewAccessibilityID() {
-        tableView.accessibilityIdentifier = AccessibilityID.currencyListTableViewID
-    }
+    private func setTableViewAccessibilityID() { tableView.accessibilityIdentifier = AccessibilityID.currencyListTableViewID }
     
     private func createTableViewShadow() {
         tableView.layer.masksToBounds = false

@@ -21,9 +21,9 @@ final class CurrencyConverterUITests: XCTestCase {
     override func setUp() {
         super.setUp()
         app = XCUIApplication()
-        
         app.launchArguments.append("IS_RUNNING_UITEST")
         app.launch()
+        
         continueAfterFailure = false
     }
     
@@ -67,25 +67,27 @@ final class CurrencyConverterUITests: XCTestCase {
         let cell = app.tables.cells.element(boundBy: 1)
         cell.swipeLeft()
         cell.buttons["Delete"].tap()
-
+        
         exRatesAddButton.tap()
         
         XCTAssert(currencyListTableView.exists)
     }
     
-    func test_tapCellInCurrencyListTableView_addCellInExRatesTableView() {
+    func test_tapCellInCurrencyListTableView_addCellInExRatesTableView() throws {
         let exRatesTableView = app.tables["exRatesTableView"]
         let secondCell = exRatesTableView.cells.element(boundBy: 1)
         let thirdCell = exRatesTableView.cells.element(boundBy: 2)
         secondCell.swipeLeft()
         secondCell.buttons["Delete"].tap()
-        var numberOfCell = exRatesTableView.cells.count
-        numberOfCell == 2 ? nil : XCTFail("Should Be Two Cells")
-
+        
+        guard exRatesTableView.cells.count == 2 else {
+            throw XCTSkip("Should Be Two Cells")
+        }
+        
         exRatesAddButton.tap()
-        currencyListTableView.cells.element(boundBy: 7).tap()
-        numberOfCell = exRatesTableView.cells.count
-
+        currencyListTableView.cells.element(boundBy: 8).tap()
+        let numberOfCell = exRatesTableView.cells.count
+        
         XCTAssertEqual(numberOfCell, 3)
         XCTAssertEqual(thirdCell.buttons.element.label, "AUD")
     }
@@ -125,21 +127,10 @@ final class CurrencyConverterUITests: XCTestCase {
         let cell = app.tables.cells.element(boundBy: 1)
         cell.swipeLeft()
         cell.buttons["Delete"].tap()
-
+        
         converterAddButton.tap()
         
         XCTAssert(currencyListTableView.exists)
-    }
-    
-    func test_entering18Digits_ReturnStringOf12Characters() {
-        let inputString = "123456789012345678"
-        let expectedString = "123 456 789 012"
-        switchViewButton.tap()
-        amountTextField.tap()
-        
-        amountTextField.typeText(inputString)
-        
-        XCTAssertEqual(amountTextField.value as? String, expectedString)
     }
     
     func test_tapSendButton_ActivityListViewAppear() {

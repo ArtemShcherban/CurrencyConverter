@@ -10,8 +10,8 @@ import Foundation
 final class DateModel {
     private let lastUpdateDateRepository: LastUpdateDateRepository
     
-    init(_ coreDataStack: CoreDataStack) {
-        self.lastUpdateDateRepository = LastUpdateDateRepository(coreDataStack)
+    init(coreDataStack: CoreDataStack) {
+        self.lastUpdateDateRepository = LastUpdateDateRepository(coreDataStack: coreDataStack)
     }
     
     func lastUpdateDate() -> String {
@@ -34,17 +34,17 @@ final class DateModel {
         return date < Calendar.current.startOfDay(for: Date())
     }
     
-    func checkTimeInterval(from currentDate: Date = Date(), to date: Date) -> Bool {
+    func checkTimeInterval(for date: Date) -> Bool {
         if date < Date().startOfDay {
-            return true }
-        guard let lastUpdateDate = lastUpdateDateRepository.date else {
-            return true }
+            return true
+        }
+        guard let lastUpdateDate = lastUpdateDateRepository.date else { return true }
         let calendar = Calendar.current
         let components = calendar.dateComponents(in: .current, from: lastUpdateDate)
         if
             let minutes = components.minute,
             let seconds = components.second {
-            let timeInterval = -Int(lastUpdateDate.timeIntervalSince(currentDate))
+            let timeInterval = -Int(lastUpdateDate.timeIntervalSince(date))
             if timeInterval >= 3600 - (minutes * 60 + seconds) {
                 return true
             }

@@ -10,15 +10,15 @@ import CoreData
 @testable import CurrencyConverter
 
 final class DateModelTests: XCTestCase {
-    private var coreDataStack: MockCoreDataStack!
+    private var coreDataStack: CoreDataStack!
     private var dateModel: DateModel!
     private var currentDate: Date!
     private var lastUpdateDate: Date!
     
     override func setUp() {
         super.setUp()
-        coreDataStack = MockCoreDataStack()
-        dateModel = DateModel(coreDataStack)
+        coreDataStack = MockCoreDataStack.create()
+        dateModel = DateModel(coreDataStack: coreDataStack)
         currentDate = Date()
         lastUpdateDate = Date().startOfDay + 300
     }
@@ -48,7 +48,7 @@ final class DateModelTests: XCTestCase {
         _ = expectation
         _ = dateModel.lastUpdateDate()
         dateModel.renew(updateDate: Date())
-  
+        
         waitForExpectations(timeout: 2.0) { error in
             XCTAssertNil(error, "Save did not occur")
         }
@@ -59,16 +59,16 @@ final class DateModelTests: XCTestCase {
     
     func test_checkPickerDate() {
         XCTAssertFalse(dateModel.checkPickerDate(currentDate), "False should be returned")
-        XCTAssertTrue(dateModel.checkPickerDate(currentDate - 86400), "True should be returned")
+        XCTAssertTrue(dateModel.checkPickerDate(currentDate - DateConstants.oneDay), "True should be returned")
     }
     
     func test_checkTimeIntervalToGivenDate() {
         var dates: [Date] = []
-        dates.append(lastUpdateDate + 600)
-        dates.append(lastUpdateDate + 3000)
-        dates.append(lastUpdateDate + 3300)
-        dates.append(lastUpdateDate + 3600)
-        dates.append(lastUpdateDate - 86400)
+        dates.append(lastUpdateDate + 600)  // - 600 seconds = 10 minutes
+        dates.append(lastUpdateDate + 3000) // - 3000 seconds = 50 minutes
+        dates.append(lastUpdateDate + 3300) // - 3300 seconds = 55 minutes
+        dates.append(lastUpdateDate + 3600) // - 3600 seconds = 1 hour
+        dates.append(lastUpdateDate - DateConstants.oneDay)
         runTest_checkTimeIntervalToGivenDate(dates)
     }
     
@@ -99,21 +99,14 @@ final class DateModelTests: XCTestCase {
             switch index {
             case 0, 1:
                 XCTAssertFalse(
-                    self.dateModel.checkTimeInterval(from: date, to: Date()),
+                    self.dateModel.checkTimeInterval(for: date),
                     "False should be returned",
                     file: file,
                     line: line
                 )
-            case 2, 3:
+            case 2, 3, 4:
                 XCTAssertTrue(
-                    self.dateModel.checkTimeInterval(from: date, to: Date()),
-                    "True should be returned",
-                    file: file,
-                    line: line
-                )
-            case 4:
-                XCTAssertTrue(
-                    self.dateModel.checkTimeInterval(from: Date(), to: date),
+                    self.dateModel.checkTimeInterval(for: date),
                     "True should be returned",
                     file: file,
                     line: line

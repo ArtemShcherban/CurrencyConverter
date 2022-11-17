@@ -8,7 +8,7 @@
 import Foundation
 import CoreData
 
-class CoreDataStack {
+final class CoreDataStack {
     static let shared = CoreDataStack()
     
     static let modelName = "CurrencyConverter"
@@ -30,11 +30,6 @@ class CoreDataStack {
         let context = NSManagedObjectContext(concurrencyType: .privateQueueConcurrencyType)
         context.parent = managedContext
         context.automaticallyMergesChangesFromParent = true
-        return context
-    }()
-    
-    lazy var newDerivedContext: NSManagedObjectContext = {
-        let context = storeContainer.newBackgroundContext()
         return context
     }()
     
@@ -98,14 +93,14 @@ class CoreDataStack {
     func erase(entityName: String) {
         let fetch = NSFetchRequest<NSFetchRequestResult>(entityName: entityName)
         let deleteFetch = NSBatchDeleteRequest(fetchRequest: fetch)
-
+        
         do {
             try storeContainer.viewContext.execute(deleteFetch)
         } catch let error as NSError {
             print(error)
         }
     }
-
+    
     func eraseAll() {
         let entities = storeContainer.managedObjectModel.entities
         for entity in entities {

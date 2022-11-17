@@ -22,12 +22,12 @@ final class RatesModel {
     
     weak var delegate: RatesModelDelegate?
     
-    init(_ coreDataStack: CoreDataStack) {
-        self.containerRepository = ContainerRepository(coreDataStack)
+    init(coreDataStack: CoreDataStack) {
+        self.containerRepository = ContainerRepository(coreDataStack: coreDataStack)
     }
     
     func defineContainerName(value: Bool) {
-        containerName = value ? ContainerName.exRates : ContainerName.converter
+        containerName = value ? ContainerName.exchangeRates : ContainerName.converter
     }
     
     func fillSelectedCurrencies() {
@@ -83,7 +83,7 @@ final class RatesModel {
             return true
         }
         switch containerName {
-        case ContainerName.exRates:
+        case ContainerName.exchangeRates:
             return delegate.selectedCurrencies.count <= 2
         case ContainerName.converter:
             return delegate.selectedCurrencies.count <= 1

@@ -9,8 +9,8 @@ import UIKit
 
 final class CurrencyListViewController: UIViewController, CurrencyListViewDelegate {
     static let reuseIdentifier = String(describing: CurrencyListViewController.self)
-   
-    lazy var currencyListModel = CurrencyListModel()
+    
+    lazy var currencyListModel = CurrencyListModel(coreDataStack: ExchangeService.coreDataStack)
     lazy var currenciesInTableView: [Currency] = []
     lazy var filteredCurrency: [Currency] = []
     lazy var groups: [Group] = []
@@ -22,16 +22,18 @@ final class CurrencyListViewController: UIViewController, CurrencyListViewDelega
     
     weak var ratesModelDelegate: RatesModelDelegate?
     
-    init?(coder: NSCoder, ratesModel: RatesModel, editingRow: Int?) {
+    init?(coder: NSCoder?, ratesModel: RatesModel, editingRow: Int?) {
         self.ratesModel = ratesModel
         self.editingRow = editingRow
+        guard let coder = coder else {
+            super.init(nibName: nil, bundle: nil)
+            return
+        }
         super.init(coder: coder)
     }
     
-    init?(ratesModel: RatesModel, editingRow: Int?) {
-        self.ratesModel = ratesModel
-        self.editingRow = editingRow
-        super.init(nibName: nil, bundle: nil)
+    convenience init?(ratesModel: RatesModel, editingRow: Int?) {
+        self.init(coder: nil, ratesModel: ratesModel, editingRow: editingRow)
     }
     
     required init?(coder: NSCoder) {

@@ -13,8 +13,8 @@ final class ExchangeService {
     let containerRepository: ContainerRepository
     private(set) lazy var currenciesList: [String: Currency] = [:]
     private(set) lazy var groups: [Group] = []
-    private(set) lazy var dateModel = DateModel(ExchangeService.coreDataStack)
-    private(set) lazy var ratesModel = RatesModel(ExchangeService.coreDataStack)
+    private(set) lazy var dateModel = DateModel(coreDataStack: ExchangeService.coreDataStack)
+    private(set) lazy var ratesModel = RatesModel(coreDataStack: ExchangeService.coreDataStack)
     private(set) lazy var messageModel = MessageModel()
     private(set) lazy var converterModel = ConverterModel()
     private(set) lazy var exchangeRateModel = ExchangeRateModel(
@@ -25,19 +25,18 @@ final class ExchangeService {
     weak var delegate: MainViewController?
     
     init() {
-        self.containerRepository = ContainerRepository(
-            ExchangeService.coreDataStack,
-            managedObjectContext: ExchangeService.coreDataStack.managedContext)
-//        self.containerRepository = ContainerRepository(ExchangeService.coreDataStack)
-        createCurrencies {
-            self.exchangeRateModel = ExchangeRateModel(
-                with: self.currenciesList.map { $0.value },
-                coreDataStack: ExchangeService.coreDataStack
-            )
-        }
+        self.containerRepository = ContainerRepository(coreDataStack: ExchangeService.coreDataStack)
+        let currencies = decodeWorldCurrenciesPList()
+        self.exchangeRateModel = ExchangeRateModel(
+            with: currencies,
+            coreDataStack: ExchangeService.coreDataStack
+        )
+        updateCurrenciesList(with: currencies)
+        createGroups()
+        createContainers()
     }
     
-    convenience init(_ coreDataStack: MockCoreDataStack) {
+    convenience init(coreDataStack: CoreDataStack) {
         ExchangeService.coreDataStack = coreDataStack
         self.init()
     }
@@ -47,23 +46,24 @@ final class ExchangeService {
         self.delegate?.groups = self.groups
     }
     
-    private func createCurrencies(complition: @escaping () -> Void) {
-        guard currenciesList.isEmpty else { return }
-        guard
-            let path = Bundle.main.path(forResource: "WorldCurrencies", ofType: "plist"),
-            let dataArray = NSArray(contentsOfFile: path) else {
-            return
-        }
+    private func decodeWorldCurrenciesPList() -> [Currency] {
+        let worldCurrenciesURL = Bundle.main.url(forResource: "WorldCurrencies", withExtension: "plist")
         
-        for dictionary in dataArray {
-            if let dictionary = dictionary as? [String: Any] {
-                let currency = Currency(from: dictionary)
-                self.currenciesList.updateValue(currency, forKey: currency.code)
-            }
+        let decoder = PropertyListDecoder()
+        
+        guard
+            let url = worldCurrenciesURL,
+            let worldCurrenciesData = try? Data(contentsOf: url),
+            let currencies = try? decoder.decode([Currency].self, from: worldCurrenciesData) else {
+            return []
         }
-        self.createGroups()
-        self.createContainers()
-        complition()
+        return currencies
+    }
+    
+    private func updateCurrenciesList(with currencies: [Currency]) {
+        currencies.forEach { currency in
+            currenciesList.updateValue(currency, forKey: currency.code)
+        }
     }
     
     private func createGroups() {
@@ -94,7 +94,7 @@ final class ExchangeService {
                 )
                 groups.append(group)
             }
-            let currencyCopy = currency
+            var currencyCopy = currency
             currencyCopy.groupKey = groupKey
             currenciesList.updateValue(currencyCopy, forKey: currencyCopy.code)
         }
@@ -103,7 +103,7 @@ final class ExchangeService {
     private func createPopularGroup(from currencies: [Currency]) {
         let group = Group(visible: true, name: TitleConstants.popular, key: 0)
         currencies.forEach { popularCurrency in
-            if let currency = currenciesList.first(where: { element in
+            if var currency = currenciesList.first(where: { element in
                 element.key == popularCurrency.code
             })?.value {
                 currency.groupKey = group.key
@@ -128,7 +128,7 @@ final class ExchangeService {
     }
     
     private func updateRatesContainer() {
-        let containerName = ContainerName.exRates
+        let containerName = ContainerName.exchangeRates
         let currencyNumbers = DefaultCurrencies.exRatesCurrenciesNumbers
         currencyNumbers.forEach { currencyNumber in
             if let currency = currenciesList.first(where: { $0.value.number == currencyNumber })?.value {

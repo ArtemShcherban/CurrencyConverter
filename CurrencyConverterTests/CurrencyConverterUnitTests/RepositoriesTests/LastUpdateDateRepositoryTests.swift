@@ -15,8 +15,8 @@ final class LastUpdateDateRepositoryTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        coreDataStack = MockCoreDataStack()
-        dateRepository = LastUpdateDateRepository(coreDataStack)
+        coreDataStack = MockCoreDataStack.create()
+        dateRepository = LastUpdateDateRepository(coreDataStack: coreDataStack)
         dateRepository.create(lastUpdateDate: DateConstants.yesterday)
     }
     
@@ -35,6 +35,7 @@ final class LastUpdateDateRepositoryTests: XCTestCase {
     }
     
     func testCreateLastUpdateDate() {
+        XCTAssertNotEqual(dateRepository.date, DateConstants.today)
         XCTAssertEqual(dateRepository.date, DateConstants.yesterday)
     }
     
@@ -43,7 +44,7 @@ final class LastUpdateDateRepositoryTests: XCTestCase {
         
         _ = expectation
         
-        waitForExpectations(timeout: 10.0) { error in
+        waitForExpectations(timeout: 1.0) { error in
             XCTAssertNil(error, "Save did not occur")
         }
         XCTAssertEqual(dateRepository.date, DateConstants.today)

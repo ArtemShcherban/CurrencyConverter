@@ -10,15 +10,8 @@ import CoreData
 
 class Repository {
     private(set) var coreDataStack: CoreDataStack
-    private(set) var managedObjectContext: NSManagedObjectContext
-
-    init(_ coreDataStack: CoreDataStack) {
-        self.coreDataStack = coreDataStack
-        managedObjectContext = coreDataStack.managedContext
-    }
     
-    init(_ coreDataStack: CoreDataStack, managedObjectContext: NSManagedObjectContext) {
+    init(coreDataStack: CoreDataStack) {
         self.coreDataStack = coreDataStack
-        self.managedObjectContext = managedObjectContext
     }
 }

@@ -10,22 +10,18 @@ import CoreData
 @testable import CurrencyConverter
 
 final class ContainerRepositoryTests: XCTestCase {
-    private var coreDataStack: CoreDataStack!
     private var containerRepository: ContainerRepository!
-    private let exRateContainer = ContainerName.exRates
+    private let exRateContainer = ContainerName.exchangeRates
     private let converterContainer = ContainerName.converter
     
     override func setUp() {
         super.setUp()
-        coreDataStack = MockCoreDataStack()
-        containerRepository = ContainerRepository(coreDataStack)
-        
-        containerRepository.createContainers()
-        updateContainers()
+        setTestDefaultCurrenciesNumbers()
+        let exchangeService = ExchangeService(coreDataStack: MockCoreDataStack.create())
+        containerRepository = exchangeService.containerRepository
     }
     
     override func tearDown() {
-        coreDataStack = nil
         containerRepository = nil
         super.tearDown()
     }
@@ -58,7 +54,9 @@ final class ContainerRepositoryTests: XCTestCase {
     }
     
     private func runTest_replaceInContainer(
-        with containerName: String, file: StaticString = #file, line: UInt = #line
+        with containerName: String,
+        file: StaticString = #file,
+        line: UInt = #line
     ) {
         let initialCodes = MockCurrency.currencyCodes
         let expectedCodes = [
@@ -91,10 +89,5 @@ final class ContainerRepositoryTests: XCTestCase {
         
         let codes = containerRepository.currencyCodes(from: containerName)
         XCTAssertEqual(codes, expectedCodes, file: file, line: line)
-    }
-    
-    private func updateContainers() {
-        updateContainer(with: exRateContainer, in: containerRepository)
-        updateContainer(with: converterContainer, in: containerRepository)
     }
 }

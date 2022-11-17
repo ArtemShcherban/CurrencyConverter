@@ -17,7 +17,7 @@ protocol ContainerDataRepository {
     func removeFrom(container: String, currency: Currency)
 }
 
-class ContainerRepository: Repository, ContainerDataRepository {
+final class ContainerRepository: Repository, ContainerDataRepository {
     var countOfContainers: Int {
         let count = coreDataStack.fetchManagedObjectCount(managedObject: CDContainer.self)
         return count
@@ -82,7 +82,7 @@ class ContainerRepository: Repository, ContainerDataRepository {
         var objectID: NSManagedObjectID?
         
         switch containerName {
-        case ContainerName.exRates:
+        case ContainerName.exchangeRates:
             if let result = coreDataStack.fetchManagedObject(managedObject: CDRateContainer.self) {
                 objectID = result.first?.objectID
             }

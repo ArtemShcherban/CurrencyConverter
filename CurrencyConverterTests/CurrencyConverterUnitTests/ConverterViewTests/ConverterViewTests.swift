@@ -14,10 +14,8 @@ final class ConverterViewTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        createMockMainViewController { controller in
-            self.converterView = controller.converterView
-            self.mainViewController = controller
-        }
+        mainViewController = createMockMainViewController()
+        converterView = mainViewController.converterView
         converterView.delegate = mainViewController
     }
     
@@ -26,17 +24,16 @@ final class ConverterViewTests: XCTestCase {
         super.tearDown()
     }
     
-    func test_tapBuyButton() {
+    func test_tapBuyButton() throws {
         guard
             converterView.buyButton.isEnabled,
             !converterView.buyButton.isSelected,
             converterView.sellButton.isSelected,
             !converterView.sellButton.isEnabled else {
-            XCTFail("BuyButton Should Be Enabled, SellButton Should Be Disabled")
-            return
+            throw XCTSkip("BuyButton Should Be Enabled, SellButton Should Be Disabled")
         }
         
-        converterView.buyButton.simulateTap()
+        converterView.buyButton.sendActions(for: .touchUpInside)
         
         XCTAssertTrue(converterView.sellButton.isEnabled)
         XCTAssertFalse(converterView.sellButton.isSelected)
@@ -44,18 +41,17 @@ final class ConverterViewTests: XCTestCase {
         XCTAssertTrue(converterView.buyButton.isSelected)
     }
     
-    func test_tapSellButton() {
-        converterView.buyButton.simulateTap()
+    func test_tapSellButton() throws {
+        converterView.buyButton.sendActions(for: .touchUpInside)
         guard
             !converterView.buyButton.isEnabled,
             converterView.buyButton.isSelected,
             converterView.sellButton.isEnabled,
             !converterView.sellButton.isSelected else {
-            XCTFail("BuyButton Should Be Disabled, SellButton Should Be Enabled")
-            return
+            throw XCTSkip("BuyButton Should Be Disabled, SellButton Should Be Enabled")
         }
         
-        converterView.sellButton.simulateTap()
+        converterView.sellButton.sendActions(for: .touchUpInside)
         
         XCTAssertFalse(converterView.sellButton.isEnabled)
         XCTAssertTrue(converterView.sellButton.isSelected)
@@ -67,10 +63,30 @@ final class ConverterViewTests: XCTestCase {
         let initialString = "1234   5"
         let expectedString = "12 345"
         converterView.inputAmountTextField.text = initialString
-
-        converterView.inputAmountTextField.simulateEditingChanged()
+        
+        converterView.inputAmountTextField.sendActions(for: .editingChanged)
         
         let obtainedString = converterView.inputAmountTextField.text
         XCTAssertEqual(obtainedString, expectedString)
+    }
+    
+    func test_maximumAllowedStringLength() {
+        let validString = "999 999 999 999"
+        let invalidString = "1 000 000 000 000"
+        
+        let obtainedTrue = converterView.textField(
+            converterView.inputAmountTextField,
+            shouldChangeCharactersIn: NSRange(),
+            replacementString: validString
+        )
+        
+        let obtainedFalse = converterView.textField(
+            converterView.inputAmountTextField,
+            shouldChangeCharactersIn: NSRange(),
+            replacementString: invalidString
+        )
+        
+        XCTAssertEqual(obtainedTrue, true)
+        XCTAssertEqual(obtainedFalse, false)
     }
 }

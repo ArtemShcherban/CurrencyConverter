@@ -17,9 +17,7 @@ final class RatesModelTests: XCTestCase {
     override func setUp() {
         super.setUp()
         setTestDefaultCurrenciesNumbers()
-        createMockMainViewController { controller in
-            self.mainViewController = controller
-        }
+        mainViewController = createMockMainViewController()
         containerRepository = mainViewController.exchangeService.containerRepository
         ratesModel = mainViewController.exchangeService.ratesModel
         ratesModel.delegate = mainViewController
@@ -94,7 +92,7 @@ final class RatesModelTests: XCTestCase {
         removeCurenciesFromContainer(0...1)
         ratesModel.add(currency: MockCurrency.omaniReal)
         ratesModel.add(currency: MockCurrency.ukrainianHryvnia)
-
+        
         let codes = containerRepository.currencyCodes(from: ratesModel.containerName)
         
         XCTAssertEqual(codes, expectedCodes)
@@ -107,7 +105,7 @@ final class RatesModelTests: XCTestCase {
             XCTAssertEqual(ratesModel.containerName, ContainerName.converter)
             return
         }
-        XCTAssertEqual(ratesModel.containerName, ContainerName.exRates)
+        XCTAssertEqual(ratesModel.containerName, ContainerName.exchangeRates)
     }
     
     private func runTest_fillSelectedCurrencies(isRatesView: Bool, file: StaticString = #file, line: UInt = #line) {
@@ -125,7 +123,7 @@ final class RatesModelTests: XCTestCase {
             XCTAssertEqual(selectedCurencies, exRateSelectedCurrencies)
             return
         }
-         
+        
         guard let baseCurrency = ratesModel.delegate?.baseCurrency else {
             XCTFail("Base Currency Should Not Be Nil", file: file, line: line)
             return
@@ -133,7 +131,7 @@ final class RatesModelTests: XCTestCase {
         XCTAssertEqual(baseCurrency, expectedBaseCurrency)
         XCTAssertEqual(selectedCurencies, converterSelectedCurrencies)
     }
-        
+    
     private func runTest_replaceCurrency(isRatesView: Bool, file: StaticString = #file, line: UInt = #line) {
         fillSelectedCurrencies(withValue: isRatesView)
         let initialCodes = MockCurrency.currencyCodes
@@ -174,7 +172,7 @@ final class RatesModelTests: XCTestCase {
         fillSelectedCurrencies(withValue: isRatesView)
         let exRatesMaxRow = 3
         let converterMaxRow = 2
-
+        
         guard isRatesView else {
             XCTAssertEqual(ratesModel.delegate?.selectedCurrencies.count, converterMaxRow)
             XCTAssertFalse(ratesModel.canAddRow(), "False should be returned")

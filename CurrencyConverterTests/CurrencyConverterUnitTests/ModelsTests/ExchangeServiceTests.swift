@@ -13,15 +13,14 @@ final class ExchangeServiceTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        let coreDataStack = MockCoreDataStack()
-        exchangeService = ExchangeService(coreDataStack)
+        exchangeService = ExchangeService(coreDataStack: MockCoreDataStack.create())
     }
-
+    
     override func tearDown() {
         super.tearDown()
         exchangeService = nil
     }
-
+    
     func test_creatingCurrenciesList() {
         XCTAssertEqual(exchangeService.currenciesList.count, 156)
         XCTAssertEqual(exchangeService.currenciesList["USD"]?.number, 840)

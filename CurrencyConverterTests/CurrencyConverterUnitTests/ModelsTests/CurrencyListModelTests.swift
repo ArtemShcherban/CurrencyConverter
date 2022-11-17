@@ -13,18 +13,16 @@ final class CurrencyListModelTests: XCTestCase {
     private var containerRepository: ContainerRepository!
     private var currencyListViewController: CurrencyListViewController!
     private var mainViewController: MainViewController!
-    private let exRateContainer = ContainerName.exRates
+    private let exRateContainer = ContainerName.exchangeRates
     private let converterContainer = ContainerName.converter
     
     override func setUp() {
         super.setUp()
         setTestDefaultCurrenciesNumbers()
-        createMockMainViewController { controller in
-            self.mainViewController = controller
-            let rateModel = controller.exchangeService.ratesModel
-            self.currencyListViewController = CurrencyListViewController(ratesModel: rateModel, editingRow: nil)
-        }
-        currencyListModel = CurrencyListModel(ExchangeService.coreDataStack)
+        mainViewController = createMockMainViewController()
+        let rateModel = mainViewController.exchangeService.ratesModel
+        currencyListViewController = CurrencyListViewController(ratesModel: rateModel, editingRow: nil)
+        currencyListModel = CurrencyListModel(coreDataStack: ExchangeService.coreDataStack)
         containerRepository = currencyListModel.containerRepository
         setModelDelegates()
     }
@@ -74,8 +72,8 @@ final class CurrencyListModelTests: XCTestCase {
         let expectedFirstGroup = "Popular"
         let expectedOGroup = "O"
         let expectedLastGroup = "Z"
-
-        fillTableView(containerName: containerName)
+        
+        populateModel(containerName: containerName)
         guard
             let currenciesInTableView = currencyListModel.delegate?.currenciesInTableView,
             let groupsInTableView = currencyListModel.delegate?.groups else {
@@ -115,7 +113,7 @@ final class CurrencyListModelTests: XCTestCase {
         let amountOfFiltered = 2
         let dominica = "DOMINICA"
         let nicaragua = "NICARAGUA"
-        fillTableView(containerName: containerName)
+        populateModel(containerName: containerName)
         
         currencyListModel.filterCurrency(text: "CAR")
         guard
@@ -133,7 +131,7 @@ final class CurrencyListModelTests: XCTestCase {
     private func runTest_selectedCurrency(
         containerName: String, file: StaticString = #file, line: UInt = #line
     ) {
-        fillTableView(containerName: containerName)
+        populateModel(containerName: containerName)
         guard
             let usDollar = currencyListModel.selectedCurrency(at: IndexPath(row: 0, section: 0)),
             let omaniReal = currencyListModel.selectedCurrency(at: IndexPath(row: 0, section: 15)),
@@ -147,7 +145,7 @@ final class CurrencyListModelTests: XCTestCase {
     }
     
     private func runTest_selectedFilteredCurrency(containerName: String) {
-        fillTableView(containerName: containerName)
+        populateModel(containerName: containerName)
         
         currencyListModel.filterCurrency(text: "OM")
         
@@ -162,7 +160,7 @@ final class CurrencyListModelTests: XCTestCase {
         file: StaticString = #file,
         line: UInt = #line
     ) {
-        fillTableView(containerName: containerName)
+        populateModel(containerName: containerName)
         currencyListModel.filterCurrency(text: text)
         let tableView = CurrencyListTableView()
         tableView.isFiltered = isFiltered
@@ -184,7 +182,7 @@ final class CurrencyListModelTests: XCTestCase {
         XCTAssertEqual(groupTitle, "Search result:")
     }
     
-    private func fillTableView(containerName: String) {
+    private func populateModel(containerName: String) {
         currencyListModel.containerName = containerName
         currencyListModel.currenciesForTableView()
     }

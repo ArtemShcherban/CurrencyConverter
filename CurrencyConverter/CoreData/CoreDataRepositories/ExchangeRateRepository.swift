@@ -16,7 +16,7 @@ protocol ExchangeRateDataRepository {
     func deleteBulletin(before date: Date)
 }
 
-class ExchangeRateRepository: Repository, ExchangeRateDataRepository {
+final class ExchangeRateRepository: Repository, ExchangeRateDataRepository {
     func create(bulletin: Bulletin) {
         coreDataStack.backgroundContext.performAndWait {
             let cdBulletin = CDBulletin(context: coreDataStack.backgroundContext)

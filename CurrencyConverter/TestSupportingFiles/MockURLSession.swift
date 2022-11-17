@@ -22,14 +22,22 @@ final class MockURLSession {
         return tempResponse
     }()
     
-    func  createTestData<Response>(for endpoint: Endpoint<Response>) {
+    static func defaultWithBankData<Response>(bank: Endpoint<Response>) -> URLSession {
+        ExchangeService.coreDataStack = MockCoreDataStack.create()
+        let session = MockURLSession()
+        session.createTestData(for: bank)
+        return session.defaultSession
+    }
+    
+    private func createTestData<Response>(for endpoint: Endpoint<Response>) {
         var dataURL: URL?
+        
         if Response.self == [MonoBankExchangeRate].self {
-            dataURL = Bundle.main.url(forResource: "monoBankTest", withExtension: "txt")
+            dataURL = Bundle.main.url(forResource: "monoBankTest", withExtension: "json")
             requestURL = endpoint.makeRequest()?.url
         }
         if Response.self == [PrivatBankExchangeRate].self {
-            dataURL = Bundle.main.url(forResource: "privatBankTest", withExtension: "txt")
+            dataURL = Bundle.main.url(forResource: "privatBankTest", withExtension: "json")
             requestURL = endpoint.makeRequest()?.url
         }
         
@@ -43,7 +51,7 @@ final class MockURLSession {
         return tempConfiguration
     }()
     
-    var byDefault: URLSession {
+    private var defaultSession: URLSession {
         MockURLProtocol.mockURLs = [response?.url: (data, response, error)]
         let session = URLSession(configuration: sessionConfig)
         return session

@@ -8,6 +8,6 @@
 import Foundation
 
 enum ContainerName {
-    static let exRates = "ExRates"
+    static let exchangeRates = "ExchangeRates"
     static let converter = "Converter"
 }

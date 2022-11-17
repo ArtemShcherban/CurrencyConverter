@@ -11,33 +11,24 @@ import CoreData
 @testable import CurrencyConverter
 
 final class ExchangeRateModelTests: XCTestCase {
-    private var networkService: NetworkService!
-    private var mockURLSession: MockURLSession!
     private var exchangeService: ExchangeService!
     private var exchangeRateModel: ExchangeRateModel!
     private var oneYearAgo = DateConstants.oneYearAgo
     
     override func setUpWithError() throws {
         try super.setUpWithError()
-        let coreDataStack = MockCoreDataStack()
-        networkService = NetworkService()
-        mockURLSession = MockURLSession()
-        exchangeService = ExchangeService(coreDataStack)
+        exchangeService = ExchangeService(coreDataStack: MockCoreDataStack.create())
         exchangeRateModel = exchangeService.exchangeRateModel
-        exchangeRateModel.networkService = networkService
     }
     
     override func tearDown() {
-        networkService = nil
-        mockURLSession = nil
         exchangeService = nil
         exchangeRateModel = nil
         super.tearDown()
     }
     
     func test_getExchangeRatesFromMonoBank() {
-        mockURLSession.createTestData(for: .monoBank)
-        NetworkService.urlSession = mockURLSession.byDefault
+        NetworkService.urlSession = MockURLSession.defaultWithBankData(bank: .monoBank)
         let exRateRepo = exchangeRateModel.exchangeRateRepository
         let expectation = expectation(description: "Data from MonoBank received")
         var resultCount = 0
@@ -47,7 +38,7 @@ final class ExchangeRateModelTests: XCTestCase {
             resultCount == 1 ? expectation.fulfill() : nil
         }
         
-        waitForExpectations(timeout: 1.0)
+        waitForExpectations(timeout: 300.0)
         let cadExRate = exRateRepo.exchangeRate(
             for: MockCurrency.canadianDollar,
             on: oneYearAgo
@@ -73,8 +64,7 @@ final class ExchangeRateModelTests: XCTestCase {
     }
     
     func test_getExchangeRatesFromPrivatBank() {
-        mockURLSession.createTestData(for: .privatBank(with: oneYearAgo))
-        NetworkService.urlSession = mockURLSession.byDefault
+        NetworkService.urlSession = MockURLSession.defaultWithBankData(bank: .privatBank(with: oneYearAgo))
         let exRateRepo = exchangeRateModel.exchangeRateRepository
         let expectation = expectation(description: "Data from PrivatBank received")
         var resultCount = 0

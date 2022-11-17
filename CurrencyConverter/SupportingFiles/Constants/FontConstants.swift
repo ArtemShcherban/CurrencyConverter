@@ -11,5 +11,5 @@ import UIKit
 enum FontConstants {
     static let latoRegular = UIFont(name: "Lato-Regular", size: 17) ?? UIFont.systemFont(ofSize: 17)
     static let latoSemiBold = UIFont(name: "Lato-SemiBold", size: 17) ?? UIFont.systemFont(ofSize: 17)
-    static let sfProTextRegular = UIFont(name: "SFProText-Regular", size: 17) ?? UIFont.systemFont(ofSize: 17)
+    static let sfProTextRegular = UIFont(name: "SFProText-Regular", size: 15) ?? UIFont.systemFont(ofSize: 15)
 }
