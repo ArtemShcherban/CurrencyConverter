@@ -38,7 +38,7 @@ final class ExchangeRateModelTests: XCTestCase {
             resultCount == 1 ? expectation.fulfill() : nil
         }
         
-        waitForExpectations(timeout: 300.0)
+        waitForExpectations(timeout: 1.0)
         let cadExRate = exRateRepo.exchangeRate(
             for: MockCurrency.canadianDollar,
             on: oneYearAgo

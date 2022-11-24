@@ -15,30 +15,12 @@ final class CurrencyListViewController: UIViewController, CurrencyListViewDelega
     lazy var filteredCurrency: [Currency] = []
     lazy var groups: [Group] = []
     private(set) var editingRow: Int?
-    private(set) var ratesModel: RatesModel
+    private(set) var ratesModel: RatesModel?
     
     @IBOutlet weak var tableView: CurrencyListTableView!
     @IBOutlet weak var currensyListView: CurrencyListView!
     
     weak var ratesModelDelegate: RatesModelDelegate?
-    
-    init?(coder: NSCoder?, ratesModel: RatesModel, editingRow: Int?) {
-        self.ratesModel = ratesModel
-        self.editingRow = editingRow
-        guard let coder = coder else {
-            super.init(nibName: nil, bundle: nil)
-            return
-        }
-        super.init(coder: coder)
-    }
-    
-    convenience init?(ratesModel: RatesModel, editingRow: Int?) {
-        self.init(coder: nil, ratesModel: ratesModel, editingRow: editingRow)
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -96,5 +78,20 @@ extension CurrencyListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.setShowsCancelButton(false, animated: true)
         searchBar.endEditing(true)
+    }
+}
+
+extension CurrencyListViewController {
+    static func instantiateWith(ratesModel: RatesModel, and editingRow: Int?) -> CurrencyListViewController? {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        guard let viewController = storyboard.instantiateViewController(
+            withIdentifier: CurrencyListViewController.reuseIdentifier
+        ) as? CurrencyListViewController else {
+            return nil
+        }
+        viewController.ratesModel = ratesModel
+        viewController.editingRow = editingRow
+        
+        return viewController
     }
 }

@@ -21,7 +21,10 @@ final class CurrencyListModelTests: XCTestCase {
         setTestDefaultCurrenciesNumbers()
         mainViewController = createMockMainViewController()
         let rateModel = mainViewController.exchangeService.ratesModel
-        currencyListViewController = CurrencyListViewController(ratesModel: rateModel, editingRow: nil)
+        currencyListViewController = CurrencyListViewController.instantiateWith(
+            ratesModel: rateModel,
+            and: nil
+        )
         currencyListModel = CurrencyListModel(coreDataStack: ExchangeService.coreDataStack)
         containerRepository = currencyListModel.containerRepository
         setModelDelegates()

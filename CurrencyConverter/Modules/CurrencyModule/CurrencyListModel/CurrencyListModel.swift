@@ -10,7 +10,7 @@ import Foundation
 protocol CurrencyListModelDelegate: AnyObject { }
 
 final class CurrencyListModel {
-    lazy var containerName = delegate?.ratesModel.containerName
+    lazy var containerName = delegate?.ratesModel?.containerName
     private(set) var containerRepository: ContainerRepository
     
     weak var delegate: CurrencyListViewController?

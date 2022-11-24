@@ -109,16 +109,12 @@ final class MainViewController: UIViewController {
     
     func openCurrencyViewController(for editingRow: Int? = nil) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController =
-        storyboard.instantiateViewController(
-            identifier: CurrencyListViewController.reuseIdentifier) { coder -> CurrencyListViewController? in
-                CurrencyListViewController(
-                    coder: coder,
-                    ratesModel: self.exchangeService.ratesModel,
-                    editingRow: editingRow
-                )
+        guard let viewController = CurrencyListViewController.instantiateWith(
+            ratesModel: self.exchangeService.ratesModel,
+            and: editingRow
+        ) else {
+            return
         }
-        
         viewController.modalPresentationStyle = .fullScreen
         viewController.ratesModelDelegate = self
         

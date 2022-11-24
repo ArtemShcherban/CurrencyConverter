@@ -23,8 +23,7 @@ final class ExchangeRateRepositoryTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
-        exRateRepository = ExchangeRateRepository(
-            coreDataStack: MockCoreDataStack.create())
+        exRateRepository = ExchangeRateRepository(coreDataStack: MockCoreDataStack.create())
         dates = [today, yesterday, twoDaysAgo]
         createBulletins(for: dates)
         exRates = createExRates(for: dates)
