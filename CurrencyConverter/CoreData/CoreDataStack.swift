@@ -9,12 +9,18 @@ import Foundation
 import CoreData
 
 final class CoreDataStack {
-    static let shared = CoreDataStack(modelName: "CurrencyConverter")
-    private let modelName: String
+    static let shared = CoreDataStack()
     
-    init(modelName: String) {
-        self.modelName = modelName
-    }
+    static let modelName = "CurrencyConverter"
+    
+    static let model: NSManagedObjectModel = {
+        guard
+            let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd"),
+            let model = NSManagedObjectModel(contentsOf: modelURL) else {
+            return NSManagedObjectModel()
+        }
+        return model
+    }()
     
     lazy var managedContext: NSManagedObjectContext = {
         return self.storeContainer.viewContext
@@ -27,8 +33,8 @@ final class CoreDataStack {
         return context
     }()
     
-    private lazy var storeContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: self.modelName)
+    lazy var storeContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: CoreDataStack.modelName, managedObjectModel: CoreDataStack.model)
         container.loadPersistentStores { _, error in
             if let error = error as? NSError {
                 print("Unresolved error \(error), \(error.userInfo)")

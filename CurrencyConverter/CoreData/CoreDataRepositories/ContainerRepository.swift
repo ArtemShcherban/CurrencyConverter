@@ -12,13 +12,12 @@ protocol ContainerDataRepository {
     var countOfContainers: Int { get }
     func createContainers()
     func currencyCodes(from container: String) -> [String]?
-    func fillIn(container: String, with currency: Currency)
     func update(container: String, with currency: Currency)
     func replaceIn(container: String, at row: Int, with currency: Currency)
     func removeFrom(container: String, currency: Currency)
 }
 
-class ContainerRepository: Repository, ContainerDataRepository {
+final class ContainerRepository: Repository, ContainerDataRepository {
     var countOfContainers: Int {
         let count = coreDataStack.fetchManagedObjectCount(managedObject: CDContainer.self)
         return count
@@ -41,18 +40,6 @@ class ContainerRepository: Repository, ContainerDataRepository {
             return nil
         }
         return cdContainer.currencyCodes
-    }
-    
-    func fillIn(container: String, with currency: Currency) {
-        coreDataStack.backgroundContext.performAndWait {
-            guard
-                let containerObjectID = getCDContainerID(for: container),
-                let cdContainer = coreDataStack.backgroundContext.object(with: containerObjectID) as? CDContainer else {
-                return
-            }
-            cdContainer.currencyCodes.append(currency.code)
-            coreDataStack.synchronizeContexts()
-        }
     }
     
     func update(container: String, with currency: Currency) {
@@ -95,12 +82,12 @@ class ContainerRepository: Repository, ContainerDataRepository {
         var objectID: NSManagedObjectID?
         
         switch containerName {
-        case ContainerConstants.Name.rate:
+        case ContainerName.exchangeRates:
             if let result = coreDataStack.fetchManagedObject(managedObject: CDRateContainer.self) {
                 objectID = result.first?.objectID
             }
             
-        case ContainerConstants.Name.converter:
+        case ContainerName.converter:
             if let result = coreDataStack.fetchManagedObject(managedObject: CDConverterContainer.self) {
                 objectID = result.first?.objectID
             }

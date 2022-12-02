@@ -9,7 +9,7 @@ import UIKit
 
 extension CurrencyListViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        32.0
+        42
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
@@ -33,9 +33,9 @@ extension CurrencyListViewController: UITableViewDelegate {
         
         guard let currency = optionalCurrency else { return }
         if let editingRow = editingRow {
-            ratesModel.replaceCurrency(at: editingRow, with: currency)
+            ratesModel?.replaceCurrency(at: editingRow, with: currency)
         } else {
-            ratesModel.add(currency: currency)
+            ratesModel?.add(currency: currency)
         }
         
         ratesModelDelegate?.updateCurrentTableView()

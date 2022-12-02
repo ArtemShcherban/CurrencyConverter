@@ -9,28 +9,27 @@ import UIKit
 import Combine
 
 final class NetworkService {
-    private var urlModel = URLModel()
-    private var cancellable: AnyCancellable?
-    
-    private lazy var urlSession: URLSession = {
+    static var urlSession: URLSession = {
         let configuration = URLSessionConfiguration.default
         configuration.timeoutIntervalForResource = 10.0
         configuration.timeoutIntervalForRequest = 30.0
         let urlSession = URLSession(configuration: configuration)
         return urlSession
     }()
+    private var urlModel = URLModel()
+    private var cancellable: AnyCancellable?
     
     func loadData<Response>(
         for endpoint: Endpoint<Response>,
         completion: @escaping (Result<Response, NetworkServiceError>) -> Void
     ) {
-        let publisher = urlSession.publisher(for: endpoint)
+        let publisher = NetworkService.urlSession.publisher(for: endpoint)
         createSubscription(for: publisher) { result in
             completion(result)
         }
     }
     
-    func createSubscription<Response>(
+    private func createSubscription<Response>(
         for publisher: AnyPublisher<Response?, Error>,
         completion: @escaping (Result<Response, NetworkServiceError>) -> Void
     ) {
@@ -48,7 +47,7 @@ final class NetworkService {
             })
     }
     
-    func checkErrorCode(_ error: Error) -> NetworkServiceError {
+    private func checkErrorCode(_ error: Error) -> NetworkServiceError {
         switch error._code {
         case -1001:
             return NetworkServiceError.badNetworkQuality

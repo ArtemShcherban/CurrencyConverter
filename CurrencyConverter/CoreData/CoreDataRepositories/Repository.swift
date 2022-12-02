@@ -6,11 +6,12 @@
 //
 
 import Foundation
+import CoreData
 
 class Repository {
     private(set) var coreDataStack: CoreDataStack
     
-    init(_ coreDataStack: CoreDataStack) {
+    init(coreDataStack: CoreDataStack) {
         self.coreDataStack = coreDataStack
     }
 }

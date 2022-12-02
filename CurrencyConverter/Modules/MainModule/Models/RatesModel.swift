@@ -11,20 +11,23 @@ protocol RatesModelDelegate: AnyObject {
     var currenciesList: [Currency] { get }
     var groups: [Group] { get }
     var exchangeService: ExchangeService { get }
-//    var mainModel: MainModel { get }
     var baseCurrency: Currency? { get set }
     var selectedCurrencies: [Currency] { get set }
     func updateCurrentTableView()
 }
 
 final class RatesModel {
-    private let containerRepository = ContainerRepository(CoreDataStack.shared)
+    private var containerRepository: ContainerRepository
     private(set) lazy var containerName = String()
     
     weak var delegate: RatesModelDelegate?
     
+    init(coreDataStack: CoreDataStack) {
+        self.containerRepository = ContainerRepository(coreDataStack: coreDataStack)
+    }
+    
     func defineContainerName(value: Bool) {
-        containerName = value ? ContainerConstants.Name.rate : ContainerConstants.Name.converter
+        containerName = value ? ContainerName.exchangeRates : ContainerName.converter
     }
     
     func fillSelectedCurrencies() {
@@ -45,7 +48,7 @@ final class RatesModel {
         
         currencies = setExchangeRateFor(currencies: currencies)
         
-        if containerName == ContainerConstants.Name.converter {
+        if containerName == ContainerName.converter {
             delegate?.baseCurrency = currencies.removeFirst()
         }
         delegate?.selectedCurrencies = currencies
@@ -75,14 +78,14 @@ final class RatesModel {
         fillSelectedCurrencies()
     }
     
-    func isMaxNumberOfRows() -> Bool {
+    func canAddRow() -> Bool {
         guard let delegate = delegate else {
             return true
         }
         switch containerName {
-        case ContainerConstants.Name.rate:
+        case ContainerName.exchangeRates:
             return delegate.selectedCurrencies.count <= 2
-        case ContainerConstants.Name.converter:
+        case ContainerName.converter:
             return delegate.selectedCurrencies.count <= 1
         default:
             return true

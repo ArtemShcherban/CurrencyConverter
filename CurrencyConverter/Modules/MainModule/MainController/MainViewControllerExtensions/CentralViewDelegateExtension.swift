@@ -20,7 +20,7 @@ extension MainViewController: CentralViewDelegate {
     }
     
     func updateAddButton() {
-        setAddButtonStatus(exchangeService.ratesModel.isMaxNumberOfRows())
+        setAddButtonStatus(exchangeService.ratesModel.canAddRow())
     }
     
     func changeCurrency(at row: Int) {

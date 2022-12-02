@@ -16,7 +16,7 @@ protocol ExchangeRateDataRepository {
     func deleteBulletin(before date: Date)
 }
 
-class ExchangeRateRepository: Repository, ExchangeRateDataRepository {
+final class ExchangeRateRepository: Repository, ExchangeRateDataRepository {
     func create(bulletin: Bulletin) {
         coreDataStack.backgroundContext.performAndWait {
             let cdBulletin = CDBulletin(context: coreDataStack.backgroundContext)
@@ -62,17 +62,16 @@ class ExchangeRateRepository: Repository, ExchangeRateDataRepository {
     func deleteBulletin(before date: Date) {
         let predicate = NSPredicate(format: "%K < %@", #keyPath(CDBulletin.date), date as NSDate)
         let fetchRequest = fetchRequest(with: predicate)
-        coreDataStack.backgroundContext.perform {
-            do {
-                let cdBulletins = try self.coreDataStack.backgroundContext.fetch(fetchRequest)
-                cdBulletins.forEach { cdBulletin in
-                    self.coreDataStack.backgroundContext.delete(cdBulletin)
-                }
-            } catch let nserror as NSError {
-                debugPrint(nserror)
+        
+        do {
+            let cdBulletins = try self.coreDataStack.managedContext.fetch(fetchRequest)
+            cdBulletins.forEach { cdBulletin in
+                self.coreDataStack.managedContext.delete(cdBulletin)
             }
-            self.coreDataStack.synchronizeContexts()
+        } catch let nserror as NSError {
+            debugPrint(nserror)
         }
+        coreDataStack.saveContext()
     }
     
     private func createCD(exchangeRate: ExchangeRate, in cdBulletinID: NSManagedObjectID) {

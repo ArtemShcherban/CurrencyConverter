@@ -54,7 +54,7 @@ extension MainViewController: UITableViewDataSource {
         cell.currencyAction = {
             self.openCurrencyViewController(for: indexPath.row + 1)
         }
-        let amount = exchangeService.converterModel.doCalculation(for: currency)
+        let amount = exchangeService.converterModel.doCalculation(for: currency, with: baseCurrency)
         cell.configureAt(with: currency, and: amount)
         return cell
     }

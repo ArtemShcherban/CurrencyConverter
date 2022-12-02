@@ -11,8 +11,6 @@ final class ConverterModel {
     lazy var isSellAction = true
     lazy var amount: Double = 0.0
     
-    weak var delegate: MainViewController?
-    
     func transform(_ text: String?) -> String {
         guard let text = text, !text.isEmpty else {
             self.amount = 0.0
@@ -49,8 +47,8 @@ final class ConverterModel {
         return amountAsString
     }
     
-    func doCalculation(for currency: Currency) -> Double {
-        guard let baseCurrency = delegate?.baseCurrency else { return 0.00 }
+    func doCalculation(for currency: Currency, with baseCurrency: Currency?) -> Double {
+        guard let baseCurrency = baseCurrency else { return 0.00 }
         if isSellAction {
             return  currency.sell > 0 ? amount * baseCurrency.buy / currency.sell : 0.00
         } else {

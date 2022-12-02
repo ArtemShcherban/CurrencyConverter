@@ -7,38 +7,44 @@
 
 import Foundation
 
-struct Currency {
-    var buy: Double
-    var sell: Double
-    var code: String
-    var number: Int
-    var country: String
-    var groupKey: Int
-    var currency: String
-    var container: NSOrderedSet?
-    var currencyPlural: String
-    
-    init(buy: Double, sell: Double, code: String, number: Int, country: String, groupKey: Int, currency: String, container: NSOrderedSet? = nil, currencyPlural: String) {
-        self.buy = buy
-        self.sell = sell
-        self.code = code
-        self.number = number
-        self.country = country
-        self.groupKey = groupKey
-        self.currency = currency
-        self.container = container
-        self.currencyPlural = currencyPlural
+struct Currency: Equatable, Decodable {
+    enum CurrencyInitError: Error {
+        case cannotDecodeValues
     }
     
-    init(from dictionary: [String: Any]) {
-        self.buy = 0.0
-        self.sell = 0.0
-        self.code = dictionary["Code"] as? String ?? String()
-        self.number = dictionary["Number"] as? Int ?? Int()
-        self.country = dictionary["Country"] as? String ?? String()
-        self.groupKey = 0
-        self.currency = dictionary["Currency"] as? String ?? String()
-        self.container = nil
-        self.currencyPlural = dictionary["CurrencyPlural"] as? String ?? String()
+    var buy: Double = 0.0
+    var sell: Double = 0.0
+    var code: String = "No Code"
+    var number: Int = 0
+    var country: String = "No Country"
+    var groupKey: Int = 0
+    var currency: String = "No Currency Name"
+    var container: NSOrderedSet?
+    var currencyPlural: String = "No Plural"
+    
+    init() { }
+    
+    enum CodingKeys: String, CodingKey {
+        case code = "Code"
+        case number = "Number"
+        case country = "Country"
+        case currency = "Currency"
+        case currencyPlural = "CurrencyPlural"
+    }
+    
+    init(from decoder: Decoder) throws {
+        guard let values = try? decoder.container(keyedBy: CodingKeys.self) else {
+            throw CurrencyInitError.cannotDecodeValues
+        }
+        self.code = try values.decode(String.self, forKey: .code)
+        self.number = try values.decode(Int.self, forKey: .number)
+        self.country = try values.decode(String.self, forKey: .country)
+        self.currency = try values.decode(String.self, forKey: .currency)
+        self.currencyPlural = try values.decode(String.self, forKey: .currencyPlural)
+    }
+    
+    static func == (lhs: Currency, rhs: Currency) -> Bool {
+        lhs.number == rhs.number &&
+        lhs.code == rhs.code
     }
 }

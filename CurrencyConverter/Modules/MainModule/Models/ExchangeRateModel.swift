@@ -10,12 +10,13 @@ import CoreData
 
 final class ExchangeRateModel {
     lazy var selectedDate = Date().startOfDay
-    private let networkService = NetworkService()
-    private let exchangeRateRepository = ExchangeRateRepository(CoreDataStack.shared)
+    lazy var networkService = NetworkService()
+    let exchangeRateRepository: ExchangeRateRepository
     private var currencyList: [Currency]
     
-    init(with currencyList: [Currency]) {
+    init(with currencyList: [Currency], coreDataStack: CoreDataStack) {
         self.currencyList = currencyList
+        self.exchangeRateRepository = ExchangeRateRepository(coreDataStack: coreDataStack)
     }
     
     func exchangeRates(for date: Date, completion: @escaping (Result<Date, NetworkServiceError> ) -> Void) {

@@ -55,7 +55,6 @@ final class MainViewController: UIViewController {
     
     private func setDelegates() {
         exchangeService.ratesModel.delegate = self
-        exchangeService.converterModel.delegate = self
         exchangeService.messageModel.delegate = self
         exchangeRatesView.centralViewDelegate = self
         exchangeRatesView.delegate = self
@@ -71,7 +70,7 @@ final class MainViewController: UIViewController {
     }
     
     func updateData(for date: Date = Date()) {
-        guard exchangeService.dateModel.checkTimeInterval(to: date) else { return }
+        guard exchangeService.dateModel.checkTimeInterval(for: date) else { return }
         exchangeService.exchangeRateModel.exchangeRates(for: date) { result in
             switch result {
             case .success(date):
@@ -87,7 +86,7 @@ final class MainViewController: UIViewController {
     }
     
     func checkUpdateTime(date: Date) -> Bool {
-        if exchangeService.dateModel.checkTimeInterval(to: date) {
+        if exchangeService.dateModel.checkTimeInterval(for: date) {
             return true
         } else {
             let hour = exchangeService.dateModel.nextUpdateHour(from: date)
@@ -110,16 +109,12 @@ final class MainViewController: UIViewController {
     
     func openCurrencyViewController(for editingRow: Int? = nil) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let viewController =
-        storyboard.instantiateViewController(
-            identifier: CurrencyListViewController.reuseIdentifier) { coder -> CurrencyListViewController? in
-            CurrencyListViewController(
-                coder: coder,
-                ratesModel: self.exchangeService.ratesModel,
-                editingRow: editingRow
-            )
+        guard let viewController = CurrencyListViewController.instantiateWith(
+            ratesModel: self.exchangeService.ratesModel,
+            and: editingRow
+        ) else {
+            return
         }
-
         viewController.modalPresentationStyle = .fullScreen
         viewController.ratesModelDelegate = self
         
