@@ -108,7 +108,6 @@ final class MainViewController: UIViewController {
     }
     
     func openCurrencyViewController(for editingRow: Int? = nil) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let viewController = CurrencyListViewController.instantiateWith(
             ratesModel: self.exchangeService.ratesModel,
             and: editingRow
